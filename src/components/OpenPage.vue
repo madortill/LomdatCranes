@@ -2,6 +2,7 @@
 =<template>
     <div id="open-page">
         <button @click="showInfo" class="info-btn btn">i</button>
+        <img class="bahadSymbol" src="../../src/assets/media/bahadSymbol.png" alt="bahadSymbol"/>
         <div class="info-container" v-if= "isOpenInfo"> 
           <p @click="hideInfo" class="close-info">X</p>
             <ul class="info-list">
@@ -12,10 +13,10 @@
             </ul>
         </div>
         <div v-if="!isOpenInfo">
-          <img class="box" src="../../src/assets/box.svg" alt="box"/>
+          <img class="box" src="../../src/assets/media/box.svg" alt="box"/>
           <p class="title">לומדת עגורנים</p>
           <button class="start-btn btn">התחל</button>
-          <img class="tapes" src="../../src/assets/tapes.svg" alt="tapes"/>
+          <img class="tapes" src="../../src/assets/media/tapes.svg" alt="tapes"/>
         </div>
     </div>
 </template>
@@ -193,5 +194,12 @@
     bottom: 0rem;
     width: 41rem;
     pointer-events: none;
+}
+
+.bahadSymbol {
+  width:4rem;
+  position: absolute;
+  top: 1rem;
+  left: 5rem;
 }
 </style>
