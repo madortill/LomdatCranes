@@ -177,7 +177,7 @@
 @keyframes windowShow {
     0% {
       height: 20rem;
-        width: 20rem;
+        width: 20rem; 
         font-size: 0.9rem;
     }
     100% {
