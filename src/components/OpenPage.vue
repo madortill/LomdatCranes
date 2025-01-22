@@ -3,6 +3,7 @@
     <div id="open-page">
         <button @click="showInfo" class="info-btn btn">i</button>
         <img class="bahadSymbol" src="../../src/assets/media/bahadSymbol.png" alt="bahadSymbol"/>
+        <img class="tillLogo" src="../../src/assets/media/whiteMadorTill.png" alt="tillLogo"/>
         <div class="info-container" v-if= "isOpenInfo"> 
           <p @click="hideInfo" class="close-info">X</p>
             <ul class="info-list">
@@ -201,5 +202,12 @@
   position: absolute;
   top: 1rem;
   left: 5rem;
+}
+
+.tillLogo {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width:4rem;
 }
 </style>
