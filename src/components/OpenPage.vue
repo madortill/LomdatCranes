@@ -13,26 +13,30 @@
                 </li>
             </ul>
         </div>
-        <div v-if="!isOpenInfo">
-          <img class="box" src="../../src/assets/media/box.svg" alt="box"/>
-          <p class="title">לומדת עגורנים</p>
-          <button class="start-btn btn">התחל</button>
-          <img class="tapes" src="../../src/assets/media/tapes.svg" alt="tapes"/>
+        <div class="start-container" v-if="!isOpenInfo">
+            <img src="../../src/assets/media/Crane.png" alt="crane" class="bgCrane"/>
+            <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
+            <div class="box-container">
+              <Box class="box btn" newTitle="עילי"></Box>
+              <Box class="box btn" newTitle="העמסה עצמית"></Box>
+            </div>
         </div>
+        <div class="ground"></div>
     </div>
 </template>
 
 <script>
+import Box from '../../src/components/Box.vue';
     export default {
         name: "open-page",
-        components: {},
+        components: {Box},
         data() {
             return {
               infoObject: {
                     "מפתחת לומדה:": 'רב"ט דני שריקי',
                     "גרפיקאית:": 'רב"ט קריסטינה ברחטוב',
-                    "מומחה תוכן:": "יוחאי",
-                    'רמ"ד טי"ל:': "שלומי אוגרן",
+                    "מומחה תוכן:": 'רס"ר יוחאי עזרא',
+                    'רמ"ד טי"ל:': 'רס"מ שלומי אוגרן',
                     "גרסה:": "ינואר 2025"
                 },
                 isOpenInfo: false,
@@ -50,17 +54,22 @@
 </script>
 
 <style scoped>
-  #open-page {
-    background-size: 100vw 100vh;
-    direction: rtl;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #023047;
-    flex-direction: column;
-    color: #CCEAF6;
-  }
+#open-page {
+  direction: rtl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  color: #023047;
+  background-image: url("../../src/assets/media/cloudsBg.svg");
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+ 
+}
+
+
 
   .title {
     font-weight: bolder;
@@ -79,40 +88,38 @@
       transform: translateY(0);
     }
   }
+
 .btn {
     cursor: pointer;
-    border: 3px solid #FFB703;
-    background-color: #023047;
-    color: #FFB703;
-    
 }
-  .start-btn {
+  /* .start-btn {
     height: 4rem;
     border-radius: 100px;
     min-width: 9rem;
     font-size: 1.7rem;
-  }
+  } */
 
-  .btn:hover {
-    animation: fade 0.2s linear forwards;
-  }
-
-  @keyframes fade {
-    0% {
-        background-color: #023047;
-        color: #FFB703;
-    }
-    100% {
-        background-color: #FFB703;
-        color: #023047;
-    }
-  }
 
   .box {
-    position: absolute;
-    top: -1rem;
-    width: 11rem;
-    animation: tossAnimation 3s ease-in-out infinite;
+    /* position: absolute;
+    top: -1rem; */
+    /* width: 11rem; */
+    /* animation: tossAnimation 3s ease-in-out infinite; */
+    width: 15rem;
+    z-index: 1;
+    /* margin: 2rem; */
+  }
+
+  .box-container {
+    width: 40rem;
+    /* position: absolute; */
+    display:flex;
+    bottom: 0rem;
+    z-index: 1;
+    justify-content: space-evenly;
+   /* left: 50%;
+   transform: translateX(-50%);  */
+   padding: 2rem;
   }
 
   @keyframes tossAnimation {
@@ -131,16 +138,35 @@
 }
 
 .info-btn {
+  border: 3px solid #FFB703;
+  background-color: #FFB703;
+  color: #E0F2F4;
   border-radius: 100%;
   width: 2rem;
   height: 2rem;
   padding: 0.2rem;
   font-size: 1rem;
   position: absolute;
-  left: 1rem;
+  left: 6rem;
   top: 1rem;
   font-weight: bold;
 }
+
+.info-btn:hover {
+    animation: fade 0.2s linear forwards;
+  }
+
+  @keyframes fade {
+    0% {
+      border: 3px solid #FFB703;
+      background-color: #FFB703;
+    }
+    100% {
+        background-color: #023047;
+        border: 3px solid #023047;
+    }
+  }
+
 
 .info-container {
   background-color: white;
@@ -201,7 +227,7 @@
   width:4rem;
   position: absolute;
   top: 1rem;
-  left: 5rem;
+  left: 1rem;
 }
 
 .tillLogo {
@@ -209,5 +235,38 @@
   right: 1rem;
   bottom: 1rem;
   width:4rem;
+  z-index: 2;
 }
+
+.bgCrane {
+    position: absolute;
+    right: -11rem;
+    /* top: -2rem; */
+    width: 38rem;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.start-container {
+  width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ground {
+  background-color: #023047;
+  position: absolute;
+  bottom: 0rem;
+  width: 100vw;
+  height: 9rem;
+}
+
+.hook {
+  width: 3rem;
+}
+
+
 </style>
