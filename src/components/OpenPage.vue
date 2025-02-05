@@ -99,13 +99,14 @@ import Box from '../../src/components/Box.vue';
 
 .btn {
     cursor: pointer;
-    pointer-events: visibleStroke;
+    /* pointer-events: visibleStroke; */
 }
 
   .box {
     width: 20rem;
     z-index: 1;
     margin: 2rem;
+    pointer-events: visiblePainted;
   }
 
   .start-sign {
@@ -155,6 +156,7 @@ import Box from '../../src/components/Box.vue';
   left: 6rem;
   top: 1rem;
   font-weight: bold;
+  z-index: 2;
 }
 
 .info-btn:hover {

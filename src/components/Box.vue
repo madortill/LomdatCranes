@@ -323,8 +323,9 @@ export default {
   position: absolute;
   /* z-index: 2; */
   /* margin-left: -5rem; */
-  width: 10rem;
+  width: 50%;
   bottom: 0rem;
+  /* text-align: left; */
   left: 1rem;
   transform: rotate(22.13deg);
 }
