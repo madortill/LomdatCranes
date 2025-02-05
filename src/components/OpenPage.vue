@@ -315,7 +315,7 @@ import Box from '../../src/components/Box.vue';
 .box {
     width: 20rem;
     z-index: 1;
-    margin-bottom: 5rem;
+    margin-bottom: 8rem;
   }
 }
 </style>
