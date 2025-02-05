@@ -15,21 +15,28 @@
         </div>
         <div class="start-container" v-if="!isOpenInfo">
             <img src="../../src/assets/media/Crane.png" alt="crane" class="bgCrane"/>
-            <div class="start-sign">
+            <div class="start-sign" :class="{up: isChosen}">
               <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
               <img src="../../src/assets/media/wire.png" alt="wire" class="wire"/>
-              <div class="board">לומדת עגורנים</div>
-              <img src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
-              <div class="mini-board">בחרו את סוג העגורן ללמידה </div>
-        </div>
-            
-
-            
-            
-            <div class="box-container">
-              <Box class="box btn" newTitle="עילי" ></Box>
-              <Box class="box btn" newTitle="העמסה עצמית"></Box>
+              <div class="board" >לומדת עגורנים</div>
+              <div>
+                <img v-if="!isChosen" src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
+                <div v-if="!isChosen" class="mini-board">בחרו את סוג העגורן ללמידה </div>
+              </div>
+              
+              
+              <div class="explain-board" v-if="showExplain"> 
+                <p>hello</p>
+              </div>
+              
             </div>
+               
+            <div class="box-container">
+              <Box @click="toNextScreen" class="box btn" :class="{fadeObject: isChosen}" newTitle="עילי" ></Box>
+              <Box @click="toNextScreen" class="box btn" :class="{fadeObject: isChosen}" newTitle="העמסה עצמית"></Box>
+            </div>
+            
+           
         </div>
         <div class="ground"></div>
     </div>
@@ -50,6 +57,8 @@ import Box from '../../src/components/Box.vue';
                     "גרסה:": "ינואר 2025"
                 },
                 isOpenInfo: false,
+                isChosen: false,
+                showExplain: false,
             };
           },
         methods: {
@@ -58,7 +67,15 @@ import Box from '../../src/components/Box.vue';
           },
           hideInfo() {
             this.isOpenInfo = false;
+          },
+          toNextScreen() {
+            this.isChosen = true;
+            let timer = setTimeout(()=> {
+              this.showExplain = true;
+            }, 500);
+            clearTimeout(timer);
           }
+
         },
     };
 </script>
@@ -99,7 +116,6 @@ import Box from '../../src/components/Box.vue';
 
 .btn {
     cursor: pointer;
-    /* pointer-events: visibleStroke; */
 }
 
   .box {
@@ -160,10 +176,10 @@ import Box from '../../src/components/Box.vue';
 }
 
 .info-btn:hover {
-    animation: fade 0.2s linear forwards;
+    animation: changeColor 0.2s linear forwards;
   }
 
-  @keyframes fade {
+  @keyframes changeColor {
     0% {
       border: 3px solid #FFB703;
       background-color: #FFB703;
@@ -244,7 +260,7 @@ import Box from '../../src/components/Box.vue';
 }
 
 .start-container {
-  width: 100vw;
+    width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -281,15 +297,20 @@ import Box from '../../src/components/Box.vue';
   font-weight: 900;
   border-radius: 1.5rem;
   width:30rem;
-  /* position:absolute;
-  top: 8.9rem; */
   z-index: 2;
-  /* border: 3px solid #023047; */
+}
+
+.explain-board {
+  color: white;
+  background-color: #023047;
+  padding: 2rem;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  width:30rem;
+  z-index: 2;
 }
 
 .twoWires {
-  /* position:absolute;
-  top: 18.6rem; */
   z-index: 2;
   width: 9rem;
   height:1rem;
@@ -300,13 +321,9 @@ import Box from '../../src/components/Box.vue';
   background-color: #FFB703;
   padding: 1rem;
   font-size: 1rem;
-  /* font-weight: 900; */
   border-radius: 0.7rem;
-  /* position:absolute;
-  top: 19.5rem; */
   z-index: 2;
   margin-top: -0.2rem;
-  /* border: 3px solid #023047; */
 }
 
 @media screen and (max-width:768px){
@@ -320,4 +337,48 @@ import Box from '../../src/components/Box.vue';
     margin-bottom: 8rem;
   }
 }
+
+.up {
+  animation: goingUp 0.5s linear forwards;
+}
+
+@keyframes goingUp {
+    0% {
+      position: relative;
+      bottom: 0vh;
+    }
+    100% {
+      position: relative;
+      bottom: 50vh;
+    }
+  }
+
+  .fadeObject {
+    animation: fade 0.2s linear forwards;
+  }
+
+  @keyframes fade {
+    0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+  }
+
+  .down {
+  animation: goingDown 0.5s linear forwards;
+}
+
+  @keyframes goingDown {
+    0% {
+      position: relative;
+      bottom: 50vh;
+    }
+    100% {
+      position: relative;
+      bottom: 0vh;
+    }
+  }
 </style>
