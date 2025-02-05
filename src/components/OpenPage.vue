@@ -15,10 +15,20 @@
         </div>
         <div class="start-container" v-if="!isOpenInfo">
             <img src="../../src/assets/media/Crane.png" alt="crane" class="bgCrane"/>
-            <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
+            <div class="start-sign">
+              <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
+              <img src="../../src/assets/media/wire.png" alt="wire" class="wire"/>
+              <div class="board">לומדת עגורנים</div>
+              <img src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
+              <div class="mini-board">בחרו את סוג העגורן ללמידה </div>
+        </div>
+            
+
+            
+            
             <div class="box-container">
-              <Box class="box btn" newTitle="עילי"></Box>
-              <Box class="box btn" newTitle="העמסה עצמית"></Box>
+              <Box class="box btn" isOneWord=true newTitle="עילי" ></Box>
+              <Box class="box btn" newTitle="העמסה" secondTitle="עצמית" isOneWord="false"></Box>
             </div>
         </div>
         <div class="ground"></div>
@@ -75,7 +85,6 @@ import Box from '../../src/components/Box.vue';
     font-weight: bolder;
     font-size: 6rem;
     animation: floatAnimation 3s ease-in-out infinite;
-    
   }
   @keyframes floatAnimation {
     0% {
@@ -105,35 +114,47 @@ import Box from '../../src/components/Box.vue';
     top: -1rem; */
     /* width: 11rem; */
     /* animation: tossAnimation 3s ease-in-out infinite; */
-    width: 15rem;
+    width: 20rem;
     z-index: 1;
-    /* margin: 2rem; */
+    margin: 2rem;
+  }
+
+  .start-sign {
+    width: 100vw;
+    height: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     animation: tossAnimation 3s ease-in-out infinite;
+     transform: rotate(-1deg);
+    margin-right: 5rem;
+    pointer-events: none;
   }
 
   .box-container {
-    width: 40rem;
+    width: 100vw;
     /* position: absolute; */
     display:flex;
-    bottom: 0rem;
+    /* bottom: 0rem; */
     z-index: 1;
     justify-content: space-evenly;
    /* left: 50%;
    transform: translateX(-50%);  */
-   padding: 2rem;
+   /* padding: rem; */
   }
 
   @keyframes tossAnimation {
   0% {
-    transform: rotate(7deg);
-    right: 7rem;
+    transform: rotate(-1deg);
+    margin00000-right: 5rem;
   }
-  50% {
-    transform: rotate(-7deg);
-    right: 4rem;
-  }
+ 50% {
+  transform: rotate(1deg);
+    margin-left: 5rem;
+ }
   100% {
-    transform: rotate(7deg);
-    right: 7rem;
+    transform: rotate(-1deg);
+    margin-right: 5rem;
   }
 }
 
@@ -172,12 +193,12 @@ import Box from '../../src/components/Box.vue';
   background-color: white;
   color:#023047;
   border-radius: 2rem;
-  width: 25rem;
-  height: 25rem;
-  margin: auto;
-  position: absolute;
+  width: 28rem;
+  height: 28rem;
+  /* margin: auto; */
+  /* position: absolute; */
   animation: windowShow 0.2s linear forwards;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .info-list {
@@ -193,35 +214,35 @@ import Box from '../../src/components/Box.vue';
 }
 
 .info {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .close-info {
-  margin-left: 20rem;
+  margin-left: 22rem;
   cursor: pointer;
   font-size: 1.8rem;
 }
 
 @keyframes windowShow {
     0% {
-      height: 20rem;
-        width: 20rem; 
-        font-size: 0.9rem;
+      height: 25rem;
+        width: 25rem; 
+        font-size: 1rem;
     }
     100% {
-      height: 25rem;
-      width: 25rem;
-      font-size: 1rem;
+      height: 28rem;
+      width: 28rem;
+      font-size: 1.2rem;
     }
   }
 
-  .tapes {
+  /* .tapes {
     position: absolute;
     left: 0rem;
     bottom: 0rem;
     width: 41rem;
     pointer-events: none;
-}
+} */
 
 .bahadSymbol {
   width:4rem;
@@ -266,7 +287,50 @@ import Box from '../../src/components/Box.vue';
 
 .hook {
   width: 3rem;
+  z-index: 2;
+  margin-top: -0.8rem;
 }
 
+.wire {
+  height: 1.5rem;
+  z-index: 2;
+  width:20rem;
+  margin-top: -0.6rem;
+}
 
+.board {
+  color: #E0F2F4;
+  background-color: #023047;
+  padding: 2rem;
+  font-size: 4rem;
+  font-weight: 900;
+  border-radius: 1.5rem;
+  width:30rem;
+  /* position:absolute;
+  top: 8.9rem; */
+  z-index: 2;
+  /* border: 3px solid #023047; */
+}
+
+.twoWires {
+  /* position:absolute;
+  top: 18.6rem; */
+  z-index: 2;
+  width: 9rem;
+  height:1rem;
+}
+
+.mini-board {
+  color: #023047;
+  background-color: #FFB703;
+  padding: 1rem;
+  font-size: 1rem;
+  /* font-weight: 900; */
+  border-radius: 0.7rem;
+  /* position:absolute;
+  top: 19.5rem; */
+  z-index: 2;
+  margin-top: -0.2rem;
+  /* border: 3px solid #023047; */
+}
 </style>

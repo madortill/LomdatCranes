@@ -1,6 +1,6 @@
 <template>
   <div id="box">
-    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 198.61 167.75"><metadata></metadata>
+    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 198.61 167.75" width="100%" height="100%"><metadata></metadata>
   <defs>
   
     <linearGradient id="linear-gradient" x1="95.45" y1="81.25" x2="4.25" y2="127.5" gradientUnits="userSpaceOnUse">
@@ -83,7 +83,8 @@
         </g>
       </g>
     </g>
-    <text class="cls-14" transform="translate(14.86 102.51) rotate(22.13)"><tspan x="0" y="0">{{newTitle}}</tspan></text>
+    <text class="cls-14" transform="translate(14.86 102.51) rotate(22.13)" x="60">{{newTitle}}</text>
+    <text v-if="!isOneWord" class="cls-14" transform="translate(14.86 102.51) rotate(22.13)" x="50" y="14">{{secondTitle}}</text>
   </g>
 </svg>
   </div>
@@ -92,7 +93,7 @@
 <script>
 export default {
   name: "box",
-  props: ["newTitle"],
+  props: ["newTitle", "secondTitle", "isOneWord"],
   data() {
     return {
     };
@@ -155,9 +156,8 @@ export default {
 
       .cls-14 {
         fill: #013047;
-        font-family: Heebo-Bold, Heebo;
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 1.3rem;
+        font-weight: bolder;
       }
 
       .cls-15 {
@@ -176,4 +176,6 @@ export default {
         fill: #28374f;
       }
       
+
+
 </style>
