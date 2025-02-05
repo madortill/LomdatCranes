@@ -79,13 +79,12 @@ import Box from '../../src/components/Box.vue';
  
 }
 
-
-
   .title {
     font-weight: bolder;
     font-size: 6rem;
     animation: floatAnimation 3s ease-in-out infinite;
   }
+
   @keyframes floatAnimation {
     0% {
       transform: translateY(0);
@@ -100,20 +99,10 @@ import Box from '../../src/components/Box.vue';
 
 .btn {
     cursor: pointer;
+    pointer-events: visibleStroke;
 }
-  /* .start-btn {
-    height: 4rem;
-    border-radius: 100px;
-    min-width: 9rem;
-    font-size: 1.7rem;
-  } */
-
 
   .box {
-    /* position: absolute;
-    top: -1rem; */
-    /* width: 11rem; */
-    /* animation: tossAnimation 3s ease-in-out infinite; */
     width: 20rem;
     z-index: 1;
     margin: 2rem;
@@ -133,14 +122,9 @@ import Box from '../../src/components/Box.vue';
 
   .box-container {
     width: 100vw;
-    /* position: absolute; */
     display:flex;
-    /* bottom: 0rem; */
     z-index: 1;
     justify-content: space-evenly;
-   /* left: 50%;
-   transform: translateX(-50%);  */
-   /* padding: rem; */
   }
 
   @keyframes tossAnimation {
@@ -195,8 +179,6 @@ import Box from '../../src/components/Box.vue';
   border-radius: 2rem;
   width: 27rem;
   height: 27rem;
-  /* margin: auto; */
-  /* position: absolute; */
   animation: windowShow 0.2s linear forwards;
   font-size: 1.5rem;
 }
@@ -236,14 +218,6 @@ import Box from '../../src/components/Box.vue';
     }
   }
 
-  /* .tapes {
-    position: absolute;
-    left: 0rem;
-    bottom: 0rem;
-    width: 41rem;
-    pointer-events: none;
-} */
-
 .bahadSymbol {
   width:4rem;
   position: absolute;
@@ -262,7 +236,6 @@ import Box from '../../src/components/Box.vue';
 .bgCrane {
     position: absolute;
     right: -11rem;
-    /* top: -2rem; */
     width: 38rem;
     height: 100vh;
     pointer-events: none;
@@ -332,5 +305,17 @@ import Box from '../../src/components/Box.vue';
   z-index: 2;
   margin-top: -0.2rem;
   /* border: 3px solid #023047; */
+}
+
+@media screen and (max-width:768px){
+  .ground {
+    height: 15rem;
+}
+
+.box {
+    width: 20rem;
+    z-index: 1;
+    margin-bottom: 5rem;
+  }
 }
 </style>
