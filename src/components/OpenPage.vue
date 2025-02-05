@@ -27,8 +27,8 @@
             
             
             <div class="box-container">
-              <Box class="box btn" isOneWord=true newTitle="עילי" ></Box>
-              <Box class="box btn" newTitle="העמסה" secondTitle="עצמית" isOneWord="false"></Box>
+              <Box class="box btn" newTitle="עילי" ></Box>
+              <Box class="box btn" newTitle="העמסה עצמית"></Box>
             </div>
         </div>
         <div class="ground"></div>
@@ -193,8 +193,8 @@ import Box from '../../src/components/Box.vue';
   background-color: white;
   color:#023047;
   border-radius: 2rem;
-  width: 28rem;
-  height: 28rem;
+  width: 27rem;
+  height: 27rem;
   /* margin: auto; */
   /* position: absolute; */
   animation: windowShow 0.2s linear forwards;
@@ -230,8 +230,8 @@ import Box from '../../src/components/Box.vue';
         font-size: 1rem;
     }
     100% {
-      height: 28rem;
-      width: 28rem;
+      height: 27rem;
+      width: 27rem;
       font-size: 1.2rem;
     }
   }
