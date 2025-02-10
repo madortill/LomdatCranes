@@ -1,5 +1,5 @@
 
-=<template>
+<template>
     <div id="open-page">
         <button @click="showInfo" class="info-btn btn">i</button>
         <img class="bahadSymbol" src="../../src/assets/media/bahadSymbol.png" alt="bahadSymbol"/>
@@ -15,25 +15,18 @@
         </div>
         <div class="start-container" v-if="!isOpenInfo">
             <img src="../../src/assets/media/Crane.png" alt="crane" class="bgCrane"/>
-            <div class="start-sign" :class="{up: isChosen}">
-              <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
-              <img src="../../src/assets/media/wire.png" alt="wire" class="wire"/>
-              <div class="board" >לומדת עגורנים</div>
-              <div>
-                <img v-if="!isChosen" src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
-                <div v-if="!isChosen" class="mini-board">בחרו את סוג העגורן ללמידה </div>
-              </div>
-              
-              
-              <div class="explain-board" v-if="showExplain"> 
-                <p>hello</p>
-              </div>
-              
+
+            <HangingBoard @toNextBoard="toNextScreen" :indexYellowSign="indexYellowSign" :partNum="boardNum" :craneKind="chosenCrane" :isUp="isUp" :isDown="isDown"/>
+
+            <div class="box-container"  v-if="boardNum === 1">
+              <Box @click.once="toNextScreen" id="עילי" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="עילי" ></Box>
+              <Box @click.once="toNextScreen" id="העמסה עצמית" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="העמסה עצמית"></Box>
             </div>
-               
-            <div class="box-container">
-              <Box @click="toNextScreen" class="box btn" :class="{fadeObject: isChosen}" newTitle="עילי" ></Box>
-              <Box @click="toNextScreen" class="box btn" :class="{fadeObject: isChosen}" newTitle="העמסה עצמית"></Box>
+
+            <div class="home-box-container"  v-if="boardNum === 3">
+              <Box class="part-one btn" newTitle="תחילת הלמידה"></Box>
+              <Box class="part-two btn" newTitle="תפעול"></Box>
+              <Box class="part-three btn" newTitle="תרגול"></Box>
             </div>
             
            
@@ -44,9 +37,11 @@
 
 <script>
 import Box from '../../src/components/Box.vue';
-    export default {
+import HangingBoard from './HangingBoard.vue';
+
+export default {
         name: "open-page",
-        components: {Box},
+        components: {Box, HangingBoard},
         data() {
             return {
               infoObject: {
@@ -57,8 +52,12 @@ import Box from '../../src/components/Box.vue';
                     "גרסה:": "ינואר 2025"
                 },
                 isOpenInfo: false,
-                isChosen: false,
+                chosenCrane: '',
                 showExplain: false,
+                boardNum: 1,
+                isUp: false,
+                isDown: false,
+                indexYellowSign: 0,
             };
           },
         methods: {
@@ -68,12 +67,23 @@ import Box from '../../src/components/Box.vue';
           hideInfo() {
             this.isOpenInfo = false;
           },
-          toNextScreen() {
-            this.isChosen = true;
+          toNextScreen(event) {
+            if(this.boardNum === 1) {
+              this.chosenCrane = event.currentTarget.id;
+              this.indexYellowSign++;
+            }
+            this.isUp = true;
+            let timerdown = setTimeout(()=> {
+              this.isDown= true;
+              this.boardNum++;
+              clearTimeout(timerdown);
+            }, 800);
             let timer = setTimeout(()=> {
-              this.showExplain = true;
-            }, 500);
-            clearTimeout(timer);
+              this.isUp = false;
+              this.isDown = false;
+              clearTimeout(timer);
+            }, 1500);
+            
           }
 
         },
@@ -93,70 +103,55 @@ import Box from '../../src/components/Box.vue';
   background-image: url("../../src/assets/media/cloudsBg.svg");
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
- 
 }
-
-  .title {
-    font-weight: bolder;
-    font-size: 6rem;
-    animation: floatAnimation 3s ease-in-out infinite;
-  }
-
-  @keyframes floatAnimation {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(12px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 
 .btn {
     cursor: pointer;
 }
 
-  .box {
-    width: 20rem;
-    z-index: 1;
-    margin: 2rem;
-    pointer-events: visiblePainted;
-  }
+.box {
+  width: 20rem;
+  z-index: 1;
+  margin: 2rem;
+  pointer-events: visiblePainted;
+}
 
-  .start-sign {
-    width: 100vw;
-    height: 40rem;
+
+
+.box-container {
+  width: 100vw;
+  height: 60vh;
+  display:flex;
+  z-index: 1;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.home-box-container {
+  width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-     animation: tossAnimation 3s ease-in-out infinite;
-     transform: rotate(-1deg);
-    margin-right: 5rem;
-    pointer-events: none;
-  }
-
-  .box-container {
-    width: 100vw;
-    display:flex;
     z-index: 1;
-    justify-content: space-evenly;
-  }
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+}
 
-  @keyframes tossAnimation {
-  0% {
-    transform: rotate(-1deg);
-    margin00000-right: 5rem;
-  }
- 50% {
-  transform: rotate(1deg);
-    margin-left: 5rem;
- }
-  100% {
-    transform: rotate(-1deg);
-    margin-right: 5rem;
-  }
+.part-one {
+  /* width:19rem; */
+  z-index:4;
+  margin-left: 2rem;
+}
+
+.part-two {
+  z-index: 3;
+  margin-top: -4rem;
+  margin-left: -3rem;
+}
+
+.part-three {
+  z-index: 2;
+  margin-top: -4rem;
 }
 
 .info-btn {
@@ -257,6 +252,7 @@ import Box from '../../src/components/Box.vue';
     width: 38rem;
     height: 100vh;
     pointer-events: none;
+    z-index: 0;
 }
 
 .start-container {
@@ -276,56 +272,6 @@ import Box from '../../src/components/Box.vue';
   height: 9rem;
 }
 
-.hook {
-  width: 3rem;
-  z-index: 2;
-  margin-top: -0.8rem;
-}
-
-.wire {
-  height: 1.5rem;
-  z-index: 2;
-  width:20rem;
-  margin-top: -0.6rem;
-}
-
-.board {
-  color: #E0F2F4;
-  background-color: #023047;
-  padding: 2rem;
-  font-size: 4rem;
-  font-weight: 900;
-  border-radius: 1.5rem;
-  width:30rem;
-  z-index: 2;
-}
-
-.explain-board {
-  color: white;
-  background-color: #023047;
-  padding: 2rem;
-  font-size: 1rem;
-  border-radius: 1.5rem;
-  width:30rem;
-  z-index: 2;
-}
-
-.twoWires {
-  z-index: 2;
-  width: 9rem;
-  height:1rem;
-}
-
-.mini-board {
-  color: #023047;
-  background-color: #FFB703;
-  padding: 1rem;
-  font-size: 1rem;
-  border-radius: 0.7rem;
-  z-index: 2;
-  margin-top: -0.2rem;
-}
-
 @media screen and (max-width:768px){
   .ground {
     height: 15rem;
@@ -338,20 +284,6 @@ import Box from '../../src/components/Box.vue';
   }
 }
 
-.up {
-  animation: goingUp 0.5s linear forwards;
-}
-
-@keyframes goingUp {
-    0% {
-      position: relative;
-      bottom: 0vh;
-    }
-    100% {
-      position: relative;
-      bottom: 50vh;
-    }
-  }
 
   .fadeObject {
     animation: fade 0.2s linear forwards;
@@ -365,20 +297,5 @@ import Box from '../../src/components/Box.vue';
         opacity: 0;
         visibility: hidden;
       }
-  }
-
-  .down {
-  animation: goingDown 0.5s linear forwards;
-}
-
-  @keyframes goingDown {
-    0% {
-      position: relative;
-      bottom: 50vh;
-    }
-    100% {
-      position: relative;
-      bottom: 0vh;
-    }
   }
 </style>

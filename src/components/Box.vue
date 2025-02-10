@@ -261,9 +261,12 @@ export default {
 </script>
 
 <style scoped>
+
 #box {
   position: relative;
+height: 10rem;
 }
+
 .cls-1 {
   fill: #11233b;
 }
@@ -318,16 +321,13 @@ export default {
 
 .text {
   color: #013047;
-  font-size: 1.8rem;
-  font-weight: bolder;
-  position: absolute;
-  /* z-index: 2; */
-  /* margin-left: -5rem; */
-  width: 50%;
-  bottom: 0rem;
-  /* text-align: left; */
-  left: 1rem;
-  transform: rotate(22.13deg);
+    font-size: 1.8rem;
+    font-weight: bolder;
+    position: relative;
+    bottom: 11rem;
+    width: 7rem;
+    transform: rotate(22.13deg);
+    left: -12rem;
 }
 
 .cls-15 {
