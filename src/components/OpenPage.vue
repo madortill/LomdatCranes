@@ -107,12 +107,12 @@ export default {
 
 .btn {
     cursor: pointer;
+    pointer-events: visiblePainted;
 }
 
 .box {
   z-index: 1;
   margin: 1rem;
-  pointer-events: visiblePainted;
   position: relative;
 }
 
@@ -124,34 +124,39 @@ export default {
   display:flex;
   z-index: 1;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .home-box-container {
-  width: 100vw;
-    height: 100vh;
+  width: 16rem;/**/ 
+    height: 100%;
     display: flex;
     z-index: 1;
     position: relative;
     align-items: center;
     flex-direction: column;
     animation: fadeIn 0.2s linear forwards;
+    margin-bottom: 1rem;
 }
 
 .part-one {
-  /* width:19rem; */
+  position: relative;
   z-index:4;
   margin-left: 2rem;
 }
 
 .part-two {
+  position: relative;
   z-index: 3;
   margin-top: -4rem;
   margin-left: -3rem;
 }
 
 .part-three {
+  position: relative;
   z-index: 2;
   margin-top: -4rem;
+  /* margin-bottom: 2rem; */
 }
 
 .info-btn {
@@ -280,7 +285,7 @@ export default {
 .box {
     width: 20rem;
     z-index: 1;
-    margin-bottom: 8rem;
+    margin-bottom: 0rem;
   }
 }
 

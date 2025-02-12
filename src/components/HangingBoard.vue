@@ -35,15 +35,6 @@
             console.log('hi');
           },
         },
-        // mounted() {
-        // if (this.partNum === 3) {
-        //    let timer = setTimeout(()=> {
-              
-        //     clearTimeout(timer);
-        //    }, 1000);
-        // }
-        
-        // }
 };
 </script>
 
@@ -51,9 +42,9 @@
 
 #hanging-board{
     z-index: 10000;
-    width: 60vw;
+    /* width: 60vw; */
     width: 100vw;
-    height: 40rem;
+    height: 50rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,9 +187,4 @@
   pointer-events: all;
 }
 
-@media screen and (max-width:768px){
-  .checkMarkBtn {
-    margin-bottom: -5rem;
-  }
-}
 </style>

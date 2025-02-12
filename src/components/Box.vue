@@ -19,10 +19,7 @@ export default {
 
 #box {
   position: relative;
-  height: 100%;
   width: 100%;
-  border: 3px solid red;
-  z-index: 100;
 }
 
 .text {
@@ -33,7 +30,7 @@ export default {
   transform: rotate(22.13deg);
   position: absolute;
   bottom: 2rem;
-  left: 1rem;
+  left: 0rem;
 }
 
 .the-box {
