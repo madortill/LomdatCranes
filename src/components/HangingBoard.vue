@@ -35,6 +35,15 @@
             console.log('hi');
           },
         },
+        // mounted() {
+        // if (this.partNum === 3) {
+        //    let timer = setTimeout(()=> {
+              
+        //     clearTimeout(timer);
+        //    }, 1000);
+        // }
+        
+        // }
 };
 </script>
 
@@ -49,8 +58,7 @@
     flex-direction: column;
     align-items: center;
     margin-right: 5rem;
-    /* pointer-events: none; */
-   
+    pointer-events: none;
 }
 
 @keyframes tossAnimation {
@@ -146,7 +154,7 @@
 }
 
 .toss {
-    animation: tossAnimation 3s ease-in-out infinite;
+    animation: tossAnimation 4s ease-in-out infinite;
 }
 
 @keyframes goingUp {
@@ -185,11 +193,12 @@
   padding: 0rem;
   cursor: pointer;
   z-index: 65;
+  pointer-events: all;
 }
 
 @media screen and (max-width:768px){
   .checkMarkBtn {
-  margin-bottom: -5rem;
-}
+    margin-bottom: -5rem;
+  }
 }
 </style>

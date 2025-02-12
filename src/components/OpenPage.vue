@@ -46,7 +46,7 @@ export default {
             return {
               infoObject: {
                     "מפתחת לומדה:": 'רב"ט דני שריקי',
-                    "גרפיקאית:": 'רב"ט קריסטינה ברחטוב',
+                    "גרפיקאית:": 'רב"ט קריסטינה ברחטוב, רב"ט דני שריקי',
                     "מומחה תוכן:": 'רס"ר יוחאי עזרא',
                     'רמ"ד טי"ל:': 'רס"מ שלומי אוגרן',
                     "גרסה:": "ינואר 2025"
@@ -110,21 +110,20 @@ export default {
 }
 
 .box {
-  width: 20rem;
   z-index: 1;
-  margin: 2rem;
+  margin: 1rem;
   pointer-events: visiblePainted;
+  position: relative;
 }
 
 
 
 .box-container {
   width: 100vw;
-  height: 60vh;
+  height: 50vh;
   display:flex;
   z-index: 1;
   justify-content: space-evenly;
-  position: relative;
 }
 
 .home-box-container {
@@ -135,6 +134,7 @@ export default {
     position: relative;
     align-items: center;
     flex-direction: column;
+    animation: fadeIn 0.2s linear forwards;
 }
 
 .part-one {
@@ -286,16 +286,25 @@ export default {
 
 
   .fadeObject {
-    animation: fade 0.2s linear forwards;
+    animation: fadeOut 0.2s linear forwards;
   }
 
-  @keyframes fade {
+  @keyframes fadeOut {
     0% {
         opacity: 1;
       }
       100% {
         opacity: 0;
         visibility: hidden;
+      }
+  }
+
+  @keyframes fadeIn {
+    0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
       }
   }
 </style>
