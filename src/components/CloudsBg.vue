@@ -83,7 +83,7 @@
   /* Cloud 5 */
   .cloud5 {
     width: 10rem;
-    grid-column-start: 3;
+    grid-column-start: 1;
     grid-row-start: 5;
     animation: moveClouds 40s linear infinite; /* Move cloud5 */
   }

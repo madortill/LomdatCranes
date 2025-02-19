@@ -1,9 +1,9 @@
 <template>
 <div id="hanging-board" :class="[!isUp ? 'toss' : 'up', isDown ? 'down' : '']">
   <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
-        <img src="../../src/assets/media/wire.png" alt="wire" :class="partNum !== 3 ? 'wire' : 'smallWire'"/>
+        <img src="../../src/assets/media/wire.png" alt="wire" :class="partNum !== 3 && !showSelection ? 'wire' : 'smallWire'"/>
         <div class="blue-board">
-            <p class="lomdatName" v-if="partNum === 1">לומדת עגורנים</p>
+            <p class="lomdatName" v-if="partNum === 1 && !showSelection">לומדת עגורנים</p>
             <div v-if="partNum === 2">
                 <p>הינכם עומדים ללמוד על עגרונים מסוג</p>
                 <p class="theCraneKind">{{craneKind}}</p>
@@ -13,17 +13,17 @@
                 <img @click.once="nextBoard" class="checkMarkBtn" src="../../src/assets/media/checkMarkBtn.png" alt="checkMarkBtn"/>
             </div>
         </div>
-            <div v-if="partNum === 1 || partNum === 3">
-                <img v-if="partNum === 1" src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
-                <div class="mini-board">{{arrYellowSign[indexYellowSign]}}</div>
-            </div>            
+        <div v-if="partNum === 1 || partNum === 3 || showSelection">
+            <img v-if="partNum === 1 && !showSelection" src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
+            <div class="mini-board">{{arrYellowSign[indexYellowSign]}}</div>
+        </div>            
     </div>
 </template>
 
 <script>
     export default {
         name: "hanging-board",
-        props: ["partNum", "craneKind", "isUp", "isDown", "indexYellowSign"],
+        props: ["partNum", "craneKind", "isUp", "isDown", "indexYellowSign", "showSelection"],
         data() {
             return {
               arrYellowSign: ["בחרו את סוג העגורן ללמידה", "בחרו בחלק הרלוונטי אלייך"],

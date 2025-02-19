@@ -15,17 +15,17 @@
         <div class="start-container" v-if="!isOpenInfo">
             <img src="../../src/assets/media/Crane.png" alt="crane" class="bgCrane"/>
 
-            <HangingBoard @toNextBoard="toNextScreen" :indexYellowSign="indexYellowSign" :partNum="boardNum" :craneKind="chosenCrane" :isUp="isUp" :isDown="isDown"/>
+            <HangingBoard @toNextBoard="toNextScreen" :indexYellowSign="indexYellowSign" :showSelection="showSelection" :partNum="boardNum" :craneKind="chosenCrane" :isUp="isUp" :isDown="isDown"/>
 
-            <div class="box-container"  v-if="boardNum === 1">
+            <div class="box-container"  v-if="boardNum === 1 && !showSelection">
               <Box @click.once="toNextScreen" id="עילי" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="עילי" ></Box>
               <Box @click.once="toNextScreen" id="העמסה עצמית" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="העמסה עצמית"></Box>
             </div>
 
-            <div class="home-box-container"  v-if="boardNum === 3">
-              <Box @click="toStudy(fChosen, 0)" class="part-one btn" newTitle="תחילת הלמידה" id=""></Box>
-              <Box @click="toStudy(fChosen, 1)" class="part-two btn" newTitle="תפעול"></Box>
-              <Box @click="toStudy(fChosen, 2)" class="part-three btn" newTitle="תרגול"></Box>
+            <div class="home-box-container"  v-if="boardNum === 3 || showSelection">
+              <Box @click="toStudy(0)" class="part-one btn" newTitle="תחילת הלמידה" id=""></Box>
+              <Box @click="toStudy(1)" class="part-two btn" newTitle="תפעול"></Box>
+              <Box @click="toStudy(2)" class="part-three btn" newTitle="תרגול"></Box>
             </div>
             
            
@@ -41,6 +41,7 @@ import HangingBoard from './HangingBoard.vue';
 export default {
         name: "open-page",
         components: {Box, HangingBoard},
+        props: ["showSelection"],
         data() {
             return {
               infoObject: {
@@ -87,6 +88,7 @@ export default {
           },
           toStudy(part) {
             this.$emit('to-study', this.fChosen, part);
+            console.log(part);
             if(this.fChosen) {
               this.fChosen = true;
             }
@@ -202,6 +204,7 @@ export default {
   height: 27rem;
   animation: windowShow 0.2s linear forwards;
   font-size: 1.5rem;
+  z-index: 80;
 }
 
 .info-list {
@@ -224,6 +227,7 @@ export default {
   margin-left: 22rem;
   cursor: pointer;
   font-size: 1.8rem;
+  /* z-index: 30; */
 }
 
 @keyframes windowShow {
