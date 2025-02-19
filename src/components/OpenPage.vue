@@ -2,7 +2,6 @@
 <template>
     <div id="open-page">
         <button @click="showInfo" class="info-btn btn">i</button>
-        <img class="bahadSymbol" src="../../src/assets/media/bahadSymbol.png" alt="bahadSymbol"/>
         <img class="tillLogo" src="../../src/assets/media/whiteMadorTill.png" alt="tillLogo"/>
         <div class="info-container" v-if= "isOpenInfo"> 
           <p @click="hideInfo" class="close-info">X</p>
@@ -112,7 +111,7 @@ export default {
 
 .box {
   z-index: 1;
-  margin: 1rem;
+  /* margin: 1rem; */
   position: relative;
 }
 
@@ -129,7 +128,7 @@ export default {
 
 .home-box-container {
   width: 16rem;/**/ 
-    height: 100%;
+    height: 120%;
     display: flex;
     z-index: 1;
     position: relative;
@@ -235,13 +234,6 @@ export default {
       font-size: 1.2rem;
     }
   }
-
-.bahadSymbol {
-  width:4rem;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-}
 
 .tillLogo {
   position: absolute;

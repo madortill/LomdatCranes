@@ -29,8 +29,8 @@ export default {
   width: 7rem;
   transform: rotate(22.13deg);
   position: absolute;
-  bottom: 2rem;
-  left: 0rem;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .the-box {
