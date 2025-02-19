@@ -1,17 +1,17 @@
 <template>
     <div id="start-sign">
-        <img src="../../src/assets/media/StartSign.png" alt="startSign"/>
+        <img class="start-sign-img" src="../../src/assets/media/StartSign.png" alt="startSign"/>
         <div v-if="firstChosen">
             <p>בחרת ב -</p>
-            <p>{{arrPartTitle[partNum]}}</p>
+            <p style="partOfLomda">{{arrPartTitle[partNum]}}</p>
             <p>אם תרצה לשנות את בחירתך אפשר ללחוץ על כפתור הבית</p>
-            <p>בהצלחה!</p>
+            <p style="goodWord">בהצלחה!</p>
         </div>
         <div v-if="!firstChosen">
             <p>כל הכבוד סיימת את החלק ה{{arrFinishedPart[partNum-1]}}</p>
             <p>עכשיו נעבור לחלק ה{{ arrFinishedPart[partNum]}} של הלומדה</p>
-            <p>{{arrPartTitle[partNum]}}</p>
-            <p>בהצלחה!</p>
+            <p style="partOfLomda">{{arrPartTitle[partNum]}}</p>
+            <p style="goodWord">בהצלחה!</p>
         </div>
         <div v-if="partNum === 0 && index === 1">
           <p>מטרות השיעור</p>
@@ -35,12 +35,24 @@
         methods: {
           nextBoard(){
             this.$emit('toNextBoard');
-            console.log('hi');
-          },
+            },
         },
     };
 </script>
 
 <style scoped>
+  .goodWord {
+      color: #8CD0EC;
+      font-size: 1.5rem;
+  }
 
+  .partOfLomda {
+    color: #FFB703;
+    font-size: 2.5rem;
+    margin: 0rem;
+  }
+
+  .start-sign-img {
+    width: 40rem;
+  }
 </style>

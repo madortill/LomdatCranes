@@ -23,9 +23,9 @@
             </div>
 
             <div class="home-box-container"  v-if="boardNum === 3">
-              <Box class="part-one btn" newTitle="תחילת הלמידה"></Box>
-              <Box class="part-two btn" newTitle="תפעול"></Box>
-              <Box class="part-three btn" newTitle="תרגול"></Box>
+              <Box @click="toStudy(fChosen, 0)" class="part-one btn" newTitle="תחילת הלמידה" id=""></Box>
+              <Box @click="toStudy(fChosen, 1)" class="part-two btn" newTitle="תפעול"></Box>
+              <Box @click="toStudy(fChosen, 2)" class="part-three btn" newTitle="תרגול"></Box>
             </div>
             
            
@@ -57,6 +57,7 @@ export default {
                 isUp: false,
                 isDown: false,
                 indexYellowSign: 0,
+                fChosen: true,
             };
           },
         methods: {
@@ -83,7 +84,13 @@ export default {
               clearTimeout(timer);
             }, 1500);
             
-          }
+          },
+          toStudy(part) {
+            this.$emit('to-study', this.fChosen, part);
+            if(this.fChosen) {
+              this.fChosen = true;
+            }
+          },
 
         },
     };
@@ -99,9 +106,6 @@ export default {
   width: 100vw;
   flex-direction: column;
   color: #023047;
-  background-image: url("../../src/assets/media/cloudsBg.svg");
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat;
 }
 
 .btn {

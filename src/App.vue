@@ -1,14 +1,16 @@
 <template>
     <div id="app">
+        <clouds-bg class="clouds-bg"></clouds-bg>
         <img class="bahadSymbol" src="../src/assets/media/bahadSymbol.png" alt="bahadSymbol"/>
-        <img src="../src/assets/media/homeIcon.png" alt="homeIcon"/>
-        <open-page v-if="part === 0"></open-page>
-        <start-sign v-if="part === 10"></start-sign>
+        <img v-if="part > 1" class="homeIcon" src="../src/assets/media/homeIcon.png" alt="homeIcon"/>
+        <open-page @to-study="showStartSign" v-if="part === 0"></open-page>
+        <start-sign :partNum="partNum" :firstChosen="firstChosen" v-if="part === 1"></start-sign>
     </div>
 
 </template>
 
 <script>
+import CloudsBg from './components/CloudsBg.vue';
 import OpenPage from './components/OpenPage.vue';
 import StartSign from './components/StartSign.vue';
 export default {
@@ -16,14 +18,21 @@ export default {
         components: {
             OpenPage,
             StartSign,
+            CloudsBg,
         },
         data() {
             return {
                 part: 0,
+                partNum: -1,
+                firstChosen: null,
             };
         },
         methods: {
-
+            showStartSign (fChosen, studyPart) {
+                this.partNum = studyPart;
+                this.firstChosen = fChosen;
+                this.part = 1;
+            },
         },
     };
 </script>
@@ -61,6 +70,9 @@ body {
     height: 100vh;
     position: relative;
     text-align: center;
+    background-color: #E0F2F4;
+    /* display: grid; */
+
 }
 
 .bahadSymbol {
@@ -69,4 +81,12 @@ body {
   top: 1rem;
   left: 1rem;
 }
+
+.homeIcon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 2.5rem;
+}
+
 </style>
