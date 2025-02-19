@@ -26,7 +26,7 @@
           </div>
         </div>
        
-       
+       <button class="next-btn">הבא</button>
         
     </div>
 </template>
@@ -118,5 +118,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .next-btn {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    width: 5rem;
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .next-btn {
+    background-color: #8CD0EC;
+    border-radius: 2rem;
+    border-color:  #8CD0EC;
   }
 </style>
