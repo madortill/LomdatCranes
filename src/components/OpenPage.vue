@@ -287,13 +287,17 @@ export default {
 @media screen and (max-width:768px){
   .ground {
     height: 15rem;
-}
+  }
 
 .box {
     width: 20rem;
     z-index: 1;
     margin-bottom: 0rem;
   }
+
+  /* .disabled {
+ height: 10rem;
+} */
 }
 
 
