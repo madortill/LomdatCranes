@@ -4,19 +4,22 @@
         <img class="bahadSymbol" src="../src/assets/media/bahadSymbol.png" alt="bahadSymbol"/>
         <img @click="toHomePage" v-if="part > 0" class="homeIcon" src="../src/assets/media/homeIcon.png" alt="homeIcon"/>
         <open-page :showSelection="showSelection" @to-study="showStartSign" v-if="part === 0"></open-page>
-        <start-sign :partNum="partNum" :firstChosen="firstChosen" v-if="part === 1"></start-sign>
+        <start-sign :partNum="partNum" :firstChosen="firstChosen" @toNextBoard="nextPart" v-if="part === 1"></start-sign>
+        <info-screen :navPart="partNum" v-if="part === 2"></info-screen>
     </div>
 
 </template>
 
 <script>
 import CloudsBg from './components/CloudsBg.vue';
+import InfoScreen from './components/InfoScreen.vue';
 import OpenPage from './components/OpenPage.vue';
 import StartSign from './components/StartSign.vue';
 export default {
         name: "app", 
         components: {
             OpenPage,
+            InfoScreen,
             StartSign,
             CloudsBg,
         },
@@ -26,6 +29,7 @@ export default {
                 partNum: -1,
                 firstChosen: null,
                 showSelection: false,
+                // navPart: -1,
             };
         },
         methods: {
@@ -35,8 +39,11 @@ export default {
                 this.part++;
             },
             toHomePage () {
-                this.part--;
+                this.part = 0;
                 this.showSelection = true;
+            },
+            nextPart() {
+                this.part++;
             }
         },
     };

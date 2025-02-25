@@ -1,7 +1,7 @@
 <template>
   <div id="box">
-    <img src="../../src/assets/media/box.svg" alt="box" class="the-box">
-      <p class="text">{{ newTitle }}</p>
+    <img src="../../src/assets/media/box.svg" alt="box" class="the-box" />
+    <p class="text">{{ newTitle }}</p>
   </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
 </script>
 
 <style scoped>
-
 #box {
   position: relative;
   width: 100%;

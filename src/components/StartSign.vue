@@ -79,8 +79,9 @@ export default {
     nextBoard() {
       if (this.partNum === 0 && this.thePart === 0) {
         this.thePart++;
+      } else {
+        this.$emit('toNextBoard');
       }
-      // this.$emit('toNextBoard');
     },
   },
 };
@@ -98,6 +99,7 @@ export default {
   position: relative;
   cursor: default;
   width: fit-content;
+  /* text-align: center; */
 }
 
 .talk-text:hover::before {
@@ -124,7 +126,7 @@ export default {
   transition: background-color 0.3s ease;
   margin: 2%;
   padding: 0.5%;
-  text-align: right;
+  /* text-align: center; */
   width: fit-content;
 }
 
@@ -165,6 +167,10 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* display: flex
+;
+    flex-direction: column;
+    align-items: center; */
 }
 
 .shadow {
