@@ -1,12 +1,12 @@
 <template>
-    <div id="definition">
+    <div id="info-hanging-board">
 
     </div>
 </template>
 
 <script>
     export default {
-        name: "definition",
+        name: "info-hanging-board",
         props: [""],
         data() {
             return {};

@@ -1,16 +1,16 @@
 <template>
     <div id="info-screen">
         <navbar :part="navPart"></navbar>
-        <definition></definition>
+        <info-hanging-board></info-hanging-board>
     </div>
 </template>
 
 <script>
-import Definition from './Definition.vue';
+import InfoHangingBoard from './InfoHangingBoard.vue';
 import Navbar from './Navbar.vue';
     export default {
         name: "info-screen",
-        components: { Definition, Navbar },
+        components: { Navbar, InfoHangingBoard },
         props: ["navPart"],
         data() {
             return {
