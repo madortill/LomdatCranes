@@ -1,7 +1,7 @@
 <template>
     <div id="navbar">
         <div v-for="(subj, index) in theRightArr" :key="index">
-            <p :class="index !== 0 ? 'subject' : 'main-subj'">{{ subj }}</p>
+            <p :class="{'subject': index !== 0, 'main-subj': index === 0, 'now-subject': subjNum === index}">{{ subj }}</p>
         </div> 
     </div>
 </template>
@@ -14,6 +14,7 @@ export default {
         return {
             arr1: ['רקע כללי', 'הגדרה', 'בטיחות', 'סוגי עגורנים', 'כננות', 'מרכיבים בעגורן', 'תוספות', 'מערכת החשמל', 'שיטות פיקוד'],
             arr2: ['תפעול', 'פתיחת זרם חשמל ראשי', 'הוצאת השלט', 'שחרור פטריית חירום', 'שחרור העגורן מנקודת האחסון'],
+            subjNum: 1,
         };
     },
     computed: {
@@ -45,13 +46,13 @@ export default {
     }
 
     .subject {
-        transition: background-color 0.3s ease;
+        /* transition: background-color 0.3s ease; */
         border-radius: 0.52rem;
         padding: 0.5rem;
         
     }
 
-    .subject:hover {
+    .now-subject {
         background-color: #FFB703;        
         color:#023047;
     }
