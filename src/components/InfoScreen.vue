@@ -1,7 +1,7 @@
 <template>
     <div id="info-screen">
         <navbar :part="navPart"></navbar>
-        <info-hanging-board></info-hanging-board>
+        <info-hanging-board :section="infoHangingPart"></info-hanging-board>
     </div>
 </template>
 
@@ -14,7 +14,8 @@ import Navbar from './Navbar.vue';
         props: ["navPart"],
         data() {
             return {
-                // part: 1,
+                Infopart: 1,
+                infoHangingPart: 0,
             };
         },
     };  
@@ -26,6 +27,7 @@ import Navbar from './Navbar.vue';
         width: 100vw;
         height: 100vh;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 </style>
