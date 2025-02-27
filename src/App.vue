@@ -6,6 +6,8 @@
         <open-page :showSelection="showSelection" @to-study="showStartSign" v-if="part === 0"></open-page>
         <start-sign :partNum="partNum" :firstChosen="firstChosen" @toNextBoard="nextPart" v-if="part === 1"></start-sign>
         <info-screen :navPart="partNum" v-if="part === 2"></info-screen>
+
+
     </div>
 
 </template>

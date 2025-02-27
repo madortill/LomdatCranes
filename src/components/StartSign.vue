@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <button @click="nextBoard" class="next-btn">הבא</button>
+    <p @click="nextBoard" class="next-btn">הבא</p>
   </div>
 </template>
 
@@ -206,12 +206,20 @@ export default {
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
+  background-color: #8cd0ec;
+  border-radius: 1.5rem;
+  padding: 0; /* Remove padding to ensure centering works properly */
+  /* Centering the text */
+  display: flex;
+  justify-content: center; /* Horizontally centers the text */
+  align-items: center;     /* Vertically centers the text */
+  text-align: center;      /* Ensures the text is centered if multiline */
+  transition: background-color 0.3s ease;
 }
 
-.next-btn {
-  background-color: #8cd0ec;
-  border-radius: 2rem;
-  border-color: #8cd0ec;
+.next-btn:hover {
+  background-color: #023047;
+  color: white;
 }
 
 .header {
