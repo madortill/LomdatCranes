@@ -1,22 +1,20 @@
 <template>
-    <div id="clouds-bg">
-      <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="require(`@/assets/media/clouds/cloud${num}.png`)" alt="cloud image"/>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "clouds-bg",
-    data() {
-      return {
-        numbers: [1, 2, 3, 4, 5], // List of numbers to dynamically generate image sources
-      };
-    },
-    methods: {
-      // You can add methods if needed for any specific logic
-    },
-  };
-  </script>
+  <div id="clouds-bg">
+    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="`src/assets/media/clouds/cloud${num}.png`" alt="cloud image"/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "clouds-bg",
+  data() {
+    return {
+      numbers: [1, 2, 3, 4, 5], // List of numbers to dynamically generate image sources
+    };
+  },
+};
+</script>
+
   
   <style scoped>
   #clouds-bg {
