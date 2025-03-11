@@ -1,6 +1,6 @@
 <template>
   <div id="clouds-bg">
-    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="`../../src/assets/media/clouds/cloud${num}.png`" alt="cloud image"/>
+    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="`/public/media/clouds/cloud${num}.png`" alt="cloud image"/>
   </div>
 </template>
 
