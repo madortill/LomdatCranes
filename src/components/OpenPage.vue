@@ -74,6 +74,7 @@ export default {
           toNextScreen(event) {
             if(this.boardNum === 1) {
               this.chosenCrane = event.currentTarget.id;
+              this.$emit('theChosenCourse', this.chosenCrane);
               this.indexYellowSign++;
             }
             this.isUp = true;

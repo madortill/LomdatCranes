@@ -1,6 +1,6 @@
 <template>
   <div id="clouds-bg">
-    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="`src/assets/media/clouds/cloud${num}.png`" alt="cloud image"/>
+    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="`../../src/assets/media/clouds/cloud${num}.png`" alt="cloud image"/>
   </div>
 </template>
 
@@ -12,6 +12,7 @@ export default {
       numbers: [1, 2, 3, 4, 5], // List of numbers to dynamically generate image sources
     };
   },
+  
 };
 </script>
 

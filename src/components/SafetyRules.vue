@@ -1,0 +1,153 @@
+<template>
+    <div id="safety-rules">
+      <div
+        v-for="(item, index) in arrayImgFront"
+        :key="index"
+        :class="['flip-card', this.onStart]"
+      >
+        <div class="flip-card-inner">
+          <div 
+            class="flip-card-front" 
+            :style="{ '--dynamic-color': frontColorArr[index] }"
+          >
+            <img :src="src(item)" class="imgFront" />
+            <p class="text-front">{{ arrayFront[index] }}</p>
+          </div>
+          <div class="flip-card-back" :style="{ '--dynamic-color': frontColorArr[index]}">
+            <p class="textBack">{{ arrayBack[index] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: "info-screen",
+    props: ["chosenCourse"],
+    data() {
+      return {
+        arrayBack: [
+          "איסוף מידע",
+          "הכנות לוגיסטיות סופיות",
+          "הגדרת מטרות וזמן למשימה",
+          "הכנת הנחיות והוראות בטיחות",
+        ],
+        arrayFront: [
+          "כשירות המנוף",
+          "כשירות האביזרים",
+          "כשירות המפעיל",
+          "עבודה על פי הוראות",
+        ],
+        arrayImgFront: [
+          "flipCard4.png",
+          "flipCard3.png",
+          "flipCard2.png",
+          "flipCard1.png",
+        ],
+        frontColorArr: [
+          '#F88C01',
+          '#FFAF02',
+          '#8CD0EC',
+          '#1E85AE',
+        ],
+        onStart: "start",
+      };
+    },
+    methods: {
+      src(name) {
+        return new URL(`../assets/media/flipCards/${name}`, import.meta.url).href;
+      },
+    },
+    mounted() {
+      setTimeout(() => {
+        this.onStart = "off";
+      }, 100);
+    },
+  };
+  </script>
+  
+  <style scoped>
+  #safety-rules {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 16rem;
+    width: 100%;
+    margin-top: -2rem;
+  }
+  
+  .flip-card {
+    background-color: transparent;
+    width: 10rem;
+    height: 10rem;
+    margin: 1rem;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .flip-card:hover .flip-card-front,
+  .flip-card.start .flip-card-front {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card:hover .flip-card-back,
+  .flip-card.start .flip-card-back {
+    transform: rotateY(360deg);
+  }
+  
+  .flip-card-front,
+  .flip-card-back {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: var(--dynamic-color);
+    border-radius: 30px;
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color:white;
+    border-radius: 30px;
+    color: rgb(84, 82, 82);
+    transform: rotateY(180deg);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imgFront {
+    width: 5rem;
+    position: absolute;
+    top: -0.1rem;
+  }
+  
+  .textBack {
+    padding: 5%;
+    font-size: 1.6rem;
+  }
+  
+  .text-front {
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: 0rem;
+    text-align: right;
+    right: 1rem;
+    color: white;
+  }
+  </style>
+  

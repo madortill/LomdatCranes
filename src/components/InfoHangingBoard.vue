@@ -17,13 +17,16 @@
       alt="noticeDefinition"
       v-if="section === 0"
     />
+    <safety-rules v-if="section === 1" :chosenCourse="chosenCourse"></safety-rules>
   </div>
 </template>
 
 <script>
+import SafetyRules from './SafetyRules.vue';
 export default {
+  components: { SafetyRules },
   name: "info-hanging-board",
-  props: ["section"],
+  props: ["section", "chosenCourse"],
   data() {
     return {
       theInfo: [
@@ -37,6 +40,7 @@ export default {
           "ישנם מספר כללי בטיחות אותם יש לבדוק לפני שניגש לביצוע עבודה עם המנוף:",
         ],
       ],
+
     };
   },
 };
@@ -75,5 +79,4 @@ export default {
   /* height: 3rem; */
 }
 
-/*  */
 </style>

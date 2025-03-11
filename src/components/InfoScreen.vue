@@ -1,7 +1,7 @@
 <template>
   <div id="info-screen">
     <navbar :part="navPart"></navbar>
-    <info-hanging-board :section="infoHangingPart"></info-hanging-board>
+    <info-hanging-board :section="infoHangingPart" :chosenCourse="chosenCourse"></info-hanging-board>
     <p class="next-btn moving-btn" id="next" @click="nextPart">הבא</p>
     <p class="back-btn moving-btn" id="back" @click="nextPart">חזור</p>
   </div>
@@ -13,7 +13,7 @@ import Navbar from "./Navbar.vue";
 export default {
   name: "info-screen",
   components: { Navbar, InfoHangingBoard },
-  props: ["navPart"],
+  props: ["navPart", "chosenCourse"],
   data() {
     return {
       Infopart: 1,

@@ -16,6 +16,7 @@
     <open-page
       :showSelection="showSelection"
       @to-study="showStartSign"
+      @theChosenCourse="updateChosenCourse"
       v-if="part === 0"
     ></open-page>
     <start-sign
@@ -24,7 +25,7 @@
       @toNextBoard="nextPart"
       v-if="part === 1"
     ></start-sign>
-    <info-screen :navPart="partNum" v-if="part === 2"></info-screen>
+    <info-screen :chosenCourse="chosenCourse" :navPart="partNum" v-if="part === 2"></info-screen>
   </div>
 </template>
 
@@ -47,6 +48,7 @@ export default {
       partNum: -1,
       firstChosen: null,
       showSelection: false,
+      chosenCourse: '',
       // navPart: -1,
     };
   },
@@ -63,6 +65,9 @@ export default {
     },
     nextPart() {
       this.part++;
+    },
+    updateChosenCourse(chosenCrane) {
+      this.chosenCourse = chosenCrane;
     },
   },
 };
