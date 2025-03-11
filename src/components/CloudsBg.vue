@@ -15,7 +15,7 @@ export default {
   methods: {
     // If the images are in public/images
     getCloudImage(num) {
-      return `../../src/assets/media/clouds/cloud${num}.png`;  // Static path to the images in the public folder
+      return `/clouds/cloud${num}.png`;  // Static path to the images in the public folder
     }
   }
 };
