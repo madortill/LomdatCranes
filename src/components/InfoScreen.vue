@@ -1,6 +1,6 @@
 <template>
   <div id="info-screen">
-    <navbar :part="navPart"></navbar>
+    <navbar :part="navPart" :subjNum="subNavPart"></navbar>
     <info-hanging-board :section="infoHangingPart" :chosenCourse="chosenCourse"></info-hanging-board>
     <p class="next-btn moving-btn" id="next" @click="nextPart">הבא</p>
     <p class="back-btn moving-btn" id="back" @click="nextPart">חזור</p>
@@ -18,14 +18,17 @@ export default {
     return {
       Infopart: 1,
       infoHangingPart: 0,
+      subNavPart: 1,
     };
   },
   methods: {
             nextPart(event) {
                 if(event.currentTarget.id === 'next' && this.infoHangingPart === 0) {
                     this.infoHangingPart++;
+                    this.subNavPart++;
                 } else if (event.currentTarget.id === 'back' && this.infoHangingPart === 1){
                     this.infoHangingPart--;
+                    this.subNavPart--;
                 }
                 
             }

@@ -35,7 +35,7 @@
 <script>
 export default {
   name: "navbar",
-  props: ["part"],
+  props: ["part" ,'subjNum'],
   data() {
     return {
       arr1: [
@@ -56,7 +56,6 @@ export default {
         "שחרור פטריית חירום",
         "שחרור העגורן מנקודת האחסון",
       ],
-      subjNum: 1,
     };
   },
   computed: {
@@ -71,7 +70,10 @@ export default {
     },
     showMenu() {
 
-    }
+    },
+    nextSubPart() {
+      this.subjNum++;
+    },
   },
 };
 </script>

@@ -123,6 +123,7 @@ body {
   top: 1rem;
   width: 2.5rem;
   cursor: pointer;
+  z-index: 2;
 }
 @media screen and (max-width: 600px) {
   .homeIcon {
