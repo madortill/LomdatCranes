@@ -15,8 +15,10 @@ export default {
   computed: {
     // Dynamically return the src based on the condition
     imageSource() {
-      return this.newTitle === 'disable' ? "../../src/assets/media/disableBox.svg" : "../../src/assets/media/box.svg";
+      const basePath = process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return this.newTitle === 'disable' ?  `${basePath}media/disableBox.svg` : `${basePath}media/box.svg`;
     },
+    
   },
 };
 </script>
