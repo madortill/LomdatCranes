@@ -1,6 +1,6 @@
 <template>
   <div id="clouds-bg">
-    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="`/clouds/cloud${num}.png`" alt="cloud image"/>
+    <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="getCloudImage(num)" alt="cloud image" />
   </div>
 </template>
 
@@ -9,12 +9,18 @@ export default {
   name: "clouds-bg",
   data() {
     return {
-      numbers: [1, 2, 3, 4, 5], // List of numbers to dynamically generate image sources
+      numbers: [1, 2, 3, 4, 5] // List of numbers to dynamically generate image sources
     };
   },
-  
+  methods: {
+    // If the images are in public/images
+    getCloudImage(num) {
+      return `../../src/assets/media/clouds/cloud${num}.png`;  // Static path to the images in the public folder
+    }
+  }
 };
 </script>
+
 
   
   <style scoped>
