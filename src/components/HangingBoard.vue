@@ -1,7 +1,7 @@
 <template>
 <div id="hanging-board" :class="[!isUp ? 'toss' : 'up', isDown ? 'down' : '']">
-  <img src="../../src/assets/media/hook.svg" alt="hook" class="hook"/>
-        <img src="../../src/assets/media/wire.png" alt="wire" :class="partNum !== 3 && !showSelection ? 'wire' : 'smallWire'"/>
+  <img src="/media/hook.svg" alt="hook" class="hook"/>
+        <img src="/media/wire.png" alt="wire" :class="partNum !== 3 && !showSelection ? 'wire' : 'smallWire'"/>
         <div class="blue-board">
             <p class="lomdatName" v-if="partNum === 1 && !showSelection">לומדת עגורנים</p>
             <div v-if="partNum === 2">
@@ -10,11 +10,11 @@
                 <p>וכיצד לתפעל אותו</p>
                 <p>דגש: בסוף הלומדה ישנו תרגול שכדי לקבל ציון עליך לעבור את הלומדה מתחילתה</p>
                 <p class="goodWord">בהצלחה!</p>
-                <img @click.once="nextBoard" class="checkMarkBtn" src="../../src/assets/media/checkMarkBtn.png" alt="checkMarkBtn"/>
+                <img @click.once="nextBoard" class="checkMarkBtn" src="/media/checkMarkBtn.png" alt="checkMarkBtn"/>
             </div>
         </div>
         <div v-if="partNum === 1 || partNum === 3 || showSelection">
-            <img v-if="partNum === 1 && !showSelection" src="../../src/assets/media/twoWires.png" alt="wire" class="twoWires"/>
+            <img v-if="partNum === 1 && !showSelection" src="/media/twoWires.png" alt="wire" class="twoWires"/>
             <div class="mini-board">{{arrYellowSign[indexYellowSign]}}</div>
         </div>            
     </div>

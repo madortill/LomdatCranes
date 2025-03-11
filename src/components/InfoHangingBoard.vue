@@ -1,6 +1,6 @@
 <template>
   <div id="info-hanging-board">
-    <!-- <img class="board" src="../../src/assets/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
+    <!-- <img class="board" src="/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
     <div class="info-container">
       <p class="header">{{ theInfo[section][0] }}</p>
       <p
@@ -13,7 +13,7 @@
     </div>
     <img
       class="notice-definition"
-      src="../../src/assets/media/noticeDefinition.svg"
+      src="/media/noticeDefinition.svg"
       alt="noticeDefinition"
       v-if="section === 0"
     />
@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
 #info-hanging-board {
-  background-image: url("../../src/assets/media/infoHangingBoard_1.svg");
+  background-image: url("/media/infoHangingBoard_1.svg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 60rem;

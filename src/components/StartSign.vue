@@ -2,7 +2,7 @@
   <div id="start-sign">
     <img
       class="start-sign-img"
-      src="../../src/assets/media/StartSign.png"
+      src="/media/StartSign.png"
       alt="startSign"
     />
     <div class="text-container" v-if="firstChosen && thePart === 0">

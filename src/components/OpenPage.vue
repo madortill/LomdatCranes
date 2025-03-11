@@ -2,7 +2,7 @@
 <template>
     <div id="open-page">
         <button @click="showInfo" class="info-btn btn">i</button>
-        <img class="tillLogo" src="../../src/assets/media/whiteMadorTill.png" alt="tillLogo"/>
+        <img class="tillLogo" src="/media/whiteMadorTill.png" alt="tillLogo"/>
         <div class="info-container" v-if= "isOpenInfo"> 
           <p @click="hideInfo" class="close-info">X</p>
             <ul class="info-list">
@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="start-container" v-if="!isOpenInfo">
-            <img src="../../src/assets/media/Crane.png" alt="crane" class="bgCrane"/>
+            <img src="/media/Crane.png" alt="crane" class="bgCrane"/>
 
             <HangingBoard @toNextBoard="toNextScreen" :indexYellowSign="indexYellowSign" :showSelection="showSelection" :partNum="boardNum" :craneKind="chosenCrane" :isUp="isUp" :isDown="isDown"/>
 

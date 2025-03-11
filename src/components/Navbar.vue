@@ -21,7 +21,7 @@
       <div @click="showMenu" class="light-blue-circle">
         <img
           class="menu-icon"
-          src="../../src/assets/media/phoneMenu.png"
+          src="/media/phoneMenu.png"
           alt="menu-icon"
         />
       </div>
