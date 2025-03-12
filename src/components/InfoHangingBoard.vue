@@ -70,7 +70,7 @@ export default {
   background-size: 100% 100%;
   width: 60rem;
   height: 37rem;
-  margin-top: 5rem;
+  margin-top: 4.2rem;
   z-index: 1;
   display: flex;
   align-items: center;

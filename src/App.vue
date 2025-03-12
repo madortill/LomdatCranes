@@ -25,7 +25,11 @@
       @toNextBoard="nextPart"
       v-if="part === 1"
     ></start-sign>
-    <info-screen :chosenCourse="chosenCourse" :navPart="partNum" v-if="part === 2"></info-screen>
+    <info-screen
+      :chosenCourse="chosenCourse"
+      :navPart="partNum"
+      v-if="part === 2"
+    ></info-screen>
   </div>
 </template>
 
@@ -48,7 +52,7 @@ export default {
       partNum: -1,
       firstChosen: null,
       showSelection: false,
-      chosenCourse: '',
+      chosenCourse: "",
       // navPart: -1,
     };
   },
@@ -59,7 +63,7 @@ export default {
       this.part++;
     },
     toHomePage() {
-      console.log('hi');
+      console.log("hi");
       this.part = 0;
       this.showSelection = true;
     },
@@ -128,12 +132,21 @@ body {
 }
 @media screen and (max-width: 600px) {
   .homeIcon {
-    display: none;
+    filter: invert(1) brightness(100%) saturate(25%)  contrast(100%);
+    right: auto;
+    left: 4.6rem;
   }
 
   .bahadSymbol {
-    width: 3rem;
+    width: 2.4rem;
     top: 0.5rem;
+  }
+
+  body {
+    height: 92vh;
+  }
+  #app {
+    height: 92vh;
   }
 }
 </style>

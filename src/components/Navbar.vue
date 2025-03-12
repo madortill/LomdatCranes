@@ -91,7 +91,7 @@ export default {
 .phone-navbar {
   display: none;
   width: 100vw;
-  height: 5rem;
+  height: 4.2rem;
 }
 
 .the-stripe-topic {
