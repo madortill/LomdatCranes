@@ -97,6 +97,7 @@ body {
   margin: 0;
   direction: rtl;
   background-color: #f2f2f2;
+  overflow: hidden;
 }
 
 #app {
