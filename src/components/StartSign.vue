@@ -155,7 +155,7 @@ export default {
 
 .start-sign-img {
   width: 60rem;
-  height: 90%;
+  height: 95%;
   z-index: 0;
   margin-bottom: -3rem;
   margin-right: 1rem;

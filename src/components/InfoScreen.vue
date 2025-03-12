@@ -101,12 +101,12 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
-  .moving-btn {
+  /* .moving-btn {
     bottom: 3rem;
     width: 6rem;
     height: 4rem;
     font-size: 1.5rem;
     border-radius: 2rem;
-  }
+  } */
 }
 </style>

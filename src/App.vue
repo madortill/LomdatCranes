@@ -143,10 +143,11 @@ body {
   }
 
   body {
-    height: 92vh;
+    height: 91vh;
+    overflow: hidden;
   }
   #app {
-    height: 92vh;
+    height: 91vh;
   }
 }
 </style>

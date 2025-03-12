@@ -152,7 +152,7 @@
 
   @media screen and (max-width: 700px){
     #safety-rules {
-      height: 32rem;
+      height: 24rem;
     }
   }
   </style>

@@ -287,7 +287,7 @@ export default {
   height: 9rem;
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:700px){
   .ground {
     height: 15rem;
   }
@@ -297,10 +297,9 @@ export default {
     z-index: 1;
     margin-bottom: 0rem;
   }
-
-  /* .disabled {
- height: 10rem;
-} */
+  .box-container {
+    margin-bottom: 5rem;
+  }
 }
 
 

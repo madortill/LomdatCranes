@@ -100,7 +100,7 @@ export default {
   width: 100%;
   height: 100%;
   color: white;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   align-items: center;
 }

@@ -56,15 +56,15 @@
 @keyframes tossAnimation {
   0% {
     transform: rotate(-1deg);
-    margin-left: -3rem;
+    margin-left: -2rem;
   }
  50% {
   transform: rotate(1deg);
-    margin-left: 3rem;
+    margin-left: 2rem;
  }
   100% {
     transform: rotate(-1deg);
-    margin-left: -3rem;
+    margin-left: -2rem;
   }
 }
 

@@ -136,8 +136,8 @@ export default {
 
 @media screen and (max-width: 700px) {
   #info-hanging-board {
-    width: 29rem;
-    height: 46rem;
+    width: 26rem;
+    height: 42rem;
     justify-content: space-around;
   }
 
@@ -150,12 +150,16 @@ export default {
   }
 
   .text {
-    width: 27rem;
+    width: 25rem;
   }
 
   .notice-definition {
     margin-right: -0.1rem;
-    width: 30.7rem;
+    width: 29rem;
+    }
+
+    .info-container {
+      margin-top: 5.9rem;
     }
 }
 </style>
