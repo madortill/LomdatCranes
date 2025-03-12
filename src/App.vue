@@ -10,6 +10,7 @@
       @click="toHomePage"
       v-if="part > 0"
       class="homeIcon"
+      :style="{ '--home-icon-color': colorIconPhone}"
       src="../src/assets/media/homeIcon.png"
       alt="homeIcon"
     />
@@ -53,6 +54,7 @@ export default {
       firstChosen: null,
       showSelection: false,
       chosenCourse: "",
+      colorIconPhone: 'none',
       // navPart: -1,
     };
   },
@@ -69,6 +71,11 @@ export default {
     },
     nextPart() {
       this.part++;
+      if(this.part === 2) {
+        this.colorIconPhone = 'invert(1) brightness(100%) saturate(25%)  contrast(100%)';
+      } else {
+        this.colorIconPhone = 'none';
+      }
     },
     updateChosenCourse(chosenCrane) {
       this.chosenCourse = chosenCrane;
@@ -132,7 +139,7 @@ body {
 }
 @media screen and (max-width: 600px) {
   .homeIcon {
-    filter: invert(1) brightness(100%) saturate(25%)  contrast(100%);
+    filter: var(--home-icon-color);
     right: auto;
     left: 4.6rem;
   }

@@ -21,8 +21,14 @@
       </p>
     </div>
     <img
-      class="notice-definition"
-      src="/media/noticeDefinition.svg"
+      class="notice-definition computer-notice"
+      src="/media/noticeDefinition/computer/noticeDefinition.svg"
+      alt="noticeDefinition"
+      v-if="section === 0"
+    />
+    <img
+      class="notice-definition phone-notice"
+      src="/media/noticeDefinition/phone/noticeDefinition.svg"
       alt="noticeDefinition"
       v-if="section === 0"
     />
@@ -105,7 +111,7 @@ export default {
 
 .flip-end-safty-rules {
   transition: transform 2s;
-  transform: rotateY(-180deg);
+  transform: rotateY(180deg);
 }
 
 .flip-start-definition {
@@ -130,8 +136,16 @@ export default {
 
 .notice-definition {
   margin-bottom: 2rem;
-    margin-right: -0.2rem;
-    width: 60.9rem;
+  margin-right: -0.2rem;
+  width: 60.9rem;
+}
+
+.computer-notice {
+  display: block;
+}
+
+.phone-notice {
+  display: none;
 }
 
 @media screen and (max-width: 700px) {
@@ -156,10 +170,22 @@ export default {
   .notice-definition {
     margin-right: -0.1rem;
     width: 29rem;
-    }
+  }
 
-    .info-container {
-      margin-top: 5.9rem;
-    }
+  .info-container {
+    margin-top: 5.9rem;
+  }
+
+  .computer-notice {
+    display: none;
+  }
+
+  .phone-notice {
+    display: block;
+  }
+
+  .notice-definition {
+    width: 26.1rem;
+  }
 }
 </style>

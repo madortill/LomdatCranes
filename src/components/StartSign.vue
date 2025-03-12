@@ -231,4 +231,14 @@ export default {
   width: 50vw;
   height: 60%;
 }
+
+@media screen and (max-width: 600px) {
+  .fixPosition {
+    width: 74vw;
+    height: 64%;
+  }
+  .start-sign-img {
+    margin-bottom: -1rem;
+  }
+}
 </style>
