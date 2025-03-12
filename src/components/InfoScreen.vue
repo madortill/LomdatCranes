@@ -1,7 +1,7 @@
 <template>
   <div id="info-screen">
     <navbar :part="navPart" :subjNum="subNavPart"></navbar>
-    <info-hanging-board :section="infoHangingPart" :chosenCourse="chosenCourse"></info-hanging-board>
+    <info-hanging-board :section="infoHangingPart" :chosenCourse="chosenCourse" :flipStart="flipStart" :flipEndDefine="flipEndDefine" :backFlip="backFlip" :flipEndSaftyRules="flipEndSaftyRules"></info-hanging-board>
     <p class="next-btn moving-btn" id="next" @click="nextPart">הבא</p>
     <p class="back-btn moving-btn" id="back" @click="nextPart">חזור</p>
   </div>
@@ -19,16 +19,39 @@ export default {
       Infopart: 1,
       infoHangingPart: 0,
       subNavPart: 1,
+      flipStart: false,
+      flipEndDefine: false,
+      backFlip: false,
+      flipEndSaftyRules:false,
     };
   },
   methods: {
             nextPart(event) {
                 if(event.currentTarget.id === 'next' && this.infoHangingPart === 0) {
-                    this.infoHangingPart++;
-                    this.subNavPart++;
+                  //to restart values
+                  this.flipEndSaftyRules = false;
+                  this.backFlip = false;
+                  //
+                  this.subNavPart++; 
+                  this.flipEndDefine = true;
+                    let timer = setTimeout(()=> {
+                      this.infoHangingPart++;
+                      this.flipStart = true;
+                      clearTimeout(timer);
+                    }, 590);
+                    
                 } else if (event.currentTarget.id === 'back' && this.infoHangingPart === 1){
-                    this.infoHangingPart--;
+                   //to restart values
+                   this.flipEndDefine = false;
+                  this.flipStart = false;
+                  //
                     this.subNavPart--;
+                    this.backFlip = true;
+                    let timer = setTimeout(()=> {
+                      this.infoHangingPart--;
+                      this.flipEndSaftyRules = true;
+                      clearTimeout(timer);
+                    }, 590);
                 }
                 
             }

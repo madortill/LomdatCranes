@@ -62,7 +62,7 @@
     mounted() {
       setTimeout(() => {
         this.onStart = "off";
-      }, 100);
+      }, 200);
     },
   };
   </script>

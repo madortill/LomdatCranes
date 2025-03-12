@@ -1,5 +1,11 @@
 <template>
-  <div id="info-hanging-board">
+  <div id="info-hanging-board" :class="{
+    'flip-start-safty-rules': flipStart,
+    'flip-end-definition': flipEndDefine,
+    'unfliped-board' : !flipStart,
+    'flip-end-safty-rules' : backFlip,
+    'flip-start-definition' : flipEndSaftyRules,
+  }">
     <!-- <img class="board" src="/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
     <div class="info-container">
       <p class="header">{{ theInfo[section][0] }}</p>
@@ -26,7 +32,8 @@ import SafetyRules from './SafetyRules.vue';
 export default {
   components: { SafetyRules },
   name: "info-hanging-board",
-  props: ["section", "chosenCourse"],
+  props: ["section", "chosenCourse", "flipStart", 'flipEndDefine', 'backFlip', 'flipEndSaftyRules'
+  ],
   data() {
     return {
       theInfo: [
@@ -48,7 +55,6 @@ export default {
 
 <style scoped>
 #info-hanging-board {
-  background-image: url("/media/infoHangingBoard_1.svg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 60rem;
@@ -58,6 +64,44 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
+  /* transform-style: preserve-3d; */
+}
+
+.unfliped-board {
+  background-image: url("/media/infoHangBoard/computer/infoHangingBoard.svg");
+
+}
+
+/* .flipBoard {
+  transition: transform 1s;
+    transform-style: preserve-3d;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+} */
+
+.flip-end-definition {
+  transition: transform 2s;
+  transform: rotateY(180deg); 
+}
+
+.flip-start-safty-rules {
+  transition: transform 1s;
+  transform: rotateY(0deg);
+  background-image: url("/media/infoHangBoard/computer/flipedInfoHangingBoard.svg");
+
+}
+
+.flip-end-safty-rules {
+  transition: transform 2s;
+  transform: rotateY(-180deg);
+}
+
+.flip-start-definition {
+  transition: transform 1s;
+  transform: rotateY(0deg);
 }
 
 .info-container {
@@ -78,5 +122,6 @@ export default {
   width: 56.2rem;
   /* height: 3rem; */
 }
+
 
 </style>
