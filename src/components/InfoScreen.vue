@@ -99,4 +99,14 @@ export default {
 .back-btn {
     right: 1rem;
 }
+
+@media screen and (max-width: 425px) {
+  .moving-btn {
+    bottom: 3rem;
+    width: 7rem;
+    height: 5rem;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+  }
+}
 </style>

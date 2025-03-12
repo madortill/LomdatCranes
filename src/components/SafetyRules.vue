@@ -149,5 +149,11 @@
     right: 1rem;
     color: white;
   }
+
+  @media screen and (max-width: 700px){
+    #safety-rules {
+      height: 32rem;
+    }
+  }
   </style>
   

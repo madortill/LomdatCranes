@@ -91,7 +91,6 @@ export default {
   transition: transform 1s;
   transform: rotateY(0deg);
   background-image: url("/media/infoHangBoard/computer/flipedInfoHangingBoard.svg");
-
 }
 
 .flip-end-safty-rules {
@@ -109,6 +108,9 @@ export default {
   color: white;
   width: 35rem;
   font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {
@@ -123,5 +125,22 @@ export default {
   /* height: 3rem; */
 }
 
+@media screen and (max-width: 700px) {
+  #info-hanging-board {
+    width: 33rem;
+    height: 53rem;
+  }
 
+  .unfliped-board {
+  background-image: url("/media/infoHangBoard/phone/infoHangingBoard.svg");
+  }
+
+  .flip-start-safty-rules {
+  background-image: url("/media/infoHangBoard/phone/flipedInfoHangingBoard.svg");
+  }
+
+  .text {
+    width: 32rem;
+  }
+}
 </style>
