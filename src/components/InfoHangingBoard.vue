@@ -1,11 +1,14 @@
 <template>
-  <div id="info-hanging-board" :class="{
-    'flip-start-safty-rules': flipStart,
-    'flip-end-definition': flipEndDefine,
-    'unfliped-board' : !flipStart,
-    'flip-end-safty-rules' : backFlip,
-    'flip-start-definition' : flipEndSaftyRules,
-  }">
+  <div
+    id="info-hanging-board"
+    :class="{
+      'flip-start-safty-rules': flipStart,
+      'flip-end-definition': flipEndDefine,
+      'unfliped-board': !flipStart,
+      'flip-end-safty-rules': backFlip,
+      'flip-start-definition': flipEndSaftyRules,
+    }"
+  >
     <!-- <img class="board" src="/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
     <div class="info-container">
       <p class="header">{{ theInfo[section][0] }}</p>
@@ -23,16 +26,25 @@
       alt="noticeDefinition"
       v-if="section === 0"
     />
-    <safety-rules v-if="section === 1" :chosenCourse="chosenCourse"></safety-rules>
+    <safety-rules
+      v-if="section === 1"
+      :chosenCourse="chosenCourse"
+    ></safety-rules>
   </div>
 </template>
 
 <script>
-import SafetyRules from './SafetyRules.vue';
+import SafetyRules from "./SafetyRules.vue";
 export default {
   components: { SafetyRules },
   name: "info-hanging-board",
-  props: ["section", "chosenCourse", "flipStart", 'flipEndDefine', 'backFlip', 'flipEndSaftyRules'
+  props: [
+    "section",
+    "chosenCourse",
+    "flipStart",
+    "flipEndDefine",
+    "backFlip",
+    "flipEndSaftyRules",
   ],
   data() {
     return {
@@ -47,7 +59,6 @@ export default {
           "ישנם מספר כללי בטיחות אותם יש לבדוק לפני שניגש לביצוע עבודה עם המנוף:",
         ],
       ],
-
     };
   },
 };
@@ -69,7 +80,6 @@ export default {
 
 .unfliped-board {
   background-image: url("/media/infoHangBoard/computer/infoHangingBoard.svg");
-
 }
 
 /* .flipBoard {
@@ -84,7 +94,7 @@ export default {
 
 .flip-end-definition {
   transition: transform 2s;
-  transform: rotateY(180deg); 
+  transform: rotateY(180deg);
 }
 
 .flip-start-safty-rules {
@@ -119,28 +129,33 @@ export default {
 }
 
 .notice-definition {
-  margin-bottom: 0rem;
-  margin-right: -0.2rem;
-  width: 56.2rem;
-  /* height: 3rem; */
+  margin-bottom: 2rem;
+    margin-right: -0.2rem;
+    width: 60.9rem;
 }
 
 @media screen and (max-width: 700px) {
   #info-hanging-board {
     width: 33rem;
     height: 53rem;
+    justify-content: space-around;
   }
 
   .unfliped-board {
-  background-image: url("/media/infoHangBoard/phone/infoHangingBoard.svg");
+    background-image: url("/media/infoHangBoard/phone/infoHangingBoard.svg");
   }
 
   .flip-start-safty-rules {
-  background-image: url("/media/infoHangBoard/phone/flipedInfoHangingBoard.svg");
+    background-image: url("/media/infoHangBoard/phone/flipedInfoHangingBoard.svg");
   }
 
   .text {
     width: 32rem;
+  }
+
+  .notice-definition {
+    margin-right: -0.1rem;
+    width: 35.3rem;
   }
 }
 </style>
