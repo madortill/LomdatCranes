@@ -6,30 +6,22 @@
       src="../src/assets/media/bahadSymbol.png"
       alt="bahadSymbol"
     />
-    <img
-      @click="toHomePage"
-      v-if="part > 0"
-      class="homeIcon"
-      :style="{ '--home-icon-color': colorIconPhone}"
-      src="../src/assets/media/homeIcon.png"
-      alt="homeIcon"
-    />
     <open-page
       :showSelection="showSelection"
-      @to-study="showStartSign"
+      @to-study="showChosenSection"
       @theChosenCourse="updateChosenCourse"
       v-if="part === 0"
     ></open-page>
-    <start-sign
-      :partNum="partNum"
-      :firstChosen="firstChosen"
-      @toNextBoard="nextPart"
-      v-if="part === 1"
-    ></start-sign>
+
     <info-screen
+      :firstChosen="firstChosen"
       :chosenCourse="chosenCourse"
-      :navPart="partNum"
-      v-if="part === 2"
+      :navPart="sectionToStudy"
+      v-if="part === 1"
+      :sectionToStudy="sectionToStudy"
+      @toHomePage="toHomePage"
+      :colorIconPhone="colorIconPhone"
+       @updateColorIconPhone="updateColorIconPhone"
     ></info-screen>
   </div>
 </template>
@@ -50,33 +42,28 @@ export default {
   data() {
     return {
       part: 0,
-      partNum: -1,
+      sectionToStudy: -1,
       firstChosen: null,
       showSelection: false,
       chosenCourse: "",
-      colorIconPhone: 'none',
+      colorIconPhone: "none",
       // navPart: -1,
     };
   },
   methods: {
-    showStartSign(fChosen, studyPart) {
-      this.partNum = studyPart;
+    showChosenSection(fChosen, studyPart) {
+      this.sectionToStudy = studyPart;
       this.firstChosen = fChosen;
       this.part++;
     },
     toHomePage() {
-      console.log("hi");
       this.part = 0;
       this.showSelection = true;
+      this.colorIconPhone = "none";
     },
-    nextPart() {
-      this.part++;
-      if(this.part === 2) {
-        this.colorIconPhone = 'invert(1) brightness(100%) saturate(25%)  contrast(100%)';
-      } else {
-        this.colorIconPhone = 'none';
-      }
-    },
+    updateColorIconPhone(newColor) {
+    this.colorIconPhone = newColor;  // Update colorIconPhone based on the child’s emitted value
+  },
     updateChosenCourse(chosenCrane) {
       this.chosenCourse = chosenCrane;
     },
@@ -138,17 +125,10 @@ body {
   z-index: 2;
 }
 @media screen and (max-width: 600px) {
-  .homeIcon {
-    filter: var(--home-icon-color);
-    right: auto;
-    left: 4.6rem;
-  }
-
   .bahadSymbol {
     width: 2.4rem;
     top: 0.5rem;
   }
-
   body {
     height: 91vh;
     overflow: hidden;

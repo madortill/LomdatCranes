@@ -44,19 +44,18 @@
       </div>
     </div>
 
-    <p @click="nextBoard" class="next-btn">הבא</p>
+    <!-- <p @click="nextBoard" class="next-btn">הבא</p> -->
   </div>
 </template>
 
 <script>
 export default {
   name: "start-sign",
-  props: ["partNum", "firstChosen"],
+  props: ["partNum", "firstChosen", "thePart"],
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "תרגול"],
       arrFinishedPart: ["ראשון", "שני", "שלישי"],
-      thePart: 0,
       showWarning: true,
       array1: [
         "מטרת על",
@@ -76,13 +75,13 @@ export default {
     }, 2500);
   },
   methods: {
-    nextBoard() {
-      if (this.partNum === 0 && this.thePart === 0) {
-        this.thePart++;
-      } else {
-        this.$emit('toNextBoard');
-      }
-    },
+    // nextBoard() {
+    //   if (this.partNum === 0 && this.thePart === 0) {
+    //     this.thePart++;
+    //   } else {
+    //     this.$emit('toNextBoard');
+    //   }
+    // },
   },
 };
 </script>

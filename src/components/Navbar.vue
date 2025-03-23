@@ -18,16 +18,33 @@
       <div class="the-stripe-topic">
         <p class="subj-text">{{ theRightArr[subjNum] }}</p>
       </div>
-      <div @click="showMenu" class="light-blue-circle">
+      <div
+        class="light-blue-circle"
+        :class="showPhoneMenu ? 'pop-out-menu' : ''"
+      >
         <img
+          @click="showMenu"
+          v-if="!showPhoneMenu"
           class="menu-icon"
           src="/media/phoneMenu.png"
           alt="menu-icon"
         />
+        <div class="menu-container" v-if="showPhoneMenu">
+          <p class="close-btn" @click="closeMenu">x</p>
+            <div v-for="(subj, index) in theRightArr" :key="index">
+            <p
+              :class="{
+                subject: index !== 0,
+                'main-subj': index === 0,
+                'now-subject': subjNum === index,
+              }"
+            >
+              {{ subj }}
+            </p>
+          </div>
+          
+        </div>
       </div>
-    </div>
-    <div class="hidden-menu-container">
-
     </div>
   </div>
 </template>
@@ -35,9 +52,10 @@
 <script>
 export default {
   name: "navbar",
-  props: ["part" ,'subjNum'],
+  props: ["part", "subjNum"],
   data() {
     return {
+      showPhoneMenu: false,
       arr1: [
         "רקע כללי",
         "הגדרה",
@@ -58,6 +76,14 @@ export default {
       ],
     };
   },
+  methods: {
+    showMenu() {
+      this.showPhoneMenu = true;
+    },
+    closeMenu() {
+      this.showPhoneMenu = false;
+    },
+  },
   computed: {
     theRightArr() {
       // איחוד שני המערכים לפי ה-part שהתקבל
@@ -68,9 +94,7 @@ export default {
       }
       return []; // במקרה שאין תוצאה תוחזר מערך ריק
     },
-    showMenu() {
 
-    },
     nextSubPart() {
       this.subjNum++;
     },
@@ -117,8 +141,8 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   align-items: center;
-    margin-left: 6rem;
-    margin-right: 6rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -160,6 +184,15 @@ export default {
   align-items: center;
 }
 
+.pop-out-menu {
+  width: 30rem;
+  height: 80vh;
+  z-index: 2;
+  right: -7rem;
+  top: -5rem;
+  transition: all 1s;
+}
+
 .menu-icon {
   width: 3rem;
 }
@@ -168,13 +201,23 @@ export default {
   margin-right: 7rem;
 }
 
-.hidden-menu-container {
-  background-color: #8cd0ec;
-  height: 100vh;
-  width: 20rem;
-  position: absolute;
-  z-index: 2;
-  right: 0rem;
-  display: none;
+.menu-container {
+  height: 87%;
+  width: 60%;
+  position: relative;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.close-btn {
+  font-size: 3rem;
+  position: absolute;
+  right: 1.5rem;
+  top: -2.5rem;
+}
+
+
 </style>

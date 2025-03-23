@@ -15,7 +15,7 @@
         <div class="start-container" v-if="!isOpenInfo">
             <img src="/media/Crane.png" alt="crane" class="bgCrane"/>
 
-            <HangingBoard @toNextBoard="toNextScreen" :indexYellowSign="indexYellowSign" :showSelection="showSelection" :partNum="boardNum" :craneKind="chosenCrane" :isUp="isUp" :isDown="isDown"/>
+            <start-hanging-board @toNextBoard="toNextScreen" :indexYellowSign="indexYellowSign" :showSelection="showSelection" :partNum="boardNum" :craneKind="chosenCrane" :isUp="isUp" :isDown="isDown"/>
 
             <div class="box-container"  v-if="boardNum === 1 && !showSelection">
               <Box @click.once="toNextScreen" id="עילי" class="box btn" :class="{fadeObject: chosenCrane !== ''}"  newTitle="עילי" partBox="0"></Box>
@@ -39,11 +39,11 @@
 
 <script>
 import Box from '../../src/components/Box.vue';
-import HangingBoard from './HangingBoard.vue';
+import StartHangingBoard from './StartHangingBoard.vue';
 
 export default {
         name: "open-page",
-        components: {Box, HangingBoard},
+        components: {Box, StartHangingBoard},
         props: ["showSelection"],
         data() {
             return {
@@ -92,7 +92,6 @@ export default {
           },
           toStudy(part) {
             this.$emit('to-study', this.fChosen, part);
-            console.log(part);
             if(this.fChosen) {
               this.fChosen = true;
             }

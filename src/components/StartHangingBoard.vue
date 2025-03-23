@@ -1,5 +1,5 @@
 <template>
-<div id="hanging-board" :class="[!isUp ? 'toss' : 'up', isDown ? 'down' : '']">
+<div id="start-hanging-board" :class="[!isUp ? 'toss' : 'up', isDown ? 'down' : '']">
   <img src="/media/hook.svg" alt="hook" class="hook"/>
         <img src="/media/wire.png" alt="wire" :class="partNum !== 3 && !showSelection ? 'wire' : 'smallWire'"/>
         <div class="blue-board">
@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        name: "hanging-board",
+        name: "start-hanging-board",
         props: ["partNum", "craneKind", "isUp", "isDown", "indexYellowSign", "showSelection"],
         data() {
             return {
@@ -32,7 +32,6 @@
         methods: {
           nextBoard(){
             this.$emit('toNextBoard');
-            console.log('hi');
           },
         },
 };
@@ -40,7 +39,7 @@
 
 <style scoped>
 
-#hanging-board{
+#start-hanging-board{
     z-index: 10000;
     /* width: 60vw; */
     width: 100vw;
