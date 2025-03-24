@@ -62,13 +62,15 @@
         return new URL(`../assets/media/flipCards/${name}`, import.meta.url).href;
       },
       hoverCardsCounter(index) {
-        if(this.counterHovered === 4 && !this.showNextBtn) {
-          this.$emit('showNextBtn')
-        }
-        else if(this.hoveredCards[index] === -1) {
+        if(this.hoveredCards[index] === -1) {
           this.hoveredCards[index] = index;
           this.counterHovered++;
         }
+        if(this.counterHovered === 4 && !this.showNextBtn) {
+          this.$emit('showNextBtn');
+          this.showNextBtn = true;
+        }
+        
       }
     },
     mounted() {
