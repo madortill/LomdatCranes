@@ -3,7 +3,7 @@
     <img
       @click="toHomePage"
       class="homeIcon"
-      :style="{ '--home-icon-color': colorIconPhone}"
+      :style="{ '--home-icon-color': colorIconPhone }"
       src="../assets/media/homeIcon.png"
       alt="homeIcon"
     />
@@ -27,10 +27,11 @@
         :flipEndDefine="flipEndDefine"
         :backFlip="backFlip"
         :flipEndSaftyRules="flipEndSaftyRules"
+        @showNextBtnSafetyRules="showNextBtnSafetyRules"
       ></info-hanging-board>
     </div>
 
-    <p class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p v-if="indexOrder !== 2 ||  infoHangingPart === 0 || showInSafetyRules" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="indexOrder > 0" class="back-btn moving-btn" @click="prevPart">
       חזור
     </p>
@@ -44,14 +45,16 @@ import StartSign from "./StartSign.vue";
 export default {
   name: "info-screen",
   components: { Navbar, InfoHangingBoard, StartSign },
-  props: ["navPart", "chosenCourse", "firstChosen", "sectionToStudy", "colorIconPhone"],
+  props: [
+    "navPart",
+    "chosenCourse",
+    "firstChosen",
+    "sectionToStudy",
+    "colorIconPhone",
+  ],
   data() {
     return {
-      // part: 0,
-      // partNum: 0,
-      // firstChosen: null,
       showSelection: false,
-      // colorIconPhone: 'none',
       indexOrder: 0,
       Infopart: 1,
       infoHangingPart: 0,
@@ -60,6 +63,7 @@ export default {
       flipEndDefine: false,
       backFlip: false,
       flipEndSaftyRules: false,
+      showInSafetyRules: false,
     };
   },
   methods: {
@@ -79,7 +83,10 @@ export default {
       } else {
         this.indexOrder++;
         if (this.indexOrder === 2) {
-          this.$emit('updateColorIconPhone', 'invert(1) brightness(100%) saturate(25%) contrast(100%)');
+          this.$emit(
+            "updateColorIconPhone",
+            "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+          );
         }
       }
     },
@@ -98,14 +105,17 @@ export default {
         }, 590);
       } else {
         this.indexOrder--;
-        if(this.indexOrder < 2) {
-          this.$emit('updateColorIconPhone', 'none');
+        if (this.indexOrder < 2) {
+          this.$emit("updateColorIconPhone", "none");
         }
       }
     },
-    toHomePage () {
-      this.$emit('toHomePage');
-    }
+    toHomePage() {
+      this.$emit("toHomePage");
+    },
+    showNextBtnSafetyRules() {
+      this.showInSafetyRules = true;
+    },
   },
 };
 </script>
@@ -161,5 +171,4 @@ export default {
     left: 4.6rem;
   }
 }
-
 </style>

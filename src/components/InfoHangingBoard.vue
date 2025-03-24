@@ -35,6 +35,7 @@
     <safety-rules
       v-if="section === 1"
       :chosenCourse="chosenCourse"
+      @showNextBtn="showNextBtnSafetyRules"
     ></safety-rules>
   </div>
 </template>
@@ -67,6 +68,11 @@ export default {
       ],
     };
   },
+  methods: {
+    showNextBtnSafetyRules() {
+      this.$emit('showNextBtnSafetyRules');
+    }
+  }
 };
 </script>
 

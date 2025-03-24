@@ -6,7 +6,7 @@
         :class="['flip-card', this.onStart]"
       >
         <div class="flip-card-inner">
-          <div 
+          <div @mouseover="hoverCardsCounter(index)"
             class="flip-card-front" 
             :style="{ '--dynamic-color': frontColorArr[index] }"
           >
@@ -52,12 +52,24 @@
           '#1E85AE',
         ],
         onStart: "start",
+        hoveredCards: [-1,-1,-1,-1],
+        counterHovered: 0,
+        showNextBtn: false,
       };
     },
     methods: {
       src(name) {
         return new URL(`../assets/media/flipCards/${name}`, import.meta.url).href;
       },
+      hoverCardsCounter(index) {
+        if(this.counterHovered === 4 && !this.showNextBtn) {
+          this.$emit('showNextBtn')
+        }
+        else if(this.hoveredCards[index] === -1) {
+          this.hoveredCards[index] = index;
+          this.counterHovered++;
+        }
+      }
     },
     mounted() {
       setTimeout(() => {
