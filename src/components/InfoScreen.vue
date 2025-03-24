@@ -29,9 +29,17 @@
         :flipEndSaftyRules="flipEndSaftyRules"
         @showNextBtnSafetyRules="showNextBtnSafetyRules"
       ></info-hanging-board>
+
+      <types-of-cranes v-if="indexOrder === 3"></types-of-cranes>
     </div>
 
-    <p v-if="indexOrder !== 2 ||  infoHangingPart === 0 || showInSafetyRules" class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p
+      v-if="indexOrder !== 2 || infoHangingPart === 0 || showInSafetyRules"
+      class="next-btn moving-btn"
+      @click="nextPart"
+    >
+      הבא
+    </p>
     <p v-if="indexOrder > 0" class="back-btn moving-btn" @click="prevPart">
       חזור
     </p>
@@ -42,9 +50,10 @@
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import Navbar from "./Navbar.vue";
 import StartSign from "./StartSign.vue";
+import TypesOfCranes from "./TypesOfCranes.vue";
 export default {
   name: "info-screen",
-  components: { Navbar, InfoHangingBoard, StartSign },
+  components: { Navbar, InfoHangingBoard, StartSign, TypesOfCranes },
   props: [
     "navPart",
     "chosenCourse",
@@ -82,7 +91,9 @@ export default {
         }, 590);
       } else {
         this.indexOrder++;
-        if (this.indexOrder === 2) {
+        if (this.indexOrder > 2) {
+          this.subNavPart++;
+        } else if (this.indexOrder === 2) {
           this.$emit(
             "updateColorIconPhone",
             "invert(1) brightness(100%) saturate(25%) contrast(100%)"
@@ -91,7 +102,7 @@ export default {
       }
     },
     prevPart() {
-      if (this.infoHangingPart === 1) {
+      if (this.infoHangingPart === 1 && this.indexOrder === 2) {
         //to restart values
         this.flipEndDefine = false;
         this.flipStart = false;
@@ -107,6 +118,8 @@ export default {
         this.indexOrder--;
         if (this.indexOrder < 2) {
           this.$emit("updateColorIconPhone", "none");
+        } else {
+          this.subNavPart--;
         }
       }
     },
