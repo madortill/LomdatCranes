@@ -1,11 +1,16 @@
 <template>
   <div id="types-of-cranes">
     <p class="header">{{ titlesArray[titleIndex] }}</p>
+
+    <crane-carousel/>
   </div>
 </template>
 
 <script>
+import CraneCarousel from './CraneCarousel.vue';
+
 export default {
+  components: { CraneCarousel },
   name: "types-of-cranes",
   data() {
     return {

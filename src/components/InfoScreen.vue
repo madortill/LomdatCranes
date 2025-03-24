@@ -33,8 +33,7 @@
       <types-of-cranes v-if="indexOrder === 3"></types-of-cranes>
     </div>
 
-    <p
-      v-if="indexOrder !== 2 || infoHangingPart === 0 || showInSafetyRules"
+    <p v-if="showNextBtn"
       class="next-btn moving-btn"
       @click="nextPart"
     >
@@ -72,7 +71,8 @@ export default {
       flipEndDefine: false,
       backFlip: false,
       flipEndSaftyRules: false,
-      showInSafetyRules: false,
+      showNextBtn: true,
+      seenSafetyRules: false,
     };
   },
   methods: {
@@ -83,6 +83,11 @@ export default {
         this.backFlip = false;
         //
         this.subNavPart++;
+        if(!this.seenSafetyRules) {
+          this.showNextBtn = false;
+
+        }
+
         this.flipEndDefine = true;
         let timer = setTimeout(() => {
           this.infoHangingPart++;
@@ -93,6 +98,9 @@ export default {
         this.indexOrder++;
         if (this.indexOrder > 2) {
           this.subNavPart++;
+          if(this.indexOrder === 3) {
+            this.showNextBtn = false;
+          }
         } else if (this.indexOrder === 2) {
           this.$emit(
             "updateColorIconPhone",
@@ -109,6 +117,7 @@ export default {
         //
         this.subNavPart--;
         this.backFlip = true;
+
         let timer = setTimeout(() => {
           this.infoHangingPart--;
           this.flipEndSaftyRules = true;
@@ -122,12 +131,15 @@ export default {
           this.subNavPart--;
         }
       }
+      this.showNextBtn = true; //לבדוק על זה שעושים חזור 
+
     },
     toHomePage() {
       this.$emit("toHomePage");
     },
     showNextBtnSafetyRules() {
-      this.showInSafetyRules = true;
+      this.showNextBtn = true;
+      this.seenSafetyRules = true;
     },
   },
 };

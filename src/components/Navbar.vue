@@ -195,6 +195,8 @@ export default {
 
 .menu-icon {
   width: 3rem;
+  /* pointer-events: auto; */
+  z-index: 10;
 }
 
 .subj-text {
