@@ -70,6 +70,9 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   color: #228291;
+  display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .noselect {
@@ -112,5 +115,9 @@ export default {
   width: 97vw;
 }
 
+.arrow {
+  width: 4rem;
+    height: 2rem;
+}
 }
 </style>

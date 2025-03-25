@@ -17,7 +17,6 @@ export default {
   color: white;
  border-radius: 1rem;
  padding: 1rem;
-  /* position: absolute; */
   transition: height 1s, width 1s, left 1s, margin-top 1s, line-height 1s, background-color 1s;
 }
 
@@ -68,8 +67,8 @@ export default {
 }
 
 .level2, .level0 {
-  height: 9rem;
-  width: 6rem;
+  height: 8rem;
+  width: 5rem;
 }
 }
 </style>
