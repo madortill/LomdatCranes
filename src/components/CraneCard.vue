@@ -64,11 +64,12 @@ export default {
 @media screen and (max-width: 600px) {
 .level1 {
   height: 16rem;
+  width: 10rem;
 }
 
 .level2, .level0 {
-  height: 8rem;
-  width: 5rem;
+  height: 7rem;
+  width: 4rem;
 }
 }
 </style>
