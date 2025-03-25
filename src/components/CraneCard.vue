@@ -40,16 +40,14 @@ export default {
   height: 10rem;
   width: 8rem;
   background-color: #4ec9e1;
-  /* left: 50%; */
   font-size: 2rem;
 }
 
 .level1 {
-  height: 12rem;
-  width: 10rem;
+  height: 14rem;
+  width: 11rem;
   background-color: #4ec9e1;
   font-size: 3rem;
-  /* left: 70%; */
 }
 
 .level2 {
@@ -57,11 +55,21 @@ export default {
   width: 8rem;
   background-color: #4ec9e1;
   font-size: 2rem;
-  /* left: 90%; */
 }
 
 /* Transition */
 .level0, .level1, .level2 {
   transition: transform 0.5s, opacity 0.5s;
+}
+
+@media screen and (max-width: 600px) {
+.level1 {
+  height: 16rem;
+}
+
+.level2, .level0 {
+  height: 9rem;
+  width: 6rem;
+}
 }
 </style>

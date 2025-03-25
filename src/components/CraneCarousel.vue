@@ -1,7 +1,7 @@
 <template>
   <div id="crane-carousel">
     <div id="carousel" class="noselect">
-      <div class="arrow arrow-right" @click="moveRight">R</div>
+      <div class="arrow" @click="moveRight">{{arrArrows[1] }}</div>
       <transition-group class="cards-container" name="carousel" tag="div">
         <crane-card
           v-for="(item, index) in items"
@@ -11,7 +11,7 @@
         />
       </transition-group>
 
-      <div class="arrow arrow-left" @click="moveLeft">L</div>
+      <div class="arrow" @click="moveLeft">{{arrArrows[0] }}</div>
     </div>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
     return {
       items: ['עגורן גשר', 'עגורן עמוד', 'עגורן שער'], // List of cards
       active: 0, // Active card
+      arrArrows: ['>','<'],
     };
   },
   methods: {
@@ -53,16 +54,14 @@ export default {
 
 <style scoped>
 #crane-carousel {
-  /* width: 80vw; */
+  width: 80vw;
   height: 30rem;
-  /* position: relative; */
-  /* margin: 0 auto; */
   overflow: hidden; /* Hide overflow */
   display: flex;
+  justify-content: center;
 }
 
 .arrow {
-  /* position: absolute; */
   width: 3rem;
   height: 3rem;
   background-color: white;
@@ -71,31 +70,16 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   color: #228291;
-  /* line-height: 30px; */
-  /* margin-top: 85px; */
-  /* z-index: 1000; */
 }
-
-/* .arrow-left {
-  left: 1rem;
-}
-
-.arrow-right {
-  right: 1rem;
-} */
 
 .noselect {
-  /* -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; */
   display: flex;
   align-items: center;
 }
 
 .cards-container {
-  width: 60rem;
+  width:  50rem;
+  height: 30rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -117,5 +101,16 @@ export default {
 .carousel-leave {
   opacity: 1;
   transform: translateX(0);
+}
+
+@media screen and (max-width: 600px) {
+  .cards-container {
+    width:  76rem;
+  }
+
+  #crane-carousel {
+  width: 97vw;
+}
+
 }
 </style>
