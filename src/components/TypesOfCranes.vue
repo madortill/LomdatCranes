@@ -32,10 +32,10 @@ export default {
     width: 100vw;
     height: 70vh;
     margin-top: 5rem;
-  /* display: flex;
-  justify-content: center;
-  color: white;
-  align-items: flex-end; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .header {

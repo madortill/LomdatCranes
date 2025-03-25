@@ -15,13 +15,14 @@ export default {
 .item {
   text-align: center;
   color: white;
-  font-size: 3rem;
-  position: absolute;
+ border-radius: 1rem;
+ padding: 1rem;
+  /* position: absolute; */
   transition: height 1s, width 1s, left 1s, margin-top 1s, line-height 1s, background-color 1s;
 }
 
 /* Styles for the different levels */
-.level-2 {
+/* .level-2 {
   height: 7rem;
   width: 5rem;
   background-color: #228291;
@@ -33,27 +34,30 @@ export default {
   width: 8rem;
   background-color: #4ec9e1;
   left: 30%;
-}
+} */
 
 .level0 {
-  height: 12rem;
-  width: 10rem;
-  background-color: #6796e5;
-  left: 50%;
-}
-
-.level1 {
   height: 10rem;
   width: 8rem;
   background-color: #4ec9e1;
-  left: 70%;
+  /* left: 50%; */
+  font-size: 2rem;
+}
+
+.level1 {
+  height: 12rem;
+  width: 10rem;
+  background-color: #4ec9e1;
+  font-size: 3rem;
+  /* left: 70%; */
 }
 
 .level2 {
-  height: 7rem;
-  width: 5rem;
-  background-color: #228291;
-  left: 90%;
+  height: 10rem;
+  width: 8rem;
+  background-color: #4ec9e1;
+  font-size: 2rem;
+  /* left: 90%; */
 }
 
 /* Transition */
