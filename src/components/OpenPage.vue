@@ -19,10 +19,8 @@
 
             <div class="box-container"  v-if="boardNum === 1 && !showSelection">
               <Box @click.once="toNextScreen" id="עילי" class="box btn" :class="{fadeObject: chosenCrane !== ''}"  newTitle="עילי" partBox="0"></Box>
-              <!-- <img src="../assets/media/disableBox.svg" class="box disabled" :class="{fadeObject: chosenCrane !== ''}" alt="disableBox"/> -->
               <Box id="disable" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="disable" partBox="-1"></Box>
                <!-- <Box @click.once="toNextScreen" id="העמסה עצמית" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="העמסה עצמית"></Box>  -->
-            
             </div>
         
             <div class="home-box-container"  v-if="boardNum === 3 || showSelection">

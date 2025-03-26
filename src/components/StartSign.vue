@@ -1,25 +1,21 @@
 <template>
   <div id="start-sign">
-    <img
-      class="start-sign-img"
-      src="/media/StartSign.png"
-      alt="startSign"
-    />
+    <img class="start-sign-img" src="/media/StartSign.png" alt="startSign" />
     <div class="text-container" v-if="firstChosen && thePart === 0">
       <p>בחרת ב -</p>
-      <p class="partOfLomda">{{ arrPartTitle[partNum] }}</p>
+      <p class="partOfLomda">{{ arrPartTitle[sectionNum] }}</p>
       <p>אם תרצה לשנות את בחירתך אפשר ללחוץ על כפתור הבית</p>
       <p class="goodWord">בהצלחה!</p>
     </div>
     <div class="text-container" v-if="!firstChosen">
-      <p>כל הכבוד סיימת את החלק ה{{ arrFinishedPart[partNum - 1] }}</p>
-      <p>עכשיו נעבור לחלק ה{{ arrFinishedPart[partNum] }} של הלומדה</p>
-      <p class="partOfLomda">{{ arrPartTitle[partNum] }}</p>
+      <p>כל הכבוד סיימת את החלק ה{{ arrFinishedPart[sectionNum - 1] }}</p>
+      <p>עכשיו נעבור לחלק ה{{ arrFinishedPart[sectionNum] }} של הלומדה</p>
+      <p class="partOfLomda">{{ arrPartTitle[sectionNum] }}</p>
       <p class="goodWord">בהצלחה!</p>
     </div>
     <div
       class="text-container fixPosition"
-      v-if="partNum === 0 && thePart === 1"
+      v-if="sectionNum === 0 && thePart === 1"
     >
       <p class="header">מטרות השיעור</p>
       <p
@@ -36,7 +32,7 @@
         {{ text }}
       </p>
     </div>
-    <div v-if="partNum > 0 && firstChosen && showWarning">
+    <div v-if="sectionNum > 0 && firstChosen && showWarning">
       <div class="shadow"></div>
       <div class="warning-container">
         <p>שימו לב!</p>
@@ -44,14 +40,17 @@
       </div>
     </div>
 
-    <!-- <p @click="nextBoard" class="next-btn">הבא</p> -->
+    <p class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p v-if="thePart !== 0" class="back-btn moving-btn" @click="prevPart">
+      חזור
+    </p>
   </div>
 </template>
 
 <script>
 export default {
   name: "start-sign",
-  props: ["partNum", "firstChosen", "thePart"],
+  props: ["sectionNum", "firstChosen", 'thePart'],
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "תרגול"],
@@ -59,11 +58,11 @@ export default {
       showWarning: true,
       array1: [
         "מטרת על",
-        'הלומד יסביר את אופן התפעול של עגורן עילי.',
+        "הלומד יסביר את אופן התפעול של עגורן עילי.",
         "מטרות ביניים",
-        'הלומד יפרט את סוגי העגורנים העיליים.',
-        'הלומד יפרט את מערכות העגורן.',
-        'הלומד יזהה את חלקיו השונים של העגורן.',
+        "הלומד יפרט את סוגי העגורנים העיליים.",
+        "הלומד יפרט את מערכות העגורן.",
+        "הלומד יזהה את חלקיו השונים של העגורן.",
       ],
     };
   },
@@ -75,30 +74,38 @@ export default {
     }, 2500);
   },
   methods: {
-    // nextBoard() {
-    //   if (this.partNum === 0 && this.thePart === 0) {
-    //     this.thePart++;
-    //   } else {
-    //     this.$emit('toNextBoard');
-    //   }
-    // },
+    nextPart() {
+      this.$emit("to-next-board");
+    },
+
+  prevPart() {
+    this.$emit("to-prev-board");
   },
+},
+
+
 };
 </script>
 
 <style scoped>
+#start-sign {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  color: white;
+  align-items: flex-end;
+}
+
 .talk-text {
   margin: 1rem;
   animation: floatAnimation 3s ease-in-out infinite;
   color: #8cd0ec;
   font-size: 3rem;
   border-radius: 10px;
-  /* top: 1.5%; */
-  /* text-decoration: none; */
   position: relative;
   cursor: default;
   width: fit-content;
-  /* text-align: center; */
 }
 
 .talk-text:hover::before {
@@ -125,7 +132,6 @@ export default {
   transition: background-color 0.3s ease;
   margin: 2%;
   padding: 0.5%;
-  /* text-align: center; */
   width: fit-content;
 }
 
@@ -133,14 +139,6 @@ export default {
   background-color: #8cd0ec;
 }
 
-#start-sign {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  color: white;
-  align-items: flex-end;
-}
 .goodWord {
   color: #8cd0ec;
   font-size: 1.5rem;
@@ -166,10 +164,6 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* display: flex
-;
-    flex-direction: column;
-    align-items: center; */
 }
 
 .shadow {
@@ -198,9 +192,19 @@ export default {
   justify-content: center;
 }
 
-.next-btn {
+.header {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.fixPosition {
+  width: 50vw;
+  height: 74%;
+}
+
+.moving-btn {
+  /* z-index: 1; */
   position: absolute;
-  left: 1rem;
   bottom: 1rem;
   width: 5rem;
   height: 3rem;
@@ -211,24 +215,22 @@ export default {
   /* Centering the text */
   display: flex;
   justify-content: center; /* Horizontally centers the text */
-  align-items: center;     /* Vertically centers the text */
-  text-align: center;      /* Ensures the text is centered if multiline */
+  align-items: center; /* Vertically centers the text */
+  text-align: center; /* Ensures the text is centered if multiline */
   transition: background-color 0.3s ease;
 }
 
-.next-btn:hover {
+.moving-btn:hover {
   background-color: #023047;
   color: white;
 }
 
-.header {
-  font-weight: bold;
-  font-size: 2.5rem;
+.next-btn {
+  left: 1rem;
 }
 
-.fixPosition {
-  width: 50vw;
-  height: 60%;
+.back-btn {
+  right: 1rem;
 }
 
 @media screen and (max-width: 600px) {

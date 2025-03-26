@@ -1,23 +1,24 @@
 <template>
   <div id="app">
     <clouds-bg class="clouds-bg"></clouds-bg>
+    
     <img
       class="bahadSymbol"
       src="../src/assets/media/bahadSymbol.png"
       alt="bahadSymbol"
     />
+    
     <open-page
       :showSelection="showSelection"
       @to-study="showChosenSection"
       @theChosenCourse="updateChosenCourse"
-      v-if="part === 0"
+      v-if="partNum === 0"
     ></open-page>
 
     <info-screen
       :firstChosen="firstChosen"
       :chosenCourse="chosenCourse"
-      :navPart="sectionToStudy"
-      v-if="part === 1"
+      v-if="partNum === 1"
       :sectionToStudy="sectionToStudy"
       @toHomePage="toHomePage"
       :colorIconPhone="colorIconPhone"
@@ -30,18 +31,16 @@
 import CloudsBg from "./components/CloudsBg.vue";
 import InfoScreen from "./components/InfoScreen.vue";
 import OpenPage from "./components/OpenPage.vue";
-import StartSign from "./components/StartSign.vue";
 export default {
   name: "app",
   components: {
     OpenPage,
     InfoScreen,
-    StartSign,
     CloudsBg,
   },
   data() {
     return {
-      part: 0,
+      partNum: 0,
       sectionToStudy: -1,
       firstChosen: null,
       showSelection: false,
@@ -54,10 +53,10 @@ export default {
     showChosenSection(fChosen, studyPart) {
       this.sectionToStudy = studyPart;
       this.firstChosen = fChosen;
-      this.part++;
+      this.partNum++;
     },
     toHomePage() {
-      this.part = 0;
+      this.partNum = 0;
       this.showSelection = true;
       this.colorIconPhone = "none";
     },
@@ -116,14 +115,7 @@ body {
   z-index: 2;
 }
 
-.homeIcon {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  width: 2.5rem;
-  cursor: pointer;
-  z-index: 2;
-}
+
 @media screen and (max-width: 600px) {
   .bahadSymbol {
     width: 2.4rem;

@@ -11,9 +11,9 @@
   >
     <!-- <img class="board" src="/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
     <div class="info-container">
-      <p class="header">{{ theInfo[section][0] }}</p>
+      <p class="header">{{ theInfo[sectionHangingBoard][0] }}</p>
       <p
-        v-for="(text, index) in theInfo[section].slice(1)"
+        v-for="(text, index) in theInfo[sectionHangingBoard].slice(1)"
         :key="index"
         class="text"
       >
@@ -24,16 +24,16 @@
       class="notice-definition computer-notice"
       src="/media/noticeDefinition/computer/noticeDefinition.svg"
       alt="noticeDefinition"
-      v-if="section === 0"
+      v-if="sectionHangingBoard === 0"
     />
     <img
       class="notice-definition phone-notice"
       src="/media/noticeDefinition/phone/noticeDefinition.svg"
       alt="noticeDefinition"
-      v-if="section === 0"
+      v-if="sectionHangingBoard === 0"
     />
     <safety-rules
-      v-if="section === 1"
+      v-if="sectionHangingBoard === 1"
       :chosenCourse="chosenCourse"
       @showNextBtn="showNextBtnSafetyRules"
     ></safety-rules>
@@ -46,7 +46,7 @@ export default {
   components: { SafetyRules },
   name: "info-hanging-board",
   props: [
-    "section",
+    "sectionHangingBoard",
     "chosenCourse",
     "flipStart",
     "flipEndDefine",
