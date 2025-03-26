@@ -47,6 +47,13 @@ export default {
   width: 11rem;
   background-color: #4ec9e1;
   font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.5s ease; /* תנועה חלקה */
+}
+
+.level1:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1rem 1rem white; /* אפקט זוהר כחול */
 }
 
 .level2 {

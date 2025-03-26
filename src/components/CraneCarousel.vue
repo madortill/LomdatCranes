@@ -1,17 +1,18 @@
 <template>
   <div id="crane-carousel">
     <div id="carousel" class="noselect">
-      <div class="arrow" @click="moveRight">{{arrArrows[1] }}</div>
+      <div class="arrow" @click="moveRight">{{ arrArrows[1] }}</div>
       <transition-group class="cards-container" name="carousel" tag="div">
         <crane-card
           v-for="(item, index) in items"
           :key="item"
           :id="item"
           :level="getLevel(index)"
+          @click="showCard($event, item)"
         />
       </transition-group>
 
-      <div class="arrow" @click="moveLeft">{{arrArrows[0] }}</div>
+      <div class="arrow" @click="moveLeft">{{ arrArrows[0] }}</div>
     </div>
   </div>
 </template>
@@ -24,9 +25,9 @@ export default {
   name: "crane-carousel",
   data() {
     return {
-      items: ['עגורן גשר', 'עגורן עמוד', 'עגורן שער'], // List of cards
+      items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], // List of cards
       active: 0, // Active card
-      arrArrows: ['>','<'],
+      arrArrows: [">", "<"],
     };
   },
   methods: {
@@ -47,6 +48,12 @@ export default {
       if (offset === 1) return 1; // Right card
       if (offset === -1) return -1; // Left card
       return 2; // Farthest left or right card
+    },
+    showCard(event, title) {
+      //disable if the card not in the center
+      if(event.target.classList.contains('level1')) {
+        this.$emit("change-title", title);
+      }
     },
   },
 };
@@ -71,17 +78,18 @@ export default {
   cursor: pointer;
   color: #228291;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .noselect {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .cards-container {
-  width:  50rem;
+  width: 50rem;
   height: 30rem;
   display: flex;
   align-items: center;
@@ -108,16 +116,16 @@ export default {
 
 @media screen and (max-width: 600px) {
   .cards-container {
-    width:  76rem;
+    width: 76rem;
   }
 
   #crane-carousel {
-  width: 97vw;
-}
+    width: 97vw;
+  }
 
-.arrow {
-  width: 4rem;
+  .arrow {
+    width: 4rem;
     height: 2rem;
-}
+  }
 }
 </style>

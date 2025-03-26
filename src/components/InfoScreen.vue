@@ -30,15 +30,15 @@
         @showNextBtnSafetyRules="showNextBtnSafetyRules"
       ></info-hanging-board>
 
-      <types-of-cranes v-if="indexOrder === 3"></types-of-cranes>
+      <types-of-cranes
+        @crane-card-chosen="CraneCardChosen"
+        v-if="indexOrder === 3"
+        :cardClicked="craneCardClicked"
+        :title="titleTypesCranesIndex"
+      ></types-of-cranes>
     </div>
 
-    <p v-if="showNextBtn"
-      class="next-btn moving-btn"
-      @click="nextPart"
-    >
-      הבא
-    </p>
+    <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="indexOrder > 0" class="back-btn moving-btn" @click="prevPart">
       חזור
     </p>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import CraneCard from "./CraneCard.vue";
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import Navbar from "./Navbar.vue";
 import StartSign from "./StartSign.vue";
@@ -67,62 +68,59 @@ export default {
       Infopart: 1,
       infoHangingPart: 0,
       subNavPart: 1,
+      //about the flip according to click
       flipStart: false,
       flipEndDefine: false,
       backFlip: false,
       flipEndSaftyRules: false,
       showNextBtn: true,
       seenSafetyRules: false,
+      //aboutCarousel
+      prevToCarousel: false,
+      craneCardClicked: false,
+      titleTypesCranesIndex: "סוגי העגורנים הקיימים",
     };
   },
   methods: {
     nextPart() {
-      if (this.indexOrder === 2 && this.infoHangingPart === 0) {
-        //to restart values
-        this.flipEndSaftyRules = false;
-        this.backFlip = false;
-        //
-        this.subNavPart++;
-        if(!this.seenSafetyRules) {
-          this.showNextBtn = false;
-
-        }
-
-        this.flipEndDefine = true;
-        let timer = setTimeout(() => {
-          this.infoHangingPart++;
-          this.flipStart = true;
-          clearTimeout(timer);
-        }, 590);
-      } else {
-        this.indexOrder++;
-        if (this.indexOrder > 2) {
+      if (this.sectionToStudy === 0) {
+        //if in the first screen of the startSign
+        if (this.indexOrder === 2 && this.infoHangingPart === 0) {
           this.subNavPart++;
-          if(this.indexOrder === 3) {
+          //checks if user hasnt studied safety rules once
+          if (!this.seenSafetyRules) {
             this.showNextBtn = false;
           }
-        } else if (this.indexOrder === 2) {
-          this.$emit(
-            "updateColorIconPhone",
-            "invert(1) brightness(100%) saturate(25%) contrast(100%)"
-          );
+          this.firstFlipInfoHangingBoard();
+        } else {
+          this.indexOrder++; //shows next info
+          if (this.indexOrder > 2) {
+            this.subNavPart++;
+            if (this.indexOrder === 3) {
+              this.showNextBtn = false;
+            }
+          } else if (this.indexOrder === 2) {
+            this.$emit(
+              "updateColorIconPhone",
+              "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+            );
+          }
         }
       }
     },
     prevPart() {
-      if (this.infoHangingPart === 1 && this.indexOrder === 2) {
-        //to restart values
-        this.flipEndDefine = false;
-        this.flipStart = false;
-        //
-        this.subNavPart--;
-        this.backFlip = true;
-
-        let timer = setTimeout(() => {
-          this.infoHangingPart--;
-          this.flipEndSaftyRules = true;
-          clearTimeout(timer);
-        }, 590);
+      //if chose the start of the lomda
+      if (this.sectionToStudy === 0) {
+        //if in the second screen of the startSign
+        if (this.infoHangingPart === 1 && this.indexOrder === 2) {
+          this.subNavPart--;
+          this.secondFlipInfoHangingBoard();
+        }
+        //in case from a chosen card in the crane carousel
+      else if (this.prevToCarousel) {
+        this.craneCardClicked = false;
+        this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
+        this.prevToCarousel = false;
       } else {
         this.indexOrder--;
         if (this.indexOrder < 2) {
@@ -131,8 +129,35 @@ export default {
           this.subNavPart--;
         }
       }
-      this.showNextBtn = true; //לבדוק על זה שעושים חזור 
+      this.showNextBtn = true; //לבדוק על זה שעושים חזור
+      }
 
+      
+    },
+
+    firstFlipInfoHangingBoard() {
+      //to restart value
+      this.flipEndSaftyRules = false;
+      this.backFlip = false;
+      //the flip animation
+      this.flipEndDefine = true;
+      let timer = setTimeout(() => {
+        this.infoHangingPart++;
+        this.flipStart = true;
+        clearTimeout(timer);
+      }, 590);
+    },
+    secondFlipInfoHangingBoard() {
+      //to restart values
+      this.flipEndDefine = false;
+      this.flipStart = false;
+      //
+      this.backFlip = true;
+      let timer = setTimeout(() => {
+        this.infoHangingPart--;
+        this.flipEndSaftyRules = true;
+        clearTimeout(timer);
+      }, 590);
     },
     toHomePage() {
       this.$emit("toHomePage");
@@ -140,6 +165,11 @@ export default {
     showNextBtnSafetyRules() {
       this.showNextBtn = true;
       this.seenSafetyRules = true;
+    },
+    CraneCardChosen(craneTitle) {
+      this.prevToCarousel = true;
+      this.craneCardClicked = true;
+      this.titleTypesCranesIndex = craneTitle;
     },
   },
 };
