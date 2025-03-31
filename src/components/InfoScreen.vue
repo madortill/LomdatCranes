@@ -27,6 +27,7 @@
       @toHomePage="toHomePage"
       :navbarSubjNum="subNavPart"
       @change-sub-nav-num="changeSubNavNum"
+      :chosenCourse="chosenCourse"
     ></general-material>
   </div>
 </template>
