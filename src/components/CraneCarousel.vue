@@ -1,7 +1,9 @@
 <template>
   <div id="crane-carousel">
     <div id="carousel" class="noselect">
-      <div class="arrow" @click="moveRight">{{ arrArrows[1] }}</div>
+      <div class="arrow for-computer" @click="moveRight">
+        {{ arrArrows[1] }}
+      </div>
       <transition-group class="cards-container" name="carousel" tag="div">
         <crane-card
           v-for="(item, index) in items"
@@ -12,7 +14,15 @@
         />
       </transition-group>
 
-      <div class="arrow" @click="moveLeft">{{ arrArrows[0] }}</div>
+      <div class="arrow for-computer" @click="moveLeft">{{ arrArrows[0] }}</div>
+      <div class="arrow-phone-container">
+        <div class="arrow" @click="moveRight">
+          {{ arrArrows[1] }}
+        </div>
+        <div class="arrow" @click="moveLeft">
+          {{ arrArrows[0] }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -51,7 +61,7 @@ export default {
     },
     showCard(event, title) {
       //disable if the card not in the center
-      if(event.target.classList.contains('level1')) {
+      if (event.target.classList.contains("level1")) {
         this.$emit("change-title", title);
       }
     },
@@ -82,6 +92,13 @@ export default {
   justify-content: center;
 }
 
+.arrow-phone-container {
+  display: none;
+  position: absolute;
+  width: 12rem;
+  bottom: 10rem;
+  justify-content: space-evenly;
+}
 .noselect {
   display: flex;
   align-items: center;
@@ -119,14 +136,21 @@ export default {
     width: 76rem;
   }
 
-  #crane-carousel {
-    /* width: 30rem; */
-    }
+  /* #crane-carousel {
+    width: 30rem;
+    } */
+
+  .for-computer {
+    display: none;
+  }
+
+  .arrow-phone-container {
+    display: flex;
+  }
 
   .arrow {
     width: 4rem;
-    height: 2rem;
-
+    height: 3rem;
   }
 }
 </style>

@@ -53,7 +53,7 @@ export default {
 
 .level1:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 1rem 1rem white; /* אפקט זוהר כחול */
+  box-shadow: 0 0 1rem 1rem white; 
 }
 
 .level2 {
@@ -72,6 +72,8 @@ export default {
 .level1 {
   height: 16rem;
   width: 10rem;
+  /* transform: scale(1.05); */
+  box-shadow: 0 0 1rem 1rem white; 
 }
 
 .level2, .level0 {
