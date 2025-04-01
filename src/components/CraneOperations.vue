@@ -87,12 +87,14 @@ export default {
 
 .numbers-container {
     position: absolute;
-    top: 14rem;
+    top: 15rem;
 }
 
 .num {
     font-size: 3rem;
-    font-family: Secular One;
+    font-family: Secular-One;
+    margin-top: 2.6rem;
+    margin-bottom: 0rem;
 }
 
 .orange-bubble {

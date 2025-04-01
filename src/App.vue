@@ -77,6 +77,11 @@ export default {
   src: url("@/assets/fonts/heebo.black.ttf");
 }
 
+@font-face {
+  font-family: "Secular-One";
+  src: url("@/assets/fonts/SecularOne-Regular.ttf");
+}
+
 * {
   overflow: hidden;
   font-family: "Heebo";
