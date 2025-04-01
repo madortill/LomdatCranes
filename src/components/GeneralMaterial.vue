@@ -235,7 +235,7 @@ export default {
 #general-material {
   z-index: 1;
   width: 80vw;
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
