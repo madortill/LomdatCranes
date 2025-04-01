@@ -62,7 +62,7 @@ export default {
 }
 @media screen and (max-width: 700px) {
   #types-of-cranes {
-    margin-top: 2rem;
+    margin-top: 5rem;
   }
 }
 </style>
