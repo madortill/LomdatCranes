@@ -21,8 +21,7 @@
       v-if="partNum === 1"
       :sectionToStudy="sectionToStudy"
       @toHomePage="toHomePage"
-      :colorIconPhone="colorIconPhone"
-       @updateColorIconPhone="updateColorIconPhone"
+
     ></info-screen>
   </div>
 </template>
@@ -45,7 +44,7 @@ export default {
       firstChosen: null,
       showSelection: false,
       chosenCourse: "",
-      colorIconPhone: "none",
+     
       // navPart: -1,
     };
   },
@@ -58,11 +57,8 @@ export default {
     toHomePage() {
       this.partNum = 0;
       this.showSelection = true;
-      this.colorIconPhone = "none";
     },
-    updateColorIconPhone(newColor) {
-    this.colorIconPhone = newColor;  // Update colorIconPhone based on the child’s emitted value
-  },
+   
     updateChosenCourse(chosenCrane) {
       this.chosenCourse = chosenCrane;
     },

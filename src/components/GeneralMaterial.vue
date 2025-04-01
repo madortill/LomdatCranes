@@ -16,6 +16,7 @@
       v-if="indexOrder === 1"
       :cardClicked="craneCardClicked"
       :title="titleTypesCranesIndex"
+      :partLearningCraneCard="partLearningCraneCard"
     ></types-of-cranes>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
@@ -34,7 +35,7 @@ export default {
     "chosenCourse",
     "navbarSubjNum",
     // "sectionToStudy",
-    // "colorIconPhone",
+    "colorIconPhone",
   ],
   data() {
     return {
@@ -55,6 +56,9 @@ export default {
       prevToCarousel: false,
       craneCardClicked: false,
       titleTypesCranesIndex: "סוגי העגורנים הקיימים",
+      counterLearnedCranes: 0,
+      partLearningCraneCard: 0,
+      arrChosenCardCranes: ["", "", ""],
     };
   },
   methods: {
@@ -75,7 +79,35 @@ export default {
         case 2: {
           this.indexOrder++;
           this.$emit("change-sub-nav-num", true);
-          this.showNextBtn = false;
+          if (this.counterLearnedCranes !== 3) {
+              this.showNextBtn = false;
+            } else {
+              this.showNextBtn = true;
+            }
+          break;
+        }
+        case 3: {
+          if (this.craneCardClicked && this.partLearningCraneCard === 0) {
+            this.partLearningCraneCard++;
+          } else if (
+            this.craneCardClicked &&
+            this.partLearningCraneCard === 1
+          ) {
+            this.craneCardClicked = false;
+            this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
+            this.prevToCarousel = false;
+            this.partLearningCraneCard = 0; //מאפס את החלק שלומדים בלחיצה על קלף
+            if (this.counterLearnedCranes !== 3) {
+              this.showNextBtn = false;
+            } else {
+              this.showNextBtn = true;
+            }
+          } else {
+            this.$emit("change-sub-nav-num", true);
+            this.indexOrder++;
+
+            // this.showNextBtn = true;
+          }
           break;
         }
       }
@@ -113,34 +145,30 @@ export default {
           break;
         }
         case 3: {
-          if (this.craneCardClicked) {
+          if (this.craneCardClicked && this.partLearningCraneCard === 0) {
             this.craneCardClicked = false;
             this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
             this.prevToCarousel = false;
+
+            if (this.counterLearnedCranes !== 3) {
+              this.showNextBtn = false;
+            } 
+            else {
+              this.showNextBtn = true;
+            }
+          } else if (
+            this.craneCardClicked &&
+            this.partLearningCraneCard === 1
+          ) {
+            this.partLearningCraneCard--;
           } else {
             this.$emit("change-sub-nav-num", false);
             this.indexOrder--;
-            this.showNextBtn = true;
+            // this.showNextBtn = true;
           }
-
           break;
         }
       }
-
-      //in case from a chosen card in the crane carousel
-      // if (this.prevToCarousel) {
-      //   this.craneCardClicked = false;
-      //   this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
-      //   this.prevToCarousel = false;
-      // } else {
-      //   this.indexOrder--;
-      //   if (this.indexOrder < 2) {
-      //     this.$emit("updateColorIconPhone", "none");
-      //   } else {
-      //     this.navbarSubjNum--;
-      //   }
-      // }
-      // this.showNextBtn = true; //לבדוק על זה שעושים חזור
     },
 
     firstFlipInfoHangingBoard() {
@@ -155,6 +183,7 @@ export default {
         clearTimeout(timer);
       }, 590);
     },
+
     reversedFlipInfoHangingBoard() {
       //to restart values
       this.flipEndDefine = false;
@@ -167,17 +196,36 @@ export default {
         clearTimeout(timer);
       }, 590);
     },
+
     toHomePage() {
       this.$emit("toHomePage");
     },
+
     showNextBtnSafetyRules() {
       this.showNextBtn = true;
       this.seenSafetyRules = true;
     },
+
     CraneCardChosen(craneTitle) {
       this.prevToCarousel = true;
       this.craneCardClicked = true;
       this.titleTypesCranesIndex = craneTitle;
+      this.showNextBtn = true;
+      //הכנסה של קלף העגורן למערך של אלו שנלמדו במידה ולא נלמד כבר
+      if (!this.checkIfLearedCard(craneTitle)) {
+        this.counterLearnedCranes++;
+        this.arrChosenCardCranes[this.counterLearnedCranes] = craneTitle;
+      }
+    },
+
+    //בודקת אם הקלף של העגורן נלמד כבר
+    checkIfLearedCard(craneTitle) {
+      for (let i = 0; i < this.arrChosenCardCranes.length; i++) {
+        if (this.arrChosenCardCranes[i] === craneTitle) {
+          return true;
+        }
+      }
+      return false;
     },
   },
 };

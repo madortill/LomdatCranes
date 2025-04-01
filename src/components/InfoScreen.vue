@@ -28,6 +28,8 @@
       :navbarSubjNum="subNavPart"
       @change-sub-nav-num="changeSubNavNum"
       :chosenCourse="chosenCourse"
+      :colorIconPhone="colorIconPhone"
+      @change-home-icon="ChangeHomeIcon"
     ></general-material>
   </div>
 </template>
@@ -39,12 +41,12 @@ import StartSign from "./StartSign.vue";
 export default {
   name: "info-screen",
   components: { Navbar, StartSign, GeneralMaterial },
-  props: ["chosenCourse", "firstChosen", "sectionToStudy", "colorIconPhone"],
+  props: ["chosenCourse", "firstChosen", "sectionToStudy"],
   data() {
     return {
       partToShow: 0,
       thePart: 0,
-
+      colorIconPhone: "none",
       Infopart: 1,
       infoHangingPart: 0,
       subNavPart: 1,
@@ -70,6 +72,7 @@ export default {
       } else {
         this.showTheSection = true;
         this.partToShow++; //shows now the navbar
+        this.updateColorIconPhone('invert(1) brightness(100%) saturate(25%) contrast(100%)');
       }
     },
     //מחזיר לקומפוננטה StartSign או שעושה חזור בקומפוננטה עצמה
@@ -78,12 +81,18 @@ export default {
         this.showTheSection = false;
         this.partToShow--;
         this.thePart = 1;
+        this.updateColorIconPhone('none');
       } else {
         this.thePart--;
       }
     },
     toHomePage() {
       this.$emit("toHomePage");
+      this.colorIconPhone = "none";
+    },
+
+    updateColorIconPhone(newColor) {
+      this.colorIconPhone = newColor; // Update colorIconPhone based on the child’s emitted value
     },
     showNextBtnSafetyRules() {
       this.showNextBtn = true;

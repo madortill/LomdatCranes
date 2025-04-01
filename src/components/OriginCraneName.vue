@@ -36,7 +36,7 @@
     background-color: white;
     border-radius: 1rem;
     width: 55vw;
-    height: 30rem;
+    height: 25rem;
     align-items: center;
     justify-content: space-between;
   }

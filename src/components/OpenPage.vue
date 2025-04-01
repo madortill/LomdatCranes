@@ -168,7 +168,6 @@ export default {
   position: relative;
   z-index: 2;
   margin-top: -4rem;
-  /* margin-bottom: 2rem; */
 }
 
 .info-btn {
