@@ -120,12 +120,13 @@ export default {
   }
 
   #crane-carousel {
-    width: 97vw;
-  }
+    /* width: 30rem; */
+    }
 
   .arrow {
     width: 4rem;
     height: 2rem;
+
   }
 }
 </style>

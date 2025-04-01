@@ -242,7 +242,7 @@ export default {
 }
 
 .moving-btn {
-  /* z-index: 1; */
+  z-index: 1;
   position: absolute;
   bottom: 1rem;
   width: 5rem;
