@@ -17,6 +17,7 @@
       :cardClicked="craneCardClicked"
       :title="titleTypesCranesIndex"
       :partLearningCraneCard="partLearningCraneCard"
+      :arrLearnedCards="arrChosenCardCranes"
     ></types-of-cranes>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
@@ -80,10 +81,10 @@ export default {
           this.indexOrder++;
           this.$emit("change-sub-nav-num", true);
           if (this.counterLearnedCranes !== 3) {
-              this.showNextBtn = false;
-            } else {
-              this.showNextBtn = true;
-            }
+            this.showNextBtn = false;
+          } else {
+            this.showNextBtn = true;
+          }
           break;
         }
         case 3: {
@@ -94,9 +95,15 @@ export default {
             this.partLearningCraneCard === 1
           ) {
             this.craneCardClicked = false;
+            if (!this.checkIfLearnedCard(this.titleTypesCranesIndex)) {
+              this.counterLearnedCranes++;
+              this.arrChosenCardCranes[this.counterLearnedCranes] = this.titleTypesCranesIndex;
+            }
             this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
             this.prevToCarousel = false;
             this.partLearningCraneCard = 0; //מאפס את החלק שלומדים בלחיצה על קלף
+            //הכנסה של קלף העגורן למערך של אלו שנלמדו במידה ולא נלמד כבר
+           
             if (this.counterLearnedCranes !== 3) {
               this.showNextBtn = false;
             } else {
@@ -152,8 +159,7 @@ export default {
 
             if (this.counterLearnedCranes !== 3) {
               this.showNextBtn = false;
-            } 
-            else {
+            } else {
               this.showNextBtn = true;
             }
           } else if (
@@ -211,15 +217,10 @@ export default {
       this.craneCardClicked = true;
       this.titleTypesCranesIndex = craneTitle;
       this.showNextBtn = true;
-      //הכנסה של קלף העגורן למערך של אלו שנלמדו במידה ולא נלמד כבר
-      if (!this.checkIfLearedCard(craneTitle)) {
-        this.counterLearnedCranes++;
-        this.arrChosenCardCranes[this.counterLearnedCranes] = craneTitle;
-      }
     },
 
     //בודקת אם הקלף של העגורן נלמד כבר
-    checkIfLearedCard(craneTitle) {
+    checkIfLearnedCard(craneTitle) {
       for (let i = 0; i < this.arrChosenCardCranes.length; i++) {
         if (this.arrChosenCardCranes[i] === craneTitle) {
           return true;

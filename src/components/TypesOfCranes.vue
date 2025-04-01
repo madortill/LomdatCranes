@@ -5,6 +5,7 @@
     <crane-carousel
       :style="{ display: !cardClicked ? 'block' : 'none' }"
       @change-title="changeTitle"
+      :arrLearnedCards="arrLearnedCards"
     />
     <div :style="{ display: cardClicked ? 'block' : 'none' }">
       <origin-crane-name
@@ -27,7 +28,7 @@ import OriginCraneName from "./OriginCraneName.vue";
 export default {
   components: { CraneCarousel, OriginCraneName, CraneOperations },
   name: "types-of-cranes",
-  props: ["cardClicked", "title", "partLearningCraneCard"],
+  props: ["cardClicked", "title", "partLearningCraneCard", "arrLearnedCards"],
   data() {
     return {
       clickedCrane: "",
@@ -38,6 +39,7 @@ export default {
       this.clickedCrane = craneTitle;
       this.$emit("crane-card-chosen", craneTitle);
     },
+  
   },
 };
 </script>

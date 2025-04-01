@@ -11,6 +11,7 @@
           :id="item"
           :level="getLevel(index)"
           @click="showCard($event, item)"
+          :style=" this.arrLearnedCards.includes(item) ? 'filter: grayscale(100%)' : ''"
         />
       </transition-group>
 
@@ -32,7 +33,9 @@ import CraneCard from "./CraneCard.vue";
 
 export default {
   components: { CraneCard },
+  props: ['arrLearnedCards'],
   name: "crane-carousel",
+  // props: ["learnedCardsArr"],
   data() {
     return {
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], // List of cards
@@ -65,7 +68,8 @@ export default {
         this.$emit("change-title", title);
       }
     },
-  },
+   
+  }, 
 };
 </script>
 
