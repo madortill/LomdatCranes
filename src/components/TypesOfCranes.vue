@@ -47,7 +47,7 @@ export default {
 <style scoped>
 #types-of-cranes {
   width: 100vw;
-  height: 77vh;
+  /* height: 77vh; */
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
