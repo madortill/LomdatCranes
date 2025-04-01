@@ -234,11 +234,11 @@ export default {
 <style scoped>
 #general-material {
   z-index: 1;
-  width: 80vw;
+  width: 100vw;
   height: 100vh;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .moving-btn {
