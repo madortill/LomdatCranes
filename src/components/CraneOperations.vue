@@ -13,6 +13,11 @@
         "
       >
         <p class="the-info">{{ info }}</p>
+        <ul type="circle" v-if="index === 2 && this.craneKind === 'עגורן גשר'">
+          <li >מנוע להרמת והורדת כבל כננת</li>
+          <li>מנוע למערכת הסעה של כננת ההרמה</li>
+          <li>שני מנועים שעובדים במקביל ומסיעים את קורת העגורן</li>
+        </ul>
 
         <div
           :class="
@@ -102,6 +107,19 @@ export default {
   margin-top: -2rem;
 }
 
+
+ ul {
+      padding-left: 1.7rem; /* Adjust padding for the list items */
+    }
+     li::before {
+      content: "\2022"; /* Unicode for a bullet character */
+    }
+
+.circle-list {
+  padding-left: 20px;
+  list-style-type: circle; /* This creates circle bullets for the list */
+}
+
 .the-info {
   width: 18rem;
 }
@@ -115,17 +133,18 @@ export default {
 .bubble {
   background-color: white;
   border-radius: 1rem;
-  padding: 1rem;
+  /* padding: 1rem; */
   width: 25rem;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .bubble-container {
-  display: flex;
+  /* display: flex; */
   height: 24rem;
   flex-direction: column;
   justify-content: space-evenly;
@@ -133,7 +152,7 @@ export default {
 
 .numbers-container {
   position: absolute;
-  top: 15rem;
+  top: 14.5rem;
 }
 
 .hide {
@@ -144,11 +163,10 @@ export default {
   display: block;
 }
 
-
 .num {
   font-size: 3rem;
   font-family: Secular-One;
-  margin-top: 2.6rem;
+  margin-top: 1.1rem;
   margin-bottom: 0rem;
 }
 
@@ -165,10 +183,23 @@ export default {
 }
 
 .more-info-bubble {
-  height: 20rem;
+  height: 0rem;
   position: absolute;
-  /* transition: all 1s; */
+  top:17.9rem;
+  animation: growUp 0.5s linear forwards;
+  bottom: 0;
 }
+
+@keyframes growUp {
+      0% {
+        height: 0rem;
+        top: 28.9rem;
+      }
+      100% {
+        height: 17rem;
+        top:17.9rem;
+      }
+    }
 
 .icon-orange-bubble {
   font-weight: bold;
@@ -179,7 +210,7 @@ export default {
 }
 
 .question-mark {
-  animation: jump 1s ease-in-out infinite;
+  animation: jump 1s ease-in-out infinite ;
 }
 
 @keyframes jump {
