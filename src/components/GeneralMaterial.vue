@@ -20,28 +20,33 @@
       :arrLearnedCards="arrChosenCardCranes"
     ></types-of-cranes>
 
-    <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
-    <p class="back-btn moving-btn" @click="prevPart">חזור</p>
+    <american-questions v-if="indexOrder === 2" @back-to-info="backFromQues"></american-questions>
+
+
+    <p v-if="showNextBtn " class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
 </template>
 
 <script>
+import AmericanQuestions from "./AmericanQuestions.vue";
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import TypesOfCranes from "./TypesOfCranes.vue";
 export default {
   name: "general-material",
 
-  components: { InfoHangingBoard, TypesOfCranes },
+  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions },
   props: [
     "chosenCourse",
     "navbarSubjNum",
     // "sectionToStudy",
     "colorIconPhone",
-    "indexOrder"
+    // "indexOrder"
   ],
   data() {
     return {
       // Infopart: 1,
+      indexOrder: 0,
       infoHangingBoardPart: 0,
       // subNavPart: 1,
       // showTheSection: false,
@@ -60,6 +65,7 @@ export default {
       counterLearnedCranes: 0,
       partLearningCraneCard: 0,
       arrChosenCardCranes: ["", "", ""],
+      showBackBtn: true,
     };
   },
   methods: {
@@ -78,7 +84,7 @@ export default {
           break;
         }
         case 2: {
-          this.$emit('change-index-order', true);
+          this.indexOrder++;
           this.$emit("change-sub-nav-num", true);
           if (this.counterLearnedCranes !== 3) {
             this.showNextBtn = false;
@@ -111,10 +117,9 @@ export default {
             }
           } else {
             // this.$emit("change-sub-nav-num", true);
-            this.$emit('show-american-ques');
-            this.$emit('change-index-order', true);
-
-            // this.showNextBtn = true;
+            this.indexOrder++;
+            this.showNextBtn = false;
+            this.showBackBtn = false;
           }
           break;
         }
@@ -153,7 +158,7 @@ export default {
             this.partLearningCraneCard--;
           } else {
             this.$emit("change-sub-nav-num", false);
-            this.$emit('change-index-order', false);
+            this.indexOrder--;
             // this.showNextBtn = true;
           }
           break;
@@ -212,6 +217,10 @@ export default {
       }
       return false;
     },
+    backFromQues() {
+      this.indexOrder--;
+      this.showBackBtn = true;
+    }
   },
 };
 </script>

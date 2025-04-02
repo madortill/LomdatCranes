@@ -31,21 +31,18 @@
       :colorIconPhone="colorIconPhone"
       @change-home-icon="ChangeHomeIcon"
       @show-american-ques="showAmericanQues"
-      :indexOrder="indexForGeneralMaterial"
-      @change-index-order="changeIndexOrderGeneralMaterial"
+      
     ></general-material>
-    <american-questions v-if="partToShow === 2" @back-to-info="backFromQues"></american-questions>
   </div>
 </template>
 
 <script>
-import AmericanQuestions from './AmericanQuestions.vue';
 import GeneralMaterial from "./GeneralMaterial.vue";
 import Navbar from "./Navbar.vue";
 import StartSign from "./StartSign.vue";
 export default {
   name: "info-screen",
-  components: { Navbar, StartSign, GeneralMaterial, AmericanQuestions },
+  components: { Navbar, StartSign, GeneralMaterial },
   props: ["chosenCourse", "firstChosen", "sectionToStudy"],
   data() {
     return {
@@ -67,7 +64,7 @@ export default {
       prevToCarousel: false,
       craneCardClicked: false,
       titleTypesCranesIndex: "סוגי העגורנים הקיימים",
-      indexForGeneralMaterial: 0,
+      // indexForGeneralMaterial: 0,
     };
   },
   methods: {
@@ -114,20 +111,20 @@ export default {
       }
     },
     
-    showAmericanQues() {
-      this.partToShow++;
-    },
-    backFromQues() {
-      this.partToShow--;
-    this.indexForGeneralMaterial = 1;
-    },
-    changeIndexOrderGeneralMaterial(isNext) {
-      if(isNext) {
-        this.indexForGeneralMaterial++;
-      } else {
-        this.indexForGeneralMaterial--;
-      }
-    }
+    // showAmericanQues() {
+    //   this.partToShow++;
+    // },
+    // backFromQues() {
+    //   this.partToShow--;
+    // this.indexForGeneralMaterial = 1;
+    // },
+    // changeIndexOrderGeneralMaterial(isNext) {
+    //   if(isNext) {
+    //     this.indexForGeneralMaterial++;
+    //   } else {
+    //     this.indexForGeneralMaterial--;
+    //   }
+    // }
   },
 };
 </script>
