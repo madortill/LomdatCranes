@@ -328,7 +328,7 @@ export default {
 
 @media screen and (max-width: 600px) {
   .div-mulQ {
-    width: 30rem;
+    width: 25rem;
   }
 }
 </style>
