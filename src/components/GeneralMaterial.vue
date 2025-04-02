@@ -37,10 +37,10 @@ export default {
     "navbarSubjNum",
     // "sectionToStudy",
     "colorIconPhone",
+    "indexOrder"
   ],
   data() {
     return {
-      indexOrder: 0,
       // Infopart: 1,
       infoHangingBoardPart: 0,
       // subNavPart: 1,
@@ -78,7 +78,7 @@ export default {
           break;
         }
         case 2: {
-          this.indexOrder++;
+          this.$emit('change-index-order', true);
           this.$emit("change-sub-nav-num", true);
           if (this.counterLearnedCranes !== 3) {
             this.showNextBtn = false;
@@ -110,31 +110,15 @@ export default {
               this.showNextBtn = true;
             }
           } else {
-            this.$emit("change-sub-nav-num", true);
-            this.indexOrder++;
+            // this.$emit("change-sub-nav-num", true);
+            this.$emit('show-american-ques');
+            this.$emit('change-index-order', true);
 
             // this.showNextBtn = true;
           }
           break;
         }
       }
-
-      //if in the first screen of the startSign
-      // if (this.indexOrder === 2 && this.infoHangingPart === 0) {
-      // } else {
-      //   this.indexOrder++; //shows next info
-      //   if (this.indexOrder > 2) {
-      //     this.subNavPart++;
-      //     if (this.indexOrder === 3) {
-      //       this.showNextBtn = false;
-      //     }
-      //   } else if (this.indexOrder === 2) {
-      //     this.$emit(
-      //       "updateColorIconPhone",
-      //       "invert(1) brightness(100%) saturate(25%) contrast(100%)"
-      //     );
-      //   }
-      // }
     },
     prevPart() {
       switch (this.navbarSubjNum) {
@@ -169,7 +153,7 @@ export default {
             this.partLearningCraneCard--;
           } else {
             this.$emit("change-sub-nav-num", false);
-            this.indexOrder--;
+            this.$emit('change-index-order', false);
             // this.showNextBtn = true;
           }
           break;

@@ -18,11 +18,11 @@
     <navbar
       :part="sectionToStudy"
       :subjNum="subNavPart"
-      v-if="partToShow > 0"
+      v-if="partToShow === 1"
     ></navbar>
 
     <general-material
-      v-if="sectionToStudy === 0 && showTheSection"
+      v-if="sectionToStudy === 0 && showTheSection && partToShow !== 2"
       @back-to-start-sign="backToStartSign"
       @toHomePage="toHomePage"
       :navbarSubjNum="subNavPart"
@@ -30,17 +30,22 @@
       :chosenCourse="chosenCourse"
       :colorIconPhone="colorIconPhone"
       @change-home-icon="ChangeHomeIcon"
+      @show-american-ques="showAmericanQues"
+      :indexOrder="indexForGeneralMaterial"
+      @change-index-order="changeIndexOrderGeneralMaterial"
     ></general-material>
+    <american-questions v-if="partToShow === 2" @back-to-info="backFromQues"></american-questions>
   </div>
 </template>
 
 <script>
+import AmericanQuestions from './AmericanQuestions.vue';
 import GeneralMaterial from "./GeneralMaterial.vue";
 import Navbar from "./Navbar.vue";
 import StartSign from "./StartSign.vue";
 export default {
   name: "info-screen",
-  components: { Navbar, StartSign, GeneralMaterial },
+  components: { Navbar, StartSign, GeneralMaterial, AmericanQuestions },
   props: ["chosenCourse", "firstChosen", "sectionToStudy"],
   data() {
     return {
@@ -62,6 +67,7 @@ export default {
       prevToCarousel: false,
       craneCardClicked: false,
       titleTypesCranesIndex: "סוגי העגורנים הקיימים",
+      indexForGeneralMaterial: 0,
     };
   },
   methods: {
@@ -94,15 +100,12 @@ export default {
     updateColorIconPhone(newColor) {
       this.colorIconPhone = newColor; // Update colorIconPhone based on the child’s emitted value
     },
-    showNextBtnSafetyRules() {
-      this.showNextBtn = true;
-      this.seenSafetyRules = true;
-    },
-    CraneCardChosen(craneTitle) {
-      this.prevToCarousel = true;
-      this.craneCardClicked = true;
-      this.titleTypesCranesIndex = craneTitle;
-    },
+
+    // CraneCardChosen(craneTitle) {
+    //   this.prevToCarousel = true;
+    //   this.craneCardClicked = true;
+    //   this.titleTypesCranesIndex = craneTitle;
+    // },
     changeSubNavNum(isUp) {
       if (isUp) {
         this.subNavPart++;
@@ -110,6 +113,21 @@ export default {
         this.subNavPart--;
       }
     },
+    
+    showAmericanQues() {
+      this.partToShow++;
+    },
+    backFromQues() {
+      this.partToShow--;
+    this.indexForGeneralMaterial = 1;
+    },
+    changeIndexOrderGeneralMaterial(isNext) {
+      if(isNext) {
+        this.indexForGeneralMaterial++;
+      } else {
+        this.indexForGeneralMaterial--;
+      }
+    }
   },
 };
 </script>
