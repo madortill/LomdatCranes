@@ -39,7 +39,7 @@ export default {
   // props: ["learnedCardsArr"],
   data() {
     return {
-      cardsSrc: ["/LomdatCranes/media/cards/overheadCrane.svg", "/LomdatCranes/media/cards/columnCrane.svg", "/LomdatCranes/media/cards/gateCrane.svg"], 
+      cardsSrc: ["/media/cards/overheadCrane.svg", "/media/cards/columnCrane.svg", "/media/cards/gateCrane.svg"], 
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], 
       active: 0, // Active card
       arrArrows: [">", "<"],
@@ -145,12 +145,12 @@ export default {
 
 @media screen and (max-width: 600px) {
   .cards-container {
-    width: 76rem;
+    width: 100%;
   }
 
-  /* #crane-carousel {
-    width: 30rem;
-    } */
+  #crane-carousel {
+  width: 90vw;
+}
 
   .for-computer {
     display: none;

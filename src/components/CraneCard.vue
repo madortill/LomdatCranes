@@ -78,8 +78,7 @@ export default {
 @media screen and (max-width: 600px) {
 .level1 {
   height: 16rem;
-  width: 13rem;
-  /* transform: scale(1.05); */
+  width: 11.1rem; 
   box-shadow: 0 0 1rem 1rem white; 
 }
 
