@@ -1,7 +1,7 @@
 <template>
   <div :class="`item level${level}`"  >
     <!-- {{ id }} -->
-    <img :class="`img-card num${level}`" :src="srcCard" />  
+    <img :class="`img-card num${level}`" :src="srcCard" alt="card" />  
   </div>
 </template>
 

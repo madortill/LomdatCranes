@@ -66,12 +66,8 @@ export default {
     },
     showCard(event, title) {
       //disable if the card not in the center
-      console.log('in');
-      console.log(event.target.classList);
       if (event.target.classList.contains("num1")) {
         this.$emit("change-title", title);
-        console.log('yeeeeeee');
-
       }
     },
    
