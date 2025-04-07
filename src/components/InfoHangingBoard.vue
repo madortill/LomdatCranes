@@ -15,7 +15,7 @@
       <p
         v-for="(text, index) in theInfo[sectionHangingBoard].slice(1)"
         :key="index"
-        class="text"
+        class="info-text"
       >
         {{ text }}
       </p>
@@ -59,7 +59,7 @@ export default {
         [
           "אז מה זה עגורן עילי?",
           "עגורנים עיליים הם סוגי מנופים נייחים שלא מובנים על רכב, אלא מותקנים בסדנא ונותנים שירות בדרך כלל בפסי ייצור וכדומה.",
-          "קיימים 4 דרגות רישיון הפעלה בעגורנים: א-ב, ג-ד.",
+          "קיימות 4 דרגות רישיון הפעלה בעגורנים: א-ב, ג-ד.",
         ],
         [
           "כללי בטיחות",
@@ -142,8 +142,8 @@ export default {
 
 .notice-definition {
   margin-bottom: 2rem;
-  margin-right: -0.2rem;
-  width: 60.9rem;
+    margin-right: -0.2rem;
+    width: 58.35rem;
 }
 
 .computer-notice {
@@ -153,6 +153,10 @@ export default {
 .phone-notice {
   display: none;
 }
+.info-text {
+    margin: 0rem;
+    padding: 1rem;
+  }
 
 @media screen and (max-width: 700px) {
   #info-hanging-board {
@@ -169,7 +173,7 @@ export default {
     background-image: url("/media/infoHangBoard/phone/flipedInfoHangingBoard.svg");
   }
 
-  .text {
+  .info-text {
     width: 25rem;
   }
 

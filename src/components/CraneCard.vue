@@ -1,13 +1,14 @@
 <template>
-  <div :class="`item level${level}`">
-    {{ id }}
+  <div :class="`item level${level}`"  >
+    <!-- {{ id }} -->
+    <img :class="`img-card num${level}`" :src="srcCard" />  
   </div>
 </template>
 
 <script>
 export default {
   name: "crane-card",
-  props: ['id', 'level'],
+  props: ['id', 'level', 'srcCard'],
 };
 </script>
 
@@ -15,11 +16,18 @@ export default {
 .item {
   text-align: center;
   color: white;
- border-radius: 1rem;
- padding: 1rem;
+ border-radius: 1.4rem;
+ /* padding: 1rem; */
   transition: height 1s, width 1s, left 1s, margin-top 1s, line-height 1s, background-color 1s;
+  /* background-size: 200%;
+  background-repeat: no-repeat; 
+  background-position: center;   */
 }
 
+.img-card {
+  width:100%;
+  height:100%;
+}
 /* Styles for the different levels */
 /* .level-2 {
   height: 7rem;
@@ -36,31 +44,31 @@ export default {
 } */
 
 .level0 {
-  height: 10rem;
-  width: 8rem;
-  background-color: #4ec9e1;
-  font-size: 2rem;
+  height: 16rem;
+  width: 10rem;
+  /* background-color: #4ec9e1; */
+  /* font-size: 2rem; */
 }
 
 .level1 {
-  height: 14rem;
-  width: 11rem;
-  background-color: #4ec9e1;
-  font-size: 3rem;
+  height: 20rem;
+  width: 14rem;
+  /* background-color: #4ec9e1;
+  font-size: 3rem; */
   cursor: pointer;
   transition: all 0.5s ease; /* תנועה חלקה */
 }
 
-.level1:hover {
+.level1:hover{
   transform: scale(1.05);
   box-shadow: 0 0 1rem 1rem white; 
 }
 
 .level2 {
-  height: 10rem;
-  width: 8rem;
-  background-color: #4ec9e1;
-  font-size: 2rem;
+  height: 16rem;
+  width: 10rem;
+  /* background-color: #4ec9e1;
+  font-size: 2rem; */
 }
 
 /* Transition */
@@ -70,15 +78,15 @@ export default {
 
 @media screen and (max-width: 600px) {
 .level1 {
-  height: 16rem;
+  height: 14rem;
   width: 10rem;
   /* transform: scale(1.05); */
   box-shadow: 0 0 1rem 1rem white; 
 }
 
 .level2, .level0 {
-  height: 7rem;
-  width: 4rem;
+  height: 10rem;
+  width: 6rem;
 }
 }
 </style>

@@ -10,6 +10,7 @@
           :key="item"
           :id="item"
           :level="getLevel(index)"
+          :srcCard="cardsSrc[index]"
           @click="showCard($event, item)"
           :style=" this.arrLearnedCards.includes(item) ? 'filter: grayscale(100%)' : ''"
         />
@@ -38,6 +39,7 @@ export default {
   // props: ["learnedCardsArr"],
   data() {
     return {
+      cardsSrc: ["/media/cards/overheadCrane.svg", "/media/cards/columnCrane.svg", "/media/cards/gateCrane.svg"], // List of cards
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], // List of cards
       active: 0, // Active card
       arrArrows: [">", "<"],
@@ -64,8 +66,12 @@ export default {
     },
     showCard(event, title) {
       //disable if the card not in the center
-      if (event.target.classList.contains("level1")) {
+      console.log('in');
+      console.log(event.target.classList);
+      if (event.target.classList.contains("num1")) {
         this.$emit("change-title", title);
+        console.log('yeeeeeee');
+
       }
     },
    
@@ -90,7 +96,7 @@ export default {
   font-size: 2rem;
   border-radius: 50%;
   cursor: pointer;
-  color: #228291;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
