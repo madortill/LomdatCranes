@@ -39,7 +39,7 @@ export default {
   // props: ["learnedCardsArr"],
   data() {
     return {
-      cardsSrc: ["/LomdatCranes/media/cards/overheadCrane.svg", "/LomdatCranes/media/cards/columnCrane.svg", "/LomdatCranes/media/cards/gateCrane.svg"], 
+      cardsSrc: ["/media/cards/overheadCrane.svg", "/media/cards/columnCrane.svg", "/media/cards/gateCrane.svg"], 
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], 
       active: 0, // Active card
       arrArrows: [">", "<"],
@@ -49,12 +49,18 @@ export default {
     // Move to the left by shifting the first item
     moveLeft() {
       const firstItem = this.items.shift(); // Remove the first item
+      const firstSrc = this.cardsSrc.shift(); // Remove the last item
+
       this.items.push(firstItem); // Add it to the end
+      this.cardsSrc.push(firstSrc); // Add it to the end
+
     },
     // Move to the right by removing the last item
     moveRight() {
       const lastItem = this.items.pop(); // Remove the last item
+      const lastSrc = this.cardsSrc.pop(); // Remove the last item
       this.items.unshift(lastItem); // Add it to the start
+      this.cardsSrc.unshift(lastSrc);
     },
     // Get the level of each card based on its position
     getLevel(index) {

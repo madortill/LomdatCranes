@@ -19,6 +19,7 @@
       >
         {{ text }}
       </p>
+      <p v-if="sectionHangingBoard === 1" class="instraction to-show">- לחצו על כל הכללים -</p>
     </div>
     <img
       class="notice-definition computer-notice"
@@ -87,22 +88,22 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* transform-style: preserve-3d; */
 }
 
 .unfliped-board {
   background-image: url("/media/infoHangBoard/computer/infoHangingBoard.svg");
 }
 
-/* .flipBoard {
-  transition: transform 1s;
-    transform-style: preserve-3d;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-} */
+
+.instraction {
+  font-size: 1rem;
+  color: #E0F2F4;
+  margin: 0rem;
+}
+
+.to-show {
+  display: none;
+}
 
 .flip-end-definition {
   transition: transform 2s;
@@ -138,12 +139,14 @@ export default {
 .header {
   font-size: 2.5rem;
   font-weight: bold;
+  margin: 0rem;
+  margin-top: 2rem;
 }
 
 .notice-definition {
-  margin-bottom: 2rem;
+  margin-top: 2rem;
     margin-right: -0.2rem;
-    width: 58.35rem;
+    width: 56.15rem;
 }
 
 .computer-notice {
@@ -197,5 +200,8 @@ export default {
   .notice-definition {
     width: 26.1rem;
   }
+  .to-show {
+  display: block;
+}
 }
 </style>

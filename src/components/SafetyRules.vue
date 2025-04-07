@@ -89,7 +89,7 @@
     flex-wrap: wrap;
     height: 16rem;
     width: 100%;
-    margin-top: -2rem;
+    /* margin-top: -2rem; */
   }
   
   .flip-card {
