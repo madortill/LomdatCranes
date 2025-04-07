@@ -39,7 +39,7 @@ export default {
   // props: ["learnedCardsArr"],
   data() {
     return {
-      cardsSrc: ["/LomdatCranes/media/cards/overheadCrane.svg", "/LomdatCranes/media/cards/columnCrane.svg", "/LomdatCranes/media/cards/gateCrane.svg"], 
+      cardsSrc: ["/media/cards/overheadCrane.svg", "/media/cards/columnCrane.svg", "/media/cards/gateCrane.svg"], 
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], 
       active: 0, // Active card
       arrArrows: [">", "<"],
