@@ -69,7 +69,7 @@ export default {
         },
         {
           Qtype: 2,
-          title: "האם ניתן לסובב את הקורה בעגורן גשר",
+          title: "האם ניתן לסובב את הקורה בעגורן גשר?",
           ans1: "לא. עגורן גשר זז כגשר מעל המטען",
           ans2: "מלל",
           ans3: "מלל",
@@ -196,8 +196,7 @@ export default {
   height: 6.5rem;
   font-size: 1.4rem;
   color: #ffffff;
-  border-radius: 100px;
-  padding: 10px 10px;
+  border-radius: 2rem;
 }
 
 .pulse-button-hover:hover {
@@ -282,6 +281,7 @@ export default {
   align-items: center; /* Vertically centers the text */
   text-align: center; /* Ensures the text is centered if multiline */
   transition: background-color 0.3s ease;
+  color: black;
 }
 
 .moving-btn:hover {

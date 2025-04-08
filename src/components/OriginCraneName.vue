@@ -47,17 +47,13 @@ export default {
 #origin-crane-name {
   margin-top: 1rem;
   width: 44.5vw;
-  /* height: 25rem; */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border:3px solid red; */
-
 }
 
 .info {
-  /* height: 100%; */
   width: 40%;
   z-index: 2;
   position: absolute;
@@ -67,7 +63,6 @@ export default {
 
 .the-img {
   width: 44.5vw;
-  /* height: 25rem; */
   z-index: 0;
 }
 
@@ -81,7 +76,6 @@ export default {
   #origin-crane-name {
     flex-direction: column;
     width: 72.5vw;
-    
   }
 
   .the-img {

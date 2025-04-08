@@ -36,7 +36,6 @@ export default {
   components: { CraneCard },
   props: ['arrLearnedCards'],
   name: "crane-carousel",
-  // props: ["learnedCardsArr"],
   data() {
     return {
       //לא שמתי / לפני כך קישור כי יש פונקציה שמוסיפה בהתאם אם רץ לוקאלית או בגיטהאב
@@ -85,7 +84,11 @@ export default {
     showCard(event, title) {
       //disable if the card not in the center
       if (event.target.classList.contains("num1")) {
-        this.$emit("change-title", title);
+0
+        setTimeout(()=> {
+          this.$emit("change-title", title);
+        }, 500);
+        
       }
     },
    

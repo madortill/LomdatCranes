@@ -1,5 +1,5 @@
 <template>
-  <div id="general-material">
+  <div id="general-material"  :style="{'--moving-btn-color': movingBtnColor}">
     <info-hanging-board
       v-if="indexOrder === 0"
       :sectionHangingBoard="infoHangingBoardPart"
@@ -66,6 +66,7 @@ export default {
       partLearningCraneCard: 0,
       arrChosenCardCranes: ["", "", ""],
       showBackBtn: true,
+      movingBtnColor:'#8cd0ec',
     };
   },
   methods: {
@@ -105,6 +106,8 @@ export default {
               this.counterLearnedCranes++;
               this.arrChosenCardCranes[this.counterLearnedCranes] = this.titleTypesCranesIndex;
             }
+            //מחזירה למאפיינם שהיו לפני שנלחץ כרטיס
+            this.movingBtnColor='#8cd0ec';
             this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
             this.prevToCarousel = false;
             this.partLearningCraneCard = 0; //מאפס את החלק שלומדים בלחיצה על קלף
@@ -206,6 +209,17 @@ export default {
       this.craneCardClicked = true;
       this.titleTypesCranesIndex = craneTitle;
       this.showNextBtn = true;
+
+      //color moving btns
+      switch(craneTitle) {
+        case "עגורן גשר":
+          return this.movingBtnColor= '#C8A47C';
+        case "עגורן שער":
+          return this.movingBtnColor= '#6F97BA';
+          
+        case "עגורן עמוד":
+          return this.movingBtnColor= '#BADDF4';
+      }
     },
 
     //בודקת אם הקלף של העגורן נלמד כבר
@@ -242,7 +256,7 @@ export default {
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
-  background-color: #8cd0ec;
+  background-color: var(--moving-btn-color);
   border-radius: 1.5rem;
   padding: 0; /* Remove padding to ensure centering works properly */
   /* Centering the text */

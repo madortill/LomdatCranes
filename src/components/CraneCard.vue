@@ -1,5 +1,5 @@
 <template>
-  <div :class="`item level${level}`"  >
+  <div  tabindex="0" :class="`item level${level}`"  >
     <img :class="`img-card num${level}`" :src="srcCard" alt="card" />  
   </div>
 </template>
@@ -16,44 +16,23 @@ export default {
   text-align: center;
   color: white;
  border-radius: 1.4rem;
- /* padding: 1rem; */
   transition: height 1s, width 1s, left 1s, margin-top 1s, line-height 1s, background-color 1s;
-  /* background-size: 200%;
-  background-repeat: no-repeat; 
-  background-position: center;   */
 }
 
 .img-card {
   width:100%;
   height:100%;
 }
-/* Styles for the different levels */
-/* .level-2 {
-  height: 7rem;
-  width: 5rem;
-  background-color: #228291;
-  left: 10%;
-}
-
-.level-1 {
-  height: 10rem;
-  width: 8rem;
-  background-color: #4ec9e1;
-  left: 30%;
-} */
 
 .level0 {
   height: 16rem;
   width: 10rem;
-  /* background-color: #4ec9e1; */
-  /* font-size: 2rem; */
+
 }
 
 .level1 {
   height: 20rem;
   width: 14rem;
-  /* background-color: #4ec9e1;
-  font-size: 3rem; */
   cursor: pointer;
   transition: all 0.5s ease; /* תנועה חלקה */
 }
@@ -63,11 +42,13 @@ export default {
   box-shadow: 0 0 1rem 1rem white; 
 }
 
+.level1:focus{
+  transform: scale(1.3);
+}
+
 .level2 {
   height: 16rem;
   width: 10rem;
-  /* background-color: #4ec9e1;
-  font-size: 2rem; */
 }
 
 /* Transition */
