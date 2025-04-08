@@ -10,7 +10,7 @@
           :key="item"
           :id="item"
           :level="getLevel(index)"
-          :srcCard="cardsSrc[index]"
+          :srcCard="getCardSrc(index)"
           @click="showCard($event, item)"
           :style=" this.arrLearnedCards.includes(item) ? 'filter: grayscale(100%)' : ''"
         />
@@ -39,13 +39,25 @@ export default {
   // props: ["learnedCardsArr"],
   data() {
     return {
-      cardsSrc: ["/media/cards/overheadCrane.svg", "/media/cards/columnCrane.svg", "/media/cards/gateCrane.svg"], 
+      //לא שמתי / לפני כך קישור כי יש פונקציה שמוסיפה בהתאם אם רץ לוקאלית או בגיטהאב
+      cardsSrc: ["media/cards/overheadCrane.svg", "media/cards/columnCrane.svg", "media/cards/gateCrane.svg"], 
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], 
       active: 0, // Active card
       arrArrows: [">", "<"],
     };
   },
+  computed: {
+    baseURL() {
+    // Use Vite's built-in import.meta.env to get the base URL
+    return import.meta.env.BASE_URL || "/";
+  }
+  },
   methods: {
+    getCardSrc(index) {
+      // Dynamically adjust the src path based on the base URL
+      return `${this.baseURL}${this.cardsSrc[index]}`;
+    },
+
     // Move to the left by shifting the first item
     moveLeft() {
       const firstItem = this.items.shift(); // Remove the first item
