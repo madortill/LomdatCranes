@@ -15,28 +15,26 @@ export default {
   props: ["craneKind"],
   computed: {
     info() {
+      const baseUrl = import.meta.env.BASE_URL; // Get the correct base URL
       switch (this.craneKind) {
         case "עגורן גשר":
-          let crane1 = {
+          return {
             text: "העגורן נקרא עגורן גשר מפני שקורתו העליונה נעה כגשר מעל המטען.",
-            url: "/media/cards/expand/overheadCrane.svg",
-            color:'#C8A47C',
+            url: `${baseUrl}media/cards/expand/overheadCrane.svg`, // Use BASE_URL here
+            color: '#C8A47C',
           };
-          return crane1;
         case "עגורן שער":
-          let crane2 = {
+          return {
             text: "עגורן שער נקרא בשמו מכיוון שהוא נע כשער מעל המטען.",
-            url: "/media/cards/expand/gateCrane.svg",
+            url: `${baseUrl}media/cards/expand/gateCrane.svg`,
             color: '#6F97BA',
           };
-          return crane2;
         case "עגורן עמוד":
-          let crane3 = {
+          return {
             text: "העגורן נקרא עגורן עמוד מפני שקורתו העליונה מחוברת לעמוד וניתן לצודד את הקורה.",
-            url: "/media/cards/expand/columnCrane.svg",
+            url: `${baseUrl}media/cards/expand/columnCrane.svg`,
             color: '#BADDF4',
           };
-          return crane3;
         default:
           return "מידע לא זמין.";
       }
