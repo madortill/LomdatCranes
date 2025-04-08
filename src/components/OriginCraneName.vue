@@ -1,10 +1,11 @@
 <template>
-  <div id="origin-crane-name">
+  <div id="origin-crane-name" :style="{'--bg-color': info.color}">
     <div class="info">
       <p class="header">למה נקרא כך?</p>
-      <p>{{ info }}</p>
+      <p>{{ info.text }}</p>
     </div>
-    <div class="animation">animation</div>
+    <div class="blue-void-phone"></div>
+    <img class="the-img" :src="info.url" />
   </div>
 </template>
 
@@ -16,11 +17,26 @@ export default {
     info() {
       switch (this.craneKind) {
         case "עגורן גשר":
-          return "העגורן נקרא עגורן גשר מפני שקורתו העליונה נעה כגשר מעל המטען.";
+          let crane1 = {
+            text: "העגורן נקרא עגורן גשר מפני שקורתו העליונה נעה כגשר מעל המטען.",
+            url: "/media/cards/expand/overheadCrane.svg",
+            color:'#C8A47C',
+          };
+          return crane1;
         case "עגורן שער":
-          return "עגורן שער נקרא בשמו מכיוון שהוא נע כשער מעל המטען.";
+          let crane2 = {
+            text: "עגורן שער נקרא בשמו מכיוון שהוא נע כשער מעל המטען.",
+            url: "/media/cards/expand/gateCrane.svg",
+            color: '#6F97BA',
+          };
+          return crane2;
         case "עגורן עמוד":
-          return "העגורן נקרא עגורן עמוד מפני שקורתו העליונה מחוברת לעמוד וניתן לצודד את הקורה.";
+          let crane3 = {
+            text: "העגורן נקרא עגורן עמוד מפני שקורתו העליונה מחוברת לעמוד וניתן לצודד את הקורה.",
+            url: "/media/cards/expand/columnCrane.svg",
+            color: '#BADDF4',
+          };
+          return crane3;
         default:
           return "מידע לא זמין.";
       }
@@ -31,19 +47,30 @@ export default {
 
 <style scoped>
 #origin-crane-name {
-  display: flex;
   margin-top: 1rem;
-  background-color: white;
-  border-radius: 1rem;
-  width: 55vw;
-  height: 25rem;
+  width: 44.5vw;
+  /* height: 25rem; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  /* border:3px solid red; */
+
 }
 
 .info {
-  height: 100%;
+  /* height: 100%; */
   width: 40%;
+  z-index: 2;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+}
+
+.the-img {
+  width: 44.5vw;
+  /* height: 25rem; */
+  z-index: 0;
 }
 
 .header {
@@ -55,9 +82,33 @@ export default {
 @media screen and (max-width: 600px) {
   #origin-crane-name {
     flex-direction: column;
+    width: 72.5vw;
+    
   }
-  .info {
+
+  .the-img {
+    width: 72.5vw;
+}
+}
+
+@media screen and (max-width: 880px) {
+
+#origin-crane-name {
+  /* background-color: var(--bg-color); */
+  border-radius: 2rem;
+}
+
+.info {
     width: 90%;
+    position: static;
+    height: 18rem;
+    background-color: var(--bg-color);
+    width: 100%;
   }
+
+  .the-img {
+    margin-top: -1rem;
+}
+
 }
 </style>

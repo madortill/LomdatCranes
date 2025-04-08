@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       //לא שמתי / לפני כך קישור כי יש פונקציה שמוסיפה בהתאם אם רץ לוקאלית או בגיטהאב
-      cardsSrc: ["media/cards/overheadCrane.svg", "media/cards/columnCrane.svg", "media/cards/gateCrane.svg"], 
+      cardsSrc: ["media/cards/normal/overheadCrane.svg", "media/cards/normal/columnCrane.svg", "media/cards/normal/gateCrane.svg"], 
       items: ["עגורן גשר", "עגורן עמוד", "עגורן שער"], 
       active: 0, // Active card
       arrArrows: [">", "<"],
