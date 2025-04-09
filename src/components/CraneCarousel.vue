@@ -84,7 +84,7 @@ export default {
     showCard(event, title) {
       //disable if the card not in the center
       if (event.target.classList.contains("num1")) {
-0
+
         setTimeout(()=> {
           this.$emit("change-title", title);
         }, 500);

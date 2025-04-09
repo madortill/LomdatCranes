@@ -101,7 +101,8 @@ export default {
   }
 
   .the-img {
-    margin-top: -1rem;
+    margin-top: -0.8rem;
+    z-index: 2;
 }
 
 .the-text {

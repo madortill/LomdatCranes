@@ -44,6 +44,7 @@ export default {
 
 .level1:focus{
   transform: scale(1.3);
+  z-index: 4;
 }
 
 .level2 {
