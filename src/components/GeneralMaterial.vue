@@ -148,6 +148,7 @@ export default {
         case 4: {
           this.indexOrder++;
           this.hideNavbar(false);
+          this.updateColorHomeIcon('invert(1) brightness(100%) saturate(25%) contrast(100%)');
           break;
         }
       }

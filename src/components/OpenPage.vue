@@ -2,7 +2,7 @@
   <div id="open-page">
     <button @click="showInfo" class="info-btn btn">i</button>
     <img class="tillLogo" src="/media/whiteMadorTill.png" alt="tillLogo" />
-    <div class="info-container" v-if="isOpenInfo">
+    <!-- <div class="info-container" v-if="isOpenInfo">
       <p @click="hideInfo" class="close-info">X</p>
       <ul class="info-list">
         <li class="info" v-for="(subTitle, title) in infoObject" :key="title">
@@ -11,7 +11,8 @@
           <span>{{ subTitle }}</span>
         </li>
       </ul>
-    </div>
+    </div> -->
+    <lomda-info @hide-info="hideInfo" v-if="isOpenInfo"></lomda-info>
     <div class="start-container" v-if="!isOpenInfo">
       <img src="/media/Crane.png" alt="crane" class="bgCrane" />
 
@@ -72,21 +73,22 @@
 
 <script>
 import Box from "../../src/components/Box.vue";
+import LomdaInfo from './lomdaInfo.vue';
 import StartHangingBoard from "./StartHangingBoard.vue";
 
 export default {
   name: "open-page",
-  components: { Box, StartHangingBoard },
+  components: { Box, StartHangingBoard, LomdaInfo },
   props: ["showSelection", "indexYellowSign"],
   data() {
     return {
-      infoObject: {
-        "מפתחת לומדה ראשית:": 'רב"ט דני שריקי',
-        "גרפיקאית:": 'רב"ט קריסטינה ברחטוב, רב"ט דני שריקי',
-        "מומחה תוכן:": 'רס"ר יוחאי עזרא',
-        'רמ"ד טי"ל:': 'רס"מ שלומי אוגרן',
-        "גרסה:": "ינואר 2025",
-      },
+      // infoObject: {
+      //   "מפתחת לומדה ראשית:": 'רב"ט דני שריקי',
+      //   "גרפיקאית:": 'רב"ט קריסטינה ברחטוב, רב"ט דני שריקי',
+      //   "מומחה תוכן:": 'רס"ר יוחאי עזרא',
+      //   'רמ"ד טי"ל:': 'רס"מ שלומי אוגרן',
+      //   "גרסה:": "ינואר 2025",
+      // },
       isOpenInfo: false,
       chosenCrane: "",
       showExplain: false,
