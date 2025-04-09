@@ -18,6 +18,7 @@
       :title="titleTypesCranesIndex"
       :partLearningCraneCard="partLearningCraneCard"
       :arrLearnedCards="arrChosenCardCranes"
+      @clicked-question-mark="clickedQuestionMark"
     ></types-of-cranes>
 
     <american-questions v-if="indexOrder === 2" @back-to-info="backFromQues"></american-questions>
@@ -67,6 +68,7 @@ export default {
       arrChosenCardCranes: ["", "", ""],
       showBackBtn: true,
       movingBtnColor:'#8cd0ec',
+      questionMarkClicked: false,
     };
   },
   methods: {
@@ -95,30 +97,36 @@ export default {
           break;
         }
         case 3: {
+          //אם נלחץ קלף ובחלק הראשון של הלמידה- תעביר לשני
           if (this.craneCardClicked && this.partLearningCraneCard === 0) {
             this.partLearningCraneCard++;
+            if(this.titleTypesCranesIndex === "עגורן שער" && !this.questionMarkClicked) {
+              this.showNextBtn = false;
+            }
           } else if (
+            //אם נלחץ קלף אבל אנחנו בחלק השני והאחרון של הקלף ללמידה- אז להחזיר קרוסלת הקלפים
             this.craneCardClicked &&
             this.partLearningCraneCard === 1
           ) {
             this.craneCardClicked = false;
+            //אם הקלף שנלמד לפני רגע, נלמד פעם ראשונה
+            //הכנסה של קלף העגורן למערך של אלו שנלמדו במידה ולא נלמד כבר
             if (!this.checkIfLearnedCard(this.titleTypesCranesIndex)) {
               this.counterLearnedCranes++;
               this.arrChosenCardCranes[this.counterLearnedCranes] = this.titleTypesCranesIndex;
             }
-            //מחזירה למאפיינם שהיו לפני שנלחץ כרטיס
+            //מחזירה למאפיינים שהיו לפני שנלחץ כרטיס
             this.movingBtnColor='#8cd0ec';
             this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
             this.prevToCarousel = false;
             this.partLearningCraneCard = 0; //מאפס את החלק שלומדים בלחיצה על קלף
-            //הכנסה של קלף העגורן למערך של אלו שנלמדו במידה ולא נלמד כבר
-           
             if (this.counterLearnedCranes !== 3) {
               this.showNextBtn = false;
             } else {
               this.showNextBtn = true;
             }
           } else {
+            //במידה וסיימו את כל הקלפים ולוחצים הבא לנושא החדש
             // this.$emit("change-sub-nav-num", true);
             this.indexOrder++;
             this.showNextBtn = false;
@@ -148,7 +156,6 @@ export default {
             this.craneCardClicked = false;
             this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
             this.prevToCarousel = false;
-
             if (this.counterLearnedCranes !== 3) {
               this.showNextBtn = false;
             } else {
@@ -162,7 +169,7 @@ export default {
           } else {
             this.$emit("change-sub-nav-num", false);
             this.indexOrder--;
-            // this.showNextBtn = true;
+            this.showNextBtn = true;
           }
           break;
         }
@@ -233,7 +240,14 @@ export default {
     },
     backFromQues() {
       this.indexOrder--;
+      this.showNextBtn = true;
       this.showBackBtn = true;
+
+    },
+
+    clickedQuestionMark() {
+      this.questionMarkClicked = true;
+      this.showNextBtn = true;
     }
   },
 };
@@ -265,6 +279,7 @@ export default {
   align-items: center; /* Vertically centers the text */
   text-align: center; /* Ensures the text is centered if multiline */
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .moving-btn:hover {

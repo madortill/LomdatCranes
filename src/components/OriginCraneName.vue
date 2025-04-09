@@ -2,7 +2,7 @@
   <div id="origin-crane-name" :style="{'--bg-color': info.color}">
     <div class="info">
       <p class="header">למה נקרא כך?</p>
-      <p>{{ info.text }}</p>
+      <p class="the-text">{{ info.text }}</p>
     </div>
     <div class="blue-void-phone"></div>
     <img class="the-img" :src="info.url" />
@@ -66,6 +66,8 @@ export default {
   z-index: 0;
 }
 
+
+
 .header {
   font-size: 1.8rem;
   text-align: center;
@@ -102,5 +104,8 @@ export default {
     margin-top: -1rem;
 }
 
+.the-text {
+  padding: 1rem;
+}
 }
 </style>

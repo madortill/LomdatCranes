@@ -15,6 +15,7 @@
       <crane-operations
         v-if="partLearningCraneCard === 1"
         :craneKind="clickedCrane"
+        @show-next-btn="clickedQuestionMark"
       ></crane-operations>
     </div>
   </div>
@@ -39,6 +40,9 @@ export default {
       this.clickedCrane = craneTitle;
       this.$emit("crane-card-chosen", craneTitle);
     },
+    clickedQuestionMark () {
+      this.$emit('clicked-question-mark');
+    }
   
   },
 };

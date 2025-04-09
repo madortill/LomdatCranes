@@ -18,16 +18,17 @@
         <p class="theCraneKind">{{ craneKind }}</p>
         <p>וכיצד לתפעל אותו</p>
         <p>
-          דגש: בסוף הלומדה ישנו תרגול שכדי לקבל ציון עליך לעבור את הלומדה
+         <b> דגש:</b> בסוף הלומדה ישנו תרגול שכדי לקבל ציון עליך לעבור את הלומדה
           מתחילתה
         </p>
         <p class="goodWord">בהצלחה!</p>
         <img
           @click.once="nextBoard"
           class="checkMarkBtn"
-          src="/media/checkMarkBtn.png"
+          src="/media/containerCheckMarkBtn.png"
           alt="checkMarkBtn"
         />
+        <img src="/media/checkMark.png" alt="icon" class="check-mark-icon"/>
       </div>
     </div>
     <div v-if="partNum === 1 || partNum === 3 || showSelection">
@@ -80,6 +81,7 @@ export default {
   pointer-events: none;
 }
 
+/* 
 @keyframes tossAnimation {
   0% {
     transform: rotate(-1deg);
@@ -92,6 +94,29 @@ export default {
   100% {
     transform: rotate(-1deg);
     margin-left: -2rem;
+  }
+} */
+
+@keyframes tossAnimation {
+  0% {
+    transform: rotate(0deg);
+    margin-left: 0rem;
+  }
+  25% {
+    transform: rotate(-1deg);
+    margin-left: -2rem;
+  }
+  50% {
+    transform: rotate(0deg);
+    margin-left: 0rem;
+  }
+  75% {
+    transform: rotate(1deg);
+    margin-left: 2rem;
+  }
+  100% {
+    transform: rotate(0deg);
+    margin-left: 0rem;
   }
 }
 
@@ -172,7 +197,7 @@ export default {
 }
 
 .toss {
-  animation: tossAnimation 4s ease-in-out infinite;
+  animation: tossAnimation 4s linear infinite;
 }
 
 @keyframes goingUp {
@@ -210,9 +235,37 @@ export default {
   margin: 0rem;
   padding: 0rem;
   cursor: pointer;
-  z-index: 65;
+  /* z-index: 1; */
   pointer-events: all;
 }
+
+.check-mark-icon {
+  position: absolute;
+  bottom: 0rem;
+left:0rem;
+height: 3rem;
+/* z-index: 1; */
+animation: jump 1s ease-in-out infinite ;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0); /* Start at the original position */
+  }
+  25% {
+    transform: translateY(-10px); /* Move up a bit */
+  }
+  50% {
+    transform: translateY(0); /* Go back to the original position */
+  }
+  75% {
+    transform: translateY(-5px); /* Slightly move up */
+  }
+  100% {
+    transform: translateY(0); /* Return to original position */
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   .blue-board {

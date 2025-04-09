@@ -13,6 +13,8 @@
       @to-study="showChosenSection"
       @theChosenCourse="updateChosenCourse"
       v-if="partNum === 0"
+      :indexYellowSign="indexYellowSign"
+      @next-index-yellow-sign="nextIndexYellowSign"
     ></open-page>
 
     <info-screen
@@ -44,6 +46,7 @@ export default {
       firstChosen: null,
       showSelection: false,
       chosenCourse: "",
+      indexYellowSign: 0,
      
       // navPart: -1,
     };
@@ -62,6 +65,10 @@ export default {
     updateChosenCourse(chosenCrane) {
       this.chosenCourse = chosenCrane;
     },
+
+    nextIndexYellowSign() {
+      this.indexYellowSign++;
+    }
   },
 };
 </script>
@@ -106,6 +113,7 @@ body {
   text-align: center;
   background-color: #e0f2f4;
   /* display: grid; */
+  /* font-size: 1rem; */
 }
 
 .bahadSymbol {

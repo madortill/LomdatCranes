@@ -14,7 +14,7 @@
       >
         <p class="the-info">{{ info }}</p>
         <ul type="circle" v-if="index === 2 && this.craneKind === 'עגורן גשר'">
-          <li >מנוע להרמת והורדת כבל כננת</li>
+          <li>מנוע להרמת והורדת כבל כננת</li>
           <li>מנוע למערכת הסעה של כננת ההרמה</li>
           <li>שני מנועים שעובדים במקביל ומסיעים את קורת העגורן</li>
         </ul>
@@ -49,14 +49,18 @@
     </div>
     <div class="numbers-container">
       <p
-        v-if="!isClickedQuestionMark"
         class="num"
+        :class="{
+          'animation-for-three':
+            num === 3 && isClickedQuestionMark && craneKind === 'עגורן שער',
+          'fade-animation':
+            num !== 3 && isClickedQuestionMark && craneKind === 'עגורן שער',
+        }"
         v-for="num in numArr"
         :key="num"
       >
         {{ num }}
       </p>
-      <p v-if="isClickedQuestionMark" class="num">3</p>
     </div>
   </div>
 </template>
@@ -96,6 +100,7 @@ export default {
         this.isClickedQuestionMark = false;
       } else {
         this.isClickedQuestionMark = true;
+        this.$emit('show-next-btn');
       }
     },
   },
@@ -107,13 +112,12 @@ export default {
   margin-top: -2rem;
 }
 
-
- ul {
-      padding-left: 1.7rem; /* Adjust padding for the list items */
-    }
-     li::before {
-      content: "\2022"; /* Unicode for a bullet character */
-    }
+ul {
+  padding-left: 1.7rem; /* Adjust padding for the list items */
+}
+li::before {
+  content: "\2022"; /* Unicode for a bullet character */
+}
 
 .circle-list {
   padding-left: 20px;
@@ -170,6 +174,26 @@ export default {
   margin-bottom: 0rem;
 }
 
+.animation-for-three {
+  z-index: 2;
+  position: relative;
+  animation: growUpNum 0.5s linear forwards;
+}
+
+.fade-animation {
+  animation: fadeOut 0.2s linear forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .orange-bubble {
   background-color: #f88c01;
   position: absolute;
@@ -185,21 +209,31 @@ export default {
 .more-info-bubble {
   height: 0rem;
   position: absolute;
-  top:17.9rem;
-  animation: growUp 0.5s linear forwards;
+  top: 17.9rem;
+  animation: growUpDiv 0.5s linear forwards;
   bottom: 0;
+  z-index: 2;
 }
 
-@keyframes growUp {
-      0% {
-        height: 0rem;
-        top: 28.9rem;
-      }
-      100% {
-        height: 17rem;
-        top:17.9rem;
-      }
-    }
+@keyframes growUpDiv {
+  0% {
+    height: 0rem;
+    top: 28.9rem;
+  }
+  100% {
+    height: 17rem;
+    top: 17.9rem;
+  }
+}
+
+@keyframes growUpNum {
+  0% {
+    bottom: 0rem;
+  }
+  100% {
+    bottom: 11rem;
+  }
+}
 
 .icon-orange-bubble {
   font-weight: bold;
@@ -210,7 +244,7 @@ export default {
 }
 
 .question-mark {
-  animation: jump 1s ease-in-out infinite ;
+  animation: jump 1s ease-in-out infinite;
 }
 
 @keyframes jump {
