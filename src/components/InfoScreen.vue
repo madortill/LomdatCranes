@@ -18,7 +18,7 @@
     <navbar
       :part="sectionToStudy"
       :subjNum="subNavPart"
-      v-if="partToShow === 1"
+      v-if="partToShow === 1 && showNavbar"
     ></navbar>
 
     <general-material
@@ -31,7 +31,8 @@
       :colorIconPhone="colorIconPhone"
       @change-home-icon="ChangeHomeIcon"
       @show-american-ques="showAmericanQues"
-      
+      @hide-navbar="hideNavbar"
+      @update-color-icon-home="updateColorIconPhone"
     ></general-material>
   </div>
 </template>
@@ -65,6 +66,7 @@ export default {
       craneCardClicked: false,
       titleTypesCranesIndex: "סוגי העגורנים הקיימים",
       // indexForGeneralMaterial: 0,
+      showNavbar: true,
     };
   },
   methods: {
@@ -125,6 +127,15 @@ export default {
     //     this.indexForGeneralMaterial--;
     //   }
     // }
+
+    hideNavbar(toHide) {
+      if(toHide) {
+        this.showNavbar = false;
+      } else {
+        this.showNavbar = true;
+      }
+      console.log('hi');
+    }
   },
 };
 </script>

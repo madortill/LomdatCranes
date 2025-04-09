@@ -1,5 +1,5 @@
 <template>
-  <div id="general-material"  :style="{'--moving-btn-color': movingBtnColor}">
+  <div id="general-material" :style="{ '--moving-btn-color': movingBtnColor }">
     <info-hanging-board
       v-if="indexOrder === 0"
       :sectionHangingBoard="infoHangingBoardPart"
@@ -21,10 +21,15 @@
       @clicked-question-mark="clickedQuestionMark"
     ></types-of-cranes>
 
-    <american-questions v-if="indexOrder === 2" @back-to-info="backFromQues"></american-questions>
+    <american-questions
+      v-if="indexOrder === 2"
+      @back-to-info="backFromQues"
+      @next-part="nextPart"
+      @hide-navbar="hideNavbar"
+      @update-color-icon-home="updateColorHomeIcon"
+    ></american-questions>
 
-
-    <p v-if="showNextBtn " class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
 </template>
@@ -67,7 +72,7 @@ export default {
       partLearningCraneCard: 0,
       arrChosenCardCranes: ["", "", ""],
       showBackBtn: true,
-      movingBtnColor:'#8cd0ec',
+      movingBtnColor: "#8cd0ec",
       questionMarkClicked: false,
     };
   },
@@ -100,7 +105,10 @@ export default {
           //אם נלחץ קלף ובחלק הראשון של הלמידה- תעביר לשני
           if (this.craneCardClicked && this.partLearningCraneCard === 0) {
             this.partLearningCraneCard++;
-            if(this.titleTypesCranesIndex === "עגורן שער" && !this.questionMarkClicked) {
+            if (
+              this.titleTypesCranesIndex === "עגורן שער" &&
+              !this.questionMarkClicked
+            ) {
               this.showNextBtn = false;
             }
           } else if (
@@ -113,10 +121,11 @@ export default {
             //הכנסה של קלף העגורן למערך של אלו שנלמדו במידה ולא נלמד כבר
             if (!this.checkIfLearnedCard(this.titleTypesCranesIndex)) {
               this.counterLearnedCranes++;
-              this.arrChosenCardCranes[this.counterLearnedCranes] = this.titleTypesCranesIndex;
+              this.arrChosenCardCranes[this.counterLearnedCranes] =
+                this.titleTypesCranesIndex;
             }
             //מחזירה למאפיינים שהיו לפני שנלחץ כרטיס
-            this.movingBtnColor='#8cd0ec';
+            this.movingBtnColor = "#8cd0ec";
             this.titleTypesCranesIndex = "סוגי העגורנים הקיימים";
             this.prevToCarousel = false;
             this.partLearningCraneCard = 0; //מאפס את החלק שלומדים בלחיצה על קלף
@@ -127,11 +136,18 @@ export default {
             }
           } else {
             //במידה וסיימו את כל הקלפים ולוחצים הבא לנושא החדש
-            // this.$emit("change-sub-nav-num", true);
+            this.$emit("change-sub-nav-num", true);
+            this.updateColorHomeIcon('none');
+            this.hideNavbar(true);
             this.indexOrder++;
             this.showNextBtn = false;
             this.showBackBtn = false;
           }
+          break;
+        }
+        case 4: {
+          this.indexOrder++;
+          this.hideNavbar(false);
           break;
         }
       }
@@ -216,16 +232,14 @@ export default {
       this.craneCardClicked = true;
       this.titleTypesCranesIndex = craneTitle;
       this.showNextBtn = true;
-
       //color moving btns
-      switch(craneTitle) {
+      switch (craneTitle) {
         case "עגורן גשר":
-          return this.movingBtnColor= '#C8A47C';
+          return (this.movingBtnColor = "#C8A47C");
         case "עגורן שער":
-          return this.movingBtnColor= '#6F97BA';
-          
+          return (this.movingBtnColor = "#6F97BA");
         case "עגורן עמוד":
-          return this.movingBtnColor= '#BADDF4';
+          return (this.movingBtnColor = "#BADDF4");
       }
     },
 
@@ -238,17 +252,30 @@ export default {
       }
       return false;
     },
+
     backFromQues() {
+      this.$emit("change-sub-nav-num", false);
       this.indexOrder--;
       this.showNextBtn = true;
       this.showBackBtn = true;
-
     },
 
     clickedQuestionMark() {
       this.questionMarkClicked = true;
       this.showNextBtn = true;
-    }
+    },
+
+    hideNavbar(tohide) {
+      if (tohide) {
+        this.$emit("hide-navbar", true);
+      } else {
+        this.$emit("hide-navbar", false);
+      }
+    },
+
+    updateColorHomeIcon(color) {
+      this.$emit("update-color-icon-home", color);
+    },
   },
 };
 </script>

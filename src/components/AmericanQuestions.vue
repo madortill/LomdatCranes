@@ -1,39 +1,44 @@
 <template>
   <div id="american-questions" @click="checkAnswer">
-    <h1 class="title-questionMultiple">
-      {{ this.questions[this.numQues].title }}
-    </h1>
-    <h2
-      class="second-instraction"
-      v-if="this.questions[this.numQues].Qtype === 1"
-    >
-      בחר/י בשלוש התשובות הנכונות.
-    </h2>
-    <div class="div-mulQ">
-      <!-- <button v-for="i in 3" :key="i" :id="i" :ref="button${i}" class="pulse-button-hover"> {{ questions['ans' + i] }}</button> -->
+    <!-- <div v-if="numQues <= totalQues"> -->
+      <h1 class="title-questionMultiple">
+        {{ this.questions[this.numQues].title }}
+      </h1>
+      <h2
+        class="second-instraction"
+        v-if="this.questions[this.numQues].Qtype === 1"
+      >
+        בחר/י בשלוש התשובות הנכונות.
+      </h2>
+      <div class="div-mulQ">
+        <!-- <button v-for="i in 3" :key="i" :id="i" :ref="button${i}" class="pulse-button-hover"> {{ questions['ans' + i] }}</button> -->
 
-      <div class="row">
-        <button id="1" ref="1" class="pulse-button-hover">
-          {{ this.questions[this.numQues].ans1 }}
-        </button>
-        <button id="2" ref="2" class="pulse-button-hover">
-          {{ this.questions[this.numQues].ans2 }}
-        </button>
+        <div class="row">
+          <button id="1" ref="1" class="pulse-button-hover">
+            {{ this.questions[this.numQues].ans1 }}
+          </button>
+          <button id="2" ref="2" class="pulse-button-hover">
+            {{ this.questions[this.numQues].ans2 }}
+          </button>
+        </div>
+        <div class="row">
+          <button id="3" ref="3" class="pulse-button-hover">
+            {{ this.questions[this.numQues].ans3 }}
+          </button>
+          <button id="4" ref="4" class="pulse-button-hover">
+            {{ this.questions[this.numQues].ans4 }}
+          </button>
+        </div>
       </div>
-      <div class="row">
-        <button id="3" ref="3" class="pulse-button-hover">
-          {{ this.questions[this.numQues].ans3 }}
-        </button>
-        <button id="4" ref="4" class="pulse-button-hover">
-          {{ this.questions[this.numQues].ans4 }}
-        </button>
-      </div>
-    </div>
-    <button class="moving-btn next-btn" v-if="showNextBtn" @click="nextPart">
-      הבא
-    </button>
+    <!-- </div> -->
+    <!-- <div v-if="numQues === 4"> -->
+      <h1 class="finish" v-if="showFinish">כל הכבוד !</h1>
+    <!-- </div> -->
+    <!-- <button class="moving-btn next-btn" v-if="showNextBtn" @click="nextPart">
+        הבא
+      </button> -->
 
-    <button class="moving-btn back-btn" @click="backToInfo">חזור</button>
+      <button class="moving-btn back-btn" @click="backToInfo">חזור</button>
   </div>
 </template>
 
@@ -44,6 +49,7 @@ export default {
   data() {
     return {
       numQues: 0,
+      showFinish: false,
       showNextBtn: false,
       arrayChosenCorrect: ["", "", ""],
       questions: [
@@ -105,12 +111,15 @@ export default {
               String(this.questions[this.numQues].correctAnswer))
         ) {
           event.target.classList.add("correct");
-          //בודק אם זאת שאלה עם תשובה אחת (שנכונה) או עם 3 תשובות שנלחצו ונכונות
+          //בודק אם זאת שאלה עם תשובה אחת (שנכונה) או אם 3 תשובות שנלחצו ונכונות
           if (
             (this.questions[this.numQues].Qtype === 1 &&
               this.getNumCorrect() === 3) ||
             this.questions[this.numQues].Qtype !== 1
           ) {
+            if(this.numQues === 3) {
+              this.showFinish = true;
+            }
             setTimeout(() => {
               for (
                 let i = 1;
@@ -124,10 +133,11 @@ export default {
                   this.$refs[i].classList.remove("wrong");
                 }
               }
-              if (this.numQues !== 3) {
+              
+              if (this.numQues < 3) {
                 this.numQues++;
-              } else {
-                this.showNextBtn = true;
+              } else {                
+                this.$emit("next-part");             
               }
             }, 1500);
           }
@@ -154,14 +164,13 @@ export default {
       }
       return counter;
     },
-    nextPart() {
-      // this.part++;
-      this.$emit("next-part");
-    },
 
     backToInfo() {
       this.$emit("back-to-info");
+      this.$emit("update-color-icon-home", 'invert(1) brightness(100%) saturate(25%) contrast(100%)');
+      this.$emit('hide-navbar', false);
     },
+
   },
 };
 </script>
@@ -282,6 +291,7 @@ export default {
   text-align: center; /* Ensures the text is centered if multiline */
   transition: background-color 0.3s ease;
   color: black;
+  cursor: pointer;
 }
 
 .moving-btn:hover {
@@ -326,13 +336,23 @@ export default {
   }
 }
 
+.finish {
+  background-color: #023047;
+  padding: 7rem;
+  border-radius: 1rem;
+  position: absolute;
+  color: white;
+}
+
 @media screen and (max-width: 600px) {
   .div-mulQ {
-    width: 25rem;
+    width: 100vw;
+    border-radius: 0rem;
   }
 
   #american-questions {
     height: 92vh;
   }
+  
 }
 </style>

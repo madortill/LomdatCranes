@@ -42,7 +42,7 @@ export default {
     },
     clickedQuestionMark () {
       this.$emit('clicked-question-mark');
-    }
+    },
   
   },
 };
