@@ -2,16 +2,6 @@
   <div id="open-page">
     <button @click="showInfo" class="info-btn btn">i</button>
     <img class="tillLogo" src="/media/whiteMadorTill.png" alt="tillLogo" />
-    <!-- <div class="info-container" v-if="isOpenInfo">
-      <p @click="hideInfo" class="close-info">X</p>
-      <ul class="info-list">
-        <li class="info" v-for="(subTitle, title) in infoObject" :key="title">
-          <span class="info-title">{{ title }}</span
-          ><br />
-          <span>{{ subTitle }}</span>
-        </li>
-      </ul>
-    </div> -->
     <lomda-info @hide-info="hideInfo" v-if="isOpenInfo"></lomda-info>
     <div class="start-container" v-if="!isOpenInfo">
       <img src="/media/Crane.png" alt="crane" class="bgCrane" />
@@ -229,53 +219,6 @@ export default {
   100% {
     background-color: #023047;
     border: 3px solid #023047;
-  }
-}
-
-.info-container {
-  background-color: white;
-  color: #023047;
-  border-radius: 2rem;
-  width: 27rem;
-  height: 27rem;
-  animation: windowShow 0.2s linear forwards;
-  font-size: 1.5rem;
-  z-index: 80;
-}
-
-.info-list {
-  display: flex;
-  width: 100%;
-  margin-top: -3rem;
-  padding: 0%;
-  flex-direction: column;
-}
-
-.info-title {
-  font-weight: bold;
-}
-
-.info {
-  margin-bottom: 1.2rem;
-}
-
-.close-info {
-  margin-left: 22rem;
-  cursor: pointer;
-  font-size: 1.8rem;
-  /* z-index: 30; */
-}
-
-@keyframes windowShow {
-  0% {
-    height: 25rem;
-    width: 25rem;
-    font-size: 1rem;
-  }
-  100% {
-    height: 27rem;
-    width: 27rem;
-    font-size: 1.2rem;
   }
 }
 
