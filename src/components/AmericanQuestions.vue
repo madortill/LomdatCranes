@@ -20,6 +20,9 @@
           <button id="2" ref="2" class="pulse-button-hover">
             {{ this.questions[this.numQues].ans2 }}
           </button>
+          <button v-if="this.questions[this.numQues].Qtype === 1" id="5" ref="5" class="pulse-button-hover">
+            {{ this.questions[this.numQues].ans5 }}
+          </button>
         </div>
         <div class="row">
           <button id="3" ref="3" class="pulse-button-hover">
@@ -27,6 +30,9 @@
           </button>
           <button id="4" ref="4" class="pulse-button-hover">
             {{ this.questions[this.numQues].ans4 }}
+          </button>
+          <button v-if="this.questions[this.numQues].Qtype === 1" id="6" ref="6" class="pulse-button-hover">
+            {{ this.questions[this.numQues].ans6 }}
           </button>
         </div>
       </div>
@@ -70,8 +76,10 @@ export default {
           ans2: "עגורן עמוד",
           ans3: "עגורן שער",
           ans4: "עגורן גשר",
+          ans5: "מלל",
+          ans6: "מלל",
           correctAnswer: [2, 3, 4],
-          numAnswer: 4,
+          numAnswer: 6,
         },
         {
           Qtype: 2,
