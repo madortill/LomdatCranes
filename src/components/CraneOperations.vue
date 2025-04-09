@@ -177,7 +177,7 @@ li::before {
 .animation-for-three {
   z-index: 2;
   position: relative;
-  animation: growUpNum 0.5s linear forwards;
+  animation: growUpNum 0.3s linear forwards;
 }
 
 .fade-animation {
@@ -210,7 +210,7 @@ li::before {
   height: 0rem;
   position: absolute;
   top: 17.9rem;
-  animation: growUpDiv 0.5s linear forwards;
+  animation: growUpDiv 0.3s linear forwards;
   bottom: 0;
   z-index: 2;
 }
