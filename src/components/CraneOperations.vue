@@ -13,10 +13,10 @@
         "
       >
         <p class="the-info">{{ info }}</p>
-        <ul type="circle" v-if="index === 2 && this.craneKind === 'עגורן גשר'">
-          <li>מנוע להרמת והורדת כבל כננת</li>
-          <li>מנוע למערכת הסעה של כננת ההרמה</li>
-          <li>שני מנועים שעובדים במקביל ומסיעים את קורת העגורן</li>
+        <ul class="fix-position" type="circle" v-if="index === 2 && this.craneKind === 'עגורן גשר'">
+          <li> מנוע להרמת והורדת כבל כננת</li>
+          <li> מנוע למערכת הסעה של כננת ההרמה</li>
+          <li> שני מנועים שעובדים במקביל ומסיעים את קורת העגורן</li>
         </ul>
 
         <div
@@ -270,5 +270,9 @@ li::before {
   border: none;
   border-top: 0.2rem solid black; /* Adjust the thickness of the line */
   margin-bottom: 7rem;
+}
+
+.fix-position {
+  margin-top: -1rem;
 }
 </style>
