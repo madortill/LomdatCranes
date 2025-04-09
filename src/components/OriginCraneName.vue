@@ -21,19 +21,19 @@ export default {
           return {
             text: "העגורן נקרא עגורן גשר מפני שקורתו העליונה נעה כגשר מעל המטען.",
             url: `${baseUrl}media/cards/expand/overheadCrane.svg`, // Use BASE_URL here
-            color: '#C8A47C',
+            color: '#C3996D',
           };
         case "עגורן שער":
           return {
             text: "עגורן שער נקרא בשמו מכיוון שהוא נע כשער מעל המטען.",
             url: `${baseUrl}media/cards/expand/gateCrane.svg`,
-            color: '#6F97BA',
+            color: '#5F8BB3',
           };
         case "עגורן עמוד":
           return {
             text: "העגורן נקרא עגורן עמוד מפני שקורתו העליונה מחוברת לעמוד וניתן לצודד את הקורה.",
             url: `${baseUrl}media/cards/expand/columnCrane.svg`,
-            color: '#BADDF4',
+            color: '#B3DAF4',
           };
         default:
           return "מידע לא זמין.";

@@ -267,7 +267,7 @@ export default {
 .moving-btn {
   z-index: 1;
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
@@ -329,6 +329,10 @@ export default {
 @media screen and (max-width: 600px) {
   .div-mulQ {
     width: 25rem;
+  }
+
+  #american-questions {
+    height: 92vh;
   }
 }
 </style>
