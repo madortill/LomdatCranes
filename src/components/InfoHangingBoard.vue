@@ -7,6 +7,7 @@
       'unfliped-board': !flipStart,
       'flip-end-safty-rules': backFlip,
       'flip-start-definition': flipEndSaftyRules,
+      'unfliped-board': flipHook
     }"
   >
     <!-- <img class="board" src="/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
@@ -53,6 +54,7 @@ export default {
     "flipEndDefine",
     "backFlip",
     "flipEndSaftyRules",
+    "flipHook"
   ],
   data() {
     return {
@@ -119,6 +121,8 @@ export default {
 .flip-end-safty-rules {
   transition: transform 2s;
   transform: rotateY(180deg);
+  /* background-image: url("/media/infoHangBoard/computer/infoHangingBoard.svg"); */
+
 }
 
 .flip-start-definition {

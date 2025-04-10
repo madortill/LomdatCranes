@@ -8,6 +8,7 @@
       :flipEndDefine="flipEndDefine"
       :backFlip="backFlip"
       :flipEndSaftyRules="flipEndSaftyRules"
+      :flipHook="flipHook"
       @showNextBtnSafetyRules="showNextBtnSafetyRules"
     ></info-hanging-board>
 
@@ -64,6 +65,8 @@ export default {
       flipEndSaftyRules: false,
       showNextBtn: true,
       seenSafetyRules: false,
+      flipHook:true,
+
       //aboutCarousel
       prevToCarousel: false,
       craneCardClicked: false,
@@ -195,7 +198,7 @@ export default {
 
     firstFlipInfoHangingBoard() {
       //to restart value
-      this.flipEndSaftyRules = false;
+       this.flipEndSaftyRules = false;
       this.backFlip = false;
       //the flip animation
       this.flipEndDefine = true;
@@ -209,12 +212,13 @@ export default {
     reversedFlipInfoHangingBoard() {
       //to restart values
       this.flipEndDefine = false;
-      this.flipStart = false;
-      //
       this.backFlip = true;
       let timer = setTimeout(() => {
         this.infoHangingBoardPart--;
-        this.flipEndSaftyRules = true;
+        //to restart value
+      this.flipEndSaftyRules = true;
+      this.flipStart = false;
+      this.flipHook = true;
         clearTimeout(timer);
       }, 590);
     },
