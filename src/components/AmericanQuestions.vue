@@ -57,6 +57,7 @@ export default {
       numQues: 0,
       showFinish: false,
       showNextBtn: false,
+      clickeAnswer: false,
       arrayChosenCorrect: ["", "", ""],
       questions: [
         {
@@ -106,7 +107,8 @@ export default {
   },
   methods: {
     checkAnswer(event) {
-      if (event.target.classList.contains("pulse-button-hover")) {
+      if (event.target.classList.contains("pulse-button-hover") && !this.clickeAnswer) {
+        this.clickeAnswer = true;
         //בדיקה אם הכפתור הנלחץ הוא תשובה נכונה
         if (
           (this.questions[this.numQues].Qtype === 1 &&
@@ -147,10 +149,14 @@ export default {
               } else {                
                 this.$emit("next-part");             
               }
+              this.clickeAnswer = false;
             }, 1500);
+          } else {
+            this.clickeAnswer = false;
           }
         } else {
           event.target.classList.add("wrong");
+          this.clickeAnswer = false;
         }
       }
     },

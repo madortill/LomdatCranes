@@ -1,7 +1,7 @@
 <template>
   <div id="general-material" :style="{ '--moving-btn-color': movingBtnColor }">
     <info-hanging-board
-      v-if="indexOrder === 0"
+      v-if="indexOrder === 0 || (indexOrder === 3 && isInWinches)"
       :sectionHangingBoard="infoHangingBoardPart"
       :chosenCourse="chosenCourse"
       :flipStart="flipStart"
@@ -10,6 +10,7 @@
       :flipEndSaftyRules="flipEndSaftyRules"
       :flipHook="flipHook"
       @showNextBtnSafetyRules="showNextBtnSafetyRules"
+      :inWinches="isInWinches"
     ></info-hanging-board>
 
     <types-of-cranes
@@ -30,6 +31,8 @@
       @update-color-icon-home="updateColorHomeIcon"
     ></american-questions>
 
+    <winches v-if="indexOrder === 3" @show-tiny-board="showTinyBoard"></winches>
+
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
@@ -39,10 +42,11 @@
 import AmericanQuestions from "./AmericanQuestions.vue";
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import TypesOfCranes from "./TypesOfCranes.vue";
+import Winches from './Winches.vue';
 export default {
   name: "general-material",
 
-  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions },
+  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions, Winches },
   props: [
     "chosenCourse",
     "navbarSubjNum",
@@ -65,7 +69,7 @@ export default {
       flipEndSaftyRules: false,
       showNextBtn: true,
       seenSafetyRules: false,
-      flipHook:true,
+      flipHook: true,
 
       //aboutCarousel
       prevToCarousel: false,
@@ -77,6 +81,8 @@ export default {
       showBackBtn: true,
       movingBtnColor: "#8cd0ec",
       questionMarkClicked: false,
+      nextFromAmericanQues: true,
+      isInWinches: false,
     };
   },
   methods: {
@@ -140,7 +146,7 @@ export default {
           } else {
             //במידה וסיימו את כל הקלפים ולוחצים הבא לנושא החדש
             this.$emit("change-sub-nav-num", true);
-            this.updateColorHomeIcon('none');
+            this.updateColorHomeIcon("none");
             this.hideNavbar(true);
             this.indexOrder++;
             this.showNextBtn = false;
@@ -149,9 +155,17 @@ export default {
           break;
         }
         case 4: {
-          this.indexOrder++;
-          this.hideNavbar(false);
-          this.updateColorHomeIcon('invert(1) brightness(100%) saturate(25%) contrast(100%)');
+          if (this.nextFromAmericanQues) {
+            this.nextFromAmericanQues = false;
+            this.indexOrder++;
+            this.hideNavbar(false);
+            this.updateColorHomeIcon(
+              "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+            );
+            this.showBackBtn = true;
+            this.showNextBtn = false;
+            // this.isInWinches = true;
+          }
           break;
         }
       }
@@ -193,12 +207,25 @@ export default {
           }
           break;
         }
+        case 4: {
+          if (!this.nextFromAmericanQues) {
+            this.nextFromAmericanQues = true;
+            this.indexOrder--;
+            this.hideNavbar(true);
+            this.updateColorHomeIcon(
+              "none"
+            );
+            this.showBackBtn = false;
+            this.showNextBtn = true;
+          }
+          break;
+        }
       }
     },
 
     firstFlipInfoHangingBoard() {
       //to restart value
-       this.flipEndSaftyRules = false;
+      this.flipEndSaftyRules = false;
       this.backFlip = false;
       //the flip animation
       this.flipEndDefine = true;
@@ -216,9 +243,9 @@ export default {
       let timer = setTimeout(() => {
         this.infoHangingBoardPart--;
         //to restart value
-      this.flipEndSaftyRules = true;
-      this.flipStart = false;
-      this.flipHook = true;
+        this.flipEndSaftyRules = true;
+        this.flipStart = false;
+        this.flipHook = true;
         clearTimeout(timer);
       }, 590);
     },
@@ -281,6 +308,10 @@ export default {
     updateColorHomeIcon(color) {
       this.$emit("update-color-icon-home", color);
     },
+
+    showTinyBoard() {
+      this.isInWinches = true;
+    }
   },
 };
 </script>
