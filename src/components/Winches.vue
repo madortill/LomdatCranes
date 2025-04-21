@@ -1,38 +1,48 @@
 <template>
   <div id="winches">
     <p class="header">כננות</p>
-    <p class="sub-title">{{ subTitle[part] }}</p>
-    <p v-if="part === 1">{{ typesInfo }}</p>
+    <p class="sub-title">{{ subTitle[partInWinches] }}</p>
 
-    <div class="definition-container" v-if="part === 0">
-        <p class="text-in-btn">רגע מהי כננת?</p>
-      <img :class="!isClicked ? 'with-animation' : '' " @click="showBoard" class="definition-btn" src="/media/winchPage/btn.png" alt="btn" />
+    <div class="definition-container" v-if="partInWinches === 0">
+      <p class="text-in-btn">רגע מהי כננת?</p>
+      <img
+        :class="!isClicked ? 'with-animation' : ''"
+        @click="showBoard"
+        class="definition-btn"
+        src="/media/winchPage/btn.png"
+        alt="btn"
+      />
       <img class="legs" src="/media/winchPage/legs.png" alt="legs" />
     </div>
 
-    <div v-if="part === 1"></div>
-    <p></p>
+    <div v-if="partInWinches === 1">
+      <p v-for="item in typesInfo" :key="item">{{ item }}</p>
+      <img class="sign-img turn-right" src="/media/StartSign.png" alt="sign" />
+      <img class="sign-img turn-left" src="/media/StartSign.png" alt="sign" />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "winches",
-  //   props: [""],
+  props: ["partInWinches"],
   data() {
     return {
       subTitle: ["הגדרה", "סוגים"],
-      typesInfo:
-        "ישנם כננות מסוג כבל ומסוג שרשרת הרמה.כל אחת מהן יכולה להיות מופעלת בצורה מכאנית (ידנית) ובצורה חשמלית.",
-      part: 0,
+      typesInfo: [
+        "ישנם כננות מסוג כבל ומסוג שרשרת הרמה.",
+        "כל אחת מהן יכולה להיות מופעלת בצורה מכאנית (ידנית) ובצורה חשמלית.",
+      ],
+      //   part: 0,
       isClicked: false,
     };
   },
   methods: {
     showBoard() {
-        this.$emit('show-tiny-board');
-        this.isClicked = true;
-    }
+      this.$emit("show-tiny-board");
+      this.isClicked = true;
+    },
   },
 };
 </script>
@@ -76,6 +86,7 @@ export default {
   /* animation: growAndShrink 2s infinite ease-in-out; */
   transition: transform 0.3s ease;
   cursor: pointer;
+  z-index: 1;
 }
 
 .with-animation {
@@ -95,15 +106,44 @@ export default {
 }
 
 .text-in-btn {
-    margin-bottom: -3rem;
-    z-index: 1;
-    font-size: 1.4rem;
-    margin-right: -15rem;
+  margin-bottom: -3rem;
+  z-index: 2;
+  font-size: 1.4rem;
+  margin-right: -15rem;
+  cursor: pointer;
 }
 
 .legs {
   width: 30rem;
 }
+
+.sign-img {
+  width: 15rem;
+  height: 20rem;
+  position: absolute;
+  bottom: -1.6rem;
+}
+
+.turn-right {
+  right: 20rem;
+  transform: rotate(6deg);
+}
+
+.turn-left {
+  left: 20rem;
+  transform: rotate(-6deg);
+}
+
+@media screen and (max-width: 1110px) {
+  .turn-right {
+    right: 10rem;
+  }
+
+  .turn-left {
+    left: 10rem;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .legs {
     width: 20rem;
@@ -114,5 +154,21 @@ export default {
     width: 28rem;
     margin-bottom: -1rem;
   }
+
+  .turn-right {
+    right: 2.5rem;
+  }
+
+  .turn-left {
+    left: 2.5rem;
+  }
+
+  .sign-img {
+  width: 13rem;
+  height: 35rem;
+  position: absolute;
+  /* bottom: -1.6rem; */
+}
+
 }
 </style>

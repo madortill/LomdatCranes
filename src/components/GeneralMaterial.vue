@@ -1,7 +1,7 @@
 <template>
   <div id="general-material" :style="{ '--moving-btn-color': movingBtnColor }">
     <info-hanging-board
-      v-if="indexOrder === 0 || (indexOrder === 3 && isInWinches)"
+      v-if="indexOrder === 0 || (indexOrder === 3 && isInWinches && partInWinches === 0)"
       :sectionHangingBoard="infoHangingBoardPart"
       :chosenCourse="chosenCourse"
       :flipStart="flipStart"
@@ -31,7 +31,7 @@
       @update-color-icon-home="updateColorHomeIcon"
     ></american-questions>
 
-    <winches v-if="indexOrder === 3" @show-tiny-board="showTinyBoard"></winches>
+    <winches v-if="indexOrder === 3" @show-tiny-board="showTinyBoard" :partInWinches="partInWinches"></winches>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -81,8 +81,9 @@ export default {
       showBackBtn: true,
       movingBtnColor: "#8cd0ec",
       questionMarkClicked: false,
-      nextFromAmericanQues: true,
+      // nextFromAmericanQues: true,
       isInWinches: false,
+      partInWinches: 0,
     };
   },
   methods: {
@@ -155,8 +156,9 @@ export default {
           break;
         }
         case 4: {
-          if (this.nextFromAmericanQues) {
-            this.nextFromAmericanQues = false;
+          //if next from questions
+          if(this.indexOrder === 2) {
+            // this.nextFromAmericanQues = false;
             this.indexOrder++;
             this.hideNavbar(false);
             this.updateColorHomeIcon(
@@ -164,8 +166,11 @@ export default {
             );
             this.showBackBtn = true;
             this.showNextBtn = false;
-            // this.isInWinches = true;
+          } else if (this.partInWinches === 0) {
+            this.partInWinches++;
+            this.showNextBtn = false;
           }
+         
           break;
         }
       }
@@ -208,14 +213,19 @@ export default {
           break;
         }
         case 4: {
-          if (!this.nextFromAmericanQues) {
-            this.nextFromAmericanQues = true;
+          if (this.partInWinches === 0) {
+            // this.nextFromAmericanQues = true;
             this.indexOrder--;
             this.hideNavbar(true);
             this.updateColorHomeIcon(
               "none"
             );
             this.showBackBtn = false;
+            this.showNextBtn = true;
+            this.isInWinches = false;
+
+          } else {
+            this.partInWinches--;
             this.showNextBtn = true;
           }
           break;
@@ -311,6 +321,7 @@ export default {
 
     showTinyBoard() {
       this.isInWinches = true;
+      this.showNextBtn = true;
     }
   },
 };
