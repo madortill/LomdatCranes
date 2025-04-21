@@ -17,14 +17,17 @@
 
     <div v-if="partInWinches === 1">
       <p v-for="item in typesInfo" :key="item">{{ item }}</p>
-      <img class="sign-img turn-right" src="/media/StartSign.png" alt="sign" />
-      <img class="sign-img turn-left" src="/media/StartSign.png" alt="sign" />
+
+      <winch-sign-svg :side="'right'"></winch-sign-svg>
+      <winch-sign-svg :side="'left'"></winch-sign-svg>
     </div>
   </div>
 </template>
 
 <script>
+import WinchSignSvg from './WinchSignSvg.vue';
 export default {
+  components: { WinchSignSvg },
   name: "winches",
   props: ["partInWinches"],
   data() {
@@ -36,6 +39,7 @@ export default {
       ],
       //   part: 0,
       isClicked: false,
+      sideTurn: 'right',
     };
   },
   methods: {
@@ -117,33 +121,6 @@ export default {
   width: 30rem;
 }
 
-.sign-img {
-  width: 15rem;
-  height: 20rem;
-  position: absolute;
-  bottom: -1.6rem;
-}
-
-.turn-right {
-  right: 20rem;
-  transform: rotate(6deg);
-}
-
-.turn-left {
-  left: 20rem;
-  transform: rotate(-6deg);
-}
-
-@media screen and (max-width: 1110px) {
-  .turn-right {
-    right: 10rem;
-  }
-
-  .turn-left {
-    left: 10rem;
-  }
-}
-
 @media screen and (max-width: 700px) {
   .legs {
     width: 20rem;
@@ -154,21 +131,5 @@ export default {
     width: 28rem;
     margin-bottom: -1rem;
   }
-
-  .turn-right {
-    right: 2.5rem;
-  }
-
-  .turn-left {
-    left: 2.5rem;
-  }
-
-  .sign-img {
-  width: 13rem;
-  height: 35rem;
-  position: absolute;
-  /* bottom: -1.6rem; */
-}
-
 }
 </style>
