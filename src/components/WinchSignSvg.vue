@@ -111,9 +111,15 @@ export default {
     };
   },
   methods: {
-    showPopOut(kind) {
-     console.log(kind);
-     console.log(this.theTitle);
+    showPopOut(winchTo) {
+      let titleToPopOut = this.theTitle + " ";
+      if (winchTo === "wire") {
+       titleToPopOut += "לכבל";
+      } else {
+       titleToPopOut += "לשרשרת";
+      }
+      console.log('g');
+     this.$emit('show-pop-out',titleToPopOut);
     },
   },
   computed: {

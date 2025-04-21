@@ -6,7 +6,7 @@
     <div class="definition-container" v-if="partInWinches === 0">
       <p class="text-in-btn">רגע מהי כננת?</p>
       <img
-        :class="!isClicked ? 'with-animation' : ''"
+        :class="!isClickedWinch ? 'with-animation' : ''"
         @click="showBoard"
         class="definition-btn"
         src="/media/winchPage/btn.png"
@@ -18,16 +18,19 @@
     <div v-if="partInWinches === 1">
       <p v-for="item in typesInfo" :key="item">{{ item }}</p>
 
-      <winch-sign-svg :side="'right'"></winch-sign-svg>
-      <winch-sign-svg :side="'left'"></winch-sign-svg>
+      <winch-sign-svg @show-pop-out="showPopOut" :side="'right'"></winch-sign-svg>
+      <winch-sign-svg @show-pop-out="showPopOut" :side="'left'"></winch-sign-svg>
+
+      <pop-out-winch @close-pop-out="closePopOut" v-if="ifShowPopOut" :title="titleToPopOut" :indexTypes="indexClickedTtype"></pop-out-winch>
     </div>
   </div>
 </template>
 
 <script>
+import PopOutWinch from './PopOutWinch.vue';
 import WinchSignSvg from './WinchSignSvg.vue';
 export default {
-  components: { WinchSignSvg },
+  components: { WinchSignSvg, PopOutWinch },
   name: "winches",
   props: ["partInWinches"],
   data() {
@@ -37,15 +40,41 @@ export default {
         "ישנם כננות מסוג כבל ומסוג שרשרת הרמה.",
         "כל אחת מהן יכולה להיות מופעלת בצורה מכאנית (ידנית) ובצורה חשמלית.",
       ],
-      //   part: 0,
-      isClicked: false,
-      sideTurn: 'right',
+      isClickedWinch: false,
+      titleToPopOut: '',
+      indexClickedTtype: -1,
+      ifShowPopOut: false,
     };
   },
   methods: {
     showBoard() {
       this.$emit("show-tiny-board");
-      this.isClicked = true;
+      this.isClickedWinch = true;
+    },
+    showPopOut(title) {
+        this.ifShowPopOut = true;
+        this.titleToPopOut = title;
+        switch(title) {
+            case 'כננת מכאנית לכבל': {
+                this.indexClickedTtype = 0;
+                break;
+            }
+            case 'כננת מכאנית לשרשרת': {
+                this.indexClickedTtype = 1;
+                break;
+            }
+            case 'כננת חשמלית לשרשרת': {
+                this.indexClickedTtype = 2;
+                break;
+            }
+            case 'כננת חשמלית לכבל': {
+                this.indexClickedTtype = 2;
+                break;
+            }
+        }
+    },
+    closePopOut() {
+        this.ifShowPopOut = false;
     },
   },
 };
