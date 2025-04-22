@@ -22,11 +22,13 @@
         @show-pop-out="showPopOut"
         :side="'right'"
         :clickedOnBtnSign="clickedOnBtnSign"
+        :learnedBtnsArr="learnedInWinchSign"
       ></winch-sign-svg>
       <winch-sign-svg
         @show-pop-out="showPopOut"
         :side="'left'"
         :clickedOnBtnSign="clickedOnBtnSign"
+        :learnedBtnsArr="learnedInWinchSign"
       ></winch-sign-svg>
 
       <pop-out-winch
@@ -46,7 +48,7 @@ import WinchSignSvg from "./WinchSignSvg.vue";
 export default {
   components: { WinchSignSvg, PopOutWinch },
   name: "winches",
-  props: ["partInWinches", 'isClickedWinchImg'],
+  props: ["partInWinches", 'isClickedWinchImg', 'learnedInWinchSign'],
   data() {
     return {
       subTitle: ["הגדרה", "סוגים"],
@@ -57,14 +59,13 @@ export default {
       titleToPopOut: "",
       indexClickedTtype: -1,
       ifShowPopOut: false,
-      learnedInWinchSign: [false, false, false, false],
       clickedOnBtnSign: false,
     };
   },
   methods: {
     showBoard() {
       this.$emit("show-tiny-board");
-      this.isClickedWinchImg = true;
+      // this.isClickedWinchImg = true;
     },
     showPopOut(title) {
       this.ifShowPopOut = true;
@@ -165,6 +166,7 @@ export default {
   font-size: 1.4rem;
   margin-right: -15rem;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .legs {

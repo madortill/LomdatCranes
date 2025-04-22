@@ -41,6 +41,7 @@
       @add-learned-winch-in-sign="addLearnedWinchInArray"
       @show-next-btn="showTheNextBtn"
       :isClickedWinchImg="isInWinches"
+      :learnedInWinchSign="learnedInWinchSign"
     ></winches>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>

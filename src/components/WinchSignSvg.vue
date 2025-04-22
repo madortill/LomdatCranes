@@ -335,7 +335,7 @@
       <g id="blueRectangles">
         <rect
           @click="showPopOut('chain')"
-          :class="['cls-8', { hovered: selectedWinch === 'chain' }]"
+          :class="['cls-8', { learned: (side === 'right' && learnedBtnsArr[1]) || (side === 'left' && learnedBtnsArr[2]) }]"
           x="151.03"
           y="97.6"
           width="209.76"
@@ -345,7 +345,7 @@
         />
         <rect
           @click="showPopOut('wire')"
-          :class="['cls-8', { hovered: selectedWinch === 'wire' }]"
+          :class="['cls-8', { learned: (side === 'right' && learnedBtnsArr[0]) || (side === 'left' && learnedBtnsArr[3]) }]"
           x="151.03"
           y="249.22"
           width="209.76"
@@ -377,24 +377,21 @@
 <script>
 export default {
   name: "winch-sign-svg",
-  props: ["side", "clickedOnBtnSign"],
+  props: ["side", "clickedOnBtnSign", 'learnedBtnsArr'],
   data() {
     return {
-      selectedWinch: null,
     };
   },
   methods: {
     showPopOut(winchTo) {
       if (!this.clickedOnBtnSign) {
-        this.selectedWinch = winchTo;
-        //
-        // setTimeout(() => {
-          this.selectedWinch = null;
-          let titleToPopOut = this.theTitle + " ";
-          titleToPopOut += winchTo === "wire" ? "לכבל" : "לשרשרת";
-          this.$emit("show-pop-out", titleToPopOut);
-        // }, 200);
-        //
+        let titleToPopOut = this.theTitle + " ";
+        if (winchTo === "wire") {
+          titleToPopOut += "לכבל";
+        } else {
+          titleToPopOut += "לשרשרת";
+        }
+        this.$emit("show-pop-out", titleToPopOut);
       }
     },
   },
@@ -478,8 +475,8 @@ export default {
   cursor: pointer;
 }
 
-.cls-8.hovered {
-  fill: #8cd0ec !important; /* same as hover color */
+.cls-8.learned {
+  fill: #D9D9D9;
 }
 
 .cls-9 {

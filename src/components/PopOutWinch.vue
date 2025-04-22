@@ -1,6 +1,6 @@
 <template>
   <div :class="'part-' + part" id="pop-out-winch">
-    <p @click="closeWindow" class="close-info">X</p>
+    <p @click="closeWindow" class="close-info"  v-if="!((indexTypes === 2 || indexTypes === 3) && !showCloseBtn)">X</p>
 
     <p class="header">{{ title }}</p>
     <p>{{ explainArr[part][indexTypes] }}</p>
@@ -9,7 +9,7 @@
     <container-part-winch
       :indexInfoArr="indexInContainerPartWinch"
       v-if="part === 1"
-      @finish-learning="finishLearning"
+      @finish-learning="toShowCloseBtn"
     ></container-part-winch>
 
     <button @click="prevPart" v-if="showBackBtn" class="moving-btn back-btn">
@@ -49,6 +49,7 @@ export default {
       ],
       showNextBtn: true,
       showBackBtn: false,
+      showCloseBtn: false,
       part: 0,
       indexInContainerPartWinch: 0,
       colorCardsArr: [
@@ -60,9 +61,12 @@ export default {
   methods: {
     closeWindow() {
       this.$emit("close-pop-out");
+      this.showCloseBtn = false;
       //check if finish learn btn
       if (this.indexTypes === 0 || this.indexTypes === 1) {
-        this.finishLearning();
+        // this.finishLearning();
+        this.$emit("finish-learning", this.indexTypes);
+
       }
     },
     nextPart() {
@@ -80,7 +84,9 @@ export default {
       this.showBackBtn = false;
       this.part--;
     },
-    finishLearning() {
+    //it will show if the user finished learning all the parts
+    toShowCloseBtn() {
+      this.showCloseBtn = true;
       this.$emit("finish-learning", this.indexTypes);
     },
   },
