@@ -21,10 +21,12 @@
       <winch-sign-svg
         @show-pop-out="showPopOut"
         :side="'right'"
+        :clickedOnBtnSign="clickedOnBtnSign"
       ></winch-sign-svg>
       <winch-sign-svg
         @show-pop-out="showPopOut"
         :side="'left'"
+        :clickedOnBtnSign="clickedOnBtnSign"
       ></winch-sign-svg>
 
       <pop-out-winch
@@ -56,6 +58,7 @@ export default {
       indexClickedTtype: -1,
       ifShowPopOut: false,
       learnedInWinchSign: [false, false, false, false],
+      clickedOnBtnSign: false,
     };
   },
   methods: {
@@ -65,6 +68,8 @@ export default {
     },
     showPopOut(title) {
       this.ifShowPopOut = true;
+      this.clickedOnBtnSign = true;
+
       this.titleToPopOut = title;
       switch (title) {
         case "כננת מכאנית לכבל": {
@@ -87,22 +92,11 @@ export default {
     },
     closePopOut() {
       this.ifShowPopOut = false;
+      this.clickedOnBtnSign = false;
     },
     finishBtnInSign(index) {
       this.$emit('add-learned-winch-in-sign', index);
-      // this.learnedInWinchSign[index] = true;
-      // if(this.checksIfLearnedAllBtns()) {
-      //   this.$emit('show-next-btn');
-      // }
     },
-    // checksIfLearnedAllBtns() {
-    //   for (let i = 0; i < this.learnedInWinchSign.length; i++) {
-    //     if(!this.learnedInWinchSign[i]) {
-    //       return false;
-    //     }
-    //   }
-    //   return true;
-    // },
   },
 };
 </script>
