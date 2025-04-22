@@ -6,7 +6,7 @@
     <div class="definition-container" v-if="partInWinches === 0">
       <p class="text-in-btn">רגע מהי כננת?</p>
       <img
-        :class="!isClickedWinch ? 'with-animation' : ''"
+        :class="!isClickedWinchImg ? 'with-animation' : ''"
         @click="showBoard"
         class="definition-btn"
         src="/media/winchPage/btn.png"
@@ -44,7 +44,7 @@ import WinchSignSvg from "./WinchSignSvg.vue";
 export default {
   components: { WinchSignSvg, PopOutWinch },
   name: "winches",
-  props: ["partInWinches"],
+  props: ["partInWinches", 'isClickedWinchImg'],
   data() {
     return {
       subTitle: ["הגדרה", "סוגים"],
@@ -52,7 +52,6 @@ export default {
         "ישנם כננות מסוג כבל ומסוג שרשרת הרמה.",
         "כל אחת מהן יכולה להיות מופעלת בצורה מכאנית (ידנית) ובצורה חשמלית.",
       ],
-      isClickedWinch: false,
       titleToPopOut: "",
       indexClickedTtype: -1,
       ifShowPopOut: false,
@@ -62,7 +61,7 @@ export default {
   methods: {
     showBoard() {
       this.$emit("show-tiny-board");
-      this.isClickedWinch = true;
+      this.isClickedWinchImg = true;
     },
     showPopOut(title) {
       this.ifShowPopOut = true;

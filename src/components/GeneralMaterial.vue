@@ -40,6 +40,7 @@
       :partInWinches="partInWinches"
       @add-learned-winch-in-sign="addLearnedWinchInArray"
       @show-next-btn="showTheNextBtn"
+      :isClickedWinchImg="isInWinches"
     ></winches>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
@@ -91,9 +92,11 @@ export default {
       movingBtnColor: "#8cd0ec",
       questionMarkClicked: false,
       // nextFromAmericanQues: true,
+      //about winch componnent
       isInWinches: false,
       partInWinches: 0,
       learnedInWinchSign: [false, false, false, false],
+      // isClickedWinchImg: false,
     };
   },
   methods: {
@@ -175,14 +178,17 @@ export default {
               "invert(1) brightness(100%) saturate(25%) contrast(100%)"
             );
             this.showBackBtn = true;
+            //check if was already in this page
+            if (!this.isInWinches) {
+              this.showNextBtn = false;
+            }
+          } else if (this.partInWinches === 0) {
+            this.partInWinches++;
             if (this.checksIfLearnedAllBtns()) {
               this.showNextBtn = true;
             } else {
               this.showNextBtn = false;
             }
-          } else if (this.partInWinches === 0) {
-            this.partInWinches++;
-            this.showNextBtn = false;
           } else if (this.partInWinches === 1) {
             this.indexOrder++;
             this.$emit("change-sub-nav-num", true);
@@ -238,7 +244,7 @@ export default {
             this.updateColorHomeIcon("none");
             this.showBackBtn = false;
             this.showNextBtn = true;
-            this.isInWinches = false;
+            // this.isInWinches = false;
           } else {
             this.partInWinches--;
             this.showNextBtn = true;
