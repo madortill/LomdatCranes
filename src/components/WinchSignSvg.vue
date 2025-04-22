@@ -118,7 +118,6 @@ export default {
       } else {
        titleToPopOut += "לשרשרת";
       }
-      console.log('g');
      this.$emit('show-pop-out',titleToPopOut);
     },
   },

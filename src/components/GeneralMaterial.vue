@@ -1,7 +1,10 @@
 <template>
   <div id="general-material" :style="{ '--moving-btn-color': movingBtnColor }">
     <info-hanging-board
-      v-if="indexOrder === 0 || (indexOrder === 3 && isInWinches && partInWinches === 0)"
+      v-if="
+        indexOrder === 0 ||
+        (indexOrder === 3 && isInWinches && partInWinches === 0)
+      "
       :sectionHangingBoard="infoHangingBoardPart"
       :chosenCourse="chosenCourse"
       :flipStart="flipStart"
@@ -31,7 +34,13 @@
       @update-color-icon-home="updateColorHomeIcon"
     ></american-questions>
 
-    <winches v-if="indexOrder === 3" @show-tiny-board="showTinyBoard" :partInWinches="partInWinches" @show-next-btn="showTheNextBtn"></winches>
+    <winches
+      v-if="indexOrder === 3"
+      @show-tiny-board="showTinyBoard"
+      :partInWinches="partInWinches"
+      @add-learned-winch-in-sign="addLearnedWinchInArray"
+      @show-next-btn="showTheNextBtn"
+    ></winches>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -42,7 +51,7 @@
 import AmericanQuestions from "./AmericanQuestions.vue";
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import TypesOfCranes from "./TypesOfCranes.vue";
-import Winches from './Winches.vue';
+import Winches from "./Winches.vue";
 export default {
   name: "general-material",
 
@@ -84,6 +93,7 @@ export default {
       // nextFromAmericanQues: true,
       isInWinches: false,
       partInWinches: 0,
+      learnedInWinchSign: [false, false, false, false],
     };
   },
   methods: {
@@ -157,7 +167,7 @@ export default {
         }
         case 4: {
           //if next from questions
-          if(this.indexOrder === 2) {
+          if (this.indexOrder === 2) {
             // this.nextFromAmericanQues = false;
             this.indexOrder++;
             this.hideNavbar(false);
@@ -165,15 +175,19 @@ export default {
               "invert(1) brightness(100%) saturate(25%) contrast(100%)"
             );
             this.showBackBtn = true;
-            this.showNextBtn = false;
+            if (this.checksIfLearnedAllBtns()) {
+              this.showNextBtn = true;
+            } else {
+              this.showNextBtn = false;
+            }
           } else if (this.partInWinches === 0) {
             this.partInWinches++;
             this.showNextBtn = false;
-          } else if(this.partInWinches === 1) {
+          } else if (this.partInWinches === 1) {
             this.indexOrder++;
             this.$emit("change-sub-nav-num", true);
           }
-         
+
           break;
         }
       }
@@ -221,13 +235,10 @@ export default {
             // this.nextFromAmericanQues = true;
             this.indexOrder--;
             this.hideNavbar(true);
-            this.updateColorHomeIcon(
-              "none"
-            );
+            this.updateColorHomeIcon("none");
             this.showBackBtn = false;
             this.showNextBtn = true;
             this.isInWinches = false;
-
           } else {
             this.partInWinches--;
             this.showNextBtn = true;
@@ -236,7 +247,7 @@ export default {
         }
         case 5: {
           this.indexOrder--;
-            this.$emit("change-sub-nav-num", false);
+          this.$emit("change-sub-nav-num", false);
           break;
         }
       }
@@ -327,15 +338,26 @@ export default {
     updateColorHomeIcon(color) {
       this.$emit("update-color-icon-home", color);
     },
-
+    //about winch componnent
     showTinyBoard() {
       this.isInWinches = true;
       this.showNextBtn = true;
     },
 
-    showTheNextBtn() {
-      this.showNextBtn = true;
-    }
+    addLearnedWinchInArray(index) {
+      this.learnedInWinchSign[index] = true;
+      if (this.checksIfLearnedAllBtns()) {
+        this.showNextBtn = true;
+      }
+    },
+    checksIfLearnedAllBtns() {
+      for (let i = 0; i < this.learnedInWinchSign.length; i++) {
+        if (!this.learnedInWinchSign[i]) {
+          return false;
+        }
+      }
+      return true;
+    },
   },
 };
 </script>

@@ -90,19 +90,20 @@ export default {
       this.ifShowPopOut = false;
     },
     finishBtnInSign(index) {
-      this.learnedInWinchSign[index] = true;
-      if(this.checksIfLearnedAllBtns()) {
-        this.$emit('show-next-btn');
-      }
+      this.$emit('add-learned-winch-in-sign', index);
+      // this.learnedInWinchSign[index] = true;
+      // if(this.checksIfLearnedAllBtns()) {
+      //   this.$emit('show-next-btn');
+      // }
     },
-    checksIfLearnedAllBtns() {
-      for (let i = 0; i < this.learnedInWinchSign.length; i++) {
-        if(!this.learnedInWinchSign[i]) {
-          return false;
-        }
-      }
-      return true;
-    },
+    // checksIfLearnedAllBtns() {
+    //   for (let i = 0; i < this.learnedInWinchSign.length; i++) {
+    //     if(!this.learnedInWinchSign[i]) {
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // },
   },
 };
 </script>

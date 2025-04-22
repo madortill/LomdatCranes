@@ -264,6 +264,7 @@ export default {
   }
   .to-show {
     display: block;
+    font-weight: bold;
   }
 
   .in-winches {

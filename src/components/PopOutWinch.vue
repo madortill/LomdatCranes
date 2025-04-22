@@ -167,12 +167,10 @@ export default {
 .instraction {
   font-size: 0.8rem;
   margin-top: -0.8rem;
-  /* font-weight: bold; */
+  font-weight: bold;
 }
 
-.card-1 {
-  background-color: ;
-}
+
 @media screen and (max-width: 700px) {
 }
 </style>
