@@ -335,7 +335,7 @@
       <g id="blueRectangles">
         <rect
           @click="showPopOut('chain')"
-          class="cls-8"
+          :class="['cls-8', { hovered: selectedWinch === 'chain' }]"
           x="151.03"
           y="97.6"
           width="209.76"
@@ -345,7 +345,7 @@
         />
         <rect
           @click="showPopOut('wire')"
-          class="cls-8"
+          :class="['cls-8', { hovered: selectedWinch === 'wire' }]"
           x="151.03"
           y="249.22"
           width="209.76"
@@ -380,19 +380,21 @@ export default {
   props: ["side", "clickedOnBtnSign"],
   data() {
     return {
+      selectedWinch: null,
     };
   },
   methods: {
     showPopOut(winchTo) {
       if (!this.clickedOnBtnSign) {
-        let titleToPopOut = this.theTitle + " ";
-        // if (winchTo === "wire") {
-        //   titleToPopOut += "לכבל";
-        // } else {
-        //   titleToPopOut += "לשרשרת";
-        // }
-        titleToPopOut += winchTo === "wire" ? "לכבל" : "לשרשרת";
-        this.$emit("show-pop-out", titleToPopOut);
+        this.selectedWinch = winchTo;
+        //
+        setTimeout(() => {
+          this.selectedWinch = null;
+          let titleToPopOut = this.theTitle + " ";
+          titleToPopOut += winchTo === "wire" ? "לכבל" : "לשרשרת";
+          this.$emit("show-pop-out", titleToPopOut);
+        }, 200);
+        //
       }
     },
   },
@@ -476,8 +478,8 @@ export default {
   cursor: pointer;
 }
 
-.cls-8:focus {
-  fill: #8cd0ec;
+.cls-8.hovered {
+  fill: #8cd0ec !important; /* same as hover color */
 }
 
 .cls-9 {
