@@ -31,7 +31,7 @@
       @update-color-icon-home="updateColorHomeIcon"
     ></american-questions>
 
-    <winches v-if="indexOrder === 3" @show-tiny-board="showTinyBoard" :partInWinches="partInWinches"></winches>
+    <winches v-if="indexOrder === 3" @show-tiny-board="showTinyBoard" :partInWinches="partInWinches" @show-next-btn="showTheNextBtn"></winches>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -169,6 +169,9 @@ export default {
           } else if (this.partInWinches === 0) {
             this.partInWinches++;
             this.showNextBtn = false;
+          } else if(this.partInWinches === 1) {
+            this.indexOrder++;
+            this.$emit("change-sub-nav-num", true);
           }
          
           break;
@@ -213,6 +216,7 @@ export default {
           break;
         }
         case 4: {
+          //back to ques
           if (this.partInWinches === 0) {
             // this.nextFromAmericanQues = true;
             this.indexOrder--;
@@ -228,6 +232,11 @@ export default {
             this.partInWinches--;
             this.showNextBtn = true;
           }
+          break;
+        }
+        case 5: {
+          this.indexOrder--;
+            this.$emit("change-sub-nav-num", false);
           break;
         }
       }
@@ -321,6 +330,10 @@ export default {
 
     showTinyBoard() {
       this.isInWinches = true;
+      this.showNextBtn = true;
+    },
+
+    showTheNextBtn() {
       this.showNextBtn = true;
     }
   },

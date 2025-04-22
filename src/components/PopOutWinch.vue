@@ -1,38 +1,90 @@
 <template>
-  <div id="pop-out-winch">
+  <div :class="'part-' + part" id="pop-out-winch">
     <p @click="closeWindow" class="close-info">X</p>
 
     <p class="header">{{ title }}</p>
-    <p >{{ explainArr[indexTypes] }}</p>
-    <button v-if="showBackBtn" class="moving-btn back-btn">חזור</button>
-    <button v-if="showNextBtn" class="moving-btn next-btn">הבא</button>
+    <p>{{ explainArr[part][indexTypes] }}</p>
+    <p class="instraction" v-if="part === 1">- לחצו על הכרטיסיות -</p>
+
+    <container-part-winch
+      :indexInfoArr="indexInContainerPartWinch"
+      v-if="part === 1"
+      @finish-learning="finishLearning"
+    ></container-part-winch>
+
+    <button @click="prevPart" v-if="showBackBtn" class="moving-btn back-btn">
+      חזור
+    </button>
+    <button
+      @click="nextPart"
+      v-if="(indexTypes === 2 || indexTypes === 3) && showNextBtn"
+      class="moving-btn next-btn"
+    >
+      הבא
+    </button>
   </div>
 </template>
 
 <script>
+import ContainerPartWinch from "./ContainerPartWinch.vue";
 export default {
+  components: { ContainerPartWinch },
   name: "pop-out-winch",
   props: ["title", "indexTypes"],
   data() {
     return {
-        explainArr: [
-            'מופעלת באופן מכאני ומיועדת לכבל לב חבל',
-            'מופעלת באופן מכאני ומיועדת לשרשרת הרמה',
-            'מופעלת באמצעות מנוע חשמלי המיועד לשרשרת הרמה',
-            'מופעלת באמצעות מנוע חשמלי המיועד לכבל לב חבל',
+      explainArr: [
+        [
+          "מופעלת באופן מכאני ומיועדת לכבל לב חבל",
+          "מופעלת באופן מכאני ומיועדת לשרשרת הרמה",
+          "מופעלת באמצעות מנוע חשמלי המיועד לשרשרת הרמה",
+          "מופעלת באמצעות מנוע חשמלי המיועד לכבל לב חבל",
         ],
-        showNextBtn: false,
-        showBackBtn: false,
+        [
+          "",
+          "",
+          "ישנם מספר חלקים לכננת הרמה לשרשרת:",
+          "ישנם מספר חלקים בכננת החשמלית:",
+        ],
+      ],
+      showNextBtn: true,
+      showBackBtn: false,
+      part: 0,
+      indexInContainerPartWinch: 0,
+      colorCardsArr: [
+        ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
+        ["#F88C01", "#FFAF02", "#FFD169", "#8CD0EC", "#1E85AE"],
+      ],
     };
   },
   methods: {
     closeWindow() {
-        this.$emit('close-pop-out');
-    }
+      this.$emit("close-pop-out");
+      //check if finish learn btn
+      if (this.indexTypes === 0 || this.indexTypes === 1) {
+        this.finishLearning();
+      }
+    },
+    nextPart() {
+      this.showNextBtn = false;
+      this.showBackBtn = true;
+      this.part++;
+      if (this.indexTypes === 3) {
+        this.indexInContainerPartWinch = 1;
+      } else {
+        this.indexInContainerPartWinch = 0;
+      }
+    },
+    prevPart() {
+      this.showNextBtn = true;
+      this.showBackBtn = false;
+      this.part--;
+    },
+    finishLearning() {
+      this.$emit("finish-learning", this.indexTypes);
+    },
   },
-  computed: {
-   
-  },
+  computed: {},
 };
 </script>
 
@@ -50,10 +102,18 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: height 0.3s ease, width 0.3s ease;
+}
+
+.part-0 {
   height: 20rem;
   width: 30rem;
 }
 
+.part-1 {
+  height: 27rem;
+  width: 33rem;
+}
 .header {
   font-size: 2rem;
   font-weight: bold;
@@ -66,16 +126,16 @@ export default {
   font-size: 1.8rem;
   position: absolute;
   right: 1rem;
-  top:-1rem;
+  top: -1rem;
   /* z-index: 30; */
 }
 
 .moving-btn {
   z-index: 1;
   position: absolute;
-  bottom: 2rem;
-  width: 5rem;
-  height: 3rem;
+  bottom: 1rem;
+  width: 4rem;
+  height: 2rem;
   font-size: 1rem;
   background-color: #8cd0ec;
   border: none;
@@ -104,6 +164,15 @@ export default {
   right: 1rem;
 }
 
+.instraction {
+  font-size: 0.8rem;
+  margin-top: -0.8rem;
+  /* font-weight: bold; */
+}
+
+.card-1 {
+  background-color: ;
+}
 @media screen and (max-width: 700px) {
 }
 </style>

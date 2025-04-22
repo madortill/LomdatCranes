@@ -2,7 +2,7 @@
   <div id="winches">
     <p class="header">כננות</p>
     <p class="sub-title">{{ subTitle[partInWinches] }}</p>
-
+    <!-- first part -->
     <div class="definition-container" v-if="partInWinches === 0">
       <p class="text-in-btn">רגע מהי כננת?</p>
       <img
@@ -14,21 +14,33 @@
       />
       <img class="legs" src="/media/winchPage/legs.png" alt="legs" />
     </div>
-
+    <!-- second part -->
     <div v-if="partInWinches === 1">
       <p v-for="item in typesInfo" :key="item">{{ item }}</p>
 
-      <winch-sign-svg @show-pop-out="showPopOut" :side="'right'"></winch-sign-svg>
-      <winch-sign-svg @show-pop-out="showPopOut" :side="'left'"></winch-sign-svg>
+      <winch-sign-svg
+        @show-pop-out="showPopOut"
+        :side="'right'"
+      ></winch-sign-svg>
+      <winch-sign-svg
+        @show-pop-out="showPopOut"
+        :side="'left'"
+      ></winch-sign-svg>
 
-      <pop-out-winch @close-pop-out="closePopOut" v-if="ifShowPopOut" :title="titleToPopOut" :indexTypes="indexClickedTtype"></pop-out-winch>
+      <pop-out-winch
+        @finish-learning="finishBtnInSign"
+        @close-pop-out="closePopOut"
+        v-if="ifShowPopOut"
+        :title="titleToPopOut"
+        :indexTypes="indexClickedTtype"
+      ></pop-out-winch>
     </div>
   </div>
 </template>
 
 <script>
-import PopOutWinch from './PopOutWinch.vue';
-import WinchSignSvg from './WinchSignSvg.vue';
+import PopOutWinch from "./PopOutWinch.vue";
+import WinchSignSvg from "./WinchSignSvg.vue";
 export default {
   components: { WinchSignSvg, PopOutWinch },
   name: "winches",
@@ -41,9 +53,10 @@ export default {
         "כל אחת מהן יכולה להיות מופעלת בצורה מכאנית (ידנית) ובצורה חשמלית.",
       ],
       isClickedWinch: false,
-      titleToPopOut: '',
+      titleToPopOut: "",
       indexClickedTtype: -1,
       ifShowPopOut: false,
+      learnedInWinchSign: [false, false, false, false],
     };
   },
   methods: {
@@ -52,29 +65,43 @@ export default {
       this.isClickedWinch = true;
     },
     showPopOut(title) {
-        this.ifShowPopOut = true;
-        this.titleToPopOut = title;
-        switch(title) {
-            case 'כננת מכאנית לכבל': {
-                this.indexClickedTtype = 0;
-                break;
-            }
-            case 'כננת מכאנית לשרשרת': {
-                this.indexClickedTtype = 1;
-                break;
-            }
-            case 'כננת חשמלית לשרשרת': {
-                this.indexClickedTtype = 2;
-                break;
-            }
-            case 'כננת חשמלית לכבל': {
-                this.indexClickedTtype = 2;
-                break;
-            }
+      this.ifShowPopOut = true;
+      this.titleToPopOut = title;
+      switch (title) {
+        case "כננת מכאנית לכבל": {
+          this.indexClickedTtype = 0;
+          break;
         }
+        case "כננת מכאנית לשרשרת": {
+          this.indexClickedTtype = 1;
+          break;
+        }
+        case "כננת חשמלית לשרשרת": {
+          this.indexClickedTtype = 2;
+          break;
+        }
+        case "כננת חשמלית לכבל": {
+          this.indexClickedTtype = 3;
+          break;
+        }
+      }
     },
     closePopOut() {
-        this.ifShowPopOut = false;
+      this.ifShowPopOut = false;
+    },
+    finishBtnInSign(index) {
+      this.learnedInWinchSign[index] = true;
+      if(this.checksIfLearnedAllBtns()) {
+        this.$emit('show-next-btn');
+      }
+    },
+    checksIfLearnedAllBtns() {
+      for (let i = 0; i < this.learnedInWinchSign.length; i++) {
+        if(!this.learnedInWinchSign[i]) {
+          return false;
+        }
+      }
+      return true;
     },
   },
 };
