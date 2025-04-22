@@ -388,12 +388,12 @@ export default {
       if (!this.clickedOnBtnSign) {
         this.selectedWinch = winchTo;
         //
-        setTimeout(() => {
+        // setTimeout(() => {
           this.selectedWinch = null;
           let titleToPopOut = this.theTitle + " ";
           titleToPopOut += winchTo === "wire" ? "לכבל" : "לשרשרת";
           this.$emit("show-pop-out", titleToPopOut);
-        }, 200);
+        // }, 200);
         //
       }
     },
