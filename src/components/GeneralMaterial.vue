@@ -44,6 +44,8 @@
       :learnedInWinchSign="learnedInWinchSign"
     ></winches>
 
+    <crane-components v-if="indexOrder === 4"></crane-components>
+
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
@@ -51,13 +53,14 @@
 
 <script>
 import AmericanQuestions from "./AmericanQuestions.vue";
+import CraneComponents from './CraneComponents.vue';
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import TypesOfCranes from "./TypesOfCranes.vue";
 import Winches from "./Winches.vue";
 export default {
   name: "general-material",
 
-  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions, Winches },
+  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions, Winches, CraneComponents },
   props: [
     "chosenCourse",
     "navbarSubjNum",
@@ -193,6 +196,7 @@ export default {
           } else if (this.partInWinches === 1) {
             this.indexOrder++;
             this.$emit("change-sub-nav-num", true);
+            
           }
 
           break;
