@@ -268,9 +268,9 @@ export default {
   }
 
   .in-winches {
-    height: 30.3rem;
-    margin-left: -13rem;
-  }
+    height: 25rem;
+    bottom: 12.8rem;
+    }
 
   @keyframes tossAnimation {
   0% {
