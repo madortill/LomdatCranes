@@ -34,6 +34,7 @@ export default {
     grid-template-rows: 20% 20% 20% 20% 20%;
     align-items: center;
     overflow: hidden;
+    /* background-color: #e0f2f4; */
   }
   
   /* Define the animation to move clouds from right to left */
@@ -93,5 +94,10 @@ export default {
     grid-row-start: 5;
     animation: moveClouds 40s linear infinite; /* Move cloud5 */
   }
+  @media screen and (max-width: 600px) {
+    #clouds-bg {
+    /* height: 91vh; */
+  }
+}
   </style>
   

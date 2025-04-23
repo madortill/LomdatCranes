@@ -110,6 +110,7 @@ export default {
   display: flex;
   justify-content: center;
   position: absolute;
+  font-size: 1rem;
 }
 
 .phone-navbar {

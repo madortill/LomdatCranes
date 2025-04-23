@@ -84,12 +84,12 @@
   <style scoped>
   #safety-rules {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     height: 16rem;
-    width: 100%;
-    /* margin-top: -2rem; */
+    width: 50rem;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
   
   .flip-card {
@@ -166,8 +166,39 @@
 
   @media screen and (max-width: 700px){
     #safety-rules {
-      height: 24rem;
+      height: 25rem;
+      display: flex;
+    /* width: 50rem; */
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
     }
+
+    .textBack {
+    padding: 3%;
+    font-size: 1rem;
+  }
+
+  .flip-card-front {
+    border-radius: 1rem;
+  }
+  
+  .flip-card-back {
+    border-radius: 1rem;
+  }
+
+  .flip-card {
+    background-color: transparent;
+    width: 11rem;
+    height: 11rem;
+    margin: 0.4rem;
+  }
+
+  .imgFront {
+    width: 6rem;
+  }
+  
+  
   }
   </style>
   

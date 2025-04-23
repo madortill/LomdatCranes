@@ -113,7 +113,7 @@ body {
   text-align: center;
   background-color: #e0f2f4;
   /* display: grid; */
-  /* font-size: 1rem; */
+  font-size: 1.2rem;
 }
 
 .bahadSymbol {

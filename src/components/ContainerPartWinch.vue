@@ -116,7 +116,7 @@ export default {
   /* margin: auto; */
   cursor: pointer;
   /* border: none; */
-  width: 6rem;
+  width: 6.4rem;
   color: #ffffff;
   border-radius: 1rem;
   display: flex;
@@ -143,6 +143,7 @@ export default {
 
 .info {
   margin-top: 0rem;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 700px) {

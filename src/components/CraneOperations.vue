@@ -125,7 +125,8 @@ li::before {
 }
 
 .the-info {
-  width: 18rem;
+  width: 17rem;
+  margin: 1rem;
 }
 
 .header {
@@ -144,7 +145,7 @@ li::before {
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 }
 
 .bubble-container {
@@ -269,7 +270,7 @@ li::before {
   width: 10rem;
   border: none;
   border-top: 0.2rem solid black; /* Adjust the thickness of the line */
-  margin-bottom: 7rem;
+  margin-bottom: 4rem;
 }
 
 .fix-position {

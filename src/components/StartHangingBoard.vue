@@ -31,14 +31,14 @@
         <img src="/media/checkMark.png" alt="icon" class="check-mark-icon"/>
       </div>
     </div>
-    <div v-if="partNum === 1 || partNum === 3 || showSelection">
+    <div :class="partNum === 1 ? 'add-margin' : ''" v-if="partNum === 1 || partNum === 3 || showSelection">
       <img
         v-if="partNum === 1 && !showSelection"
         src="/media/twoWires.png"
         alt="wire"
         class="twoWires"
       />
-      <div class="mini-board">{{ arrYellowSign[indexYellowSign] }}</div>
+      <div class="mini-board" :class="partNum === 3 || showSelection ? 'regular-margin' : 'fix-margin'">{{ arrYellowSign[indexYellowSign] }}</div>
     </div>
   </div>
 </template>
@@ -180,16 +180,29 @@ export default {
   z-index: 2;
   width: 9rem;
   height: 1rem;
+  margin-top: -0.6rem;
+
 }
 
 .mini-board {
   color: #023047;
   background-color: #ffb703;
   padding: 1rem;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   border-radius: 0.7rem;
   z-index: 2;
-  margin-top: -0.2rem;
+}
+
+.fix-margin {
+  margin-top: -0.6rem;
+}
+
+.regular-margin {
+  margin-top: 0rem;
+}
+
+.add-margin {
+  margin-top: -0.3rem;
 }
 
 .up {
