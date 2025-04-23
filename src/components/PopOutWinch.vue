@@ -117,7 +117,7 @@ export default {
 }
 
 .part-1 {
-  height: 27rem;
+  height: 28rem;
   width: 33rem;
 }
 .header {

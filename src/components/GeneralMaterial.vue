@@ -211,7 +211,6 @@ export default {
           this.$emit("change-sub-nav-num", false);
           this.reversedFlipInfoHangingBoard();
           this.showNextBtn = true;
-
           break;
         }
         case 3: {
@@ -233,6 +232,7 @@ export default {
             this.$emit("change-sub-nav-num", false);
             this.indexOrder--;
             this.showNextBtn = true;
+
           }
           break;
         }
@@ -245,7 +245,7 @@ export default {
             this.updateColorHomeIcon("none");
             this.showBackBtn = false;
             this.showNextBtn = true;
-            // this.isInWinches = false;
+            this.isInWinches = false;
           } else {
             this.partInWinches--;
             this.showNextBtn = true;
