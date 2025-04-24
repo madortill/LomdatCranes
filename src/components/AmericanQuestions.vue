@@ -215,7 +215,7 @@ export default {
   margin: auto;
   cursor: pointer;
   border: none;
-  width: 11rem;
+  width: 10rem;
   height: 6.5rem;
   font-size: 1.4rem;
   color: #ffffff;

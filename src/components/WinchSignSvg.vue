@@ -591,7 +591,7 @@ export default {
   }
 
   #Layer_2 {
-    width: 25rem;
+    width: 24rem;
     height: 28rem;
     bottom: 0rem;
   }
