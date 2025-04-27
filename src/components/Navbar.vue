@@ -117,6 +117,7 @@ export default {
   display: none;
   width: 100vw;
   height: 4.2rem;
+  z-index: 2;
 }
 
 .the-stripe-topic {

@@ -196,7 +196,7 @@ export default {
           } else if (this.partInWinches === 1) {
             this.indexOrder++;
             this.$emit("change-sub-nav-num", true);
-            
+            this.showNextBtn = false;
           }
 
           break;
@@ -259,6 +259,7 @@ export default {
         case 5: {
           this.indexOrder--;
           this.$emit("change-sub-nav-num", false);
+          this.showNextBtn = true;
           break;
         }
       }
