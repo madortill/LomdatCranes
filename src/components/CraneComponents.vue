@@ -182,8 +182,8 @@ transform: translateX(-50%);
   @media screen and (max-width: 600px) {
     .with-zoom {
     width: 32rem;
-    /* margin-top: -140rem; */
-    /* margin-right: 120rem; */
+    margin-top: 0rem;
+    margin-left: 0rem;
   }
   }
 }
