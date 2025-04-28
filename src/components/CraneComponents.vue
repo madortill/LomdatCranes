@@ -188,11 +188,11 @@ export default {
       width: 260rem;
       margin-top: 0rem;
       margin-left: 0rem;
-      position: relative;
+      /* position: relative; */
     }
-    #crane-components.with-zoom {
-    position: relative;
-  }
+    #crane-components {
+  overflow: visible;  /* מאפשר להרחיב את התמונה מחוץ למסך */
+}
   }
 }
 </style>
