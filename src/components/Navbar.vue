@@ -184,12 +184,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 }
 
 .pop-out-menu {
   width: 30rem;
   height: 80vh;
-  z-index: 2;
+  z-index: 3;
   right: -7rem;
   top: -5rem;
   transition: all 1s;

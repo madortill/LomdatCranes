@@ -178,5 +178,25 @@ export default {
 
 
 @media screen and (max-width: 700px) {
+  .part-0 {
+  width: 28rem;
+}
+
+.part-1 {
+  height: 27.5rem;
+  width: 30rem;
+}
+
+.part-of-winch {
+  width: 5.6rem;
+}
+
+.header {
+    margin-bottom: 0.5rem;
+}
+
+.height-after-click{
+    height: 13rem;
+}
 }
 </style>
