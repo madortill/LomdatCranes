@@ -1,6 +1,8 @@
 <template>
   <div id="crane-components">
-    <p class="header fix-header" :class="showZoom? 'fade-out-animation' : ''">מרכיבים בעגורן</p>
+    <p class="header fix-header" :class="showZoom ? 'fade-out-animation' : ''">
+      מרכיבים בעגורן
+    </p>
     <object
       :class="showZoom ? 'with-zoom' : ''"
       class="img-crane"
@@ -8,8 +10,12 @@
       :data="craneUrl"
     ></object>
 
-    <div class="info-container" :class="showInfo? 'fade-in-animation' : ''" :style="{ '--bg-color': arrBgColors[numPart] }">
-      <p class="header" >{{ arrInfo[numPart][0] }}</p>
+    <div
+      class="info-container"
+      :class="showInfo ? 'fade-in-animation' : ''"
+      :style="{ '--bg-color': arrBgColors[numPart] }"
+    >
+      <p class="header">{{ arrInfo[numPart][0] }}</p>
       <p>{{ arrInfo[numPart][1] }}</p>
       <p class="moving-btn">הבנתי!</p>
     </div>
@@ -23,10 +29,14 @@ export default {
     return {
       showZoom: false,
       numPart: 0,
-      arrBgColors: ['#E6BC4D','#F78C1E', '#2085AE'],
+      arrBgColors: ["#E6BC4D", "#F78C1E", "#2085AE"],
       arrInfo: [
-        ['מפסקי גבול', 'לכל כננת חשמלית בעגורן יש מפסק גבול, המפסיק את פעולות המנוע בדיוק לפני סוף המהלך. תפקידו של המפסק למנוע נזק לעגורן או לציוד הסובב אותו. מפסק גבול נוסף שתפקידו להאט את מהירות הכננת כאשר הוא קרוב לסופה של קורה.'],
-         [], []
+        [
+          "מפסקי גבול",
+          "לכל כננת חשמלית בעגורן יש מפסק גבול, המפסיק את פעולות המנוע בדיוק לפני סוף המהלך. תפקידו של המפסק למנוע נזק לעגורן או לציוד הסובב אותו. מפסק גבול נוסף שתפקידו להאט את מהירות הכננת כאשר הוא קרוב לסופה של קורה.",
+        ],
+        [],
+        [],
       ],
       showInfo: false,
     };
@@ -42,12 +52,10 @@ export default {
   computed: {
     craneUrl() {
       const baseUrl = import.meta.env.BASE_URL; // Get the correct base URL
-     console.log(baseUrl);
-           return `${baseUrl}media/theCraneInCraneComponents.svg`;
-           
-      }
+      console.log(baseUrl);
+      return `${baseUrl}media/theCraneInCraneComponents.svg`;
     },
-  
+  },
 };
 </script>
 
@@ -61,15 +69,16 @@ export default {
   flex-direction: column;
   position: relative;
   z-index: -1;
-  overflow: hidden ;  
+  /* overflow: hidden; */
 }
 
 .img-crane {
   width: 30rem; /* Set the initial size */
   margin-bottom: -1rem;
-  position: relative;  /* Add position to make z-index work */
-  transition: transform 3s ease-in, width 3s ease-in, margin-top 3s ease-in, margin-left 3s ease-in;
-  z-index: -1;  /* Ensure z-index is applied */
+  position: relative; /* Add position to make z-index work */
+  transition: transform 3s ease-in, width 3s ease-in, margin-top 3s ease-in,
+    margin-left 3s ease-in;
+  z-index: -1; /* Ensure z-index is applied */
 }
 
 .with-zoom {
@@ -106,7 +115,7 @@ export default {
   position: absolute;
   background-color: var(--bg-color);
   width: 41rem;
-  left:50%;
+  left: 50%;
   transform: translateX(-43.7%);
   height: 23.2rem;
   top: 14.3rem;
@@ -123,7 +132,6 @@ export default {
   }
   100% {
     opacity: 1;
-   
   }
 }
 
@@ -131,8 +139,8 @@ export default {
   z-index: 1;
   position: absolute;
   bottom: 1rem;
-left: 50%;
-transform: translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
   width: 5rem;
   height: 3rem;
   font-size: 1rem;
@@ -158,32 +166,31 @@ transform: translateX(-50%);
     height: 91vh;
   }
   .with-zoom {
-  width: 260rem; /* Adjust width for zoom effect */
-  margin-top: -156rem;
-  margin-left: 179rem;
-  /* position: relative; */
-}
+    width: 260rem; /* Adjust width for zoom effect */
+    margin-top: -156rem;
+    margin-left: 179rem;
+    /* position: relative; */
+  }
 
-.info-container {
+  .info-container {
     width: 30rem;
     height: 21.8rem;
     top: 21.3rem;
     transform: translateX(-50%);
+  }
 }
-}
-
-
 
 @supports (-webkit-touch-callout: none) {
   /* זיהוי של מכשירי iOS */
 
- 
-
   @media screen and (max-width: 600px) {
     .with-zoom {
-    width: 260rem;
-    margin-top: 0rem;
-    margin-left: 0rem;
+      width: 260rem;
+      margin-top: 0rem;
+      margin-left: 0rem;
+      position: relative;
+    }
+    #crane-components.with-zoom {
     position: relative;
   }
   }
