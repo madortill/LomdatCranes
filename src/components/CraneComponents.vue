@@ -181,9 +181,9 @@ transform: translateX(-50%);
 
   @media screen and (max-width: 600px) {
     .with-zoom {
-    width: 60rem;
+    width: 40rem;
     /* margin-top: -140rem; */
-    margin-right: 120rem;
+    /* margin-right: 120rem; */
   }
   }
 }
