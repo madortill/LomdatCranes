@@ -183,7 +183,7 @@ transform: translateX(-50%);
     .with-zoom {
     width: 60rem;
     /* margin-top: -140rem; */
-    margin-left: 100rem;
+    margin-right: 20rem;
   }
   }
 }
