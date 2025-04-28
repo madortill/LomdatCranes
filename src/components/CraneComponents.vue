@@ -184,6 +184,7 @@ transform: translateX(-50%);
     width: 260rem;
     margin-top: 0rem;
     margin-left: 0rem;
+    position: relative;
   }
   }
 }
