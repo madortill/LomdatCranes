@@ -127,8 +127,8 @@ export default {
   /* position: relative; */
 }
 
-.info-container[data-v-8919b4a5] {
-    width: 34.1rem;
+.info-container {
+    width: 30rem;
     height: 21.8rem;
     top: 21.3rem;
     transform: translateX(-50%);
