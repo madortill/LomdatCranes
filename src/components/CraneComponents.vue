@@ -5,7 +5,7 @@
       :class="showZoom ? 'with-zoom' : ''"
       class="img-crane"
       type="image/svg+xml"
-      data="/LomdatCranes/media/theCraneInCraneComponents.svg"
+      :data="craneUrl"
     ></object>
 
     <div class="info-container" :class="showInfo? 'fade-in-animation' : ''" :style="{ '--bg-color': arrBgColors[numPart] }">
@@ -41,7 +41,7 @@ export default {
   computed: {
     craneUrl() {
       const baseUrl = import.meta.env.BASE_URL; // Get the correct base URL
-     
+     console.log(baseUrl);
            return `${baseUrl}media/theCraneInCraneComponents.svg`;
            
       }
