@@ -117,8 +117,6 @@ export default {
   display: none;
   width: 100vw;
   height: 80vh;
-  z-index: 2;
-  pointer-events: none;
 }
 
 .the-stripe-topic {
@@ -130,6 +128,8 @@ export default {
   font-weight: bold;
   align-items: center;
   height: 4.2rem;
+  z-index: 2;
+  position: relative;
 }
 
 .computer-navbar {
