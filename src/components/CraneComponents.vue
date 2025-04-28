@@ -11,6 +11,7 @@
     <div class="info-container" :class="showInfo? 'fade-in-animation' : ''" :style="{ '--bg-color': arrBgColors[numPart] }">
       <p class="header" >{{ arrInfo[numPart][0] }}</p>
       <p>{{ arrInfo[numPart][1] }}</p>
+      <p class="moving-btn">הבנתי!</p>
     </div>
   </div>
 </template>
@@ -125,6 +126,33 @@ export default {
    
   }
 }
+
+.moving-btn {
+  z-index: 1;
+  position: absolute;
+  bottom: 1rem;
+left: 50%;
+transform: translateX(-50%);
+  width: 5rem;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: var(--moving-btn-color);
+  border-radius: 1.5rem;
+  padding: 0; /* Remove padding to ensure centering works properly */
+  /* Centering the text */
+  display: flex;
+  justify-content: center; /* Horizontally centers the text */
+  align-items: center; /* Vertically centers the text */
+  text-align: center; /* Ensures the text is centered if multiline */
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.moving-btn:hover {
+  background-color: #023047;
+  color: white;
+}
+
 @media screen and (max-width: 600px) {
   #crane-components {
     height: 91vh;
@@ -142,5 +170,29 @@ export default {
     top: 21.3rem;
     transform: translateX(-50%);
 }
+}
+
+
+
+@supports (-webkit-touch-callout: none) {
+  /* זיהוי של מכשירי iOS */
+
+  .with-zoom {
+    width: 230rem;
+    margin-top: -140rem;
+    margin-left: 165rem;
+  }
+
+  @media screen and (max-width: 600px) {
+    .with-zoom {
+      width: 210rem;
+      margin-top: -130rem;
+      margin-left: 160rem;
+    }
+
+    .info-container {
+      top: 19rem;
+    }
+  }
 }
 </style>
