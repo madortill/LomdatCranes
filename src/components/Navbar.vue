@@ -116,7 +116,7 @@ export default {
 .phone-navbar {
   display: none;
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   z-index: 2;
 }
 
