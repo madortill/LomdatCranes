@@ -116,7 +116,7 @@ export default {
 .phone-navbar {
   display: none;
   width: 100vw;
-  height: 4.2rem;
+  height: 100vh;
   z-index: 2;
 }
 
@@ -124,11 +124,11 @@ export default {
   display: flex;
   background-color: #023047;
   width: 100%;
-  height: 100%;
   color: white;
   font-size: 1.8rem;
   font-weight: bold;
   align-items: center;
+  height: 4.2rem;
 }
 
 .computer-navbar {
