@@ -177,22 +177,14 @@ transform: translateX(-50%);
 @supports (-webkit-touch-callout: none) {
   /* זיהוי של מכשירי iOS */
 
-  .with-zoom {
-    width: 230rem;
-    margin-top: -140rem;
-    margin-left: 165rem;
-  }
+ 
 
   @media screen and (max-width: 600px) {
     .with-zoom {
-      width: 210rem;
-      margin-top: -130rem;
-      margin-left: 160rem;
-    }
-
-    .info-container {
-      top: 19rem;
-    }
+    width: 60rem;
+    /* margin-top: -140rem; */
+    /* margin-left: 165rem; */
+  }
   }
 }
 </style>
