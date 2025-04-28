@@ -15,12 +15,13 @@
     ></object>
 
     <div
-      class="info-container" v-if="numPart < 3"
+      class="info-container"
+      v-if="numPart < 3"
       :class="{
         'fade-in-animation': showInfo,
         'fade-out-animation': showFadeOutInfo,
         'info-in-yellow': numPart === 0,
-        'info-in-orange': numPart === 1 ,
+        'info-in-orange': numPart === 1,
         'info-in-blue': numPart === 2,
       }"
       :style="{ '--bg-color': arrBgColors[numPart] }"
@@ -29,14 +30,14 @@
       <p>{{ arrInfo[numPart][1] }}</p>
       <p class="moving-btn" @click="nextPart">הבנתי!</p>
     </div>
-    <p v-if="finishLearning" class="again" @click="startOver"> שוב !</p>
+    <p v-if="finishLearning" class="again" @click="startOver">שוב !</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "crane-components",
-    props: ['finishLearning'],
+  props: ["finishLearning"],
   data() {
     return {
       showZoom: false,
@@ -51,11 +52,13 @@ export default {
           "מפסקי זרם",
           "מפסק זרם הוא רכיב אשר מאפשר ניתוק של חשמל. בכל סדנא נמצא מפסק זרם ראשי  שתפקידו להפסיק את הזרם החשמלי בעת סכנה או פגיעה. מפסק זרם לעגורן: בעגורן נמצא מפסק זרם להדלקה וכיבוי המנוף. בכל סיום פעולה יש לנתק את המנוף על ידי המפסק. פטריית חירום: ממוקמת על השלט, מיועדת להפסקת הזרם במקרה חירום בעזרת לחיצה. בסיבוב הפטרייה לצד ימין יפתח הזרם החשמלי לתחילת או המשך עבודה.",
         ],
-        ["תאים פוטואלקטריים", "  חיישני אור (לייזרים), אשר תפקידם הוא זיהוי ובקרה. התאים בנויים בצורה שבתוכם יש חומר שמוליך זרם חשמלי רק כאשר פוגע בו אור. בעגורנים העיליים מותקנים תאים פוטואלקטריים כאשר: קיימים שני עגורנים על אותו מסלול, לעגורן יש תחנות קבועות (לדוגמה: בפסי יצור של מפעלים שונים)."],
+        [
+          "תאים פוטואלקטריים",
+          "  חיישני אור (לייזרים), אשר תפקידם הוא זיהוי ובקרה. התאים בנויים בצורה שבתוכם יש חומר שמוליך זרם חשמלי רק כאשר פוגע בו אור. בעגורנים העיליים מותקנים תאים פוטואלקטריים כאשר: קיימים שני עגורנים על אותו מסלול, לעגורן יש תחנות קבועות (לדוגמה: בפסי יצור של מפעלים שונים).",
+        ],
       ],
       showInfo: false,
       showFadeOutInfo: false,
-      // finishLearning: false,
     };
   },
   methods: {
@@ -65,9 +68,9 @@ export default {
       if (this.numPart === 2) {
         this.numPart++;
         this.showZoom = false;
-        setTimeout(()=> {
-          this.$emit('show-next-btn');
-          this.$emit('update-finish-learning', true);
+        setTimeout(() => {
+          this.$emit("show-next-btn");
+          this.$emit("update-finish-learning", true);
         }, 1000);
       } else {
         setTimeout(() => {
@@ -81,25 +84,23 @@ export default {
     },
     startOver() {
       this.numPart = 0;
-      this.showFadeOutInfo= false;
-      this.$emit('update-finish-learning', false);
+      this.showFadeOutInfo = false;
+      this.$emit("update-finish-learning", false);
       this.showZoom = true;
       setTimeout(() => {
         this.showInfo = true;
       }, 3000);
     },
-
   },
   mounted() {
-    if(!this.finishLearning) {
+    if (!this.finishLearning) {
       setTimeout(() => {
-      this.showZoom = true;
-      setTimeout(() => {
-        this.showInfo = true;
-      }, 3000);
-    }, 1000); // The zoom effect is triggered after 700ms
+        this.showZoom = true;
+        setTimeout(() => {
+          this.showInfo = true;
+        }, 3000);
+      }, 1000); // The zoom effect is triggered after 700ms
     }
-    
   },
   computed: {
     craneUrl() {
@@ -155,7 +156,7 @@ export default {
   margin-bottom: -1rem;
   margin-top: 0rem;
   transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
-  margin-left 1s ease-in;
+    margin-left 1s ease-in;
 }
 
 .with-zoom {
@@ -288,36 +289,35 @@ export default {
     margin-left: 165rem;
   }
   .to-blue-zoom {
-  margin-top: -140rem;
-  margin-left: 106.5rem;
-
-}
+    margin-top: -140rem;
+    margin-left: 106.5rem;
+  }
 
   .info-in-yellow {
     width: 30rem;
     height: 21.8rem;
     top: 21.3rem;
     transform: translateX(-50%);
-}
+  }
 
-.info-in-orange {
-  width: 32.5rem;
-  transform: translateX(-50%);
-  height: 26.5rem;
-  top: 18.7rem;
-}
+  .info-in-orange {
+    width: 32.5rem;
+    transform: translateX(-50%);
+    height: 26.5rem;
+    top: 18.7rem;
+  }
 
-.info-in-blue {
-  width: 21.7rem;
-  height: 43rem;
-  top: 13.8rem;
-}
+  .info-in-blue {
+    width: 21.7rem;
+    height: 43rem;
+    top: 13.8rem;
+  }
 
-.again {
-  top: 22rem;
-  left: 20%;
-  transform: rotate(-20deg), translateX(-50%);
-}
+  .again {
+    top: 22rem;
+    left: 20%;
+    transform: rotate(-20deg), translateX(-50%);
+  }
 }
 
 @supports (-webkit-touch-callout: none) {

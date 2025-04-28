@@ -12,7 +12,7 @@
       'the-placement': !inWinches,
     }"
   >
-    <!-- <img class="board" src="/media/infoHangingBoard.png" alt="infoHangingBoard"/> -->
+  <!-- about definition and safetyrules -->
     <div class="add-flex" v-if="!inWinches">
       <div class="info-container">
         <p class="header">{{ theInfo[sectionHangingBoard][0] }}</p>
@@ -45,7 +45,7 @@
         @showNextBtn="showNextBtnSafetyRules"
       ></safety-rules>
     </div>
-
+<!-- about winches -->
     <p class="info-in-winches" v-if="inWinches">
       מכשיר המיועד להזיז משאות כבדים באמצעות חבל הנכרך על גבי ציר
     </p>
