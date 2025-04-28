@@ -44,7 +44,7 @@
       :learnedInWinchSign="learnedInWinchSign"
     ></winches>
 
-    <crane-components v-if="indexOrder === 4"></crane-components>
+    <crane-components v-if="indexOrder === 4" @show-next-btn="showNextBtnFromComponents" :finishLearning="finishLearningComponents" @update-finish-learning="updateFinishLearningComponents"></crane-components>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -101,6 +101,8 @@ export default {
       partInWinches: 0,
       learnedInWinchSign: [false, false, false, false],
       // isClickedWinchImg: false,
+      //about craneComponents
+      finishLearningComponents: false,
     };
   },
   methods: {
@@ -196,7 +198,9 @@ export default {
           } else if (this.partInWinches === 1) {
             this.indexOrder++;
             this.$emit("change-sub-nav-num", true);
-            this.showNextBtn = false;
+            if(!this.finishLearningComponents) {
+              this.showNextBtn = false;
+            }
           }
 
           break;
@@ -370,6 +374,13 @@ export default {
       }
       return true;
     },
+    showNextBtnFromComponents() {
+      this.showNextBtn  = true;
+    },
+
+    updateFinishLearningComponents(isFinished) {
+      this.finishLearningComponents = isFinished;
+    }
   },
 };
 </script>
