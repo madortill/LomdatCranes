@@ -5,7 +5,7 @@
       :class="showZoom ? 'with-zoom' : ''"
       class="img-crane"
       type="image/svg+xml"
-      data="/media/theCraneInCraneComponents.svg"
+      data="/LomdatCranes/media/theCraneInCraneComponents.svg"
     ></object>
 
     <div class="info-container" :class="showInfo? 'fade-in-animation' : ''" :style="{ '--bg-color': arrBgColors[numPart] }">
@@ -38,6 +38,15 @@ export default {
       }, 3000);
     }, 1000); // The zoom effect is triggered after 700ms
   },
+  computed: {
+    craneUrl() {
+      const baseUrl = import.meta.env.BASE_URL; // Get the correct base URL
+     
+           return `${baseUrl}media/theCraneInCraneComponents.svg`;
+           
+      }
+    },
+  
 };
 </script>
 
