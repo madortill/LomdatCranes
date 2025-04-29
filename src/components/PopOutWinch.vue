@@ -52,10 +52,10 @@ export default {
       showCloseBtn: false,
       part: 0,
       indexInContainerPartWinch: 0,
-      colorCardsArr: [
-        ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
-        ["#F88C01", "#FFAF02", "#FFD169", "#8CD0EC", "#1E85AE"],
-      ],
+      // colorCardsArr: [
+      //   ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
+      //   ["#F88C01", "#FFAF02", "#FFD169", "#8CD0EC", "#1E85AE"],
+      // ],
     };
   },
   methods: {

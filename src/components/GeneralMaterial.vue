@@ -3,7 +3,7 @@
     <info-hanging-board
       v-if="
         indexOrder === 0 ||
-        (indexOrder === 3 && isInWinches && partInWinches === 0)
+        (indexOrder === 3 && isInWinches && partInWinches === 0) || indexOrder === 5 || indexOrder === 6
       "
       :sectionHangingBoard="infoHangingBoardPart"
       :chosenCourse="chosenCourse"
@@ -95,12 +95,10 @@ export default {
       showBackBtn: true,
       movingBtnColor: "#8cd0ec",
       questionMarkClicked: false,
-      // nextFromAmericanQues: true,
       //about winch componnent
       isInWinches: false,
       partInWinches: 0,
       learnedInWinchSign: [false, false, false, false],
-      // isClickedWinchImg: false,
       //about craneComponents
       finishLearningComponents: false,
     };
@@ -202,7 +200,25 @@ export default {
               this.showNextBtn = false;
             }
           }
-
+          break;
+        }
+        case 5 : {
+          this.$emit("change-sub-nav-num", true);
+          this.indexOrder++;
+          //to show the right part in infoHangingBoard
+          this.flipEndSaftyRules = true;
+        this.flipStart = false;
+        this.flipHook = true;
+          this.infoHangingBoardPart++;
+          this.isInWinches = false;
+          break;
+        }
+        case 6 : {
+          this.$emit("change-sub-nav-num", true);
+          this.indexOrder++;
+          //to show the right part in infoHangingBoard
+          
+          this.firstFlipInfoHangingBoard();
           break;
         }
       }
@@ -264,6 +280,22 @@ export default {
           this.indexOrder--;
           this.$emit("change-sub-nav-num", false);
           this.showNextBtn = true;
+          break;
+        }
+        case 6: {
+          this.$emit("change-sub-nav-num", false);
+          this.indexOrder--;
+          //to show the right part in infoHangingBoard 
+          this.infoHangingBoardPart--;
+          this.isInWinches = true;
+          break;
+        }
+        case 7 : {
+          this.$emit("change-sub-nav-num", false);
+          this.indexOrder--;
+          //to show the right part in infoHangingBoard
+          // this.infoHangingBoardPart--;
+           this.reversedFlipInfoHangingBoard();
           break;
         }
       }

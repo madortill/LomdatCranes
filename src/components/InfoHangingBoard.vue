@@ -12,8 +12,13 @@
       'the-placement': !inWinches,
     }"
   >
-  <!-- about definition and safetyrules -->
-    <div class="add-flex" v-if="!inWinches">
+    <!-- about definition and safetyrules -->
+    <div
+      class="add-flex"
+      v-if="
+        !inWinches && sectionHangingBoard !== 2 && sectionHangingBoard !== 3
+      "
+    >
       <div class="info-container">
         <p class="header">{{ theInfo[sectionHangingBoard][0] }}</p>
         <p
@@ -45,17 +50,47 @@
         @showNextBtn="showNextBtnSafetyRules"
       ></safety-rules>
     </div>
-<!-- about winches -->
+    <!-- about winches -->
     <p class="info-in-winches" v-if="inWinches">
       מכשיר המיועד להזיז משאות כבדים באמצעות חבל הנכרך על גבי ציר
     </p>
+    <!-- about potentialAdditions -->
+    <div
+      class="info-container"
+      v-if="sectionHangingBoard === 2 || sectionHangingBoard === 3"
+    >
+      <p class="header">{{ theInfo[sectionHangingBoard][0] }}</p>
+      <!-- <div v-if="sectionHangingBoard === 2"> -->
+      <potential-additions
+        v-if="sectionHangingBoard === 2"
+      ></potential-additions>
+      <p class="asterisk" v-if="sectionHangingBoard === 2">
+        * לא בכל עגורן מצויה תוספת
+      </p>
+      <!-- </div> -->
+      <div class="electrical-system-container" v-if="sectionHangingBoard === 3">
+        <p>
+          {{ theInfo[sectionHangingBoard][1] }}
+        </p>
+        <div class="item-container">
+          <div
+            v-for="(item, index) in titlesInElectricalSystemArr"
+            :key="index"
+          >
+            <img class="icon" alt="icon" :src="'/media/iconsElectricalSystem/icon' + index + '.png'" />
+            <p>{{ item }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import PotentialAdditions from "./PotentialAdditions.vue";
 import SafetyRules from "./SafetyRules.vue";
 export default {
-  components: { SafetyRules },
+  components: { SafetyRules, PotentialAdditions },
   name: "info-hanging-board",
   props: [
     "sectionHangingBoard",
@@ -79,7 +114,10 @@ export default {
           "כללי בטיחות",
           "ישנם מספר כללי בטיחות אותם יש לבדוק לפני שניגש לביצוע עבודה עם המנוף:",
         ],
+        ["תוספות פוטנציאליות בעגורנים"],
+        ["מערכת החשמל בעגורנים", "אחראית על 3 מערכות עיקריות:"],
       ],
+      titlesInElectricalSystemArr: ["הסעה", "פיקוד", "חשמל"],
     };
   },
   methods: {
@@ -140,7 +178,7 @@ export default {
   }
   100% {
     transform: rotate(0deg);
-    margin-left:-17rem;
+    margin-left: -17rem;
   }
 }
 
@@ -189,7 +227,8 @@ export default {
 .info-container {
   margin-top: 10rem;
   color: white;
-  width: 35rem;
+  /* width: 35rem; */
+  width: 50rem;
   font-size: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -221,8 +260,22 @@ export default {
   padding: 1rem;
 }
 
+.asterisk {
+  font-weight: bold;
+  position: relative;
+  left: 17rem;
+}
 
+.item-container {
+  width: 100%;
+  display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
 
+.electrical-system-container {
+  width: 100%;
+}
 @media screen and (max-width: 700px) {
   .the-placement {
     width: 26rem;
@@ -249,6 +302,11 @@ export default {
 
   .info-container {
     margin-top: 5.9rem;
+    width: 26rem;
+  }
+
+  .asterisk {
+    left: 5rem;
   }
 
   .computer-notice {
@@ -270,33 +328,37 @@ export default {
   .in-winches {
     height: 25rem;
     bottom: 12.8rem;
-    }
+  }
 
   @keyframes tossAnimation {
-  0% {
-    transform: rotate(0deg);
-    margin-left: -13rem;
+    0% {
+      transform: rotate(0deg);
+      margin-left: -13rem;
+    }
+    25% {
+      transform: rotate(-1deg);
+      margin-left: -11rem;
+    }
+    50% {
+      transform: rotate(0deg);
+      margin-left: -13rem;
+    }
+    75% {
+      transform: rotate(1deg);
+      margin-left: -15rem;
+    }
+    100% {
+      transform: rotate(0deg);
+      margin-left: -13rem;
+    }
   }
-  25% {
-    transform: rotate(-1deg);
-    margin-left: -11rem;
-  }
-  50% {
-    transform: rotate(0deg);
-    margin-left: -13rem;
-  }
-  75% {
-    transform: rotate(1deg);
-    margin-left: -15rem;
-  }
-  100% {
-    transform: rotate(0deg);
-    margin-left:-13rem;
-  }
-}
 
   .info-in-winches {
     font-size: 1.3rem;
+  }
+
+  .icon {
+    width: 8rem;
   }
 }
 </style>
