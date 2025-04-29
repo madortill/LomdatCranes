@@ -1,6 +1,7 @@
 <template>
     <div id="clouds-btns">
         <img v-for="num in numbers" :key="num" :class="`cloud${num}`" :src="getCloudImage(num)" alt="cloud image" />
+        <p v-for="(title,index) in arrTitles"  :key="index">{{arrTitles[index]}}</p>
     </div>
 </template>
 
@@ -9,7 +10,8 @@ export default {
   name: "clouds-btns",
   data() {
     return {
-        numbers: [1, 2, 3, 4, 5] // List of numbers to dynamically generate image sources
+        numbers: [1, 2, 3, 4, 5], // List of numbers to dynamically generate image sources
+        arrTitles: ['ידית פיקוד תלויה ומקובעת על הקורה', 'פיקוד ע"י שלט אלחוטי', 'ידית פיקוד ניידת לאורך הקורה', 'ידית פיקוד תלויה על הכננת', 'פיקוד מתוך תא'],
     };
   },
   methods: {
