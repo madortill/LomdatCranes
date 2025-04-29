@@ -7,6 +7,7 @@
 <script>
 export default {
   name: "clouds-bg",
+  props:['in'],
   data() {
     return {
       numbers: [1, 2, 3, 4, 5] // List of numbers to dynamically generate image sources

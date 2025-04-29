@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <clouds-bg class="clouds-bg"></clouds-bg>
-    
+    <clouds-bg v-if="showCloudsBg" class="clouds-bg"></clouds-bg>
+
     <img
       class="bahadSymbol"
       src="../src/assets/media/bahadSymbol.png"
       alt="bahadSymbol"
     />
-    
+
     <open-page
       :showSelection="showSelection"
       @to-study="showChosenSection"
@@ -23,7 +23,7 @@
       v-if="partNum === 1"
       :sectionToStudy="sectionToStudy"
       @toHomePage="toHomePage"
-
+      @to-show-cloud-bg="toShowCloudBg"
     ></info-screen>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
       showSelection: false,
       chosenCourse: "",
       indexYellowSign: 0,
-     
+      showCloudsBg: true,
       // navPart: -1,
     };
   },
@@ -61,14 +61,21 @@ export default {
       this.partNum = 0;
       this.showSelection = true;
     },
-   
+
     updateChosenCourse(chosenCrane) {
       this.chosenCourse = chosenCrane;
     },
 
     nextIndexYellowSign() {
       this.indexYellowSign++;
-    }
+    },
+    toShowCloudBg(show) {
+      if (show) {
+        this.showCloudsBg = true;
+      } else {
+        this.showCloudsBg = false;
+      }
+    },
   },
 };
 </script>
@@ -123,7 +130,6 @@ body {
   left: 1rem;
   z-index: 3;
 }
-
 
 @media screen and (max-width: 600px) {
   .bahadSymbol {

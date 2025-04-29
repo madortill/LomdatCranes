@@ -33,6 +33,7 @@
       @show-american-ques="showAmericanQues"
       @hide-navbar="hideNavbar"
       @update-color-icon-home="updateColorIconPhone"
+      @to-show-cloud-bg="toShowCloudBg"
     ></general-material>
   </div>
 </template>
@@ -134,7 +135,11 @@ export default {
       } else {
         this.showNavbar = true;
       }
-    }
+    },
+
+    toShowCloudBg(show) {
+      this.$emit('to-show-cloud-bg', show);
+    },
   },
 };
 </script>

@@ -46,6 +46,8 @@
 
     <crane-components v-if="indexOrder === 4" @show-next-btn="showNextBtnFromComponents" :finishLearning="finishLearningComponents" @update-finish-learning="updateFinishLearningComponents"></crane-components>
 
+    <clouds-btns v-if="indexOrder === 7"></clouds-btns>
+
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
@@ -53,6 +55,7 @@
 
 <script>
 import AmericanQuestions from "./AmericanQuestions.vue";
+import CloudsBtns from './CloudsBtns.vue';
 import CraneComponents from './CraneComponents.vue';
 import InfoHangingBoard from "./InfoHangingBoard.vue";
 import TypesOfCranes from "./TypesOfCranes.vue";
@@ -60,7 +63,7 @@ import Winches from "./Winches.vue";
 export default {
   name: "general-material",
 
-  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions, Winches, CraneComponents },
+  components: { InfoHangingBoard, TypesOfCranes, AmericanQuestions, Winches, CraneComponents, CloudsBtns },
   props: [
     "chosenCourse",
     "navbarSubjNum",
@@ -225,7 +228,7 @@ export default {
           this.$emit("change-sub-nav-num", true);
           this.indexOrder++;
           this.showNextBtn = false;
-
+          this.toShowCloudBg(false);
           break;
         }
       }
@@ -309,7 +312,7 @@ export default {
           this.$emit("change-sub-nav-num", false);
           this.indexOrder--;
           this.showNextBtn = true;
-
+          this.toShowCloudBg(true);
           break;
         }
       }
@@ -426,7 +429,11 @@ export default {
 
     updateFinishLearningComponents(isFinished) {
       this.finishLearningComponents = isFinished;
-    }
+    },
+
+    toShowCloudBg(show) {
+      this.$emit('to-show-cloud-bg', show);
+    },
   },
 };
 </script>
