@@ -77,7 +77,7 @@
             v-for="(item, index) in titlesInElectricalSystemArr"
             :key="index"
           >
-            <img class="icon" alt="icon" :src="'/media/iconsElectricalSystem/icon' + index + '.png'" />
+            <img class="icon" alt="icon" :src="getIconUrl(index)" />
             <p>{{ item }}</p>
           </div>
         </div>
@@ -124,7 +124,15 @@ export default {
     showNextBtnSafetyRules() {
       this.$emit("showNextBtnSafetyRules");
     },
+    getIconUrl(num) {
+      // Determine the base URL (for local and production)
+      const basePath = process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return `${basePath}media/iconsElectricalSystem/icon${num}.png`;  // Static path to the images in the public folder
+    }
   },
+  computed: {
+   
+  }
 };
 </script>
 

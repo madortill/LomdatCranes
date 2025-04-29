@@ -8,7 +8,7 @@
       >
         <p class="the-info">{{ info }}</p>
       <img class="fix-pos" src="/media/potentialAdditions/whiteBgForBubble.svg" alt="whiteBgForBubble"/>
-      <img class="icon" :src="'/media/potentialAdditions/icons/icon' + index +'.png'" alt="icon"/>
+      <img class="icon" :src="getIconUrl(index)" alt="icon"/>
 
       </div>
     </div>
@@ -24,7 +24,15 @@ export default {
     };
   },
   methods: {
+    getIconUrl(num) {
+      // Determine the base URL (for local and production)
+      const basePath = process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return `${basePath}media/potentialAdditions/icons/icon${num}.png`;  // Static path to the images in the public folder
+    }
   },
+  computed: {
+   
+  }
 };
 </script>
 
@@ -75,6 +83,7 @@ export default {
   z-index: 1;
   position: absolute;
   left: 2rem;
+  width: 4rem;
 }
 </style>
 

@@ -221,6 +221,13 @@ export default {
           this.firstFlipInfoHangingBoard();
           break;
         }
+        case 7 : {
+          this.$emit("change-sub-nav-num", true);
+          this.indexOrder++;
+          this.showNextBtn = false;
+
+          break;
+        }
       }
     },
     prevPart() {
@@ -296,6 +303,13 @@ export default {
           //to show the right part in infoHangingBoard
           // this.infoHangingBoardPart--;
            this.reversedFlipInfoHangingBoard();
+          break;
+        }
+        case 8 : {
+          this.$emit("change-sub-nav-num", false);
+          this.indexOrder--;
+          this.showNextBtn = true;
+
           break;
         }
       }
