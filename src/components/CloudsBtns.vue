@@ -1,7 +1,7 @@
 <template>
   <div id="clouds-btns">
     <p class="header">שיטות פיקוד</p>
-    <p v-if="!inPopOut">ישנם מספר דרכים לשלוט בפעילות העגורן:</p>
+    <p v-if="!inPopOut" class="fix-pos">ישנם מספר דרכים לשלוט בפעילות העגורן:</p>
     <div v-if="!inPopOut" class="clouds-btns-container">
       <div
         v-for="(num, index) in numbers"
@@ -57,7 +57,7 @@ export default {
       }
     },
 
-    
+
   },
   computed: {},
 };
@@ -88,6 +88,9 @@ export default {
   font-weight: bold;
 }
 
+.fix-pos {
+  margin-top: -1rem;
+}
 .img-cloud {
   position: absolute;
   width: 100%;
@@ -178,6 +181,11 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
+  .clouds-btns-container {
+    position: absolute;
+    bottom: 6rem;
+  }
+
   /* Cloud 1 */
   .cloud1 {
     width: 21rem;
@@ -189,7 +197,7 @@ export default {
   /* Cloud 2 */
   .cloud2 {
     width: 19rem;
-    grid-column-start: 3;
+    grid-column-start: 1;
     grid-row-start: 5;
     /* animation: moveClouds 25s linear infinite; Move cloud2 */
   }
@@ -205,7 +213,7 @@ export default {
   /* Cloud 4 */
   .cloud4 {
     width: 18rem;
-    grid-column-start: 6;
+    grid-column-start: 3;
     grid-row-start: 7;
     /* animation: moveClouds 33s linear infinite; Move cloud4 */
   }
