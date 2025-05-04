@@ -1,15 +1,19 @@
 <template>
   <div id="command-method">
-    <div class="pop-out"></div>
-    <div class="cloud"></div>
-    <p class="moving-btn" @click="finishedTheMethod">אוקיי</p>
+    <div class="pop-out">
+        <p class="moving-btn" @click="finishedTheMethod">אוקיי</p>
+    </div>
+    <div class="cloud">
+        <p class="cloud-text">{{ cloudObject.text }}</p>
+        <img class="cloud-img" :src="cloudObject.src" alt="cloud img"/>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "command-method",
-  props: [],
+  props: ['cloudObject'],
   data() {
     return {
       theInfo: [
@@ -52,7 +56,9 @@ export default {
   /* color: white; */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -35%);
+  height: 27rem;
+  width: 55%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,6 +90,39 @@ export default {
   color: white;
 }
 
+.cloud {
+    position: absolute;
+    top: 9rem;
+    right: 9rem;
+width: 22rem;
+}
+
+.cloud-text {
+    position: relative;
+    z-index: 3;
+    top: 7rem;
+}
+
+.cloud-img {
+    position: relative;
+z-index: 2;
+}
+
 @media screen and (max-width: 700px) {
+    .pop-out {
+  /* transform: translate(-50%, -40%); */
+  height: 40rem;
+  width: 90%;
+
+}
+
+.cloud {
+    /* width: 22rem; */
+    /* position: absolute; */
+    top: 10rem;
+    right: auto;
+    /* left: 50%;
+    transform: translateX(-50%); */
+}
 }
 </style>

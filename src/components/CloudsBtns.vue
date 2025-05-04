@@ -1,16 +1,18 @@
 <template>
   <div id="clouds-btns">
     <p class="header">שיטות פיקוד</p>
-    <p v-if="!inPopOut" class="fix-pos">ישנם מספר דרכים לשלוט בפעילות העגורן:</p>
+    <p v-if="!inPopOut" class="fix-pos">
+      ישנם מספר דרכים לשלוט בפעילות העגורן:
+    </p>
     <div v-if="!inPopOut" class="clouds-btns-container">
       <div
         v-for="(num, index) in numbers"
         :key="index"
         :class="[`cloud${num}`, !learnedArr[num] ? 'flying' : '']"
         class="cloud-container"
-        @click="inTheMethod(true, num)"
+       
       >
-        <img class="img-cloud" :src="getCloudImage(num)" alt="cloud image" />
+        <img  @click="inTheMethod(true, index, $event)" class="img-cloud" :src="getCloudImage(num)" alt="cloud image" />
         <p
           :class="num === 1 || num === 4 || num === 5 ? 'title' + num : ''"
           class="title"
@@ -19,12 +21,16 @@
         </p>
       </div>
     </div>
-    <command-method v-if="inPopOut" @finished-method="inTheMethod"></command-method>
+    <command-method
+      v-if="inPopOut"
+      @finished-method="inTheMethod"
+      :cloudObject="chosenMethod"
+    ></command-method>
   </div>
 </template>
 
 <script>
-import CommandMethod from './CommandMethod.vue';
+import CommandMethod from "./CommandMethod.vue";
 export default {
   name: "clouds-btns",
   components: { CommandMethod },
@@ -40,6 +46,7 @@ export default {
       ],
       learnedArr: [false, false, false, false, false],
       inPopOut: false,
+      chosenMethod: { src: "", text: "" },
     };
   },
   methods: {
@@ -50,32 +57,31 @@ export default {
       return `${basePath}media/clouds/SVG/cloud${num}.svg`; // Static path to the images in the public folder
     },
 
-    inTheMethod(isIn, index) {
+    inTheMethod(isIn, index, event) {
       this.inPopOut = isIn;
-      if(isIn) {
-        this.learnedArr[index] = true;
+      if (isIn) {
+        this.learnedArr[index+1] = true;
+        this.chosenMethod.src = event.currentTarget.src;
+        this.chosenMethod.text = this.arrTitles[index];
       }
     },
-
-
   },
   computed: {},
 };
 </script>
 
 <style scoped>
-
 #clouds-btns {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 6rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
 }
 .clouds-btns-container {
   /* position: absolute; */
   width: 100%;
   height: 71%;
-    display: grid;
+  display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   align-items: center;
