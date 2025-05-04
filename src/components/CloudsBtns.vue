@@ -1,13 +1,22 @@
 <template>
   <div id="clouds-btns">
-    <div
-      v-for="(num, index) in numbers"
-      :key="index"
-      :class="`cloud${num}`"
-      class="cloud-container"
-    >
-      <img class="img-cloud" :src="getCloudImage(num)" alt="cloud image" />
-      <p :class="num === 1 || num === 4 || num === 5 ? 'title' + num : ''" class="title">{{ arrTitles[index] }}</p>
+    <p class="header">שיטות פיקוד</p>
+    <p>ישנם מספר דרכים לשלוט בפעילות העגורן:</p>
+    <div class="clouds-btns-container">
+      <div
+        v-for="(num, index) in numbers"
+        :key="index"
+        :class="[`cloud${num}`, !learnedArr[num] ? 'flying' : '']"
+        class="cloud-container"
+      >
+        <img class="img-cloud" :src="getCloudImage(num)" alt="cloud image" />
+        <p
+          :class="num === 1 || num === 4 || num === 5 ? 'title' + num : ''"
+          class="title"
+        >
+          {{ arrTitles[index] }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +34,7 @@ export default {
         "ידית פיקוד תלויה על הכננת",
         "פיקוד מתוך תא",
       ],
+      learnedArr: [false, false, false, false, false],
     };
   },
   methods: {
@@ -40,11 +50,18 @@ export default {
 </script>
 
 <style scoped>
+
 #clouds-btns {
-  position: absolute;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+}
+.clouds-btns-container {
+  /* position: absolute; */
   width: 100%;
-  height: 100%;
-  display: grid;
+  height: 71%;
+    display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   align-items: center;
@@ -52,17 +69,38 @@ export default {
   /* background-color: #e0f2f4; */
 }
 
+.header {
+  font-size: 2rem;
+  font-weight: bold;
+  /* padding: 2rem; */
+}
+
 .img-cloud {
   position: absolute;
   width: 100%;
   /* height: 100%; */
   right: 0rem;
-  top:50%;
+  top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   /* z-index: 1; */
 }
 
+@keyframes flyingUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Move up */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.flying {
+  animation: flyingUpDown 2.5s ease-in-out infinite;
+}
 .title {
   z-index: 2;
   position: relative;
@@ -72,63 +110,58 @@ export default {
 }
 
 .title1 {
-    margin-left: 4rem;
+  margin-left: 4rem;
 }
 
 .title4 {
-    margin-right: 2rem;
+  margin-right: 2rem;
 }
 
 .title5 {
-    margin-right: 4rem;
+  margin-right: 4rem;
 }
 
 .cloud-container {
-    position: relative;
-    height: 10rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} 
+  position: relative;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Cloud 1 */
 .cloud1 {
   width: 21rem;
-  grid-column-start: 4;
-  grid-row-start: 3;
-  /* animation: moveClouds 20s linear infinite; Move cloud1 */
+  grid-column-start: 3;
+  grid-row-start: 2;
 }
 
 /* Cloud 2 */
 .cloud2 {
   width: 19rem;
   grid-column-start: 2;
-  grid-row-start: 6;
-  /* animation: moveClouds 25s linear infinite; Move cloud2 */
+  grid-row-start: 5;
 }
 
 /* Cloud 3 */
 .cloud3 {
   width: 16rem;
   grid-column-start: 7;
-  grid-row-start: 4;
-  /* animation: moveClouds 30s linear infinite; Move cloud3 */
+  grid-row-start: 3;
 }
 
 /* Cloud 4 */
 .cloud4 {
   width: 18rem;
   grid-column-start: 8;
-  grid-row-start: 7;
-  /* animation: moveClouds 33s linear infinite; Move cloud4 */
+  grid-row-start: 6;
 }
 
 /* Cloud 5 */
 .cloud5 {
   width: 24rem;
   grid-column-start: 3;
-  grid-row-start: 9;
-  /* animation: moveClouds 40s linear infinite; Move cloud5 */
+  grid-row-start: 8;
 }
 
 @media screen and (max-width: 600px) {
@@ -143,7 +176,7 @@ export default {
   /* Cloud 2 */
   .cloud2 {
     width: 19rem;
-    grid-column-start: 1;
+    grid-column-start: 3;
     grid-row-start: 5;
     /* animation: moveClouds 25s linear infinite; Move cloud2 */
   }
@@ -159,7 +192,7 @@ export default {
   /* Cloud 4 */
   .cloud4 {
     width: 18rem;
-    grid-column-start: 3;
+    grid-column-start: 6;
     grid-row-start: 7;
     /* animation: moveClouds 33s linear infinite; Move cloud4 */
   }
