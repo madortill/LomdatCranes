@@ -70,9 +70,8 @@ export default {
 }
 
 .header {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  /* padding: 2rem; */
 }
 
 .img-cloud {
