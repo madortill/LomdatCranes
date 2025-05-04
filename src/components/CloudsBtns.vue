@@ -1,13 +1,14 @@
 <template>
   <div id="clouds-btns">
     <p class="header">שיטות פיקוד</p>
-    <p>ישנם מספר דרכים לשלוט בפעילות העגורן:</p>
-    <div class="clouds-btns-container">
+    <p v-if="!inPopOut">ישנם מספר דרכים לשלוט בפעילות העגורן:</p>
+    <div v-if="!inPopOut" class="clouds-btns-container">
       <div
         v-for="(num, index) in numbers"
         :key="index"
         :class="[`cloud${num}`, !learnedArr[num] ? 'flying' : '']"
         class="cloud-container"
+        @click="inTheMethod(true, num)"
       >
         <img class="img-cloud" :src="getCloudImage(num)" alt="cloud image" />
         <p
@@ -18,12 +19,15 @@
         </p>
       </div>
     </div>
+    <command-method v-if="inPopOut" @finished-method="inTheMethod"></command-method>
   </div>
 </template>
 
 <script>
+import CommandMethod from './CommandMethod.vue';
 export default {
   name: "clouds-btns",
+  components: { CommandMethod },
   data() {
     return {
       numbers: [1, 2, 3, 4, 5], // List of numbers to dynamically generate image sources
@@ -35,6 +39,7 @@ export default {
         "פיקוד מתוך תא",
       ],
       learnedArr: [false, false, false, false, false],
+      inPopOut: false,
     };
   },
   methods: {
@@ -44,6 +49,15 @@ export default {
         process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
       return `${basePath}media/clouds/SVG/cloud${num}.svg`; // Static path to the images in the public folder
     },
+
+    inTheMethod(isIn, index) {
+      this.inPopOut = isIn;
+      if(isIn) {
+        this.learnedArr[index] = true;
+      }
+    },
+
+    
   },
   computed: {},
 };
