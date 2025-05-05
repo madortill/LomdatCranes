@@ -1,35 +1,35 @@
 <template>
   <div id="operation" :style="{ '--moving-btn-color': movingBtnColor }">
+    <div class="hide-down-instruction"></div>
+    <instruction class="down" :numInstruction="numInstruction"></instruction>
+    <electric-panel></electric-panel>
+     <!-- <img src="/media/Operation/electricPanel.svg"/> -->
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
 </template>
 
 <script>
+import ElectricPanel from './ElectricPanel.vue';
+import Instruction from './Instruction.vue';
 export default {
   name: "operation",
 
-  components: {},
+  components: {Instruction, ElectricPanel},
   props: ["chosenCourse", "navbarSubjNum", "colorIconPhone"],
   data() {
     return {
       indexOrder: 0,
       showNextBtn: true,
       showBackBtn: true,
+      numInstruction: 0,
     };
   },
   methods: {
     nextPart() {
       switch (this.navbarSubjNum) {
         case 1: {
-          // if (this.infoHangingBoardPart === 0) {
-          //checks if user hasnt studied safety rules once
-          // if (!this.seenSafetyRules) {
-          //   this.showNextBtn = false;
-          // }
-          // this.firstFlipInfoHangingBoard();
-          // // }
-          // this.$emit("change-sub-nav-num", true);
+
 
           break;
         }
@@ -69,26 +69,32 @@ export default {
       this.$emit("toHomePage");
     },
 
-    hideNavbar(tohide) {
-      if (tohide) {
-        this.$emit("hide-navbar", true);
-      } else {
-        this.$emit("hide-navbar", false);
-      }
-    },
+    // hideNavbar(tohide) {
+    //   if (tohide) {
+    //     this.$emit("hide-navbar", true);
+    //   } else {
+    //     this.$emit("hide-navbar", false);
+    //   }
+    // },
 
-    updateColorHomeIcon(color) {
-      this.$emit("update-color-icon-home", color);
-    },
+    // updateColorHomeIcon(color) {
+    //   this.$emit("update-color-icon-home", color);
+    // },
 
-    showNextBtnFromComponent() {
-      this.showNextBtn = true;
-    },
+    // showNextBtnFromComponent() {
+    //   this.showNextBtn = true;
+    // },
 
-    toShowCloudBg(show) {
-      this.$emit("to-show-cloud-bg", show);
-    },
+    // toShowCloudBg(show) {
+    //   this.$emit("to-show-cloud-bg", show);
+    // },
+    
   },
+//   mounted() {
+//     setTimeout(() => {
+        
+//     }, 1000);
+//   },
 };
 </script>
 
@@ -132,5 +138,28 @@ export default {
 
 .back-btn {
   right: 1rem;
+}
+
+.hide-down-instruction {
+    background-color: #e0f2f4;
+    height: 3rem;
+    width: 10rem;
+    z-index: 2;
+}
+
+.down {
+    z-index: 0;
+  animation: goingDown 0.6s linear forwards;
+}
+
+@keyframes goingDown {
+  0% {
+    position: relative;
+    bottom: 10vh;
+  }
+  100% {
+    position: relative;
+    bottom: 0vh;
+  }
 }
 </style>
