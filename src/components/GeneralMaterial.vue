@@ -69,13 +69,12 @@ export default {
     "navbarSubjNum",
     // "sectionToStudy",
     "colorIconPhone",
-    
-    // "indexOrder"
+     "indexOrder"
   ],
   data() {
     return {
       // Infopart: 1,
-      indexOrder: 0,
+      // indexOrder: 0,
       infoHangingBoardPart: 0,
       // subNavPart: 1,
       // showTheSection: false,
@@ -123,7 +122,7 @@ export default {
           break;
         }
         case 2: {
-          this.indexOrder++;
+          this.$emit('update-index-order', true);
           this.$emit("change-sub-nav-num", true);
           if (this.counterLearnedCranes !== 3) {
             this.showNextBtn = false;
@@ -170,7 +169,7 @@ export default {
             this.$emit("change-sub-nav-num", true);
             this.updateColorHomeIcon("none");
             this.hideNavbar(true);
-            this.indexOrder++;
+            this.$emit('update-index-order', true);
             this.showNextBtn = false;
             this.showBackBtn = false;
           }
@@ -180,7 +179,7 @@ export default {
           //if next from questions
           if (this.indexOrder === 2) {
             // this.nextFromAmericanQues = false;
-            this.indexOrder++;
+            this.$emit('update-index-order', true);
             this.hideNavbar(false);
             this.updateColorHomeIcon(
               "invert(1) brightness(100%) saturate(25%) contrast(100%)"
@@ -198,7 +197,7 @@ export default {
               this.showNextBtn = false;
             }
           } else if (this.partInWinches === 1) {
-            this.indexOrder++;
+            this.$emit('update-index-order', true);
             this.$emit("change-sub-nav-num", true);
             if(!this.finishLearningComponents) {
               this.showNextBtn = false;
@@ -208,7 +207,7 @@ export default {
         }
         case 5 : {
           this.$emit("change-sub-nav-num", true);
-          this.indexOrder++;
+          this.$emit('update-index-order', true);
           //to show the right part in infoHangingBoard
           this.flipEndSaftyRules = true;
         this.flipStart = false;
@@ -219,7 +218,7 @@ export default {
         }
         case 6 : {
           this.$emit("change-sub-nav-num", true);
-          this.indexOrder++;
+          this.$emit('update-index-order', true);
           //to show the right part in infoHangingBoard
           
           this.firstFlipInfoHangingBoard();
@@ -227,7 +226,7 @@ export default {
         }
         case 7 : {
           this.$emit("change-sub-nav-num", true);
-          this.indexOrder++;
+          this.$emit('update-index-order', true);
           this.showNextBtn = false;
           this.toShowCloudBg(false);
           break;
@@ -269,7 +268,7 @@ export default {
             this.partLearningCraneCard--;
           } else {
             this.$emit("change-sub-nav-num", false);
-            this.indexOrder--;
+            this.$emit('update-index-order', false);
             this.showNextBtn = true;
 
           }
@@ -279,7 +278,7 @@ export default {
           //back to ques
           if (this.partInWinches === 0) {
             // this.nextFromAmericanQues = true;
-            this.indexOrder--;
+            this.$emit('update-index-order', false);
             this.hideNavbar(true);
             this.updateColorHomeIcon("none");
             this.showBackBtn = false;
@@ -292,14 +291,14 @@ export default {
           break;
         }
         case 5: {
-          this.indexOrder--;
+          this.$emit('update-index-order', false);
           this.$emit("change-sub-nav-num", false);
           this.showNextBtn = true;
           break;
         }
         case 6: {
           this.$emit("change-sub-nav-num", false);
-          this.indexOrder--;
+          this.$emit('update-index-order', false);
           //to show the right part in infoHangingBoard 
           this.infoHangingBoardPart--;
           this.isInWinches = true;
@@ -307,7 +306,7 @@ export default {
         }
         case 7 : {
           this.$emit("change-sub-nav-num", false);
-          this.indexOrder--;
+          this.$emit('update-index-order', false);
           //to show the right part in infoHangingBoard
           // this.infoHangingBoardPart--;
            this.reversedFlipInfoHangingBoard();
@@ -315,9 +314,11 @@ export default {
         }
         case 8 : {
           this.$emit("change-sub-nav-num", false);
-          this.indexOrder--;
+          this.$emit('update-index-order', false);
           this.showNextBtn = true;
           this.toShowCloudBg(true);
+          //if was already in the operation part and got here from the prev btn
+          this.infoHangingBoardPart = 3;
           break;
         }
       }
@@ -387,7 +388,7 @@ export default {
 
     backFromQues() {
       this.$emit("change-sub-nav-num", false);
-      this.indexOrder--;
+      this.$emit('update-index-order', false);
       this.showNextBtn = true;
       this.showBackBtn = true;
     },

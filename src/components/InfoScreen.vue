@@ -33,12 +33,14 @@
       @change-sub-nav-num="changeSubNavNum"
       :chosenCourse="chosenCourse"
       :colorIconPhone="colorIconPhone"
+      :indexOrder="indexOrderInGenearlMaterial"
       @change-home-icon="ChangeHomeIcon"
       @show-american-ques="showAmericanQues"
       @hide-navbar="hideNavbar"
       @update-color-icon-home="updateColorIconPhone"
       @to-show-cloud-bg="toShowCloudBg"
       @finished-genearal-material="finishedMainSubjBox"
+      @update-index-order="updateIndexOrderInGenearlMaterial"
     ></general-material>
     
     <operation v-if="sectionToStudy === 1 && showTheSection && partToShow !== 2" @back-to-start-sign="backToStartSign" :navbarSubjNum="subNavPart"></operation>
@@ -65,6 +67,7 @@ export default {
       infoHangingPart: 0,
       subNavPart: 1,
       showTheSection: false,
+      indexOrderInGenearlMaterial: 0,
       //about the flip according to click
       flipStart: false,
       flipEndDefine: false,
@@ -91,6 +94,7 @@ export default {
         this.thePart++;
       } else {
         this.showTheSection = true;
+        this.subNavPart = 1;
         this.partToShow++; //shows now the navbar
         this.updateColorIconPhone(
           "invert(1) brightness(100%) saturate(25%) contrast(100%)"
@@ -171,9 +175,18 @@ export default {
       this.$emit('prev-studied-section');
       this.partToShow = 1;
       this.thePart = 1;
+      this.subNavPart = 8;
+      this.indexOrderInGenearlMaterial = 7;
       this.showTheSection = true;
       this.isAContinuance = false;
-    }
+    },
+     updateIndexOrderInGenearlMaterial(isUp) {
+      if(isUp) {
+        this.indexOrderInGenearlMaterial++;
+      } else {
+        this.indexOrderInGenearlMaterial--;
+      }
+     }
   },
 };
 </script>
