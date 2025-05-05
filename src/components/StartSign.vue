@@ -48,7 +48,7 @@
     </div>
 
     <p class="next-btn moving-btn" @click="nextPart">הבא</p>
-    <p v-if="thePart !== 0" class="back-btn moving-btn" @click="prevPart">
+    <p v-if="thePart !== 0 || isAContinuance" class="back-btn moving-btn" @click="prevPart">
       חזור
     </p>
   </div>
@@ -57,7 +57,7 @@
 <script>
 export default {
   name: "start-sign",
-  props: ["sectionNum", "firstChosen", 'thePart', 'showWarning'],
+  props: ["sectionNum", "firstChosen", 'thePart', 'showWarning','isAContinuance'],
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "תרגול"],
@@ -85,7 +85,11 @@ export default {
     },
 
   prevPart() {
-    this.$emit("to-prev-board");
+    if(this.isAContinuance && this.thePart === 0) {
+      this.$emit('back-to-general-material');
+    } else {
+      this.$emit("to-prev-board");
+    }
   },
 },
 

@@ -12,9 +12,11 @@
       :firstChosen="firstChosen"
       :thePart="thePart"
       :showWarning="showWarning"
+      :isAContinuance="isAContinuance"
       @to-next-board="nextInStartSign"
       @to-prev-board="backToStartSign"
       @change-show-warning="changeShowWarning"
+      @back-to-general-material="backToGeneralMaterialFromOperation"
       v-if="partToShow === 0"
     ></start-sign>
     <navbar
@@ -76,6 +78,10 @@ export default {
       titleTypesCranesIndex: "סוגי העגורנים הקיימים",
       // indexForGeneralMaterial: 0,
       showNavbar: true,
+
+      //about start sign
+      isAContinuance: false,
+
     };
   },
   methods: {
@@ -152,6 +158,7 @@ export default {
       this.partToShow = 0;
       this.thePart = 0;
       this.showTheSection = false;
+      this.isAContinuance = true;
     },
     changeShowWarning(toShow) {
       if(toShow) {
@@ -159,6 +166,13 @@ export default {
       } else {
         this.showWarning = false;
       }
+    },
+    backToGeneralMaterialFromOperation() {
+      this.$emit('prev-studied-section');
+      this.partToShow = 1;
+      this.thePart = 1;
+      this.showTheSection = true;
+      this.isAContinuance = false;
     }
   },
 };

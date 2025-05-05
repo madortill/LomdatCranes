@@ -63,23 +63,26 @@ export default {
   },
   methods: {
     nextPart() {
-      this.showInfo = false;
-      this.showFadeOutInfo = true;
-      if (this.numPart === 2) {
-        this.numPart++;
-        this.showZoom = false;
-        setTimeout(() => {
-          this.$emit("show-next-btn");
-          this.$emit("update-finish-learning", true);
-        }, 1000);
-      } else {
-        setTimeout(() => {
+      //שלא יהיה אפשר ללחוץ מלא פעמים 
+      if (this.showInfo) {
+        this.showInfo = false;
+        this.showFadeOutInfo = true;
+        if (this.numPart === 2) {
           this.numPart++;
-        }, 200);
-        setTimeout(() => {
-          this.showInfo = true;
-          this.showFadeOutInfo = false;
-        }, 1200);
+          this.showZoom = false;
+          setTimeout(() => {
+            this.$emit("show-next-btn");
+            this.$emit("update-finish-learning", true);
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            this.numPart++;
+          }, 200);
+          setTimeout(() => {
+            this.showInfo = true;
+            this.showFadeOutInfo = false;
+          }, 1200);
+        }
       }
     },
     startOver() {

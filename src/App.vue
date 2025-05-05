@@ -25,6 +25,7 @@
       @toHomePage="toHomePage"
       @to-show-cloud-bg="toShowCloudBg"
       @next-section-to-study="nextSectionToStudy"
+      @prev-studied-section="prevStudiedSection"
     ></info-screen>
   </div>
 </template>
@@ -83,6 +84,10 @@ export default {
       this.firstChosen = false;
       // this.partNum = 0;
     },
+    prevStudiedSection() {
+      this.sectionToStudy--;
+      this.firstChosen = true;
+    }
 
   },
 };
