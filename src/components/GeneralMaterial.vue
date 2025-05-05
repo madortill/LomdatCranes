@@ -44,9 +44,9 @@
       :learnedInWinchSign="learnedInWinchSign"
     ></winches>
 
-    <crane-components v-if="indexOrder === 4" @show-next-btn="showNextBtnFromComponents" :finishLearning="finishLearningComponents" @update-finish-learning="updateFinishLearningComponents"></crane-components>
+    <crane-components v-if="indexOrder === 4" @show-next-btn="showNextBtnFromComponent" :finishLearning="finishLearningComponents" @update-finish-learning="updateFinishLearningComponents"></crane-components>
 
-    <clouds-btns v-if="indexOrder === 7"></clouds-btns>
+    <clouds-btns v-if="indexOrder === 7"  @show-next-btn="showNextBtnFromComponent"></clouds-btns>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -423,7 +423,8 @@ export default {
       }
       return true;
     },
-    showNextBtnFromComponents() {
+    showNextBtnFromComponent() {
+      console.log('in');
       this.showNextBtn  = true;
     },
 

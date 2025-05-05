@@ -8,11 +8,15 @@
       <div
         v-for="(num, index) in numbers"
         :key="index"
-        :class="[`cloud${num}`, !learnedArr[num] ? 'flying' : '']"
+        :class="[`cloud${num}`, !learnedArr[index] ? 'flying' : '']"
         class="cloud-container"
-       
       >
-        <img  @click="inTheMethod(true, index, $event)" class="img-cloud" :src="getCloudImage(num)" alt="cloud image" />
+        <img
+          @click="inTheMethod(true, index, $event)"
+          class="img-cloud"
+          :src="getCloudImage(num)"
+          alt="cloud image"
+        />
         <p
           :class="num === 1 || num === 4 || num === 5 ? 'title' + num : ''"
           class="title"
@@ -46,7 +50,7 @@ export default {
       ],
       learnedArr: [false, false, false, false, false],
       inPopOut: false,
-      chosenMethod: { src: "", text: "" },
+      chosenMethod: { src: "", text: "", num: "" },
     };
   },
   methods: {
@@ -60,10 +64,25 @@ export default {
     inTheMethod(isIn, index, event) {
       this.inPopOut = isIn;
       if (isIn) {
-        this.learnedArr[index+1] = true;
+        this.learnedArr[index] = true;
         this.chosenMethod.src = event.currentTarget.src;
         this.chosenMethod.text = this.arrTitles[index];
+        this.chosenMethod.num = index + 1;
+      } else {
+        if (this.checkIfDoneLearning()) {
+          this.$emit("show-next-btn");
+        }
       }
+    },
+    //checks if done learning all the clouds btns
+    checkIfDoneLearning() {
+      // console.log("in");
+      for (let i = 0; i < this.learnedArr.length; i++) {
+        if (!this.learnedArr[i]) {
+          return false;
+        }
+      }
+      return true;
     },
   },
   computed: {},
