@@ -69,6 +69,7 @@ export default {
     "navbarSubjNum",
     // "sectionToStudy",
     "colorIconPhone",
+    
     // "indexOrder"
   ],
   data() {
@@ -229,6 +230,10 @@ export default {
           this.indexOrder++;
           this.showNextBtn = false;
           this.toShowCloudBg(false);
+          break;
+        }
+        case 8 : {
+          this.$emit('finished-genearal-material');
           break;
         }
       }
@@ -424,7 +429,6 @@ export default {
       return true;
     },
     showNextBtnFromComponent() {
-      console.log('in');
       this.showNextBtn  = true;
     },
 

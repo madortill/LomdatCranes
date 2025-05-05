@@ -7,7 +7,7 @@
       <p>אם תרצה לשנות את בחירתך אפשר ללחוץ על כפתור הבית</p>
       <p class="goodWord">בהצלחה!</p>
     </div>
-    <div class="text-container" v-if="!firstChosen">
+    <div class="text-container" v-if="!firstChosen  && thePart === 0">
       <p>כל הכבוד סיימת את החלק ה{{ arrFinishedPart[sectionNum - 1] }}</p>
       <p>עכשיו נעבור לחלק ה{{ arrFinishedPart[sectionNum] }} של הלומדה</p>
       <p class="partOfLomda">{{ arrPartTitle[sectionNum] }}</p>
@@ -32,6 +32,13 @@
         {{ text }}
       </p>
     </div>
+
+    <div  class="text-container" v-if="sectionNum === 1 && thePart === 1">
+      <p>עכשיו נלמד כיצד להפעיל את העגורן על ידי המחשות ויזואליות</p>
+      <p class="partOfLomda">לשים לב</p>
+      <p>בצד העליון של המסך יופיע ההוראה לפעולה שתצטרכ/י לממש</p>
+    </div>
+
     <div v-if="sectionNum > 0 && firstChosen && showWarning">
       <div class="shadow"></div>
       <div class="warning-container">
@@ -50,12 +57,11 @@
 <script>
 export default {
   name: "start-sign",
-  props: ["sectionNum", "firstChosen", 'thePart'],
+  props: ["sectionNum", "firstChosen", 'thePart', 'showWarning'],
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "תרגול"],
       arrFinishedPart: ["ראשון", "שני", "שלישי"],
-      showWarning: true,
       array1: [
         "מטרת על",
         "הלומד יסביר את אופן התפעול של עגורן עילי.",
@@ -69,7 +75,7 @@ export default {
   mounted() {
     // Set a timeout to hide the warning after 3 seconds
     let timer = setTimeout(() => {
-      this.showWarning = false;
+      this.$emit('change-show-warning', false);
       clearTimeout(timer);
     }, 2500);
   },

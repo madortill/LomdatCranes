@@ -11,8 +11,10 @@
       :sectionNum="sectionToStudy"
       :firstChosen="firstChosen"
       :thePart="thePart"
+      :showWarning="showWarning"
       @to-next-board="nextInStartSign"
       @to-prev-board="backToStartSign"
+      @change-show-warning="changeShowWarning"
       v-if="partToShow === 0"
     ></start-sign>
     <navbar
@@ -34,23 +36,29 @@
       @hide-navbar="hideNavbar"
       @update-color-icon-home="updateColorIconPhone"
       @to-show-cloud-bg="toShowCloudBg"
+      @finished-genearal-material="finishedMainSubjBox"
     ></general-material>
+    
+    <operation v-if="sectionToStudy === 1 && showTheSection && partToShow !== 2" @back-to-start-sign="backToStartSign" :navbarSubjNum="subNavPart"></operation>
   </div>
 </template>
 
 <script>
 import GeneralMaterial from "./GeneralMaterial.vue";
 import Navbar from "./Navbar.vue";
+import Operation from './Operation.vue';
 import StartSign from "./StartSign.vue";
+
 export default {
   name: "info-screen",
-  components: { Navbar, StartSign, GeneralMaterial },
+  components: { Navbar, StartSign, GeneralMaterial, Operation },
   props: ["chosenCourse", "firstChosen", "sectionToStudy"],
   data() {
     return {
       partToShow: 0,
       thePart: 0,
       colorIconPhone: "none",
+      showWarning: true,
       Infopart: 1,
       infoHangingPart: 0,
       subNavPart: 1,
@@ -73,12 +81,14 @@ export default {
   methods: {
     //מראה חלק הבא בקומפוננטת StartSign או שמעביר לחלק של הלמידה שהמשתמש בחר
     nextInStartSign() {
-      if (this.sectionToStudy === 0 && this.thePart === 0) {
+      if ((this.sectionToStudy === 0 || this.sectionToStudy === 1) && this.thePart === 0) {
         this.thePart++;
       } else {
         this.showTheSection = true;
         this.partToShow++; //shows now the navbar
-        this.updateColorIconPhone('invert(1) brightness(100%) saturate(25%) contrast(100%)');
+        this.updateColorIconPhone(
+          "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+        );
       }
     },
     //מחזיר לקומפוננטה StartSign או שעושה חזור בקומפוננטה עצמה
@@ -87,7 +97,8 @@ export default {
         this.showTheSection = false;
         this.partToShow--;
         this.thePart = 1;
-        this.updateColorIconPhone('none');
+        this.updateColorIconPhone("none");
+        this.showWarning = false;
       } else {
         this.thePart--;
       }
@@ -101,11 +112,6 @@ export default {
       this.colorIconPhone = newColor; // Update colorIconPhone based on the child’s emitted value
     },
 
-    // CraneCardChosen(craneTitle) {
-    //   this.prevToCarousel = true;
-    //   this.craneCardClicked = true;
-    //   this.titleTypesCranesIndex = craneTitle;
-    // },
     changeSubNavNum(isUp) {
       if (isUp) {
         this.subNavPart++;
@@ -113,7 +119,7 @@ export default {
         this.subNavPart--;
       }
     },
-    
+
     // showAmericanQues() {
     //   this.partToShow++;
     // },
@@ -130,7 +136,7 @@ export default {
     // }
 
     hideNavbar(toHide) {
-      if(toHide) {
+      if (toHide) {
         this.showNavbar = false;
       } else {
         this.showNavbar = true;
@@ -138,8 +144,22 @@ export default {
     },
 
     toShowCloudBg(show) {
-      this.$emit('to-show-cloud-bg', show);
+      this.$emit("to-show-cloud-bg", show);
     },
+
+    finishedMainSubjBox() {
+      this.$emit("next-section-to-study");
+      this.partToShow = 0;
+      this.thePart = 0;
+      this.showTheSection = false;
+    },
+    changeShowWarning(toShow) {
+      if(toShow) {
+        this.showWarning = true;
+      } else {
+        this.showWarning = false;
+      }
+    }
   },
 };
 </script>

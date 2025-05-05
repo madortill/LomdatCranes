@@ -24,6 +24,7 @@
       :sectionToStudy="sectionToStudy"
       @toHomePage="toHomePage"
       @to-show-cloud-bg="toShowCloudBg"
+      @next-section-to-study="nextSectionToStudy"
     ></info-screen>
   </div>
 </template>
@@ -60,6 +61,7 @@ export default {
     toHomePage() {
       this.partNum = 0;
       this.showSelection = true;
+      
     },
 
     updateChosenCourse(chosenCrane) {
@@ -76,6 +78,12 @@ export default {
         this.showCloudsBg = false;
       }
     },
+    nextSectionToStudy() {
+      this.sectionToStudy++;
+      this.firstChosen = false;
+      // this.partNum = 0;
+    },
+
   },
 };
 </script>
