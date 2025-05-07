@@ -4,16 +4,18 @@
     <instruction class="down" :numInstruction="numInstruction"></instruction>
 
     <div class="graphics-container">
-      <div class="remote-container">
-        <remote :class="numInstruction < 2 ? 'disabled-remote' : ''" />
-      </div>
-
       <div>
         <electric-panel
           @next-instruction="nextPart"
           :numPart="partInElectricPanel"
         />
       </div>
+      
+      <div class="remote-container">
+        <remote :class="numInstruction < 2 ? 'disabled-remote' : ''" />
+      </div>
+
+     
     </div>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>

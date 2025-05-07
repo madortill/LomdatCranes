@@ -631,7 +631,9 @@ export default {
   methods: {
     nextPart() {
       // this.numPart++;
-      this.$emit('next-instruction');
+      if(this.numPart === 0 || this.numPart === 1) {
+        this.$emit('next-instruction');
+      }
     }
   }
 };
