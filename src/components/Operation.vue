@@ -2,7 +2,7 @@
   <div id="operation" :style="{ '--moving-btn-color': movingBtnColor }">
     <div class="hide-down-instruction"></div>
     <instruction class="down" :numInstruction="numInstruction"></instruction>
-    <electric-panel></electric-panel>
+    <electric-panel @next-instruction="nextInstruction"></electric-panel>
      <!-- <img src="/media/Operation/electricPanel.svg"/> -->
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -26,6 +26,9 @@ export default {
     };
   },
   methods: {
+    nextInstruction() {
+this.numInstruction++;
+    },
     nextPart() {
       switch (this.navbarSubjNum) {
         case 1: {
