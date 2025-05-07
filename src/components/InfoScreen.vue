@@ -43,7 +43,7 @@
       @update-index-order="updateIndexOrderInGenearlMaterial"
     ></general-material>
     
-    <operation v-if="sectionToStudy === 1 && showTheSection && partToShow !== 2" @back-to-start-sign="backToStartSign" :navbarSubjNum="subNavPart"></operation>
+    <operation v-if="sectionToStudy === 1 && showTheSection && partToShow !== 2" @back-to-start-sign="backToStartSign" :navbarSubjNum="subNavPart" @change-sub-nav-num="changeSubNavNum"></operation>
   </div>
 </template>
 

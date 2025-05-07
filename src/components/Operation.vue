@@ -8,11 +8,12 @@
       <electric-panel
         @next-instruction="nextPart"
         :numPart="partInElectricPanel"
+        :class="numInstruction > 1 ? 'disabled-remote' : ''"
       />
       <!-- </div> -->
 
       <div class="remote-container">
-        <remote :class="numInstruction < 2 ? 'disabled-remote' : ''" />
+        <remote  @next-instruction="nextPart" :numPart="partInRemote" :isAble="navbarSubjNum === 2 ? true : false" :class="numInstruction < 2 ? 'disabled-remote' : ''" />
       </div>
     </div>
 
@@ -37,6 +38,7 @@ export default {
       showBackBtn: true,
       numInstruction: 0,
       partInElectricPanel: 0,
+      partInRemote: 0,
     };
   },
   methods: {
@@ -45,12 +47,17 @@ export default {
         case 1: {
           this.partInElectricPanel++;
           this.numInstruction++;
-          if (this.numInstruction === 1) {
+          if (this.numInstruction === 2) {
             this.$emit("change-sub-nav-num", true);
           }
           break;
         }
         case 2: {
+          this.partInRemote++;
+          this.numInstruction++;
+          if (this.numInstruction === 1) {
+            this.$emit("change-sub-nav-num", true);
+          }
           break;
         }
         case 3: {
@@ -70,7 +77,13 @@ export default {
           break;
         }
         case 2: {
-          this.$emit("change-sub-nav-num", false);
+          if(this.partInRemote === 0) {
+            this.partInElectricPanel--;
+            this.$emit("change-sub-nav-num", false);
+          } else {
+            this.partInRemote--;
+          }
+          
           this.numInstruction--;
 
           break;
