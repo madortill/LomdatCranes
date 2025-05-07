@@ -4,18 +4,16 @@
     <instruction class="down" :numInstruction="numInstruction"></instruction>
 
     <div class="graphics-container">
-      <div>
-        <electric-panel
-          @next-instruction="nextPart"
-          :numPart="partInElectricPanel"
-        />
-      </div>
-      
+      <!-- <div> -->
+      <electric-panel
+        @next-instruction="nextPart"
+        :numPart="partInElectricPanel"
+      />
+      <!-- </div> -->
+
       <div class="remote-container">
         <remote :class="numInstruction < 2 ? 'disabled-remote' : ''" />
       </div>
-
-     
     </div>
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
@@ -128,6 +126,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  align-items: center;
 }
 
 .disabled-remote {
@@ -194,6 +193,22 @@ export default {
   100% {
     position: relative;
     bottom: 0vh;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #operation {
+    height: 91vh;
+  }
+
+  .graphics-container {
+    /* align-items: flex-end; */
+    flex-direction: column-reverse;
+    /* margin-bottom: 6.5rem; */
+  }
+
+  .remote-container {
+    height: auto;
   }
 }
 </style>
