@@ -36,7 +36,7 @@
     <div  class="text-container" v-if="sectionNum === 1 && thePart === 1">
       <p>עכשיו נלמד כיצד להפעיל את העגורן על ידי המחשות ויזואליות</p>
       <p class="partOfLomda">לשים לב</p>
-      <p>בצד העליון של המסך יופיע ההוראה לפעולה שתצטרכ/י לממש</p>
+      <p>בצד העליון של המסך תופיע ההוראה לפעולה שתצטרכ/י לממש</p>
     </div>
 
     <div v-if="sectionNum > 0 && firstChosen && showWarning">

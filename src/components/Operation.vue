@@ -2,48 +2,55 @@
   <div id="operation" :style="{ '--moving-btn-color': movingBtnColor }">
     <div class="hide-down-instruction"></div>
     <instruction class="down" :numInstruction="numInstruction"></instruction>
-    <electric-panel @next-instruction="nextInstruction"></electric-panel>
-     <!-- <img src="/media/Operation/electricPanel.svg"/> -->
+
+    <div class="graphics-container">
+      <div class="remote-container">
+        <remote :class="numInstruction < 2 ? 'disabled-remote' : ''" />
+      </div>
+
+      <div>
+        <electric-panel
+          @next-instruction="nextPart"
+          :numPart="partInElectricPanel"
+        />
+      </div>
+    </div>
+
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
 </template>
 
 <script>
-import ElectricPanel from './ElectricPanel.vue';
-import Instruction from './Instruction.vue';
+import ElectricPanel from "./ElectricPanel.vue";
+import Instruction from "./Instruction.vue";
+import Remote from "./Remote.vue";
 export default {
   name: "operation",
 
-  components: {Instruction, ElectricPanel},
+  components: { Instruction, ElectricPanel, Remote },
   props: ["chosenCourse", "navbarSubjNum", "colorIconPhone"],
   data() {
     return {
       indexOrder: 0,
-      showNextBtn: true,
+      showNextBtn: false,
       showBackBtn: true,
       numInstruction: 0,
+      partInElectricPanel: 0,
     };
   },
   methods: {
-    nextInstruction() {
-this.numInstruction++;
-    },
     nextPart() {
       switch (this.navbarSubjNum) {
         case 1: {
-
-
+          this.partInElectricPanel++;
+          this.numInstruction++;
+          if (this.numInstruction === 1) {
+            this.$emit("change-sub-nav-num", true);
+          }
           break;
         }
         case 2: {
-          // this.indexOrder++;
-          // this.$emit("change-sub-nav-num", true);
-          // if (this.counterLearnedCranes !== 3) {
-          //   this.showNextBtn = false;
-          // } else {
-          //   this.showNextBtn = true;
-          // }
           break;
         }
         case 3: {
@@ -54,15 +61,18 @@ this.numInstruction++;
     prevPart() {
       switch (this.navbarSubjNum) {
         case 1: {
-          // if (this.infoHangingBoardPart === 0) {
-          this.$emit("back-to-start-sign");
-
+          if (this.partInElectricPanel === 0) {
+            this.$emit("back-to-start-sign");
+          } else {
+            this.numInstruction--;
+            this.partInElectricPanel--;
+          }
           break;
         }
         case 2: {
-          // this.$emit("change-sub-nav-num", false);
-          // this.reversedFlipInfoHangingBoard();
-          // this.showNextBtn = true;
+          this.$emit("change-sub-nav-num", false);
+          this.numInstruction--;
+
           break;
         }
       }
@@ -91,13 +101,12 @@ this.numInstruction++;
     // toShowCloudBg(show) {
     //   this.$emit("to-show-cloud-bg", show);
     // },
-    
   },
-//   mounted() {
-//     setTimeout(() => {
-        
-//     }, 1000);
-//   },
+  //   mounted() {
+  //     setTimeout(() => {
+
+  //     }, 1000);
+  //   },
 };
 </script>
 
@@ -109,8 +118,24 @@ this.numInstruction++;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-between;
 }
 
+.graphics-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.disabled-remote {
+  filter: grayscale(100%);
+}
+.remote-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
 .moving-btn {
   z-index: 1;
   position: absolute;
@@ -144,14 +169,18 @@ this.numInstruction++;
 }
 
 .hide-down-instruction {
-    background-color: #e0f2f4;
-    height: 3rem;
-    width: 10rem;
-    z-index: 2;
+  background-color: #e0f2f4;
+  height: 3rem;
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  top: 0rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .down {
-    z-index: 0;
+  z-index: 0;
   animation: goingDown 0.6s linear forwards;
 }
 

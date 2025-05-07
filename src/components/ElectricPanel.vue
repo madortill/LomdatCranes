@@ -1,5 +1,5 @@
 <template>
-<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 4225.36 4348.21">
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 4225.36 4348.21">
   <defs>
 
     <radialGradient id="radial-gradient" cx="2133.9" cy="1919.89" fx="2133.9" fy="1919.89" r="2162.03" gradientTransform="translate(0 -681.39) scale(1 1.35)" gradientUnits="userSpaceOnUse">
@@ -573,10 +573,10 @@
       </g>
     </g>
     <g id="_מז_ראשי" data-name="מז_ראשי">
-      <g id="_מפוח_אורור-8" data-name="מפוח_אורור">
+      <g id="_מפוח_אורור-8" class="is-a-btn" @click="nextPart" data-name="מפוח_אורור">
         <g id="_מפוח_אורור_סדנא-15" data-name="מפוח_אורור_סדנא">
           <g id="_ריבוע_מפוח-8" data-name="ריבוע_מפוח">
-            <rect class="cls-16" x="2005.93" y="2971.85" width="254.98" height="252.93" rx="15.58" ry="15.58"/>
+            <rect class="cls-16 highlight" x="2005.93" y="2971.85" width="254.98" height="252.93" rx="15.58" ry="15.58"/>
             <g>
               <rect class="cls-101" x="2166.54" y="2973.47" width="93.15" height="249.12" rx="13.53" ry="13.53"/>
               <rect class="cls-40" x="2007.78" y="2973.47" width="93.15" height="249.12" rx="13.53" ry="13.53" transform="translate(4108.72 6196.06) rotate(180)"/>
@@ -610,7 +610,7 @@
       <rect class="cls-80" x="2139.48" y="15.27" width="1395.06" height="3824.5"/>
       <rect class="cls-53" x="733.25" y="15.28" width="1395.06" height="3824.5"/>
     </g>
-    <g id="_דלתות_ארון_חשמל_סגור" data-name="דלתות_ארון_חשמל_סגור" :class="numPart === 0 ? 'hide': ''" >
+    <g id="_דלתות_ארון_חשמל_סגור" data-name="דלתות_ארון_חשמל_סגור" :class="numPart === 1  ? '': 'hide'" >
       <polygon class="cls-10" points="3534.54 3824.5 4225.36 4332.58 4225.36 235.29 3534.54 0 3534.54 3824.5"/>
       <g id="_דלתות_ארון_חשמל" data-name="דלתות_ארון_חשמל">
         <polygon class="cls-77" points="733.25 3824.5 0 4348.21 0 250.92 733.25 15.63 733.25 3824.5"/>
@@ -623,22 +623,49 @@
 <script>
 export default {
   name: "electric-panel",
-  props:[],
+  props:['numPart'],
   data() {
     return {
-      numPart: 0,
     };
   },
   methods: {
     nextPart() {
-      this.numPart++;
+      // this.numPart++;
       this.$emit('next-instruction');
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.highlight {
+  animation: glow 2s infinite alternate;
+  /* border: 2px solid red; */
+  stroke: rgb(255, 255, 211); 
+  stroke-width: 2; 
+  animation: glow 0.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    stroke-width: 2; 
+    }
+  100% {
+    stroke-width: 30; 
+  }
+}
+
+.is-a-btn {
+  cursor: pointer;
+}
+
+/* .highlight rect {
+  stroke: #ff0000; 
+  stroke-width: 2; 
+  animation: glow 2s infinite alternate;
+} */
+
+
 .to-black {
   fill:#000;
   color: #000;
@@ -648,6 +675,14 @@ export default {
 .hide {
   display: none;
 }
+
+#Layer_1 {
+  width: 33rem;
+    height: 34rem;
+    margin-bottom: -2rem;
+    position: static;
+    /* position: absolute; */
+    }
 .cls-1 {
         fill: url(#linear-gradient-15);
       }
@@ -684,7 +719,7 @@ export default {
         stroke-miterlimit: 10;
       }
 
-      .cls-11, .cls-16, .cls-19, .cls-23, .cls-26, .cls-29, .cls-36, .cls-38 {
+      .cls-11, .cls-19, .cls-23, .cls-26, .cls-29, .cls-36, .cls-38 {
         stroke: #40403f;
       }
 

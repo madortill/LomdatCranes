@@ -32,13 +32,13 @@ export default {
 <style scoped>
 #instruction-container {
   background-color: white;
-  width: 30rem;
-  height: 7rem;
-  border-radius: 1rem;
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+    width: 30rem;
+    height: 8rem;
+    border-radius: 1rem;
+    margin-top: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .instruction {
