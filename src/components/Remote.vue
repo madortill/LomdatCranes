@@ -529,7 +529,7 @@
     <g id="_ארון_לשלט_סגור" data-name="ארון_לשלט_סגור">
       <path
         class="cls-13-1"
-        :class="numPart === 0 ? '' : 'hide'"
+        :class="[numPart !== 0  ? 'hide' : '', numPart=== 0 && isAble ? 'is-btn highlight': '']"
         @click="nextPart"
         d="M19.03,5196.44h1291.08c9.51,0,17.22-7.71,17.22-17.22V1953.53c0-9.51-7.71-17.22-17.22-17.22H19.03c-9.51,0-17.22,7.71-17.22,17.22v3225.69c0,9.51,7.71,17.22,17.22,17.22ZM402.18,2300.23h554.98c9.51,0,17.22,7.71,17.22,17.22v554.98c0,9.51-7.71,17.22-17.22,17.22H402.18c-9.51,0-17.22-7.71-17.22-17.22v-554.98c0-9.51,7.71-17.22,17.22-17.22Z"
       />
@@ -579,13 +579,7 @@ export default {
 </script>
 
 <style scoped>
-.highlight {
-  animation: glow 2s infinite alternate;
-  /* border: 2px solid red; */
-  stroke: rgb(255, 255, 211);
-  stroke-width: 2;
-  animation: glow 0.5s infinite alternate;
-}
+
 
 @keyframes glow {
   0% {
@@ -762,6 +756,14 @@ export default {
 .cls-20-1 {
   stroke: #5d6363;
   stroke-width: 2px;
+}
+
+.highlight {
+  animation: glow 2s infinite alternate;
+  /* border: 2px solid red; */
+  stroke: rgb(255, 255, 211);
+  stroke-width: 2;
+  animation: glow 0.5s infinite alternate;
 }
 
 .cls-14-1 {
