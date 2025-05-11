@@ -2348,7 +2348,7 @@
       <g
         id="_דלתות_ארון_חשמל_פתוח"
         data-name="דלתות_ארון_חשמל_פתוח"
-        :class="numPart === 1 ? 'hide' : ''"
+        :class="[numPart === 1 ? 'hide' : '', numPart === 0 ? 'is-a-btn highlight' : '']"
         @click="nextPart"
       >
         <rect

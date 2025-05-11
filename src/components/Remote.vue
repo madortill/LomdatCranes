@@ -245,10 +245,11 @@
         rx="17.13"
         ry="17.13"
       />
-      <!-- <g style="display: none"> -->
+      <g :class="numPart === 1 ? 'is-btn' : ''" @click="">
         <g>
           <rect
             class="cls-24-1"
+            :class=" numPart === 1 ? 'highlight' : ''"
             x="284.25"
             y="2385.53"
             width="787.88"
@@ -471,9 +472,11 @@
         <g>
           <path
             class="cls-31-1"
+            :class=" numPart === 1 ? 'highlight' : ''"
             d="M563.51,2241.15h232.99c25.3,0,45.84,20.54,45.84,45.84v98.54h-324.67v-98.54c0-25.3,20.54-45.84,45.84-45.84Z"
           />
           <polygon
+          :class=" numPart === 1 ? 'highlight' : ''"
             points="757.27 2242.5 592.19 2242.5 603.56 0 770.55 .85 757.27 2242.5"
           />
           <rect
@@ -504,7 +507,7 @@
             ry="3.69"
           />
         </g>
-      <!-- </g> -->
+      </g>
       <rect class="cls-32-1" x="0" y="1932.05" width="534.26" height="64.1" />
       <rect
         class="cls-32-1"
@@ -567,6 +570,8 @@ export default {
       // this.numPart++;
       if (this.isAble) {
         this.$emit("next-instruction");
+      } else if(this.numPart === 1) {
+
       }
     },
   },
@@ -574,6 +579,28 @@ export default {
 </script>
 
 <style scoped>
+.highlight {
+  animation: glow 2s infinite alternate;
+  /* border: 2px solid red; */
+  stroke: rgb(255, 255, 211);
+  stroke-width: 2;
+  animation: glow 0.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    stroke-width: 2;
+  }
+  100% {
+    stroke-width: 30;
+  }
+}
+
+.is-btn {
+  cursor: pointer;
+}
+
+
 .hide {
   display: none;
 }
@@ -631,7 +658,8 @@ export default {
 }
 
 .cls-2-1 {
-  fill: url(#linear-gradient-9-1);
+  /* fill: url(#linear-gradient-9-1); */
+  fill: url(#linear-gradient-17-1);
 }
 
 .cls-2-1,
