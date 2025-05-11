@@ -245,7 +245,7 @@
         rx="17.13"
         ry="17.13"
       />
-      <g :class="numPart === 1 ? 'is-btn' : ''" @click="">
+      <g :class="numPart === 1 ? 'is-btn' : ''" @click="nextPart">
         <g>
           <rect
             class="cls-24-1"
@@ -568,10 +568,9 @@ export default {
   methods: {
     nextPart() {
       // this.numPart++;
-      if (this.isAble) {
+  
+      if(this.numPart === 1 || (this.isAble && this.numPart === 0)) {
         this.$emit("next-instruction");
-      } else if(this.numPart === 1) {
-
       }
     },
   },
