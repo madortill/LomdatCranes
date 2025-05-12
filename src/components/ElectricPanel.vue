@@ -2993,4 +2993,11 @@ export default {
 .cls-109 {
   fill: url(#linear-gradient-18);
 }
+
+@media screen and (max-width: 700px) {
+  #Layer_1 {
+    width: 38rem;
+  height: 67rem;
+  }
+}
 </style>

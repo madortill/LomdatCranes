@@ -1,6 +1,7 @@
 <template>
   <svg
-    id="Layer_2"
+    class="Layer_2"
+    :class="numPart >= 2 && isZoomInRemote ? 'in-zoom' : ''"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 2544.11 5235.26"
@@ -237,6 +238,7 @@
     </defs>
     <g id="_שלט" data-name="שלט">
       <rect
+        :class="numPart >= 2 && isZoomInRemote ? 'hide' : ''"
         class="cls-20-1"
         x="1.81"
         y="1936.31"
@@ -245,11 +247,17 @@
         rx="17.13"
         ry="17.13"
       />
-      <g :class="numPart === 1 ? 'is-btn' : ''" @click="nextPart">
+      <g
+        :class="[
+          numPart === 1 ? 'is-btn' : '',
+          numPart >= 2 && !isZoomInRemote ? 'hide' : '',
+        ]"
+        @click="nextPart"
+      >
         <g>
           <rect
             class="cls-24-1"
-            :class=" numPart === 1 ? 'highlight' : ''"
+            :class="numPart === 1 ? 'highlight' : ''"
             x="284.25"
             y="2385.53"
             width="787.88"
@@ -472,11 +480,11 @@
         <g>
           <path
             class="cls-31-1"
-            :class=" numPart === 1 ? 'highlight' : ''"
+            :class="numPart === 1 ? 'highlight' : ''"
             d="M563.51,2241.15h232.99c25.3,0,45.84,20.54,45.84,45.84v98.54h-324.67v-98.54c0-25.3,20.54-45.84,45.84-45.84Z"
           />
           <polygon
-          :class=" numPart === 1 ? 'highlight' : ''"
+            :class="numPart === 1 ? 'highlight' : ''"
             points="757.27 2242.5 592.19 2242.5 603.56 0 770.55 .85 757.27 2242.5"
           />
           <rect
@@ -508,33 +516,42 @@
           />
         </g>
       </g>
-      <rect class="cls-32-1" x="0" y="1932.05" width="534.26" height="64.1" />
-      <rect
-        class="cls-32-1"
-        x="-1600.55"
-        y="3532.6"
-        width="3265.19"
-        height="64.1"
-        transform="translate(-3532.6 3596.7) rotate(-90)"
-      />
-      <rect class="cls-32-1" y="5171.16" width="1327.33" height="64.1" />
-      <rect
-        class="cls-32-1"
-        x="813.69"
-        y="1932.05"
-        width="513.64"
-        height="64.1"
-      />
+      <g :class="numPart >= 2 && isZoomInRemote ? 'hide' : ''">
+        <rect class="cls-32-1" x="0" y="1932.05" width="534.26" height="64.1" />
+        <rect
+          class="cls-32-1"
+          x="-1600.55"
+          y="3532.6"
+          width="3265.19"
+          height="64.1"
+          transform="translate(-3532.6 3596.7) rotate(-90)"
+        />
+        <rect class="cls-32-1" y="5171.16" width="1327.33" height="64.1" />
+        <rect
+          class="cls-32-1"
+          x="813.69"
+          y="1932.05"
+          width="513.64"
+          height="64.1"
+        />
+      </g>
     </g>
     <g id="_ארון_לשלט_סגור" data-name="ארון_לשלט_סגור">
       <path
         class="cls-13-1"
-        :class="[numPart !== 0  ? 'hide' : '', numPart=== 0 && isAble ? 'is-btn highlight': '']"
+        :class="[
+          numPart !== 0 ? 'hide' : '',
+          numPart === 0 && isAble ? 'is-btn highlight' : '',
+        ]"
         @click="nextPart"
         d="M19.03,5196.44h1291.08c9.51,0,17.22-7.71,17.22-17.22V1953.53c0-9.51-7.71-17.22-17.22-17.22H19.03c-9.51,0-17.22,7.71-17.22,17.22v3225.69c0,9.51,7.71,17.22,17.22,17.22ZM402.18,2300.23h554.98c9.51,0,17.22,7.71,17.22,17.22v554.98c0,9.51-7.71,17.22-17.22,17.22H402.18c-9.51,0-17.22-7.71-17.22-17.22v-554.98c0-9.51,7.71-17.22,17.22-17.22Z"
       />
     </g>
-    <g id="_ארון_לשלט_פתוח" data-name="ארון_לשלט_פתוח">
+    <g
+      id="_ארון_לשלט_פתוח"
+      data-name="ארון_לשלט_פתוח"
+      :class="numPart >= 2 && isZoomInRemote ? 'hide' : ''"
+    >
       <path
         class="cls-15-1"
         :class="numPart === 0 ? 'hide' : ''"
@@ -561,15 +578,15 @@
 <script>
 export default {
   name: "remote",
-  props: ["numPart", "isAble"],
+  props: ["numPart", "isAble", "isZoomInRemote"],
   data() {
     return {};
   },
   methods: {
     nextPart() {
       // this.numPart++;
-  
-      if(this.numPart === 1 || (this.isAble && this.numPart === 0)) {
+
+      if (this.numPart === 1 || (this.isAble && this.numPart === 0)) {
         this.$emit("next-instruction");
       }
     },
@@ -578,8 +595,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 @keyframes glow {
   0% {
     stroke-width: 2;
@@ -593,16 +608,18 @@ export default {
   cursor: pointer;
 }
 
-
 .hide {
   display: none;
 }
-#Layer_2 {
-  width: 17rem 205.19px;
+.Layer_2 {
+  width: 10rem;
   height: 21rem;
-  /* bottom: 0rem; */
+}
+
+/* .regular-remote {
   position: static;
 }
+*/
 
 .cls-1-1,
 .cls-2-1,
@@ -807,5 +824,12 @@ export default {
 
 .cls-20-1 {
   fill: url(#linear-gradient-1-1);
+}
+.in-zoom {
+  /* transform: scale(1.5); */
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>

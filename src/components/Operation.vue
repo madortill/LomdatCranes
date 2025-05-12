@@ -13,7 +13,19 @@
       <!-- </div> -->
 
       <div class="remote-container">
-        <remote  @next-instruction="nextPart" :numPart="partInRemote" :isAble="navbarSubjNum === 2 ? true : false" :class="numInstruction < 2 ? 'disabled-remote' : ''" />
+        <remote
+          @next-instruction="nextPart"
+          :numPart="partInRemote"
+          :isAble="navbarSubjNum === 2 ? true : false"
+          :isZoomInRemote="false"
+          :class="[numInstruction < 2 ? 'disabled-remote' : '']"
+        />
+        <remote
+          :class="numInstruction < 4 ? 'hide' : ''"
+          :isZoomInRemote="true"
+          :numPart="partInRemote"
+
+        />
       </div>
     </div>
 
@@ -39,6 +51,7 @@ export default {
       numInstruction: 0,
       partInElectricPanel: 0,
       partInRemote: 0,
+      isZoomInRemote: false,
     };
   },
   methods: {
@@ -77,13 +90,13 @@ export default {
           break;
         }
         case 2: {
-          if(this.partInRemote === 0) {
+          if (this.partInRemote === 0) {
             this.partInElectricPanel--;
             this.$emit("change-sub-nav-num", false);
           } else {
             this.partInRemote--;
           }
-          
+
           this.numInstruction--;
 
           break;
@@ -138,18 +151,34 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-end;
   align-items: center;
+  width: 100vw;
 }
 
 .disabled-remote {
   filter: grayscale(100%);
 }
+
+.hide {
+  display: none;
+}
+
 .remote-container {
   display: flex;
   height: 100%;
   align-items: center;
+  /* position: relative; */
+  width: 20rem;
+  justify-content: center;
 }
+
+/* .remote {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none; 
+} */
+
 .moving-btn {
   z-index: 1;
   position: absolute;
@@ -218,10 +247,6 @@ export default {
     /* align-items: flex-end; */
     flex-direction: column-reverse;
     /* margin-bottom: 6.5rem; */
-  }
-
-  .remote-container {
-    height: auto;
   }
 }
 </style>
