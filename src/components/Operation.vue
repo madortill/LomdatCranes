@@ -8,7 +8,10 @@
       <electric-panel
         @next-instruction="nextPart"
         :numPart="partInElectricPanel"
-        :class="numInstruction > 1 ? 'disabled-remote' : ''"
+        :class="[
+          numInstruction > 1 ? 'disabled-remote' : '',
+          numInstruction < 5 ? '' : 'hide',
+        ]"
       />
       <!-- </div> -->
 
@@ -21,11 +24,14 @@
           :class="[numInstruction < 2 ? 'disabled-remote' : '']"
         />
         <remote
-        @next-instruction="nextPart"
+          @next-instruction="nextPart"
           :class="numInstruction < 4 ? 'hide' : ''"
           :isZoomInRemote="true"
           :numPart="partInRemote"
         />
+      </div>
+      <div class="crane-in-operation-container">
+        <crane-in-operation :class="numInstruction < 5 ? 'hide' : ''" />
       </div>
     </div>
 
@@ -37,11 +43,12 @@
 <script>
 import ElectricPanel from "./ElectricPanel.vue";
 import Instruction from "./Instruction.vue";
+import CraneInOperation from "./CraneInOperation.vue";
 import Remote from "./Remote.vue";
 export default {
   name: "operation",
 
-  components: { Instruction, ElectricPanel, Remote },
+  components: { Instruction, ElectricPanel, Remote, CraneInOperation },
   props: ["chosenCourse", "navbarSubjNum", "colorIconPhone"],
   data() {
     return {
@@ -99,27 +106,19 @@ export default {
           } else {
             this.partInRemote--;
           }
-
           this.numInstruction--;
-
           break;
         }
         case 3: {
           this.$emit("change-sub-nav-num", false);
-
           this.partInRemote--;
-
           this.numInstruction--;
-
           break;
         }
         case 4: {
           this.$emit("change-sub-nav-num", false);
-
           this.partInRemote--;
-
           this.numInstruction--;
-
           break;
         }
       }
@@ -149,11 +148,7 @@ export default {
     //   this.$emit("to-show-cloud-bg", show);
     // },
   },
-  //   mounted() {
-  //     setTimeout(() => {
 
-  //     }, 1000);
-  //   },
 };
 </script>
 
@@ -168,12 +163,17 @@ export default {
   justify-content: space-between;
 }
 
+.crane-in-operation-container {
+  background-color: gray;
+  border-radius: 1rem;
+}
 .graphics-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100vw;
+  height: 80%;
 }
 
 .disabled-remote {
@@ -201,7 +201,7 @@ export default {
 } */
 
 .moving-btn {
-  z-index: 1;
+  z-index: 5;
   position: absolute;
   bottom: 1rem;
   width: 5rem;
@@ -259,7 +259,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
   #operation {
     height: 91vh;
   }

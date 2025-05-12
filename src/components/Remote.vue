@@ -1,7 +1,7 @@
 <template>
   <svg
     class="Layer_2"
-    :class="numPart >= 2 && isZoomInRemote ? 'in-zoom' : ''"
+    :class="[numPart >= 2 && isZoomInRemote ? 'in-zoom' : '', numPart === 3 ? 'second-pos' : '']"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 2544.11 5235.26"
@@ -349,7 +349,14 @@
           />
         </g>
         <g>
-          <circle @click="nextPart" class="cls-3-1" :class="numPart === 2 ? 'highlight': ''" cx="680.01" cy="2902.56" r="102.4" />
+          <circle
+            @click="nextPart"
+            class="cls-3-1"
+            :class="numPart === 2 ? 'highlight' : ''"
+            cx="680.01"
+            cy="2902.56"
+            r="102.4"
+          />
           <g>
             <path
               class="cls-25-1"
@@ -586,7 +593,11 @@ export default {
     nextPart() {
       // this.numPart++;
 
-      if (this.numPart === 1 || (this.isAble && this.numPart === 0)|| this.numPart === 2) {
+      if (
+        this.numPart === 1 ||
+        (this.isAble && this.numPart === 0) ||
+        this.numPart === 2
+      ) {
         this.$emit("next-instruction");
       }
     },
@@ -832,9 +843,16 @@ export default {
   position: absolute;
   /* animation: grow 0.2s linear forwards; */
   right: 38%;
-    top: 8rem;
-    transform: scale(2.5);
+  top: 8rem;
+  transform: scale(2.5);
+}
 
+/* .first-pos {
+
+} */
+
+.second-pos {
+  right: 10%;
 }
 
 /* @keyframes grow {
@@ -851,8 +869,8 @@ export default {
 } */
 @media screen and (max-width: 700px) {
   .in-zoom {
-  right: 6rem;
+    right: 6rem;
     top: 16rem;
-}
+  }
 }
 </style>

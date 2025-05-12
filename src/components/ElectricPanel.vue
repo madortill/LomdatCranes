@@ -2445,7 +2445,7 @@ export default {
 #Layer_1 {
   width: 33rem;
   height: 34rem;
-  margin-bottom: -5rem;
+  margin-bottom: -14rem;
   position: static;
 }
 .cls-1 {
@@ -2993,11 +2993,23 @@ export default {
 .cls-109 {
   fill: url(#linear-gradient-18);
 }
+@media screen and (max-width: 1200px) {
+  #Layer_1 {
+  margin-bottom: -20rem;
+  }
+}
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
+  #Layer_1 {
+    margin-bottom: -27.8rem;
+  }
+}
+@media screen and (max-width: 600px) {
   #Layer_1 {
     width: 38rem;
   height: 67rem;
+  margin-bottom: -5rem;
   }
 }
+
 </style>
