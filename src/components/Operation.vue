@@ -21,10 +21,10 @@
           :class="[numInstruction < 2 ? 'disabled-remote' : '']"
         />
         <remote
+        @next-instruction="nextPart"
           :class="numInstruction < 4 ? 'hide' : ''"
           :isZoomInRemote="true"
           :numPart="partInRemote"
-
         />
       </div>
     </div>
@@ -68,12 +68,15 @@ export default {
         case 2: {
           this.partInRemote++;
           this.numInstruction++;
-          if (this.numInstruction === 1) {
+          if (this.numInstruction === 1 || this.numInstruction === 4) {
             this.$emit("change-sub-nav-num", true);
           }
           break;
         }
         case 3: {
+          this.partInRemote++;
+          this.numInstruction++;
+          this.$emit("change-sub-nav-num", true);
           break;
         }
       }
@@ -96,6 +99,24 @@ export default {
           } else {
             this.partInRemote--;
           }
+
+          this.numInstruction--;
+
+          break;
+        }
+        case 3: {
+          this.$emit("change-sub-nav-num", false);
+
+          this.partInRemote--;
+
+          this.numInstruction--;
+
+          break;
+        }
+        case 4: {
+          this.$emit("change-sub-nav-num", false);
+
+          this.partInRemote--;
 
           this.numInstruction--;
 
@@ -215,7 +236,7 @@ export default {
   background-color: #e0f2f4;
   height: 3rem;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
   position: absolute;
   top: 0rem;
   left: 50%;
@@ -223,7 +244,7 @@ export default {
 }
 
 .down {
-  z-index: 0;
+  z-index: 3;
   animation: goingDown 0.6s linear forwards;
 }
 

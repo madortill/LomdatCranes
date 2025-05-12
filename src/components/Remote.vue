@@ -349,7 +349,7 @@
           />
         </g>
         <g>
-          <circle class="cls-3-1" cx="680.01" cy="2902.56" r="102.4" />
+          <circle @click="nextPart" class="cls-3-1" :class="numPart === 2 ? 'highlight': ''" cx="680.01" cy="2902.56" r="102.4" />
           <g>
             <path
               class="cls-25-1"
@@ -586,7 +586,7 @@ export default {
     nextPart() {
       // this.numPart++;
 
-      if (this.numPart === 1 || (this.isAble && this.numPart === 0)) {
+      if (this.numPart === 1 || (this.isAble && this.numPart === 0)|| this.numPart === 2) {
         this.$emit("next-instruction");
       }
     },
@@ -779,6 +779,7 @@ export default {
   /* border: 2px solid red; */
   stroke: rgb(255, 255, 211);
   stroke-width: 2;
+  cursor: pointer;
   animation: glow 0.5s infinite alternate;
 }
 
@@ -825,11 +826,33 @@ export default {
 .cls-20-1 {
   fill: url(#linear-gradient-1-1);
 }
+
 .in-zoom {
-  /* transform: scale(1.5); */
   z-index: 2;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  /* animation: grow 0.2s linear forwards; */
+  right: 38%;
+    top: 8rem;
+    transform: scale(2.5);
+
+}
+
+/* @keyframes grow {
+  0% {
+    transform: scale(1);
+    right: auto;
+    top: auto;
+  }
+  100% {
+    right: 38%;
+    top: 7rem;
+    transform: scale(2.5);
+  }
+} */
+@media screen and (max-width: 700px) {
+  .in-zoom {
+  right: 6rem;
+    top: 16rem;
+}
 }
 </style>
