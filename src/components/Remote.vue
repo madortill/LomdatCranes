@@ -238,7 +238,7 @@
     </defs>
     <g id="_שלט" data-name="שלט">
       <rect
-        :class="numPart >= 2 && isZoomInRemote ? 'hide' : ''"
+        :class="(numPart >= 2 && isZoomInRemote) || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''"
         class="cls-20-1"
         x="1.81"
         y="1936.31"
@@ -523,7 +523,7 @@
           />
         </g>
       </g>
-      <g :class="numPart >= 2 && isZoomInRemote ? 'hide' : ''">
+      <g :class="(numPart >= 2 && isZoomInRemote) || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''">
         <rect class="cls-32-1" x="0" y="1932.05" width="534.26" height="64.1" />
         <rect
           class="cls-32-1"
@@ -561,10 +561,11 @@
     >
       <path
         class="cls-15-1"
-        :class="numPart === 0 ? 'hide' : ''"
+        :class="numPart === 0 || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''"
         d="M2527.31,5196.44h-1184.19c-8.72,0-15.79-7.71-15.79-17.22V1953.53c0-9.51,7.07-17.22,15.79-17.22h1184.19c8.72,0,15.79,7.71,15.79,17.22v3225.69c0,9.51-7.07,17.22-15.79,17.22ZM2175.89,2300.23h-509.03c-8.72,0-15.79,7.71-15.79,17.22v554.98c0,9.51,7.07,17.22,15.79,17.22h509.03c8.72,0,15.79-7.71,15.79-17.22v-554.98c0-9.51-7.07-17.22-15.79-17.22Z"
       />
-      <rect
+      <g :class="numPart >= 3 && !isZoomInRemote ? 'hide': ''">
+        <rect
         class="cls-32-1"
         x="1327.33"
         y="2366.86"
@@ -578,6 +579,8 @@
         width="36.05"
         height="456.15"
       />
+      </g>
+      
     </g>
   </svg>
 </template>
@@ -867,10 +870,14 @@ export default {
     transform: scale(2.5);
   }
 } */
+
+
+
 @media screen and (max-width: 700px) {
   .in-zoom {
-    right: 6rem;
-    top: 16rem;
+    right: 7rem;
+    top: 13rem;
+    transform: scale(2);
   }
 }
 </style>

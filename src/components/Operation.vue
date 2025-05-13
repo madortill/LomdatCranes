@@ -3,7 +3,7 @@
     <div class="hide-down-instruction"></div>
     <instruction class="down" :numInstruction="numInstruction"></instruction>
 
-    <div class="graphics-container">
+    <div class="graphics-container" :class="partInRemote === 3 ? 'fix-flex-dir' : ''">
       <!-- <div> -->
       <electric-panel
         @next-instruction="nextPart"
@@ -259,6 +259,8 @@ export default {
   }
 }
 
+
+
 @media screen and (max-width: 600px) {
   #operation {
     height: 91vh;
@@ -269,5 +271,8 @@ export default {
     flex-direction: column-reverse;
     /* margin-bottom: 6.5rem; */
   }
+  .fix-flex-dir {
+flex-direction: column;
+}
 }
 </style>
