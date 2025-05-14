@@ -113,6 +113,7 @@ export default {
         case 4: {
           if (this.partInSecondPart === -1) {
             this.hideNavbar(true);
+            this.updateColorHomeIcon("none");
           }
           if (this.partInSecondPart === 0 && !this.showNoticeInSummery) {
             this.showNoticeInSummery = true;
@@ -163,6 +164,9 @@ export default {
           } else {
             if (this.partInSecondPart === 0) {
               this.hideNavbar(false);
+              this.updateColorHomeIcon(
+                "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+              );
             }
             if (this.partInSecondPart === 1 && !this.showNoticeInSummery) {
               this.showNoticeInSummery = true;
@@ -191,9 +195,9 @@ export default {
       }
     },
 
-    // updateColorHomeIcon(color) {
-    //   this.$emit("update-color-icon-home", color);
-    // },
+    updateColorHomeIcon(color) {
+      this.$emit("update-color-icon-home", color);
+    },
 
     // showNextBtn() {
 
