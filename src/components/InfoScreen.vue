@@ -220,7 +220,7 @@ export default {
   .homeIcon {
     filter: var(--home-icon-color);
     right: auto;
-    left: 4.6rem;
+    left: 4rem;
   }
 }
 </style>
