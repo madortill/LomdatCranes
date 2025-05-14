@@ -116,9 +116,11 @@ export default {
           }
           if (this.partInSecondPart === 0 && !this.showNoticeInSummery) {
             this.showNoticeInSummery = true;
+            this.partInSecondPart++;
+          } else if (this.partInSecondPart === 1 && this.showNoticeInSummery) {
+            this.showNoticeInSummery = false;
           } else {
             this.partInSecondPart++;
-            this.showNoticeInSummery = false;
           }
           break;
         }
@@ -165,10 +167,9 @@ export default {
             if (this.partInSecondPart === 1 && !this.showNoticeInSummery) {
               this.showNoticeInSummery = true;
               // this.partInSecondPart++;
-            }  else {
-               
+            } else {
               this.showNoticeInSummery = false;
-            
+
               this.partInSecondPart--;
             }
           }

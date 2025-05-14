@@ -16,7 +16,7 @@
       </div>
       <div class="notice" v-if="showNotice">
         <p class="header-notice">שימו לב!</p>
-        <p>בעת סיום העבודה עם העגורן עלייך לחזור על השלבים <b>בסדר ההפוך</b> </p>
+        <p>בעת סיום העבודה עם העגורן עלייך לחזור על השלבים <b>בסדר ההפוך</b></p>
       </div>
       <div v-if="indexArr === 2" class="finish-container">
         <p>עכשיו אתם יכולים להתחיל את העבודה ולתפעל את עגורן הגשר</p>
@@ -72,8 +72,8 @@ export default {
 .info-container {
   background-color: #023047;
   border-radius: 1rem;
-  width: 50rem;
-  height: 30rem;
+  width: 34rem;
+  height: 31rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,8 +128,8 @@ export default {
 
 .notice {
   background-color: white;
-    color: black;
-    width: 100%;
+  color: black;
+  width: 100%;
 }
 
 .header-notice {
@@ -138,9 +138,16 @@ export default {
   font-size: 1.8rem;
 }
 
-.good-word{
+.good-word {
   color: #ffb703;
   font-weight: bold;
   font-size: 2.3rem;
+}
+
+@media screen and (max-width: 600px) {
+  .info-container {
+    width: 30rem;
+    height: 36rem;
+}
 }
 </style>
