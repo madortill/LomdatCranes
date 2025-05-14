@@ -17,6 +17,7 @@
       @to-prev-board="backToStartSign"
       @change-show-warning="changeShowWarning"
       @back-to-general-material="backToGeneralMaterialFromOperation"
+       @to-show-cloud-bg="toShowCloudBg"
       v-if="partToShow === 0"
     ></start-sign>
     <navbar
@@ -110,7 +111,8 @@ export default {
         this.partToShow--;
         this.thePart = 1;
         this.updateColorIconPhone("none");
-        this.showWarning = false;
+        this.showWarning = false; 
+       
       } else {
         this.thePart--;
       }

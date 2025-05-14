@@ -233,6 +233,7 @@ export default {
         }
         case 8 : {
           this.$emit('finished-genearal-material');
+          this.toShowCloudBg(true);
           break;
         }
       }

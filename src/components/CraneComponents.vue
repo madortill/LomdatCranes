@@ -27,7 +27,13 @@
       :style="{ '--bg-color': arrBgColors[numPart] }"
     >
       <p class="header">{{ arrInfo[numPart][0] }}</p>
-      <p>{{ arrInfo[numPart][1] }}</p>
+      <p
+        class="text"
+        v-for="(item, index) in arrInfo[numPart].slice(1)"
+        :key="index"
+      >
+        {{ item }}
+      </p>
       <p class="moving-btn" @click="nextPart">הבנתי!</p>
     </div>
     <p v-if="finishLearning" class="again" @click="startOver">שוב !</p>
@@ -46,11 +52,16 @@ export default {
       arrInfo: [
         [
           "מפסקי גבול",
-          "לכל כננת חשמלית בעגורן יש מפסק גבול, המפסיק את פעולות המנוע בדיוק לפני סוף המהלך. תפקידו של המפסק למנוע נזק לעגורן או לציוד הסובב אותו. מפסק גבול נוסף שתפקידו להאט את מהירות הכננת כאשר הוא קרוב לסופה של קורה.",
+          "לכל כננת חשמלית בעגורן יש מפסק גבול, המפסיק את פעולות המנוע בדיוק לפני סוף המהלך.",
+          "תפקידו של המפסק למנוע נזק לעגורן או לציוד הסובב אותו.",
+          "ישנו מפסק גבול נוסף שתפקידו להאט את מהירות הכננת כאשר הוא קרוב לסופה של קורה.",
         ],
         [
           "מפסקי זרם",
-          "מפסק זרם הוא רכיב אשר מאפשר ניתוק של חשמל. בכל סדנא נמצא מפסק זרם ראשי  שתפקידו להפסיק את הזרם החשמלי בעת סכנה או פגיעה. מפסק זרם לעגורן: בעגורן נמצא מפסק זרם להדלקה וכיבוי המנוף. בכל סיום פעולה יש לנתק את המנוף על ידי המפסק. פטריית חירום: ממוקמת על השלט, מיועדת להפסקת הזרם במקרה חירום בעזרת לחיצה. בסיבוב הפטרייה לצד ימין יפתח הזרם החשמלי לתחילת או המשך עבודה.",
+          "מפסק זרם הוא רכיב אשר מאפשר ניתוק של חשמל.",
+          "בכל סדנא נמצא מפסק זרם ראשי  שתפקידו להפסיק את הזרם החשמלי בעת סכנה או פגיעה.",
+          " מפסק זרם לעגורן: בעגורן נמצא מפסק זרם להדלקה וכיבוי המנוף. בכל סיום פעולה יש לנתק את המנוף על ידי המפסק.",
+          "פטריית חירום: ממוקמת על השלט, מיועדת להפסקת הזרם במקרה חירום בעזרת לחיצה. בסיבוב הפטרייה לצד ימין יפתח הזרם החשמלי לתחילת או המשך עבוד",
         ],
         [
           "תאים פוטואלקטריים",
@@ -63,7 +74,7 @@ export default {
   },
   methods: {
     nextPart() {
-      //שלא יהיה אפשר ללחוץ מלא פעמים 
+      //שלא יהיה אפשר ללחוץ מלא פעמים
       if (this.showInfo) {
         this.showInfo = false;
         this.showFadeOutInfo = true;
@@ -186,6 +197,7 @@ export default {
 .header {
   font-size: 2.5rem;
   font-weight: bold;
+  margin-bottom: 1.3rem;
 }
 
 .fix-header {
@@ -215,20 +227,24 @@ export default {
   /* height: 23.2rem; */
   /* top: 14.3rem; */
   opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .info-in-yellow {
   width: 41rem;
   transform: translateX(-43.7%);
   height: 23.2rem;
-  top: 14.3rem;
+  /* top: 14.3rem; */
+  top: 13.2rem;
 }
 
 .info-in-orange {
   width: 35.2rem;
   transform: translateX(-50%);
   height: 28.8rem;
-  top: 13.2rem;
+  top: 12.4rem;
 }
 
 .info-in-blue {
@@ -254,7 +270,7 @@ export default {
 .moving-btn {
   z-index: 1;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0rem;
   left: 50%;
   transform: translateX(-50%);
   width: 5rem;
@@ -277,6 +293,10 @@ export default {
   color: white;
 }
 
+.text {
+  margin: 0rem;
+  width: 95%;
+}
 @media screen and (max-width: 600px) {
   #crane-components {
     height: 91vh;
@@ -297,17 +317,17 @@ export default {
   }
 
   .info-in-yellow {
-    width: 30rem;
-    height: 21.8rem;
-    top: 21.3rem;
-    transform: translateX(-50%);
+    width: 36.1rem;
+    height: 21.6rem;
+    top: 20.3rem;
+    transform: translateX(-42%);
   }
 
   .info-in-orange {
     width: 32.5rem;
     transform: translateX(-50%);
-    height: 26.5rem;
-    top: 18.7rem;
+    height: 26.4rem;
+    top: 17.6rem;
   }
 
   .info-in-blue {

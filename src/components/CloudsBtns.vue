@@ -14,6 +14,7 @@
         <img
           @click="inTheMethod(true, index, $event)"
           class="img-cloud"
+          :class="{ 'to-gray': learnedArr[index] }"
           :src="getCloudImage(num)"
           alt="cloud image"
         />
@@ -119,12 +120,11 @@ export default {
 .img-cloud {
   position: absolute;
   width: 100%;
-  /* height: 100%; */
   right: 0rem;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  /* z-index: 1; */
+  transition: filter 0.3s ease;
 }
 
 @keyframes flyingUpDown {
@@ -203,6 +203,11 @@ export default {
   width: 24rem;
   grid-column-start: 3;
   grid-row-start: 8;
+}
+
+.to-gray {
+  /* filter: grayscale(100%); */
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 600px) {

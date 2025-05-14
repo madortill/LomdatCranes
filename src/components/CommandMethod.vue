@@ -3,6 +3,7 @@
     <div class="pop-out">
       <p class="header">{{theInfo[0][partCommadMethod] }}</p>
       <p v-if="partCommadMethod === 0" >{{theInfo[cloudObject.num][0] }}</p>
+      <div class="command-img" v-if="partCommadMethod=== 0">תמונה</div>
       <div v-if="partCommadMethod === 1">
         <p  v-for="(i,index) in theInfo" :key="index">{{theInfo[cloudObject.num][index +1] }}</p>
       </div>
@@ -91,6 +92,12 @@ export default {
   align-items: center;
 }
 
+.command-img {
+  background-color: white;
+  height: 10rem;
+  width: 15rem;
+  color: black;
+}
 .pop-out {
   background-color: #023047;
   /* padding: 1rem; */
@@ -106,6 +113,7 @@ export default {
   flex-direction: column;
   align-items: center;
   color: white;
+  justify-content: center;
 }
 
 .header {
