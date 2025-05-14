@@ -2348,7 +2348,10 @@
       <g
         id="_דלתות_ארון_חשמל_פתוח"
         data-name="דלתות_ארון_חשמל_פתוח"
-        :class="[numPart === 1 ? 'hide' : '', numPart === 0 ? 'is-a-btn highlight' : '']"
+        :class="[
+          numPart === 1 ? 'hide' : '',
+          numPart === 0 ? 'is-a-btn highlight' : '',
+        ]"
         @click="nextPart"
       >
         <rect
@@ -2995,7 +2998,7 @@ export default {
 }
 @media screen and (max-width: 1200px) {
   #Layer_1 {
-  margin-bottom: -20rem;
+    margin-bottom: -20rem;
   }
 }
 
@@ -3006,10 +3009,9 @@ export default {
 }
 @media screen and (max-width: 600px) {
   #Layer_1 {
-    width: 38rem;
-  height: 67rem;
-  margin-bottom: -5rem;
+    width: 44rem;
+    height: 100rem;
+    margin-bottom: -7rem;
   }
 }
-
 </style>
