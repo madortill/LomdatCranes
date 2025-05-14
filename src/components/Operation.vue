@@ -1,9 +1,17 @@
 <template>
   <div id="operation" :style="{ '--moving-btn-color': movingBtnColor }">
     <div class="hide-down-instruction"></div>
-    <instruction class="down" :numInstruction="numInstruction"></instruction>
+    <instruction
+      v-if="partInSecondPart === -1"
+      class="down"
+      :numInstruction="numInstruction"
+    ></instruction>
 
-    <div class="graphics-container" :class="partInRemote === 3 ? 'fix-flex-dir' : ''">
+    <div
+      v-if="partInSecondPart === -1"
+      class="graphics-container"
+      :class="partInRemote === 3 ? 'fix-flex-dir' : ''"
+    >
       <!-- <div> -->
       <electric-panel
         @next-instruction="nextPart"
@@ -35,6 +43,8 @@
       </div>
     </div>
 
+    <summary-operation v-if="partInSecondPart > -1"/>
+
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
@@ -45,20 +55,21 @@ import ElectricPanel from "./ElectricPanel.vue";
 import Instruction from "./Instruction.vue";
 import CraneInOperation from "./CraneInOperation.vue";
 import Remote from "./Remote.vue";
+import SummaryOperation from './SummaryOperation.vue';
 export default {
   name: "operation",
 
-  components: { Instruction, ElectricPanel, Remote, CraneInOperation },
-  props: ["chosenCourse", "navbarSubjNum", "colorIconPhone"],
+  components: { Instruction, ElectricPanel, Remote, CraneInOperation, SummaryOperation },
+  props: ["navbarSubjNum", "colorIconPhone"],
   data() {
     return {
-      indexOrder: 0,
       showNextBtn: false,
       showBackBtn: true,
       numInstruction: 0,
       partInElectricPanel: 0,
       partInRemote: 0,
       isZoomInRemote: false,
+      partInSecondPart: -1,
     };
   },
   methods: {
@@ -84,6 +95,15 @@ export default {
           this.partInRemote++;
           this.numInstruction++;
           this.$emit("change-sub-nav-num", true);
+          //temparery
+          this.showNextBtn = true;
+          break;
+        }
+        case 4: {
+          if (this.partInSecondPart === -1) {
+            this.hideNavbar(true);
+          }
+          this.partInSecondPart++;
           break;
         }
       }
@@ -116,9 +136,19 @@ export default {
           break;
         }
         case 4: {
-          this.$emit("change-sub-nav-num", false);
-          this.partInRemote--;
-          this.numInstruction--;
+          if (this.partInSecondPart === -1) {
+            this.$emit("change-sub-nav-num", false);
+            this.partInRemote--;
+            this.numInstruction--;
+            //temparery
+             this.showNextBtn = false;
+          } else {
+            if (this.partInSecondPart === 0) {
+            this.hideNavbar(false);
+          }
+            this.partInSecondPart--;
+          }
+
           break;
         }
       }
@@ -128,27 +158,26 @@ export default {
       this.$emit("toHomePage");
     },
 
-    // hideNavbar(tohide) {
-    //   if (tohide) {
-    //     this.$emit("hide-navbar", true);
-    //   } else {
-    //     this.$emit("hide-navbar", false);
-    //   }
-    // },
+    hideNavbar(tohide) {
+      if (tohide) {
+        this.$emit("hide-navbar", true);
+      } else {
+        this.$emit("hide-navbar", false);
+      }
+    },
 
     // updateColorHomeIcon(color) {
     //   this.$emit("update-color-icon-home", color);
     // },
 
-    // showNextBtnFromComponent() {
-    //   this.showNextBtn = true;
+    // showNextBtn() {
+
     // },
 
     // toShowCloudBg(show) {
     //   this.$emit("to-show-cloud-bg", show);
     // },
   },
-
 };
 </script>
 
@@ -163,6 +192,10 @@ export default {
   justify-content: space-between;
 }
 
+.steps-container {
+  width: 100vw;
+  height: 100vh;
+}
 .crane-in-operation-container {
   background-color: gray;
   border-radius: 1rem;
@@ -259,8 +292,6 @@ export default {
   }
 }
 
-
-
 @media screen and (max-width: 600px) {
   #operation {
     height: 91vh;
@@ -272,7 +303,7 @@ export default {
     /* margin-bottom: 6.5rem; */
   }
   .fix-flex-dir {
-flex-direction: column;
-}
+    flex-direction: column;
+  }
 }
 </style>
