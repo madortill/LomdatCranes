@@ -43,7 +43,11 @@
       </div>
     </div>
 
-    <summary-operation v-if="partInSecondPart > -1"/>
+    <summary-operation
+      v-if="partInSecondPart > -1"
+      :indexArr="partInSecondPart"
+      :showNotice="showNoticeInSummery"
+    />
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -55,11 +59,17 @@ import ElectricPanel from "./ElectricPanel.vue";
 import Instruction from "./Instruction.vue";
 import CraneInOperation from "./CraneInOperation.vue";
 import Remote from "./Remote.vue";
-import SummaryOperation from './SummaryOperation.vue';
+import SummaryOperation from "./SummaryOperation.vue";
 export default {
   name: "operation",
 
-  components: { Instruction, ElectricPanel, Remote, CraneInOperation, SummaryOperation },
+  components: {
+    Instruction,
+    ElectricPanel,
+    Remote,
+    CraneInOperation,
+    SummaryOperation,
+  },
   props: ["navbarSubjNum", "colorIconPhone"],
   data() {
     return {
@@ -70,6 +80,7 @@ export default {
       partInRemote: 0,
       isZoomInRemote: false,
       partInSecondPart: -1,
+      showNoticeInSummery: false,
     };
   },
   methods: {
@@ -103,7 +114,12 @@ export default {
           if (this.partInSecondPart === -1) {
             this.hideNavbar(true);
           }
-          this.partInSecondPart++;
+          if (this.partInSecondPart === 0 && !this.showNoticeInSummery) {
+            this.showNoticeInSummery = true;
+          } else {
+            this.partInSecondPart++;
+            this.showNoticeInSummery = false;
+          }
           break;
         }
       }
@@ -141,12 +157,20 @@ export default {
             this.partInRemote--;
             this.numInstruction--;
             //temparery
-             this.showNextBtn = false;
+            this.showNextBtn = false;
           } else {
             if (this.partInSecondPart === 0) {
-            this.hideNavbar(false);
-          }
-            this.partInSecondPart--;
+              this.hideNavbar(false);
+            }
+            if (this.partInSecondPart === 1 && !this.showNoticeInSummery) {
+              this.showNoticeInSummery = true;
+              // this.partInSecondPart++;
+            }  else {
+               
+              this.showNoticeInSummery = false;
+            
+              this.partInSecondPart--;
+            }
           }
 
           break;
