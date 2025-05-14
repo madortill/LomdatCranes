@@ -25,20 +25,19 @@ export default {
     };
   },
   methods: {},
-
 };
 </script>
 
 <style scoped>
 #instruction-container {
   background-color: white;
-    width: 30rem;
-    height: 8rem;
-    border-radius: 1rem;
-    margin-top: 3.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  width: 30rem;
+  height: 8rem;
+  border-radius: 1rem;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .instruction {
@@ -65,4 +64,10 @@ export default {
       font-size: 1.2rem;
     }
   } */
+@media screen and (max-width: 600px) {
+  #instruction-container {
+    width: 26rem;
+    height: 7rem;
+  }
+}
 </style>

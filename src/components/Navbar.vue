@@ -205,6 +205,7 @@ export default {
 
 .subj-text {
   margin-right: 7rem;
+  font-size: 1.6rem;
 }
 
 .menu-container {
