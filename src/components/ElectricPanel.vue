@@ -2448,7 +2448,7 @@ export default {
 #Layer_1 {
   width: 33rem;
   height: 34rem;
-  margin-bottom: -14rem;
+  margin-bottom: -15rem;
   position: static;
 }
 .cls-1 {
