@@ -36,10 +36,14 @@
           :class="numInstruction < 4 ? 'hide' : ''"
           :isZoomInRemote="true"
           :numPart="partInRemote"
+          @move-crane="moveCrane"
         />
       </div>
       <div class="crane-in-operation-container">
-        <crane-in-operation :class="numInstruction < 5 ? 'hide' : ''" />
+        <crane-in-operation
+          :horizontalRem="horizontalRem"
+          :class="numInstruction < 5 ? 'hide' : ''"
+        />
       </div>
     </div>
 
@@ -81,9 +85,25 @@ export default {
       isZoomInRemote: false,
       partInSecondPart: -1,
       showNoticeInSummery: false,
+      //move crane
+      horizontalRem: 0,
     };
   },
   methods: {
+    moveCrane(motion) {
+      switch (motion) {
+        case "right":
+          if (this.horizontalRem < 138) {
+            this.horizontalRem = this.horizontalRem + 3;
+          }
+          break;
+        case "left":
+        if (this.horizontalRem > -12) {
+          this.horizontalRem = this.horizontalRem - 3;
+          }
+          break;
+      }
+    },
     nextPart() {
       switch (this.navbarSubjNum) {
         case 1: {

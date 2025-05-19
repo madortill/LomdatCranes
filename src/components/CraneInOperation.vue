@@ -109,7 +109,7 @@
       </g>
     </g>
   </g>
-  <g id="_מנוף" data-name="מנוף">
+  <g :style="{ '--horizontal-move': horizontalRem }" class="move-horizontal"  id="_מנוף" data-name="מנוף">
     <g>
       <path class="cls-9-3" d="M1811.37,1008.04c-12.36,1429.78-24.98,2031.48-37.52,2031.64-12.55.16-26.59-601.95-42.33-2033.25"/>
       <path class="cls-9-3" d="M1531.11,1008.04c-12.36,1429.78-24.98,2031.48-37.52,2031.64-12.55.16-26.59-601.95-42.33-2033.25"/>
@@ -155,9 +155,10 @@
 <script>
 export default {
   name: "crane-in-operation",
-  props: ["numPart"],
+  props: ["numPart", "horizontalRem"],
   data() {
-    return {};
+    return {
+    };
   },
   methods: {
     nextPart() {
@@ -174,6 +175,11 @@ export default {
 .svg-container {
   width: 30rem;
 }
+
+.move-horizontal {
+  transform: translateX(calc(var(--horizontal-move) * 1rem));
+}
+
       .cls-1-3 {
         fill: url(#linear-gradient-15-3);
       }

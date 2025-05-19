@@ -214,7 +214,7 @@ export default {
 }
 
 .fixPosition {
-  width: 50vw;
+  width: 45vw;
   height: 74%;
 }
 

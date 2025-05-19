@@ -389,11 +389,11 @@
               <circle class="cls-8-1" cx="674.82" cy="3381.43" r="67.08" />
             </g>
             <g>
-              <circle class="cls-4-1" cx="679.87" cy="3607.08" r="95.52" />
+              <circle @click="moveCrane('right')" class="cls-4-1" cx="679.87" cy="3607.08" r="95.52" />
               <circle class="cls-7-1" cx="678.05" cy="3607.08" r="67.08" />
             </g>
             <g>
-              <circle class="cls-14-1" cx="676.51" cy="3834.93" r="95.52" />
+              <circle  @click="moveCrane('left')" class="cls-14-1" cx="676.51" cy="3834.93" r="95.52" />
               <circle class="cls-19-1" cx="674.68" cy="3834.93" r="67.08" />
             </g>
             <g>
@@ -604,6 +604,11 @@ export default {
         this.$emit("next-instruction");
       }
     },
+    moveCrane(motion) {
+      if (this.numPart === 3) {
+       this.$emit('move-crane', motion);
+      }
+    }
   },
 };
 </script>
