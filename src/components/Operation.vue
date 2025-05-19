@@ -93,13 +93,13 @@ export default {
     moveCrane(motion) {
       switch (motion) {
         case "right":
-          if (this.horizontalRem < 138) {
-            this.horizontalRem = this.horizontalRem + 3;
+          if (this.horizontalRem < 174) {
+            this.horizontalRem = this.horizontalRem + 6;
           }
           break;
         case "left":
         if (this.horizontalRem > -12) {
-          this.horizontalRem = this.horizontalRem - 3;
+          this.horizontalRem = this.horizontalRem - 6;
           }
           break;
       }
