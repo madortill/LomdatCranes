@@ -191,31 +191,31 @@ export default {
   position: absolute;
   width: 40rem;
   height: 17rem;
-  bottom: 6.8rem;
-  margin-left: -17rem;
+  bottom: 5.9rem;
+  margin-left: -15.5rem;
   animation: tossAnimation 4s linear infinite;
 }
 
 @keyframes tossAnimation {
   0% {
     transform: rotate(0deg);
-    margin-left: -17rem;
+    margin-left: -15.5rem;
   }
   25% {
     transform: rotate(-1deg);
-    margin-left: -15rem;
+    margin-left: -13.5rem;
   }
   50% {
     transform: rotate(0deg);
-    margin-left: -17rem;
+    margin-left: -15.5rem;
   }
   75% {
     transform: rotate(1deg);
-    margin-left: -19rem;
+    margin-left: -17.5rem;
   }
   100% {
     transform: rotate(0deg);
-    margin-left: -17rem;
+    margin-left: -15.5rem;
   }
 }
 
@@ -376,29 +376,32 @@ export default {
 
   .in-winches {
     height: 25rem;
-    bottom: 12.8rem;
-  }
+    bottom: 9.1rem;
+    margin-left: -12.5rem;
+    /* bottom: 0rem; */
+    animation: tossAnimation 2.5s linear infinite;
+    }
 
   @keyframes tossAnimation {
     0% {
       transform: rotate(0deg);
-      margin-left: -13rem;
+      margin-left: -12.5rem;
     }
     25% {
       transform: rotate(-1deg);
-      margin-left: -11rem;
+      margin-left: -11.5rem;
     }
     50% {
       transform: rotate(0deg);
-      margin-left: -13rem;
+      margin-left: -12.5rem;
     }
     75% {
       transform: rotate(1deg);
-      margin-left: -15rem;
+      margin-left: -13.5rem;
     }
     100% {
       transform: rotate(0deg);
-      margin-left: -13rem;
+      margin-left: -12.5rem;
     }
   }
 
