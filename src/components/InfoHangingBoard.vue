@@ -72,13 +72,16 @@
         <p>
           {{ theInfo[sectionHangingBoard][1] }}
         </p>
+
         <div class="item-container">
           <div
-            v-for="(item, index) in titlesInElectricalSystemArr"
+            v-for="(item, index) in titlesInElectricalSystemArr[0]"
             :key="index"
+            class="mini-item-container"
           >
+            <p class="item-title">{{ item }}</p>
             <img class="icon" alt="icon" :src="getIconUrl(index)" />
-            <p>{{ item }}</p>
+            <p class="fix-width">{{ titlesInElectricalSystemArr[1][index] }}</p>
           </div>
         </div>
       </div>
@@ -115,9 +118,20 @@ export default {
           "ישנם מספר כללי בטיחות אותם יש לבדוק לפני שניגש לביצוע עבודה עם המנוף:",
         ],
         ["תוספות פוטנציאליות בעגורנים"],
-        ["מערכת החשמל בעגורנים", "אחראית על 3 מערכות עיקריות:"],
+        [
+          "מערכת החשמל בעגורנים",
+          "ישנם 3 מערכות חשמל בעגורן עילי, כל מערכת אחראית על דבר אחר בעגורן:",
+          "",
+        ],
       ],
-      titlesInElectricalSystemArr: ["הסעה", "פיקוד", "חשמל"],
+      titlesInElectricalSystemArr: [
+        ["הסעה", "פיקוד", "חשמל"],
+        [
+          "אחראית על תנועת העגורן לאורך המסילות באופן חשמלי",
+          "יש כמה שיטות פיקוד שנלמד עליהם בהמשך אשר מאפשרות הפעלה של העגורן",
+          "מספקת אנרגיה והפעלה של העגורן",
+        ],
+      ],
     };
   },
   methods: {
@@ -126,17 +140,32 @@ export default {
     },
     getIconUrl(num) {
       // Determine the base URL (for local and production)
-      const basePath = process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
-      return `${basePath}media/iconsElectricalSystem/icon${num}.png`;  // Static path to the images in the public folder
-    }
+      const basePath =
+        process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return `${basePath}media/iconsElectricalSystem/icon${num}.png`; // Static path to the images in the public folder
+    },
   },
-  computed: {
-   
-  }
+  computed: {},
 };
 </script>
 
 <style scoped>
+.item-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mini-item-container {
+  border: 4px solid white;
+  border-radius: 1rem;
+  /* height: 17rem; */
+  /* position: relative; */
+}
+
+.fix-width {
+  width: 10rem;
+}
 .the-placement {
   width: 60rem;
   height: 37rem;
@@ -277,12 +306,24 @@ export default {
 .item-container {
   width: 100%;
   display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  /* margin-top: -2rem; */
+  position: relative;
 }
 
 .electrical-system-container {
   width: 100%;
+}
+
+.icon {
+  position: absolute;
+  top: 0rem;
+  margin-right: 2rem;
+  transform: rotate(-13deg);
+  height: 5rem;
+  background-color: white;
+  border-radius: 4rem;
 }
 @media screen and (max-width: 700px) {
   .the-placement {
@@ -366,7 +407,23 @@ export default {
   }
 
   .icon {
-    width: 8rem;
+    /* width: 8rem; */
+    height: 5rem;
+    position: static;
+    border-radius: 0rem;
+    /* border: none; */
+    background-color: #023047;
+    transform: rotate(0deg);
+    margin-right: 0rem;
   }
+  .fix-width {
+    width: 7rem;
+    margin-top: -0.4rem;
+  }
+  
+  .mini-item-container {
+  border: 2px solid white;
+
+}
 }
 </style>
