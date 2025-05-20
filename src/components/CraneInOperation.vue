@@ -176,21 +176,11 @@ export default {
   width: 30rem;
 }
 
-
-/*
-.move-vertical {
-  transform: scale(var(--moveScale)) translateY(calc(var(--verticalRem) * 1rem));
-
-} */
-
-
-
 .move-crane {
   transform: scale(var(--moveScale),1) translateY(calc(var(--verticalRem) * 1rem)) translateX(calc( var(--horizontal-move) * 1rem));
 
 }
 .move-right-left {
-  /* transform: translateX(calc((var(--horizontal-rem-right-left) + var(--horizontal-move)) * 1rem)); */
   transform: scale(var(--moveScale),1) translateY(calc(var(--verticalRem) * 1rem)) translateX(calc((var(--horizontal-rem-right-left) + var(--horizontal-move)) * 1rem));
 
 }
