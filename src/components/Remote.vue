@@ -376,7 +376,7 @@
           <g>
             <g>
               <g>
-                <circle class="cls-5-1" cx="680.01" cy="3153.59" r="95.52" />
+                <circle class="cls-5-1"  @click="moveCrane('back')" cx="680.01" cy="3153.59" r="95.52" />
                 <circle class="cls-12-1" cx="678.19" cy="3153.59" r="67.08" />
               </g>
               <g>
@@ -385,7 +385,7 @@
               </g>
             </g>
             <g>
-              <circle class="cls-2-1" cx="676.65" cy="3381.43" r="95.52" />
+              <circle class="cls-2-1"  @click="moveCrane('forward')" cx="676.65" cy="3381.43" r="95.52" />
               <circle class="cls-8-1" cx="674.82" cy="3381.43" r="67.08" />
             </g>
             <g>

@@ -42,6 +42,10 @@
       <div class="crane-in-operation-container">
         <crane-in-operation
           :horizontalRem="horizontalRem"
+          :moveScale="moveScale"
+          :verticalRem="verticalRem"
+          :horizontalRemRightLeft="horizontalRemRightLeft"
+          :btnInRemote="btnInRemote"
           :class="numInstruction < 5 ? 'hide' : ''"
         />
       </div>
@@ -87,19 +91,38 @@ export default {
       showNoticeInSummery: false,
       //move crane
       horizontalRem: 0,
+      horizontalRemRightLeft: 0,
+      moveScale: 1,
+      verticalRem: 0,
+      btnInRemote: "",
     };
   },
   methods: {
     moveCrane(motion) {
+      this.btnInRemote = motion;
       switch (motion) {
         case "right":
-          if (this.horizontalRem < 174) {
-            this.horizontalRem = this.horizontalRem + 6;
+          if (this.horizontalRemRightLeft < 138) {
+            this.horizontalRemRightLeft = this.horizontalRemRightLeft + 6;
           }
           break;
         case "left":
-        if (this.horizontalRem > -12) {
-          this.horizontalRem = this.horizontalRem - 6;
+          if (this.horizontalRemRightLeft > -12) {
+            this.horizontalRemRightLeft = this.horizontalRemRightLeft - 6;
+          }
+          break;
+        case "forward":
+          if (this.verticalRem > -18) {
+            this.moveScale = this.moveScale + 0.02;
+            this.verticalRem = this.verticalRem - 2;
+            this.horizontalRem = this.horizontalRem - 3;
+          }
+          break;
+        case "back":
+          if (this.verticalRem < 14) {
+            this.moveScale = this.moveScale - 0.02;
+            this.verticalRem = this.verticalRem + 2;
+            this.horizontalRem = this.horizontalRem + 3;
           }
           break;
       }

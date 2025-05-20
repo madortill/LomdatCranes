@@ -1,5 +1,5 @@
 <template>
-<svg class="svg-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 5990.65 4542.84">
+<svg :style="{ '--horizontal-rem-right-left': horizontalRemRightLeft ,'--horizontal-move': horizontalRem, '--moveScale': moveScale, '--verticalRem': verticalRem }" class="svg-container" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 5990.65 4542.84">
   <defs>
   
     <linearGradient id="linear-gradient-3-3-3-3" x1="3003.91" y1="705.95" x2="3003.91" y2="1168.9" gradientUnits="userSpaceOnUse">
@@ -88,7 +88,7 @@
     <polygon class="cls-14-3" points="-520.64 0 1147.54 814.81 4893.81 845.3 6577.49 0 -520.64 0"/>
     <rect class="cls-16-3" x="1147.54" y="814.81" width="3746.27" height="3891.58"/>
   </g>
-  <g id="_גדר" data-name="גדר">
+  <g id="_גדר" data-name="גדר" class="move-crane">
     <rect class="cls-25-3" x="781.92" y="705.95" width="4443.98" height="462.95" rx="16.93" ry="16.93"/>
     <rect class="cls-3-3" x="5171.34" y="705.95" width="207.18" height="692.34"/>
     <rect class="cls-12-3" x="678.33" y="705.95" width="207.18" height="692.34"/>
@@ -109,7 +109,7 @@
       </g>
     </g>
   </g>
-  <g :style="{ '--horizontal-move': horizontalRem }" class="move-horizontal"  id="_מנוף" data-name="מנוף">
+  <g class="move-right-left"   id="_מנוף" data-name="מנוף">
     <g>
       <path class="cls-9-3" d="M1811.37,1008.04c-12.36,1429.78-24.98,2031.48-37.52,2031.64-12.55.16-26.59-601.95-42.33-2033.25"/>
       <path class="cls-9-3" d="M1531.11,1008.04c-12.36,1429.78-24.98,2031.48-37.52,2031.64-12.55.16-26.59-601.95-42.33-2033.25"/>
@@ -155,7 +155,7 @@
 <script>
 export default {
   name: "crane-in-operation",
-  props: ["numPart", "horizontalRem"],
+  props: ["numPart", "horizontalRem", "verticalRem", "moveScale", "horizontalRemRightLeft", "btnInRemote"],
   data() {
     return {
     };
@@ -176,8 +176,23 @@ export default {
   width: 30rem;
 }
 
-.move-horizontal {
-  transform: translateX(calc(var(--horizontal-move) * 1rem));
+
+/*
+.move-vertical {
+  transform: scale(var(--moveScale)) translateY(calc(var(--verticalRem) * 1rem));
+
+} */
+
+
+
+.move-crane {
+  transform: scale(var(--moveScale),1) translateY(calc(var(--verticalRem) * 1rem)) translateX(calc( var(--horizontal-move) * 1rem));
+
+}
+.move-right-left {
+  /* transform: translateX(calc((var(--horizontal-rem-right-left) + var(--horizontal-move)) * 1rem)); */
+  transform: scale(var(--moveScale),1) translateY(calc(var(--verticalRem) * 1rem)) translateX(calc((var(--horizontal-rem-right-left) + var(--horizontal-move)) * 1rem));
+
 }
 
       .cls-1-3 {
