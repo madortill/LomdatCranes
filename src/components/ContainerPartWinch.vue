@@ -85,15 +85,15 @@ export default {
   methods: {
     showInfo(item) {
       item.clickedItem = true;
-      if(this.isAllBeenClicked()) {
-        this.$emit('finish-learning');
+      if (this.isAllBeenClicked()) {
+        this.$emit("finish-learning");
       }
     },
     //checks if all the items of winch has been clicked
     isAllBeenClicked() {
       for (let i = 0; i < this.infoArr[this.indexInfoArr].length; i++) {
         if (!this.infoArr[this.indexInfoArr][i].clickedItem) {
-         return false;
+          return false;
         }
       }
       return true;
@@ -150,19 +150,19 @@ export default {
 @media screen and (max-width: 700px) {
   .height-after-click {
     height: 13.8rem;
-}
+  }
 
-#container-part-winch {
-  margin-top: -0.6rem;
-}
-.part-of-winch {
-padding: 0.1rem;
-  width: 5.6rem;
-}
+  #container-part-winch {
+    margin-top: -0.6rem;
+  }
+  .part-of-winch {
+    padding-right: 0.1rem;
+    padding-left: 0.1rem;
+    width: 5.6rem;
+  }
 
-.info {
-  margin-top: -0.6rem;
-}
-
+  .info {
+    margin-top: -0.6rem;
+  }
 }
 </style>
