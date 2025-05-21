@@ -149,7 +149,7 @@ export default {
 
 @media screen and (max-width: 700px) {
   .height-after-click {
-    height: 13.8rem;
+    height: 13.9rem;
   }
 
   #container-part-winch {
@@ -162,7 +162,7 @@ export default {
   }
 
   .info {
-    margin-top: -0.6rem;
+    margin-top: -0.8rem;
   }
 }
 </style>
