@@ -326,6 +326,11 @@ export default {
   border-radius: 4rem;
 }
 @media screen and (max-width: 700px) {
+
+  .item-title {
+    margin-bottom: 0.3rem;
+    margin-top: 0.4rem;
+  }
   .the-placement {
     width: 26rem;
     height: 42rem;
@@ -380,7 +385,7 @@ export default {
     margin-left: -12.5rem;
     /* bottom: 0rem; */
     animation: tossAnimation 2.5s linear infinite;
-    }
+  }
 
   @keyframes tossAnimation {
     0% {
@@ -424,10 +429,13 @@ export default {
     width: 7rem;
     margin-top: -0.4rem;
   }
-  
-  .mini-item-container {
-  border: 2px solid white;
 
-}
+  .mini-item-container {
+    border: 2px solid white;
+    width: 7.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
