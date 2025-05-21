@@ -375,7 +375,7 @@ export default {
   }
 
   .in-winches {
-    height: 25rem;
+    height: 21rem;
     bottom: 9.1rem;
     margin-left: -12.5rem;
     /* bottom: 0rem; */
@@ -407,6 +407,7 @@ export default {
 
   .info-in-winches {
     font-size: 1.3rem;
+    width: 12rem;
   }
 
   .icon {
