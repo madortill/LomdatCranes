@@ -57,7 +57,7 @@ export default {
           {
             header: "מנוע חשמלי",
             color: "#FFAF02",
-            info: "מנוע האחראי על תזוזת הכננת אחורה וקדימה/הרמה והורדת הכבל",
+            info: "מנוע האחראי על תזוזת הכננת אחורה וקדימה / הרמה והורדת הכבל",
             clickedItem: false,
           },
           {
@@ -147,5 +147,18 @@ export default {
 }
 
 @media screen and (max-width: 700px) {
+  .height-after-click {
+    height: 13.4rem;
+}
+
+#container-part-winch {
+  margin-top: -0.3rem;
+}
+.part-of-winch {
+padding: 0.1rem;
+  width: 5.5rem;
+
+}
+
 }
 </style>
