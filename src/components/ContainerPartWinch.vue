@@ -138,6 +138,7 @@ export default {
 .header {
   font-size: 1.1rem;
   font-weight: bold;
+  margin-top: 0.8rem;
   /* margin-bottom: 1rem; */
 }
 
@@ -148,11 +149,11 @@ export default {
 
 @media screen and (max-width: 700px) {
   .height-after-click {
-    height: 13.4rem;
+    height: 13.8rem;
 }
 
 #container-part-winch {
-  margin-top: -0.3rem;
+  margin-top: -0.6rem;
 }
 .part-of-winch {
 padding: 0.1rem;
