@@ -158,7 +158,10 @@ export default {
 .part-of-winch {
 padding: 0.1rem;
   width: 5.6rem;
+}
 
+.info {
+  margin-top: -0.2rem;
 }
 
 }
