@@ -426,10 +426,15 @@ export default {
     margin-right: 0rem;
     margin-top: -0.6rem;
   }
+  
   .fix-width {
     width: 7rem;
     margin-top: -0.4rem;
   }
+
+.item-container {
+  margin-top: -1rem;
+}
 
   .mini-item-container {
     border: 2px solid white;
