@@ -162,7 +162,7 @@ export default {
   }
 
   .info {
-    margin-top: -0.8rem;
+    margin-top: -1rem;
   }
 }
 </style>
