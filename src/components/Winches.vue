@@ -176,8 +176,8 @@ export default {
 
 @media screen and (max-width: 700px) {
   .definition-btn {
-    width: 28rem;
-    height: 45rem;
+    width: 27rem;
+    height: 40rem;
     /* margin-bottom: -1rem; */
   }
 
