@@ -179,8 +179,8 @@ export default {
       this.$emit('prev-studied-section');
       this.partToShow = 1;
       this.thePart = 1;
-      this.subNavPart = 8;
-      this.indexOrderInGenearlMaterial = 7;
+      this.subNavPart = 9;
+      this.indexOrderInGenearlMaterial = 8;
       this.showTheSection = true;
       this.isAContinuance = false;
     },

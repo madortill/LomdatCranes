@@ -88,7 +88,7 @@ export default {
     if(this.isAContinuance && this.thePart === 0) {
       this.$emit('back-to-general-material');
       
-          this.toShowCloudBg(false);
+          // this.toShowCloudBg(false);
        
     } else {
       this.$emit("to-prev-board");
