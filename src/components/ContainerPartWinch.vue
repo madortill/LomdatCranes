@@ -161,7 +161,7 @@ padding: 0.1rem;
 }
 
 .info {
-  margin-top: -0.2rem;
+  margin-top: -0.6rem;
 }
 
 }
