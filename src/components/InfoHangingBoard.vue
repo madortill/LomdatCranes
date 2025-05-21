@@ -424,6 +424,7 @@ export default {
     background-color: #023047;
     transform: rotate(0deg);
     margin-right: 0rem;
+    margin-top: -0.6rem;
   }
   .fix-width {
     width: 7rem;
@@ -432,7 +433,7 @@ export default {
 
   .mini-item-container {
     border: 2px solid white;
-    width: 7.8rem;
+    width: 7.9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
