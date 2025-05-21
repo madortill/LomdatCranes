@@ -138,7 +138,7 @@ export default {
 .header {
   font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .info {
@@ -156,7 +156,7 @@ export default {
 }
 .part-of-winch {
 padding: 0.1rem;
-  width: 5.5rem;
+  width: 5.6rem;
 
 }
 
