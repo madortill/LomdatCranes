@@ -1,20 +1,32 @@
 <template>
   <div id="final-highlights">
     <p class="header">דגשים אחרונים</p>
-    <p class="sub-title">כללי ברזל אותם עליך לדעת לפני הפעלת מנוף</p>
+    <p class="sub-title">כללי ברזל אותם עליך לדעת לפני הפעלת מנוף:</p>
     <div class="for-computer">
-      <div class="card-computer" v-for="i in sumNumCards" :key="i">
-        <p >{{ info[i] }}</p>
+      <div
+        class="card-computer"
+        v-for="i in sumNumCards"
+        :key="i"
+        :style="{ '--card-color': colorArr[i] }"
+      >
+        <p>{{ info[i] }}</p>
         <div v-if="i === 3">
-          <p  v-for="num in 3" :key="num">{{ info[num + sumNumCards + 1] }}</p>
+          <p v-for="num in 3" :key="num">
+            {{ info[num + sumNumCards + 1] }}
+          </p>
         </div>
       </div>
     </div>
     <div class="for-phone">
-      <p>{{ info[counterCardPhone] }}</p>
+      <p class="arrow" :class="counterCardPhone === 0 ? 'hide': ''"  @click="nextInfo(false)">{{arrArrows[1]}}</p>
+      <div class="card-phone"  :style="{ '--card-color': colorArr[counterCardPhone] }">
+        <p>{{ info[counterCardPhone] }}</p>
+      </div>
+      <p class="arrow" @click="nextInfo(true)" :class="counterCardPhone === 3 ? 'hide': ''">{{arrArrows[0]}}</p>
+      
     </div>
-    <p class="last-note-computer">{{ info[info.length-1] }}</p>
 
+    <p class="last-note-computer">{{ info[info.length - 1] }}</p>
   </div>
 </template>
 
@@ -23,6 +35,7 @@ export default {
   name: "final-highlights",
   data() {
     return {
+      arrArrows: [">", "<"],
       info: [
         "הגיל המינימלי לביצוע קורס מפעיל מנוף הוא 18.",
         "אסור לעבוד ללא תועלת מפעיל מנוף בתוקף.",
@@ -32,12 +45,21 @@ export default {
         "שימו לב, במהלך החניכה אחוז המשקל בו אתם רשאים לעבוד הוא עד 40% מעומס העבודה הבטוח של המנוף.",
         "חייל שלא ישלח תיק חניכה, הקורס יבטל ויאלץ לבצע קורס חוזר.",
       ],
+      colorArr: ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
       counterCardPhone: 0,
-      sumNumCards: [0,1,2,3],
+      sumNumCards: [0, 1, 2, 3],
     };
   },
 
-  methods: {},
+  methods: {
+    nextInfo(up) {
+      if( up && this.counterCardPhone < 3) {
+        this.counterCardPhone++;
+      } else if(!up && this.counterCardPhone > 0) {
+        this.counterCardPhone--;
+      }
+    }
+  },
 };
 </script>
 
@@ -48,8 +70,31 @@ export default {
   color: black;
   display: flex;
   flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.arrow {
+  width: 4rem;
+  height: 3rem;
+  background-color: white;
+  text-align: center;
+  font-size: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.sub-title {
+  margin-bottom: 3rem;
 }
 
 .header {
@@ -58,28 +103,46 @@ export default {
 }
 
 .for-phone {
+  width: 100%;
+  height: 18rem;
   display: none;
-  background-color: white;
-    width: 10rem;
-    height: 20rem;
+}
+
+.card-phone {
+  background-color: var(--card-color);
+  width: 11rem;
+  height: 16rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: all 0.2s;
+
 }
 
 .for-computer {
-    display: flex;
-    width: 100vw;
-    justify-content: space-evenly;
-  }
-.card-computer {
-  background-color: white;
-    width: 11rem;
-    height: 16rem;
-    padding: 1rem;
-    border-radius: 1rem;
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
 }
-   
+.card-computer {
+  background-color: var(--card-color);
+  width: 11rem;
+  height: 16rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+}
+
 .last-note-computer {
   font-weight: bold;
+  font-size: 1.5rem;
+
 }
+/* 
+.the-info {
+  background-color: white;
+  width: 100%;
+} */
 
 @media screen and (max-width: 600px) {
   #final-highlights {
@@ -91,11 +154,13 @@ export default {
   }
 
   .last-note-computer {
-  font-weight: none;
-}
+    font-weight: none;
+  }
 
   .for-phone {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 </style>
