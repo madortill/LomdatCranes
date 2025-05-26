@@ -125,6 +125,12 @@ export default {
             this.horizontalRem = this.horizontalRem + 3;
           }
           break;
+          case "up":
+       
+          break;
+          case "down":
+       
+       break;
       }
     },
     nextPart() {
