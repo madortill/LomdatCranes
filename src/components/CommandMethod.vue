@@ -240,22 +240,14 @@ export default {
     margin-top: 6rem;
   }
   .cloud {
-    /* width: 22rem; */
-    /* position: absolute; */
     top: 13rem;
     right: auto;
-    /* left: 50%;
-    transform: translateX(-50%); */
   }
 }
 @media screen and (max-width: 1400px) {
   .cloud {
-    /* width: 22rem; */
-    /* position: absolute; */
+
     top: 15rem;
-    /* right: auto; */
-    /* left: 50%;
-    transform: translateX(-50%); */
   }
 }
 </style>

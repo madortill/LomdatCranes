@@ -115,7 +115,7 @@ export default {
 }
 
 .fix-pos {
-  margin-top: -1rem;
+  margin-top: -2rem;
 }
 .img-cloud {
   position: absolute;
@@ -213,28 +213,29 @@ export default {
 @media screen and (max-width: 600px) {
   .clouds-btns-container {
     position: absolute;
-    bottom: 6rem;
+    bottom: 4rem;
   }
 
   /* Cloud 1 */
   .cloud1 {
-    width: 21rem;
-    grid-column-start: 4;
-    grid-row-start: 2;
+    width: 17rem;
+    grid-column-start: 1;
+    grid-row-start: 3;
     /* animation: moveClouds 20s linear infinite; Move cloud1 */
   }
 
   /* Cloud 2 */
   .cloud2 {
-    width: 19rem;
-    grid-column-start: 1;
-    grid-row-start: 5;
+    width: 17rem;
+    grid-column-start: 6;
+    grid-row-start: 6;
+
     /* animation: moveClouds 25s linear infinite; Move cloud2 */
   }
 
   /* Cloud 3 */
   .cloud3 {
-    width: 16rem;
+    width: 14rem;
     grid-column-start: 6;
     grid-row-start: 4;
     /* animation: moveClouds 30s linear infinite; Move cloud3 */
@@ -242,15 +243,15 @@ export default {
 
   /* Cloud 4 */
   .cloud4 {
-    width: 18rem;
-    grid-column-start: 3;
+    width: 16rem;
+    grid-column-start: 1;
     grid-row-start: 7;
     /* animation: moveClouds 33s linear infinite; Move cloud4 */
   }
 
   /* Cloud 5 */
   .cloud5 {
-    width: 24rem;
+    width: 22rem;
     grid-column-start: 3;
     grid-row-start: 9;
     /* animation: moveClouds 40s linear infinite; Move cloud5 */
