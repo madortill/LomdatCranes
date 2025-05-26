@@ -143,7 +143,7 @@ export default {
 }
 
 .moving-btn:hover {
-  background-color: #023047;
+  background-color: #145575;
   color: white;
 }
 

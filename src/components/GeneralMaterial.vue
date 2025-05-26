@@ -100,6 +100,8 @@ export default {
       showBackBtn: true,
       movingBtnColor: "#8cd0ec",
       questionMarkClicked: false,
+      //aboutAmericanQues
+      finishedAmericanQues: false,
       //about winch componnent
       isInWinches: false,
       partInWinches: 0,
@@ -171,7 +173,11 @@ export default {
             this.$emit("change-sub-nav-num", true);
             this.hideNavbar(true);
             this.$emit('update-index-order', true);
-            this.showNextBtn = false;
+            if(!this.finishedAmericanQues) {
+              this.showNextBtn = false;
+            } else {
+              this.showNextBtn = true;
+            }
             this.showBackBtn = false;
           }
           break;
@@ -285,6 +291,7 @@ export default {
             this.hideNavbar(true);
             this.showBackBtn = false;
             this.showNextBtn = true;
+            this.finishedAmericanQues = true;
             this.isInWinches = false;
           } else {
             this.partInWinches--;
