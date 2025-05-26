@@ -628,7 +628,9 @@ export default {
 }
 
 .hide {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+pointer-events: none;
 }
 .Layer_2 {
   width: 10rem;
