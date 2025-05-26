@@ -320,7 +320,7 @@ export default {
     width: 36.1rem;
     height: 21.6rem;
     top: 20.3rem;
-    transform: translateX(-42%);
+    transform: translateX(-49.5%);
   }
 
   .info-in-orange {
@@ -332,7 +332,7 @@ export default {
 
   .info-in-blue {
     width: 21.7rem;
-    height: 43rem;
+    height: 35rem;
     top: 13.8rem;
   }
 
