@@ -5,6 +5,8 @@
       '--horizontal-move': horizontalRem,
       '--moveScale': moveScale,
       '--verticalRem': verticalRem,
+      '--translateYUpDown': translateYUpDown,
+      '--scaleYUpDown': scaleYUpDown,
     }"
     class="svg-container"
     xmlns="http://www.w3.org/2000/svg"
@@ -328,7 +330,7 @@
           d="M1531.11,1008.04c-12.36,1429.78-24.98,2031.48-37.52,2031.64-12.55.16-26.59-601.95-42.33-2033.25"
         />
 
-        <g class="change-in-translast-y">
+        <g class="move-winch">
           <g>
             <path
               class="cls-10-3"
@@ -453,6 +455,8 @@ export default {
     "moveScale",
     "horizontalRemRightLeft",
     "btnInRemote",
+    "scaleYUpDown",
+    "translateYUpDown",
   ],
   data() {
     return {};
@@ -471,6 +475,14 @@ export default {
 <style>
 .svg-container {
   width: 30rem;
+}
+
+/* .change-height-cabel {
+  transform: scaleY(var(--scaleYUpDown));
+} */
+
+.move-winch {
+  transform: translateY(calc(var(--translateYUpDown) * 1rem)) ;
 }
 
 .move-crane {
@@ -588,6 +600,7 @@ export default {
   fill: none;
   stroke: #000;
   stroke-width: 9px;
+  transform: scaleY(var(--scaleYUpDown));
 }
 
 .cls-25-3 {

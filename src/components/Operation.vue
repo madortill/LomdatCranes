@@ -46,6 +46,8 @@
           :verticalRem="verticalRem"
           :horizontalRemRightLeft="horizontalRemRightLeft"
           :btnInRemote="btnInRemote"
+          :translateYUpDown="translateYUpDown"
+          :scaleYUpDown="scaleYUpDown"
           :class="numInstruction < 5 ? 'hide' : ''"
         />
       </div>
@@ -94,6 +96,8 @@ export default {
       horizontalRemRightLeft: 0,
       moveScale: 1,
       verticalRem: 0,
+      scaleYUpDown: 1,
+      translateYUpDown: 0,
       btnInRemote: "",
     };
   },
@@ -125,12 +129,20 @@ export default {
             this.horizontalRem = this.horizontalRem + 3;
           }
           break;
-          case "up":
-       
+        case "up":
+          if (this.translateYUpDown > -60 && this.scaleYUpDown > 0.6) {
+            this.scaleYUpDown = this.scaleYUpDown - 0.1;
+            this.translateYUpDown = this.translateYUpDown - 15;
+            // console.log('yay')
+          }
           break;
-          case "down":
-       
-       break;
+        case "down":
+          if(this.translateYUpDown< 30 && this.scaleYUpDown< 1.2) {
+            this.scaleYUpDown = this.scaleYUpDown + 0.1;
+            this.translateYUpDown = this.translateYUpDown + 15;
+          }
+        
+          break;
       }
     },
     nextPart() {
