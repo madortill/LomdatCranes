@@ -133,7 +133,6 @@ export default {
           if (this.translateYUpDown > -60 && this.scaleYUpDown > 0.6) {
             this.scaleYUpDown = this.scaleYUpDown - 0.1;
             this.translateYUpDown = this.translateYUpDown - 15;
-            // console.log('yay')
           }
           break;
         case "down":

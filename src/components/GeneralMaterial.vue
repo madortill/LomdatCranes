@@ -169,7 +169,7 @@ export default {
           } else {
             //במידה וסיימו את כל הקלפים ולוחצים הבא לנושא החדש
             this.$emit("change-sub-nav-num", true);
-            this.updateColorHomeIcon("none");
+            // this.updateColorHomeIcon("none");
             this.hideNavbar(true);
             this.$emit('update-index-order', true);
             this.showNextBtn = false;
@@ -183,9 +183,9 @@ export default {
             // this.nextFromAmericanQues = false;
             this.$emit('update-index-order', true);
             this.hideNavbar(false);
-            this.updateColorHomeIcon(
-              "invert(1) brightness(100%) saturate(25%) contrast(100%)"
-            );
+            // this.updateColorHomeIcon(
+            //   "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+            // );
             this.showBackBtn = true;
             //check if was already in this page
             if (!this.isInWinches) {
@@ -240,6 +240,7 @@ export default {
           // this.showNextBtn = false;
           this.showNextBtn = true;
           this.hideNavbar(true);
+
           break;
         }
         case 9 : {
@@ -290,7 +291,7 @@ export default {
             // this.nextFromAmericanQues = true;
             this.$emit('update-index-order', false);
             this.hideNavbar(true);
-            this.updateColorHomeIcon("none");
+            // this.updateColorHomeIcon("none");
             this.showBackBtn = false;
             this.showNextBtn = true;
             this.isInWinches = false;
@@ -419,8 +420,14 @@ export default {
     hideNavbar(tohide) {
       if (tohide) {
         this.$emit("hide-navbar", true);
+        this.updateColorHomeIcon(
+              "none"
+            );
       } else {
         this.$emit("hide-navbar", false);
+        this.updateColorHomeIcon(
+              "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+            );
       }
     },
 

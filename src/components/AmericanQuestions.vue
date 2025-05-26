@@ -181,7 +181,7 @@ export default {
 
     backToInfo() {
       this.$emit("back-to-info");
-      this.$emit("update-color-icon-home", 'invert(1) brightness(100%) saturate(25%) contrast(100%)');
+      // this.$emit("update-color-icon-home", 'invert(1) brightness(100%) saturate(25%) contrast(100%)');
       this.$emit('hide-navbar', false);
     },
 

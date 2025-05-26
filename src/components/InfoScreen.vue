@@ -98,6 +98,7 @@ export default {
       } else {
         this.showTheSection = true;
         this.subNavPart = 1;
+        this.showNavbar = true;
         this.partToShow++; //shows now the navbar
         this.updateColorIconPhone(
           "invert(1) brightness(100%) saturate(25%) contrast(100%)"
