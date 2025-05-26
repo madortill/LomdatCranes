@@ -229,25 +229,26 @@ export default {
   width: 24rem;
 }
 
-@media screen and (max-width: 700px) {
-  .pop-out {
-    /* transform: translate(-50%, -40%); */
-    height: 40rem;
-    width: 90%;
-  }
 
-  .header {
-    margin-top: 6rem;
-  }
-  .cloud {
-    top: 13rem;
-    right: auto;
-  }
-}
 @media screen and (max-width: 1400px) {
   .cloud {
 
     top: 15rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pop-out {
+    /* transform: translate(-50%, -40%); */
+    height: 33rem;
+    width: 90%;
+  }
+
+  .header {
+    margin-top: 3rem;
+  }
+  .cloud {
+    top: 12rem;
+    right: auto;
   }
 }
 </style>
