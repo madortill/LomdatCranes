@@ -169,7 +169,6 @@ export default {
           } else {
             //במידה וסיימו את כל הקלפים ולוחצים הבא לנושא החדש
             this.$emit("change-sub-nav-num", true);
-            // this.updateColorHomeIcon("none");
             this.hideNavbar(true);
             this.$emit('update-index-order', true);
             this.showNextBtn = false;
@@ -180,12 +179,8 @@ export default {
         case 4: {
           //if next from questions
           if (this.indexOrder === 2) {
-            // this.nextFromAmericanQues = false;
             this.$emit('update-index-order', true);
             this.hideNavbar(false);
-            // this.updateColorHomeIcon(
-            //   "invert(1) brightness(100%) saturate(25%) contrast(100%)"
-            // );
             this.showBackBtn = true;
             //check if was already in this page
             if (!this.isInWinches) {
@@ -251,9 +246,7 @@ export default {
     prevPart() {
       switch (this.navbarSubjNum) {
         case 1: {
-          // if (this.infoHangingBoardPart === 0) {
           this.$emit("back-to-start-sign");
-
           break;
         }
         case 2: {
@@ -288,10 +281,8 @@ export default {
         case 4: {
           //back to ques
           if (this.partInWinches === 0) {
-            // this.nextFromAmericanQues = true;
             this.$emit('update-index-order', false);
             this.hideNavbar(true);
-            // this.updateColorHomeIcon("none");
             this.showBackBtn = false;
             this.showNextBtn = true;
             this.isInWinches = false;
@@ -319,7 +310,6 @@ export default {
           this.$emit("change-sub-nav-num", false);
           this.$emit('update-index-order', false);
           //to show the right part in infoHangingBoard
-          // this.infoHangingBoardPart--;
            this.reversedFlipInfoHangingBoard();
           break;
         }
