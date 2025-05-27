@@ -20,6 +20,7 @@
        @to-show-cloud-bg="toShowCloudBg"
       v-if="partToShow === 0"
     ></start-sign>
+    
     <navbar
       :part="sectionToStudy"
       :subjNum="subNavPart"
