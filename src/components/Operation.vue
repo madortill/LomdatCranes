@@ -57,6 +57,7 @@
       v-if="partInSecondPart > -1"
       :indexArr="partInSecondPart"
       :showNotice="showNoticeInSummery"
+      @hide-show-notice="hideNoticeInSummery"
     />
 
     <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
@@ -104,6 +105,12 @@ export default {
     };
   },
   methods: {
+    hideNoticeInSummery() {
+      this.showNoticeInSummery = false;
+      this.partInSecondPart++;
+      this.showNextBtn = true;
+    },
+
     moveCrane(motion) {
       this.btnInRemote = motion;
       switch (motion) {
@@ -178,14 +185,15 @@ export default {
             this.hideNavbar(true);
             this.updateColorHomeIcon("none");
           }
-          if (this.partInSecondPart === 0 && !this.showNoticeInSummery) {
+          if (this.partInSecondPart === 0) {
+            this.showNextBtn = false;
             this.showNoticeInSummery = true;
-            this.partInSecondPart++;
-          } else if (this.partInSecondPart === 1 && this.showNoticeInSummery) {
-            this.showNoticeInSummery = false;
-          } else {
+          } 
+          //if not on the last slide-finidhed
+          else if(this.partInSecondPart !==2) {
             this.partInSecondPart++;
           }
+
           break;
         }
       }
@@ -218,28 +226,31 @@ export default {
           break;
         }
         case 4: {
-          if (this.partInSecondPart === -1) {
-            this.$emit("change-sub-nav-num", false);
-            this.partInRemote--;
-            this.numInstruction--;
-            //temparery
-            this.showNextBtn = false;
-          } else {
-            if (this.partInSecondPart === 0) {
+          // if (this.partInSecondPart === -1) {
+          //   this.$emit("change-sub-nav-num", false);
+          //   this.partInRemote--;
+          //   this.numInstruction--;
+          // } else {
+          if (this.partInSecondPart === 0) {
+            if (this.showNoticeInSummery) {
+              this.showNoticeInSummery = false;
+            } else {
               this.hideNavbar(false);
+              this.partInSecondPart--;
               this.updateColorHomeIcon(
                 "invert(1) brightness(100%) saturate(25%) contrast(100%)"
               );
+              this.showNextBtn = true;
             }
-            if (this.partInSecondPart === 1 && !this.showNoticeInSummery) {
-              this.showNoticeInSummery = true;
-              // this.partInSecondPart++;
-            } else {
-              this.showNoticeInSummery = false;
-
-              this.partInSecondPart--;
-            }
+          } else if (this.partInSecondPart === 1) {
+            this.showNoticeInSummery = true;
+            this.showNextBtn = false;
+            this.partInSecondPart--;
+          } else {
+            this.partInSecondPart--;
           }
+
+          // }
 
           break;
         }

@@ -1,7 +1,7 @@
 <template>
   <div id="summary-operation">
     <div class="info-container">
-      <div v-if="!showNotice && indexArr !== 2">
+      <div v-if="indexArr !== 2">
         <p class="header">{{ infoArr[indexArr] }}</p>
         <div
           v-for="(info, index) in stepsArr[indexArr]"
@@ -14,7 +14,9 @@
           <p class="the-step">{{ info }}</p>
         </div>
       </div>
+      <div class="black-shadow"  v-if="showNotice"></div>
       <div class="notice" v-if="showNotice">
+        <p class="close-info" @click="closeNotice">X</p>
         <p class="header-notice">שימו לב!</p>
         <p>בעת סיום העבודה עם העגורן עלייך לחזור על השלבים <b>בסדר ההפוך</b></p>
       </div>
@@ -29,7 +31,7 @@
 <script>
 export default {
   name: "summary-operation",
-  props: ["indexArr", "showNotice"],
+  props: ["indexArr", 'showNotice'],
   data() {
     return {
       infoArr: [
@@ -54,7 +56,11 @@ export default {
       ],
     };
   },
-  computed: {},
+  methods: {
+    closeNotice() {
+      this.$emit('hide-show-notice', false);
+    },
+  },
 };
 </script>
 
@@ -69,6 +75,24 @@ export default {
   align-items: center;
 }
 
+.close-info {
+  cursor: pointer;
+  font-size: 1.8rem;
+  position: absolute;
+  right: 1rem;
+  top: -1rem;
+  /* z-index: 30; */
+}
+
+.black-shadow {
+  background-color: black;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
 .info-container {
   background-color: #023047;
   border-radius: 1rem;
@@ -78,6 +102,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+
 }
 
 .the-step {
@@ -130,6 +156,8 @@ export default {
   background-color: white;
   color: black;
   width: 100%;
+  position: absolute;
+  z-index: 2;
 }
 
 .header-notice {
@@ -148,6 +176,6 @@ export default {
   .info-container {
     width: 30rem;
     height: 36rem;
-}
+  }
 }
 </style>
