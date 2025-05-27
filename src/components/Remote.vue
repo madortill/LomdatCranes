@@ -1,7 +1,11 @@
 <template>
   <svg
     class="Layer_2"
-    :class="[numPart >= 2 && isZoomInRemote ? 'in-zoom' : '', numPart === 3 ? 'second-pos' : '']"
+    :class="[
+      numPart >= 2 && isZoomInRemote ? 'in-zoom' : '',
+      numPart > 2 ? 'second-pos' : '',
+      numPart === 3 ? 'second-zoom-pos' : '',
+    ]"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 2544.11 5235.26"
@@ -238,7 +242,11 @@
     </defs>
     <g id="_שלט" data-name="שלט">
       <rect
-        :class="(numPart >= 2 && isZoomInRemote) || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''"
+        :class="
+          (numPart >= 2 && isZoomInRemote) || (numPart >= 3 && !isZoomInRemote)
+            ? 'hide'
+            : ''
+        "
         class="cls-20-1"
         x="1.81"
         y="1936.31"
@@ -249,7 +257,7 @@
       />
       <g
         :class="[
-          numPart === 1 ? 'is-btn' : '',
+          numPart === 1 ? 'is-btn' : 'not-cilckable',
           numPart >= 2 && !isZoomInRemote ? 'hide' : '',
         ]"
         @click="nextPart"
@@ -352,7 +360,7 @@
           <circle
             @click="nextPart"
             class="cls-3-1"
-            :class="numPart === 2 ? 'highlight' : ''"
+            :class="numPart === 2 ? 'highlight' : 'not-cilckable'"
             cx="680.01"
             cy="2902.56"
             r="102.4"
@@ -376,7 +384,14 @@
           <g>
             <g>
               <g>
-                <circle class="cls-5-1" @click="moveCrane('up')"  cx="680.01" cy="3153.59" r="95.52" />
+                <circle
+                  class="cls-5-1"
+                  @click="moveCrane('up')"
+                  :class="numPart === 3 ? 'is-btn highlight' : ''"
+                  cx="680.01"
+                  cy="3153.59"
+                  r="95.52"
+                />
                 <circle class="cls-12-1" cx="678.19" cy="3153.59" r="67.08" />
               </g>
               <g>
@@ -385,23 +400,58 @@
               </g>
             </g>
             <g>
-              <circle class="cls-2-1" @click="moveCrane('down')" cx="676.65" cy="3381.43" r="95.52" />
+              <circle
+                class="cls-2-1"
+                @click="moveCrane('down')"
+                :class="numPart === 3 ? 'is-btn highlight' : ''"
+                cx="676.65"
+                cy="3381.43"
+                r="95.52"
+              />
               <circle class="cls-8-1" cx="674.82" cy="3381.43" r="67.08" />
             </g>
             <g>
-              <circle @click="moveCrane('right')" class="cls-4-1" cx="679.87" cy="3607.08" r="95.52" />
+              <circle
+                @click="moveCrane('right')"
+                :class="numPart === 3 ? 'is-btn highlight' : ''"
+                class="cls-4-1"
+                cx="679.87"
+                cy="3607.08"
+                r="95.52"
+              />
               <circle class="cls-7-1" cx="678.05" cy="3607.08" r="67.08" />
             </g>
             <g>
-              <circle  @click="moveCrane('left')" class="cls-14-1" cx="676.51" cy="3834.93" r="95.52" />
+              <circle
+                @click="moveCrane('left')"
+                :class="numPart === 3 ? 'is-btn highlight' : ''"
+                class="cls-14-1"
+                cx="676.51"
+                cy="3834.93"
+                r="95.52"
+              />
               <circle class="cls-19-1" cx="674.68" cy="3834.93" r="67.08" />
             </g>
             <g>
-              <circle class="cls-17-1"  @click="moveCrane('back')" cx="681.55" cy="4060.74" r="95.52" />
+              <circle
+                class="cls-17-1"
+                @click="moveCrane('back')"
+                :class="numPart === 3 ? 'is-btn highlight' : ''"
+                cx="681.55"
+                cy="4060.74"
+                r="95.52"
+              />
               <circle class="cls-10-1" cx="679.73" cy="4060.74" r="67.08" />
             </g>
             <g>
-              <circle class="cls-16-1"  @click="moveCrane('forward')" cx="678.19" cy="4288.59" r="95.52" />
+              <circle
+                class="cls-16-1"
+                @click="moveCrane('forward')"
+                :class="numPart === 3 ? 'is-btn highlight' : ''"
+                cx="678.19"
+                cy="4288.59"
+                r="95.52"
+              />
               <circle class="cls-9-1" cx="676.37" cy="4288.59" r="67.08" />
             </g>
           </g>
@@ -523,7 +573,13 @@
           />
         </g>
       </g>
-      <g :class="(numPart >= 2 && isZoomInRemote) || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''">
+      <g
+        :class="
+          (numPart >= 2 && isZoomInRemote) || (numPart >= 3 && !isZoomInRemote)
+            ? 'hide'
+            : ''
+        "
+      >
         <rect class="cls-32-1" x="0" y="1932.05" width="534.26" height="64.1" />
         <rect
           class="cls-32-1"
@@ -561,26 +617,27 @@
     >
       <path
         class="cls-15-1"
-        :class="numPart === 0 || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''"
+        :class="
+          numPart === 0 || (numPart >= 3 && !isZoomInRemote) ? 'hide' : ''
+        "
         d="M2527.31,5196.44h-1184.19c-8.72,0-15.79-7.71-15.79-17.22V1953.53c0-9.51,7.07-17.22,15.79-17.22h1184.19c8.72,0,15.79,7.71,15.79,17.22v3225.69c0,9.51-7.07,17.22-15.79,17.22ZM2175.89,2300.23h-509.03c-8.72,0-15.79,7.71-15.79,17.22v554.98c0,9.51,7.07,17.22,15.79,17.22h509.03c8.72,0,15.79-7.71,15.79-17.22v-554.98c0-9.51-7.07-17.22-15.79-17.22Z"
       />
-      <g :class="numPart >= 3 && !isZoomInRemote ? 'hide': ''">
+      <g :class="numPart >= 3 && !isZoomInRemote ? 'hide' : ''">
         <rect
-        class="cls-32-1"
-        x="1327.33"
-        y="2366.86"
-        width="36.05"
-        height="456.15"
-      />
-      <rect
-        class="cls-32-1"
-        x="1327.33"
-        y="4428.95"
-        width="36.05"
-        height="456.15"
-      />
+          class="cls-32-1"
+          x="1327.33"
+          y="2366.86"
+          width="36.05"
+          height="456.15"
+        />
+        <rect
+          class="cls-32-1"
+          x="1327.33"
+          y="4428.95"
+          width="36.05"
+          height="456.15"
+        />
       </g>
-      
     </g>
   </svg>
 </template>
@@ -606,9 +663,9 @@ export default {
     },
     moveCrane(motion) {
       if (this.numPart === 3) {
-       this.$emit('move-crane', motion);
+        this.$emit("move-crane", motion);
       }
-    }
+    },
   },
 };
 </script>
@@ -627,20 +684,18 @@ export default {
   cursor: pointer;
 }
 
+.not-cilckable {
+  pointer-events: none;
+}
+
 .hide {
-  /* display: none; */
   visibility: hidden;
-pointer-events: none;
+  pointer-events: none;
 }
 .Layer_2 {
   width: 10rem;
   height: 21rem;
 }
-
-/* .regular-remote {
-  position: static;
-}
-*/
 
 .cls-1-1,
 .cls-2-1,
@@ -797,11 +852,12 @@ pointer-events: none;
 
 .highlight {
   animation: glow 2s infinite alternate;
-  /* border: 2px solid red; */
-  stroke: rgb(255, 255, 211);
+  stroke: rgb(238, 240, 141);
+  /* stroke: rgb(255, 255, 211); */
   stroke-width: 2;
   cursor: pointer;
   animation: glow 0.5s infinite alternate;
+  pointer-events: all;
 }
 
 .cls-14-1 {
@@ -878,13 +934,25 @@ pointer-events: none;
   }
 } */
 
-
-
 @media screen and (max-width: 700px) {
   .in-zoom {
     right: 7rem;
     top: 13rem;
     transform: scale(2);
   }
+
+  .second-zoom-pos {
+    right: -5rem;
+    top: 5rem;
+  }
+
+  /* .second-zoom-pos {
+    right: -2rem;
+    top: 5rem;
+    transition: all 2s;
+    transform: rotate(90deg);
+    width: 21rem;
+    height: 40rem;
+  } */
 }
 </style>

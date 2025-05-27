@@ -2411,8 +2411,8 @@ export default {
 .highlight {
   animation: glow 2s infinite alternate;
   /* border: 2px solid red; */
-  stroke: rgb(255, 255, 211);
-  stroke-width: 2;
+  stroke: rgb(238, 240, 141);
+  /* stroke: rgb(255, 255, 211); */  stroke-width: 2;
   animation: glow 0.5s infinite alternate;
 }
 

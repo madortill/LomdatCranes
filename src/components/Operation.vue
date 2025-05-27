@@ -99,6 +99,8 @@ export default {
       scaleYUpDown: 1,
       translateYUpDown: 0,
       btnInRemote: "",
+      //finish with graphics opertion
+      doneWithGraphics: false,
     };
   },
   methods: {
@@ -157,7 +159,8 @@ export default {
         case 2: {
           this.partInRemote++;
           this.numInstruction++;
-          if (this.numInstruction === 1 || this.numInstruction === 4) {
+          // if (this.numInstruction === 1 || this.numInstruction === 4) {
+            if (this.numInstruction === 4) {
             this.$emit("change-sub-nav-num", true);
           }
           break;
@@ -391,8 +394,12 @@ export default {
     flex-direction: column-reverse;
     /* margin-bottom: 6.5rem; */
   }
-  .fix-flex-dir {
-    flex-direction: column;
-  }
+
+  .crane-in-operation-container {
+  background-color: gray;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: 6rem;
+}
 }
 </style>
