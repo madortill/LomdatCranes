@@ -610,4 +610,11 @@ export default {
 .cls-26-3 {
   fill: #171717;
 }
+
+
+@media screen and (max-width: 700px) {
+  .svg-container {
+    width: 25rem;
+}
+}
 </style>

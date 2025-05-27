@@ -943,8 +943,8 @@ export default {
 
   .second-zoom-pos {
     right: -5rem;
-    top: 5rem;
-  }
+    top: 20rem;
+    }
 
   /* .second-zoom-pos {
     right: -2rem;

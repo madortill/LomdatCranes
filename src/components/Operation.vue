@@ -138,11 +138,11 @@ export default {
           }
           break;
         case "down":
-          if(this.translateYUpDown< 30 && this.scaleYUpDown< 1.2) {
+          if (this.translateYUpDown < 30 && this.scaleYUpDown < 1.2) {
             this.scaleYUpDown = this.scaleYUpDown + 0.1;
             this.translateYUpDown = this.translateYUpDown + 15;
           }
-        
+
           break;
       }
     },
@@ -160,7 +160,7 @@ export default {
           this.partInRemote++;
           this.numInstruction++;
           // if (this.numInstruction === 1 || this.numInstruction === 4) {
-            if (this.numInstruction === 4) {
+          if (this.numInstruction === 4) {
             this.$emit("change-sub-nav-num", true);
           }
           break;
@@ -396,10 +396,11 @@ export default {
   }
 
   .crane-in-operation-container {
-  background-color: gray;
-  border-radius: 1rem;
-  position: absolute;
-  bottom: 6rem;
-}
+    background-color: gray;
+    border-radius: 1rem;
+    position: absolute;
+    bottom: 15rem;
+    left: 1rem;
+  }
 }
 </style>
