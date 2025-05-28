@@ -17,10 +17,10 @@
       @to-prev-board="backToStartSign"
       @change-show-warning="changeShowWarning"
       @back-to-general-material="backToGeneralMaterialFromOperation"
-       @to-show-cloud-bg="toShowCloudBg"
+      @to-show-cloud-bg="toShowCloudBg"
       v-if="partToShow === 0"
     ></start-sign>
-    
+
     <navbar
       :part="sectionToStudy"
       :subjNum="subNavPart"
@@ -41,25 +41,37 @@
       @hide-navbar="hideNavbar"
       @update-color-icon-home="updateColorIconPhone"
       @to-show-cloud-bg="toShowCloudBg"
-      @finished-genearal-material="finishedMainSubjBox"
+      @finished-genearal-material="finishedMainSubjBox(0)"
       @update-index-order="updateIndexOrderInGenearlMaterial"
     ></general-material>
-    
-    <operation v-if="sectionToStudy === 1 && showTheSection && partToShow !== 2" @update-color-icon-home="updateColorIconPhone" @hide-navbar="hideNavbar" @back-to-start-sign="backToStartSign" :navbarSubjNum="subNavPart" @change-sub-nav-num="changeSubNavNum"></operation>
-  
-  
+
+    <operation
+      v-if="sectionToStudy === 1 && showTheSection && partToShow === 1"
+      @update-color-icon-home="updateColorIconPhone"
+      @hide-navbar="hideNavbar"
+      @back-to-start-sign="backToStartSign"
+      :navbarSubjNum="subNavPart"
+      @change-sub-nav-num="changeSubNavNum"
+      @finished-operation="finishedMainSubjBox(1)"
+    ></operation>
+
+    <exam
+      v-if="sectionToStudy === 2 && showTheSection && partToShow !== 2"
+      @back-to-start-sign="backToStartSign"
+    ></exam>
   </div>
 </template>
 
 <script>
 import GeneralMaterial from "./GeneralMaterial.vue";
 import Navbar from "./Navbar.vue";
-import Operation from './Operation.vue';
+import Operation from "./Operation.vue";
 import StartSign from "./StartSign.vue";
+import Exam from "./Exam.vue";
 
 export default {
   name: "info-screen",
-  components: { Navbar, StartSign, GeneralMaterial, Operation },
+  components: { Navbar, StartSign, GeneralMaterial, Operation, Exam },
   props: ["chosenCourse", "firstChosen", "sectionToStudy"],
   data() {
     return {
@@ -88,22 +100,29 @@ export default {
 
       //about start sign
       isAContinuance: false,
-
     };
   },
   methods: {
     //מראה חלק הבא בקומפוננטת StartSign או שמעביר לחלק של הלמידה שהמשתמש בחר
     nextInStartSign() {
-      if ((this.sectionToStudy === 0 || this.sectionToStudy === 1) && this.thePart === 0) {
+      // if (
+      //   (this.sectionToStudy === 0 || this.sectionToStudy === 1) &&
+      //   this.thePart === 0
+      // )
+      if (this.thePart === 0) {
         this.thePart++;
       } else {
+        if (this.sectionToStudy !== 2) {
+          this.updateColorIconPhone(
+            "invert(1) brightness(100%) saturate(25%) contrast(100%)"
+          );
+          this.showNavbar = true;
+        } else {
+          this.showNavbar = false;
+        }
         this.showTheSection = true;
         this.subNavPart = 1;
-        this.showNavbar = true;
         this.partToShow++; //shows now the navbar
-        this.updateColorIconPhone(
-          "invert(1) brightness(100%) saturate(25%) contrast(100%)"
-        );
       }
     },
     //מחזיר לקומפוננטה StartSign או שעושה חזור בקומפוננטה עצמה
@@ -111,10 +130,11 @@ export default {
       if (this.showTheSection) {
         this.showTheSection = false;
         this.partToShow--;
+
         this.thePart = 1;
+
         this.updateColorIconPhone("none");
-        this.showWarning = false; 
-       
+        this.showWarning = false;
       } else {
         this.thePart--;
       }
@@ -136,21 +156,6 @@ export default {
       }
     },
 
-    // showAmericanQues() {
-    //   this.partToShow++;
-    // },
-    // backFromQues() {
-    //   this.partToShow--;
-    // this.indexForGeneralMaterial = 1;
-    // },
-    // changeIndexOrderGeneralMaterial(isNext) {
-    //   if(isNext) {
-    //     this.indexForGeneralMaterial++;
-    //   } else {
-    //     this.indexForGeneralMaterial--;
-    //   }
-    // }
-
     hideNavbar(toHide) {
       if (toHide) {
         this.showNavbar = false;
@@ -163,22 +168,27 @@ export default {
       this.$emit("to-show-cloud-bg", show);
     },
 
-    finishedMainSubjBox() {
-      this.$emit("next-section-to-study");
-      this.partToShow = 0;
-      this.thePart = 0;
-      this.showTheSection = false;
-      this.isAContinuance = true;
+    finishedMainSubjBox(numBox) {
+      if (numBox === 0) {
+        this.$emit("next-section-to-study");
+        this.partToShow = 0;
+        this.thePart = 0;
+        this.showTheSection = false;
+        this.isAContinuance = true;
+      } else {
+        this.toHomePage();
+        this.$emit("finished-operation");
+      }
     },
     changeShowWarning(toShow) {
-      if(toShow) {
+      if (toShow) {
         this.showWarning = true;
       } else {
         this.showWarning = false;
       }
     },
     backToGeneralMaterialFromOperation() {
-      this.$emit('prev-studied-section');
+      this.$emit("prev-studied-section");
       this.partToShow = 1;
       this.thePart = 1;
       this.subNavPart = 9;
@@ -186,13 +196,13 @@ export default {
       this.showTheSection = true;
       this.isAContinuance = false;
     },
-     updateIndexOrderInGenearlMaterial(isUp) {
-      if(isUp) {
+    updateIndexOrderInGenearlMaterial(isUp) {
+      if (isUp) {
         this.indexOrderInGenearlMaterial++;
       } else {
         this.indexOrderInGenearlMaterial--;
       }
-     }
+    },
   },
 };
 </script>

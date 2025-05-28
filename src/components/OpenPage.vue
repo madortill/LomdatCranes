@@ -27,9 +27,9 @@
         ></Box>
         <Box
           id="disable"
-          class="box btn"
+          class="box"
           :class="{ fadeObject: chosenCrane !== '' }"
-          newTitle="disable"
+          newTitle="disable-start"
           partBox="-1"
         ></Box>
         <!-- <Box @click.once="toNextScreen" id="העמסה עצמית" class="box btn" :class="{fadeObject: chosenCrane !== ''}" newTitle="העמסה עצמית"></Box>  -->
@@ -41,18 +41,21 @@
           class="part-one btn"
           newTitle="תחילת הלמידה"
           partBox="1"
-          id=""
+          isDisable="false"
         ></Box>
         <Box
           @click="toStudy(1)"
           class="part-two btn"
           newTitle="תפעול"
+          isDisable="false"
           partBox="1"
         ></Box>
         <Box
           @click="toStudy(2)"
-          class="part-three btn"
+          class="part-three"
+          :class="ableExam ? 'btn' : ''"
           newTitle="מבחן"
+          :isDisable="!ableExam"
           partBox="1"
         ></Box>
       </div>
@@ -69,16 +72,9 @@ import StartHangingBoard from "./StartHangingBoard.vue";
 export default {
   name: "open-page",
   components: { Box, StartHangingBoard, LomdaInfo },
-  props: ["showSelection", "indexYellowSign"],
+  props: ["showSelection", "indexYellowSign", "ableExam"],
   data() {
     return {
-      // infoObject: {
-      //   "מפתחת לומדה ראשית:": 'רב"ט דני שריקי',
-      //   "גרפיקאית:": 'רב"ט קריסטינה ברחטוב, רב"ט דני שריקי',
-      //   "מומחה תוכן:": 'רס"ר יוחאי עזרא',
-      //   'רמ"ד טי"ל:': 'רס"מ שלומי אוגרן',
-      //   "גרסה:": "ינואר 2025",
-      // },
       isOpenInfo: false,
       chosenCrane: "",
       showExplain: false,
@@ -114,6 +110,7 @@ export default {
       }, 1500);
     },
     toStudy(part) {
+      if((part === 2 && this.ableExam) || part !== 2)
       this.$emit("to-study", this.fChosen, part);
       if (this.fChosen) {
         this.fChosen = true;

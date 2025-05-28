@@ -1,14 +1,15 @@
 <template>
   <div id="box">
-    <img :src="imageSource" alt="box" class="the-box" />
-    <p v-if="newTitle !== 'disable'" class="text" :class="partBox === '0' ? 'startPos' : 'homePos'">{{ newTitle }}</p>
+    <img  v-if="newTitle === 'disable-start'" alt="box" class="the-box" src="/media/startDisableBox.svg"/>
+    <img v-if="newTitle !== 'disable-start'" :src="imageSource" alt="box" class="the-box" />
+    <p v-if="newTitle !== 'disable-start'" class="text" :class="partBox === '0' ? 'startPos' : 'homePos'">{{ newTitle }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "box",
-  props: ["newTitle", "partBox"],
+  props: ["newTitle", "partBox", "isDisable"],
   data() {
     return {};
   },
@@ -16,7 +17,7 @@ export default {
     // Dynamically return the src based on the condition
     imageSource() {
       const basePath = process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
-      return this.newTitle === 'disable' ?  `${basePath}media/disableBox.svg` : `${basePath}media/box.svg`;
+      return this.isDisable === true ?  `${basePath}media/disableBox.svg` : `${basePath}media/box.svg`;
     },
     
   },

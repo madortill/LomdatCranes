@@ -7,7 +7,7 @@
       <p>אם תרצה לשנות את בחירתך אפשר ללחוץ על כפתור הבית</p>
       <p class="goodWord">בהצלחה!</p>
     </div>
-    <div class="text-container" v-if="!firstChosen  && thePart === 0">
+    <div class="text-container" v-if="!firstChosen && thePart === 0">
       <p>כל הכבוד סיימת את החלק ה{{ arrFinishedPart[sectionNum - 1] }}</p>
       <p>עכשיו נעבור לחלק ה{{ arrFinishedPart[sectionNum] }} של הלומדה</p>
       <p class="partOfLomda">{{ arrPartTitle[sectionNum] }}</p>
@@ -33,22 +33,47 @@
       </p>
     </div>
 
-    <div  class="text-container" v-if="sectionNum === 1 && thePart === 1">
+    <div class="text-container" v-if="sectionNum === 1 && thePart === 1">
       <p>עכשיו נלמד כיצד להפעיל עגורן גשר על ידי המחשות ויזואליות</p>
       <p class="partOfLomda">לשים לב</p>
       <p>בצד העליון של המסך תופיע ההוראה לפעולה שתצטרכ/י לממש</p>
     </div>
 
-    <div v-if="sectionNum > 0 && firstChosen && showWarning">
+    <!-- לגבי המבחן -->
+    <div
+      class="text-container"
+      v-if="sectionNum === 2 && thePart === 1"
+    >
+      <p>
+        אתם תעברו עכשיו מבחן על החומר שלמדתם בלומדה, המבחן עם ציון אז וודאו שאתם
+        מרגישים מוכנים
+      </p>
+      <p>המבחן מכיל 7 שאלות אמריקאיות</p>
+      <p>הכניסו את שמכם המלא לחלונית למטה ולחצו על הבא כדי להתחיל במבחן</p>
+      <input
+        class="examNameInput"
+        android:windowSoftInputMode="stateVisible"
+        placeholder="הקלידו כאן שם מלא"
+        name="name"
+        lang="he"
+        type="text"
+      />
+    </div>
+
+    <div v-if="sectionNum === 1 && firstChosen && showWarning">
       <div class="shadow"></div>
       <div class="warning-container">
         <p>שימו לב!</p>
-        <p>אם לא תתחיל מתחילת הלומדה אז ציונך לא יעלה למפקדיך</p>
+        <p>אם לא תתחיל מתחילת הלומדה אז המבחן הסופי לא יאופשר</p>
       </div>
     </div>
 
     <p class="next-btn moving-btn" @click="nextPart">הבא</p>
-    <p v-if="thePart !== 0 || isAContinuance" class="back-btn moving-btn" @click="prevPart">
+    <p
+      v-if="thePart !== 0 || isAContinuance"
+      class="back-btn moving-btn"
+      @click="prevPart"
+    >
       חזור
     </p>
   </div>
@@ -57,7 +82,13 @@
 <script>
 export default {
   name: "start-sign",
-  props: ["sectionNum", "firstChosen", 'thePart', 'showWarning','isAContinuance'],
+  props: [
+    "sectionNum",
+    "firstChosen",
+    "thePart",
+    "showWarning",
+    "isAContinuance",
+  ],
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "מבחן"],
@@ -75,7 +106,7 @@ export default {
   mounted() {
     // Set a timeout to hide the warning after 3 seconds
     let timer = setTimeout(() => {
-      this.$emit('change-show-warning', false);
+      this.$emit("change-show-warning", false);
       clearTimeout(timer);
     }, 2500);
   },
@@ -84,22 +115,19 @@ export default {
       this.$emit("to-next-board");
     },
 
-  prevPart() {
-    if(this.isAContinuance && this.thePart === 0) {
-      this.$emit('back-to-general-material');
-      
-          // this.toShowCloudBg(false);
-       
-    } else {
-      this.$emit("to-prev-board");
-    }
-  },
-  toShowCloudBg(show) {
-      this.$emit('to-show-cloud-bg', show);
+    prevPart() {
+      if (this.isAContinuance && this.thePart === 0) {
+        this.$emit("back-to-general-material");
+
+        // this.toShowCloudBg(false);
+      } else {
+        this.$emit("to-prev-board");
+      }
     },
-},
-
-
+    toShowCloudBg(show) {
+      this.$emit("to-show-cloud-bg", show);
+    },
+  },
 };
 </script>
 

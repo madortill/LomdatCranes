@@ -15,6 +15,7 @@
       v-if="partNum === 0"
       :indexYellowSign="indexYellowSign"
       @next-index-yellow-sign="nextIndexYellowSign"
+      :ableExam="ableExam"
     ></open-page>
 
     <info-screen
@@ -24,8 +25,9 @@
       :sectionToStudy="sectionToStudy"
       @toHomePage="toHomePage"
       @to-show-cloud-bg="toShowCloudBg"
-      @next-section-to-study="nextSectionToStudy"
+      @next-section-to-study="finishedGeneralMaterial"
       @prev-studied-section="prevStudiedSection"
+      @finished-operation="finishedOperation"
     ></info-screen>
   </div>
 </template>
@@ -50,7 +52,9 @@ export default {
       chosenCourse: "",
       indexYellowSign: 0,
       showCloudsBg: true,
+      finishedLearnedBoxes: [false, false],
       // navPart: -1,
+      ableExam: true,
     };
   },
   methods: {
@@ -62,7 +66,6 @@ export default {
     toHomePage() {
       this.partNum = 0;
       this.showSelection = true;
-      
     },
 
     updateChosenCourse(chosenCrane) {
@@ -79,16 +82,29 @@ export default {
         this.showCloudsBg = false;
       }
     },
-    nextSectionToStudy() {
+    finishedGeneralMaterial() {
       this.sectionToStudy++;
       this.firstChosen = false;
-      // this.partNum = 0;
+      this.finishedLearnedBoxes[0] = true;
+        this.toShowTheExam();
+      
     },
+
+    finishedOperation() {
+      this.finishedLearnedBoxes[1] = true;
+      this.toShowTheExam();
+    },
+
+    toShowTheExam() {
+      if (this.finishedLearnedBoxes[0] && this.finishedLearnedBoxes[1]) {
+        this.ableExam = true;
+      }
+    },
+
     prevStudiedSection() {
       this.sectionToStudy--;
       this.firstChosen = true;
-    }
-
+    },
   },
 };
 </script>

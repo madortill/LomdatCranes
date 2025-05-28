@@ -192,6 +192,8 @@ export default {
           //if not on the last slide-finidhed
           else if(this.partInSecondPart !==2) {
             this.partInSecondPart++;
+          } else if (this.partInSecondPart === 2) {
+            this.$emit('finished-operation');
           }
 
           break;
