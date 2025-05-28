@@ -3,7 +3,7 @@
     <div class="pop-out">
       <p class="header">{{theInfo[0][partCommadMethod] }}</p>
       <p v-if="partCommadMethod === 0" >{{theInfo[cloudObject.num][0] }}</p>
-      <div class="command-img" v-if="partCommadMethod=== 0">תמונה</div>
+      <img class="command-img" :class="cloudObject.num === 2 ? 'fix-scale' : ''" v-if="partCommadMethod=== 0" :src="getImage(cloudObject.num)"/> 
       <div v-if="partCommadMethod === 1">
         <p  v-for="(i,index) in theInfo" :key="index">{{theInfo[cloudObject.num][index +1] }}</p>
       </div>
@@ -69,6 +69,13 @@ export default {
     };
   },
   methods: {
+    getImage(num) {
+      // Determine the base URL (for local and production)
+      const basePath =
+        process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return `${basePath}media/commandMethod/command${num}.png`; // Static path to the images in the public folder
+    },
+
     finishedTheMethod() {
       this.$emit("finished-method", false);
     },
@@ -95,9 +102,14 @@ export default {
 .command-img {
   background-color: white;
   height: 10rem;
-  width: 15rem;
-  color: black;
+  width: 17rem;
+  /* color: black; */
 }
+
+.fix-scale {
+  width: 5rem;
+}
+
 .pop-out {
   background-color: #023047;
   /* padding: 1rem; */
