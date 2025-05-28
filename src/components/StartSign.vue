@@ -60,7 +60,7 @@ export default {
   props: ["sectionNum", "firstChosen", 'thePart', 'showWarning','isAContinuance'],
   data() {
     return {
-      arrPartTitle: ["תחילת הלומדה", "תפעול", "תרגול"],
+      arrPartTitle: ["תחילת הלומדה", "תפעול", "מבחן"],
       arrFinishedPart: ["ראשון", "שני", "שלישי"],
       array1: [
         "מטרת על",

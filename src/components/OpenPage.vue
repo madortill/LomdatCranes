@@ -52,7 +52,7 @@
         <Box
           @click="toStudy(2)"
           class="part-three btn"
-          newTitle="תרגול"
+          newTitle="מבחן"
           partBox="1"
         ></Box>
       </div>
