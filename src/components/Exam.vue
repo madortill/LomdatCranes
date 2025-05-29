@@ -1,33 +1,43 @@
 <template>
   <div id="exam">
-    <p class="header">תרגול</p>
+    <p class="header">מבחן</p>
     <!-- <div class="middle-container"> -->
-        
 
-      <div class="container-quiz">
-        <p class="tag-ques">שאלה מספר {{ this.numQues + 1 }}</p>
+    <div class="container-quiz">
+      <p class="tag-ques">שאלה מספר {{ this.numQues + 1 }}</p>
 
-        <div class="question-container">
-          <p class="question-title">{{ this.questions[this.numQues].title }}</p>
-          <div
-            class="container-answer"
-            v-for="(answer, index) in this.questions[this.numQues].answers"
-            :key="index"
-          >
-            <img
-         :id="index"
-         @click="theChosenAnswer(index)"
-              class="question-squre"
-              :src="getSrcAnswerSqure(index)"
-            />
-            <p>{{ answer }}</p>
-          </div>
+      <div class="question-container">
+        <p class="question-title">{{ this.questions[this.numQues].title }}</p>
+        <div
+          class="container-answer"
+          v-for="(answer, index) in this.questions[this.numQues].answers"
+          :key="index"
+        >
+          <img
+            :id="index"
+            @click="theChosenAnswer(index)"
+            class="question-squre"
+            :src="getSrcAnswerSqure(index)"
+          />
+          <p class="ans-text">{{ answer }}</p>
         </div>
       </div>
+    </div>
     <!-- </div> -->
-    <img @click="prevQuestion" v-if="numQues > 0" class="moving-arrow back" src="/media/exam/left-arrow.svg" />
-    <img  v-if="numQues < 6" @click="nextQuestion" class="moving-arrow next" src="/media/exam/left-arrow.svg" />
-
+    <div class="arrows-container">
+      <img
+        @click="prevQuestion"
+        v-if="numQues > 0"
+        class="moving-arrow back"
+        src="/media/exam/left-arrow.svg"
+      />
+      <img
+        v-if="numQues < 6"
+        @click="nextQuestion"
+        class="moving-arrow next"
+        src="/media/exam/left-arrow.svg"
+      />
+    </div>
 
     <img src="/media/exam/disable-doneBtn.png" class="done-btn" />
     <div class="tracking-ans-container">
@@ -44,7 +54,6 @@ export default {
   props: [],
   data() {
     return {
-        
       questions: [
         {
           Qtype: 0,
@@ -143,26 +152,28 @@ export default {
   },
   methods: {
     nextQuestion() {
-        if(this.numQues !== 6) {
-            this.numQues++;
-        }
+      if (this.numQues !== 6) {
+        this.numQues++;
+      }
     },
     prevQuestion() {
-        if(this.numQues !== 0) {
-            this.numQues--;
-        }
+      if (this.numQues !== 0) {
+        this.numQues--;
+      }
     },
     prevPart() {
       this.$emit("back-to-start-sign");
     },
     theChosenAnswer(index) {
-        this.questions[this.numQues].indexChosenAnswer = index;
+      this.questions[this.numQues].indexChosenAnswer = index;
     },
     getSrcAnswerSqure(num) {
       // Determine the base URL (for local and production)
       const basePath =
         process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
-      return num === this.questions[this.numQues].indexChosenAnswer ?  `${basePath}media/exam/answer-squre-marked.svg` : `${basePath}media/exam/answer-squre-unmarked.svg`; // Static path to the images in the public folder
+      return num === this.questions[this.numQues].indexChosenAnswer
+        ? `${basePath}media/exam/answer-squre-marked.svg`
+        : `${basePath}media/exam/answer-squre-unmarked.svg`; // Static path to the images in the public folder
     },
   },
 };
@@ -178,10 +189,14 @@ export default {
   align-items: center;
 }
 
+.ans-text {
+  width: 30rem;
+}
+
 .container-quiz {
-    width: 35rem;
-    text-align: right;
-    margin-top: -2rem;
+  width: 35rem;
+  text-align: right;
+  margin-top: 5rem;
 }
 
 .tracking-ans-container {
@@ -206,13 +221,13 @@ export default {
 }
 
 .back {
-    transform: rotate(180deg) translateY(50%);
-    right: 8rem;
+  transform: rotate(180deg) translateY(50%);
+  right: 8rem;
 }
 
 .next {
-    transform: translateY(-50%);
-    left: 8rem;
+  transform: translateY(-50%);
+  left: 8rem;
 }
 
 .done-btn {
@@ -246,7 +261,9 @@ export default {
 .header {
   font-size: 2.5rem;
   font-weight: bolder;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
+  position: absolute;
+  right: 10rem;
 }
 
 .tag-ques {
@@ -305,13 +322,43 @@ export default {
   }
 
   .tracking-ans-container {
-    width: 28rem;
-    /* height: 9rem; */
-    bottom: 12rem;
+    width: 22rem;
+    bottom: 2rem;
+    height: 8rem;
+    flex-wrap: wrap;
+  }
+
+  .container-quiz {
+    width: 30rem;
+    margin-top: 8rem;
   }
 
   .moving-arrow {
+    width: 4rem;
+    position: static;
+    /* bottom: 17rem; */
+    top: auto;
+  }
 
-}
+  .arrows-container {
+    display: flex;
+    width: 12rem;
+    height: 10rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .done-btn {
+    width: 10rem;
+    bottom: 12rem;
+  }
+
+  .bubble-ans {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0rem;
+  }
 }
 </style>
