@@ -1,8 +1,10 @@
 <template>
   <div id="exam">
     <p class="header">תרגול</p>
-    <div class="middle-container">
-      <div class="right-side">
+    <!-- <div class="middle-container"> -->
+        
+
+      <div class="container-quiz">
         <p class="tag-ques">שאלה מספר {{ this.numQues + 1 }}</p>
 
         <div class="question-container">
@@ -13,17 +15,19 @@
             :key="index"
           >
             <img
+         :id="index"
+         @click="theChosenAnswer(index)"
               class="question-squre"
-              src="/media/exam/answer-squre-unmarked.svg"
+              :src="getSrcAnswerSqure(index)"
             />
             <p>{{ answer }}</p>
           </div>
         </div>
       </div>
-      <img class="arrow-next" src="/media/exam/left-arrow.svg" />
+    <!-- </div> -->
+    <img @click="prevQuestion" v-if="numQues > 0" class="moving-arrow back" src="/media/exam/left-arrow.svg" />
+    <img  v-if="numQues < 6" @click="nextQuestion" class="moving-arrow next" src="/media/exam/left-arrow.svg" />
 
-      
-    </div>
 
     <img src="/media/exam/disable-doneBtn.png" class="done-btn" />
     <div class="tracking-ans-container">
@@ -40,6 +44,7 @@ export default {
   props: [],
   data() {
     return {
+        
       questions: [
         {
           Qtype: 0,
@@ -52,6 +57,7 @@ export default {
           ],
           correctAnswer: 3,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
         {
           Qtype: 1,
@@ -64,6 +70,7 @@ export default {
           ],
           correctAnswer: 1,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
         {
           Qtype: 2,
@@ -76,6 +83,7 @@ export default {
           ],
           correctAnswer: 2,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
         {
           Qtype: 3,
@@ -88,6 +96,7 @@ export default {
           ],
           correctAnswer: 2,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
         {
           Qtype: 4,
@@ -100,6 +109,7 @@ export default {
           ],
           correctAnswer: 1,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
         {
           Qtype: 5,
@@ -112,6 +122,7 @@ export default {
           ],
           correctAnswer: 0,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
         {
           Qtype: 6,
@@ -124,14 +135,34 @@ export default {
           ],
           correctAnswer: 0,
           numAnswer: 4,
+          indexChosenAnswer: -1,
         },
       ],
       numQues: 0,
     };
   },
   methods: {
+    nextQuestion() {
+        if(this.numQues !== 6) {
+            this.numQues++;
+        }
+    },
+    prevQuestion() {
+        if(this.numQues !== 0) {
+            this.numQues--;
+        }
+    },
     prevPart() {
       this.$emit("back-to-start-sign");
+    },
+    theChosenAnswer(index) {
+        this.questions[this.numQues].indexChosenAnswer = index;
+    },
+    getSrcAnswerSqure(num) {
+      // Determine the base URL (for local and production)
+      const basePath =
+        process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return num === this.questions[this.numQues].indexChosenAnswer ?  `${basePath}media/exam/answer-squre-marked.svg` : `${basePath}media/exam/answer-squre-unmarked.svg`; // Static path to the images in the public folder
     },
   },
 };
@@ -147,6 +178,12 @@ export default {
   align-items: center;
 }
 
+.container-quiz {
+    width: 35rem;
+    text-align: right;
+    margin-top: -2rem;
+}
+
 .tracking-ans-container {
   background-color: #023047;
   width: 40rem;
@@ -158,12 +195,24 @@ export default {
   position: absolute;
   bottom: 2rem;
 }
-.middle-container{
+/* .middle-container{
     display: flex;
+} */
+
+.moving-arrow {
+  width: 4rem;
+  position: absolute;
+  top: 50%;
 }
 
-.arrow-next {
-  width: 4rem;
+.back {
+    transform: rotate(180deg) translateY(50%);
+    right: 8rem;
+}
+
+.next {
+    transform: translateY(-50%);
+    left: 8rem;
 }
 
 .done-btn {
@@ -218,6 +267,7 @@ export default {
 .question-squre {
   width: 2rem;
   margin-left: 1rem;
+  cursor: pointer;
 }
 
 .moving-btn {
@@ -257,14 +307,11 @@ export default {
   .tracking-ans-container {
     width: 28rem;
     /* height: 9rem; */
-    bottom: 16rem;
+    bottom: 12rem;
   }
 
-  .arrow-next {
-  position: absolute;
-  top: 50%;
-   left: 4rem;
-    transform: translateY(-50%); 
+  .moving-arrow {
+
 }
 }
 </style>
