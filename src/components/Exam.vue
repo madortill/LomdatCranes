@@ -325,7 +325,7 @@ export default {
   }
 
   .question-container {
-  height: 32rem;
+  height: 28rem;
 }
 
 
