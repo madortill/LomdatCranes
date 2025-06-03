@@ -325,7 +325,7 @@ export default {
   }
 
   .question-container {
-  height: 28rem;
+  height: 29rem;
 }
 
 
@@ -361,7 +361,7 @@ export default {
   }
 
   .done-btn {
-    width: 8rem;
+    width: 7rem;
     bottom: auto;
     left: 1rem;
     top: 4rem;
