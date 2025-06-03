@@ -321,11 +321,17 @@ export default {
     height: 91vh;
   }
 
+  .question-container {
+  height: 32rem;
+}
+
+
   .tracking-ans-container {
-    width: 22rem;
+    width: 24rem;
     bottom: 2rem;
-    height: 8rem;
+    height: 7rem;
     flex-wrap: wrap;
+    left: 1rem;
   }
 
   .container-quiz {
@@ -345,13 +351,17 @@ export default {
     width: 12rem;
     height: 10rem;
     flex-direction: row;
-    align-items: center; 
+    align-items: center;
     justify-content: space-evenly;
+    /* position: absolute; */
+    /* bottom: 7rem; */
   }
 
   .done-btn {
-    width: 10rem;
-    bottom: 12rem;
+    width: 8rem;
+    bottom: auto;
+    left: 1rem;
+    top: 5rem;
   }
 
   .bubble-ans {
@@ -359,6 +369,10 @@ export default {
     margin-left: 1rem;
     margin-top: 0.1rem;
     margin-bottom: 0rem;
+  }
+
+  .header {
+    right: 3rem;
   }
 }
 </style>
