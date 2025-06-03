@@ -345,7 +345,7 @@ export default {
     width: 12rem;
     height: 10rem;
     flex-direction: row;
-    align-items: center;
+    align-items: center; 
     justify-content: space-evenly;
   }
 
