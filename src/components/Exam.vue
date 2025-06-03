@@ -316,6 +316,9 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
+  .container-answer {
+    align-items: center;
+}
   #exam {
     width: 100vw;
     height: 91vh;
@@ -327,8 +330,8 @@ export default {
 
 
   .tracking-ans-container {
-    width: 24rem;
-    bottom: 2rem;
+    width: 22rem;
+    bottom: 1rem;
     height: 7rem;
     flex-wrap: wrap;
     left: 1rem;
@@ -336,7 +339,7 @@ export default {
 
   .container-quiz {
     width: 30rem;
-    margin-top: 8rem;
+    margin-top: 7rem;
   }
 
   .moving-arrow {
@@ -361,7 +364,7 @@ export default {
     width: 8rem;
     bottom: auto;
     left: 1rem;
-    top: 5rem;
+    top: 4rem;
   }
 
   .bubble-ans {
@@ -372,7 +375,7 @@ export default {
   }
 
   .header {
-    right: 3rem;
+    right: 1rem;
   }
 }
 </style>
