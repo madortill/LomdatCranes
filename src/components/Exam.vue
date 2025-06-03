@@ -39,9 +39,17 @@
       />
     </div>
 
-    <img src="/media/exam/disable-doneBtn.png" class="done-btn" />
+    <img :src="getSrcDoneBtn()" class="done-btn" :class="canBeSub ? 'done-active-btn' : ''" />
     <div class="tracking-ans-container">
-      <p class="bubble-ans" v-for="i in questions.length" :key="i">{{ i }}</p>
+      <p
+        class="bubble-ans"
+        v-for="i in questions.length"
+        :key="i"
+        :id="i"
+        @click="showQuestion"
+      >
+        {{ i }}
+      </p>
     </div>
 
     <p class="back-btn moving-btn" @click="prevPart">חזור</p>
@@ -147,10 +155,25 @@ export default {
           indexChosenAnswer: -1,
         },
       ],
+      canBeSub: false,
+
       numQues: 0,
     };
   },
   methods: {
+    showQuestion(event) {
+      this.numQues = event.currentTarget.id - 1;
+    },
+
+    checkIfCanBeSub() {
+      for (let i = 0; i < this.questions.length; i++) {
+        if (this.questions[i].indexChosenAnswer === -1) {
+          return false;
+        }
+      }
+      return true;
+    },
+
     nextQuestion() {
       if (this.numQues !== 6) {
         this.numQues++;
@@ -166,6 +189,9 @@ export default {
     },
     theChosenAnswer(index) {
       this.questions[this.numQues].indexChosenAnswer = index;
+      if (this.checkIfCanBeSub()) {
+        this.canBeSub = true;
+      }
     },
     getSrcAnswerSqure(num) {
       // Determine the base URL (for local and production)
@@ -173,7 +199,14 @@ export default {
         process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
       return num === this.questions[this.numQues].indexChosenAnswer
         ? `${basePath}media/exam/answer-squre-marked.svg`
-        : `${basePath}media/exam/answer-squre-unmarked.svg`; // Static path to the images in the public folder
+        : `${basePath}media/exam/answer-squre-unmarked.svg`;
+    },
+    getSrcDoneBtn() {
+      const basePath =
+        process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return !this.canBeSub
+        ? `${basePath}media/exam/disable-doneBtn.png`
+        : `${basePath}media/exam/doneBtn.png`;
     },
   },
 };
@@ -187,6 +220,10 @@ export default {
   z-index: 1;
   flex-direction: column;
   align-items: center;
+}
+
+.done-active-btn {
+  cursor: pointer;
 }
 
 .ans-text {
@@ -218,6 +255,7 @@ export default {
   width: 4rem;
   position: absolute;
   top: 50%;
+  cursor: pointer;
 }
 
 .back {
@@ -247,6 +285,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .question-container {
@@ -318,16 +357,15 @@ export default {
 @media screen and (max-width: 600px) {
   .container-answer {
     align-items: center;
-}
+  }
   #exam {
     width: 100vw;
     height: 91vh;
   }
 
   .question-container {
-  height: 29rem;
-}
-
+    height: 29rem;
+  }
 
   .tracking-ans-container {
     width: 22rem;
