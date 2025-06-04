@@ -1,5 +1,5 @@
 <template>
-  <div id="origin-crane-name" :style="{'--bg-color': info.color}">
+  <div id="origin-crane-name" :style="{ '--bg-color': info.color }">
     <div class="info">
       <p class="header">למה נקרא כך?</p>
       <p class="the-text">{{ info.text }}</p>
@@ -21,19 +21,19 @@ export default {
           return {
             text: "העגורן נקרא עגורן גשר מפני שקורתו העליונה נעה כגשר מעל המטען.",
             url: `${baseUrl}media/cards/expand/overheadCrane.svg`, // Use BASE_URL here
-            color: '#C3996D',
+            color: "#C3996D",
           };
         case "עגורן שער":
           return {
             text: "עגורן שער נקרא בשמו מכיוון שהוא נע כשער מעל המטען.",
             url: `${baseUrl}media/cards/expand/gateCrane.svg`,
-            color: '#5F8BB3',
+            color: "#5F8BB3",
           };
         case "עגורן עמוד":
           return {
             text: "העגורן נקרא עגורן עמוד מפני שקורתו העליונה מחוברת לעמוד וניתן לצודד את הקורה.",
             url: `${baseUrl}media/cards/expand/columnCrane.svg`,
-            color: '#B3DAF4',
+            color: "#B3DAF4",
           };
         default:
           return "מידע לא זמין.";
@@ -66,8 +66,6 @@ export default {
   z-index: 0;
 }
 
-
-
 .header {
   font-size: 1.8rem;
   text-align: center;
@@ -82,17 +80,15 @@ export default {
 
   .the-img {
     width: 72.5vw;
-}
+  }
 }
 
 @media screen and (max-width: 880px) {
+  #origin-crane-name {
+    border-radius: 2rem;
+  }
 
-#origin-crane-name {
-  /* background-color: var(--bg-color); */
-  border-radius: 2rem;
-}
-
-.info {
+  .info {
     width: 90%;
     position: static;
     height: 18rem;
@@ -103,10 +99,10 @@ export default {
   .the-img {
     margin-top: -1rem;
     z-index: 2;
-}
+  }
 
-.the-text {
-  padding: 1rem;
-}
+  .the-text {
+    padding: 1rem;
+  }
 }
 </style>

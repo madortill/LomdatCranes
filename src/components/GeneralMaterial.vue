@@ -69,17 +69,12 @@ export default {
   props: [
     "chosenCourse",
     "navbarSubjNum",
-    // "sectionToStudy",
     "colorIconPhone",
      "indexOrder"
   ],
   data() {
     return {
-      // Infopart: 1,
-      // indexOrder: 0,
       infoHangingBoardPart: 0,
-      // subNavPart: 1,
-      // showTheSection: false,
 
       //about the flip according to click
       flipStart: false,
@@ -114,13 +109,11 @@ export default {
     nextPart() {
       switch (this.navbarSubjNum) {
         case 1: {
-          // if (this.infoHangingBoardPart === 0) {
           //checks if user hasnt studied safety rules once
           if (!this.seenSafetyRules) {
             this.showNextBtn = false;
           }
           this.firstFlipInfoHangingBoard();
-          // }
           this.$emit("change-sub-nav-num", true);
 
           break;
@@ -238,7 +231,6 @@ export default {
           this.toShowCloudBg(true);
           this.$emit('update-index-order', true);
           this.$emit("change-sub-nav-num", true);
-          // this.showNextBtn = false;
           this.showNextBtn = true;
           this.hideNavbar(true);
 
@@ -485,12 +477,12 @@ export default {
   font-size: 1rem;
   background-color: var(--moving-btn-color);
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0; 
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
   transition: background-color 0.3s ease;
   cursor: pointer;
 }

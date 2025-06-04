@@ -53,7 +53,6 @@ export default {
       indexYellowSign: 0,
       showCloudsBg: true,
       finishedLearnedBoxes: [false, false],
-      // navPart: -1,
       ableExam: true,
     };
   },
@@ -148,7 +147,6 @@ body {
   position: relative;
   text-align: center;
   background-color: #e0f2f4;
-  /* display: grid; */
   font-size: 1.2rem;
 }
 
@@ -165,10 +163,12 @@ body {
     width: 2.4rem;
     top: 0.5rem;
   }
+  
   body {
     height: 91vh;
     overflow: hidden;
   }
+
   #app {
     height: 91vh;
   }

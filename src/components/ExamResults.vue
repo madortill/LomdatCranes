@@ -76,18 +76,17 @@ export default {
 
 .back-btn {
   z-index: 1;
-
   width: 10rem;
   height: 3rem;
   font-size: 1rem;
   background-color: #8cd0ec;
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0; 
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
   transition: background-color 0.3s ease;
   cursor: pointer;
 }

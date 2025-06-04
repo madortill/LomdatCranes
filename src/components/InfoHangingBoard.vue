@@ -60,14 +60,12 @@
       v-if="sectionHangingBoard === 2 || sectionHangingBoard === 3"
     >
       <p class="header">{{ theInfo[sectionHangingBoard][0] }}</p>
-      <!-- <div v-if="sectionHangingBoard === 2"> -->
       <potential-additions
         v-if="sectionHangingBoard === 2"
       ></potential-additions>
       <p class="asterisk" v-if="sectionHangingBoard === 2">
         * לא בכל עגורן מצויה תוספת
       </p>
-      <!-- </div> -->
       <div class="electrical-system-container" v-if="sectionHangingBoard === 3">
         <p>
           {{ theInfo[sectionHangingBoard][1] }}
@@ -159,13 +157,12 @@ export default {
 .mini-item-container {
   border: 4px solid white;
   border-radius: 1rem;
-  /* height: 17rem; */
-  /* position: relative; */
 }
 
 .fix-width {
   width: 10rem;
 }
+
 .the-placement {
   width: 60rem;
   height: 37rem;
@@ -253,7 +250,6 @@ export default {
 .flip-end-safty-rules {
   transition: transform 2s;
   transform: rotateY(180deg);
-  /* background-image: url("/media/infoHangBoard/computer/infoHangingBoard.svg"); */
 }
 
 .flip-start-definition {
@@ -264,7 +260,6 @@ export default {
 .info-container {
   margin-top: 10rem;
   color: white;
-  /* width: 35rem; */
   width: 50rem;
   font-size: 1.2rem;
   display: flex;
@@ -308,7 +303,6 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-  /* margin-top: -2rem; */
   position: relative;
 }
 
@@ -326,11 +320,11 @@ export default {
   border-radius: 4rem;
 }
 @media screen and (max-width: 700px) {
-
   .item-title {
     margin-bottom: 0.3rem;
     margin-top: 0.4rem;
   }
+
   .the-placement {
     width: 26rem;
     height: 42rem;
@@ -383,7 +377,6 @@ export default {
     height: 21rem;
     bottom: 9.1rem;
     margin-left: -12.5rem;
-    /* bottom: 0rem; */
     animation: tossAnimation 2.5s linear infinite;
   }
 
@@ -416,25 +409,23 @@ export default {
   }
 
   .icon {
-    /* width: 8rem; */
     height: 5rem;
     position: static;
     border-radius: 0rem;
-    /* border: none; */
     background-color: #023047;
     transform: rotate(0deg);
     margin-right: 0rem;
     margin-top: -0.6rem;
   }
-  
+
   .fix-width {
     width: 7rem;
     margin-top: -0.4rem;
   }
 
-.item-container {
-  margin-top: -1rem;
-}
+  .item-container {
+    margin-top: -1rem;
+  }
 
   .mini-item-container {
     border: 2px solid white;

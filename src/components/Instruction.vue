@@ -52,18 +52,7 @@ export default {
   font-size: 1.3rem;
   font-weight: bold;
 }
-/* @keyframes windowShow {
-    0% {
-      height: 25rem;
-      width: 25rem;
-      font-size: 1rem;
-    }
-    100% {
-      height: 27rem;
-      width: 27rem;
-      font-size: 1.2rem;
-    }
-  } */
+
 @media screen and (max-width: 600px) {
   #instruction-container {
     width: 26rem;

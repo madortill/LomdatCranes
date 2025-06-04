@@ -31,7 +31,7 @@
         />
         <div class="menu-container" v-if="showPhoneMenu">
           <p class="close-btn" @click="closeMenu">x</p>
-            <div v-for="(subj, index) in theRightArr" :key="index">
+          <div v-for="(subj, index) in theRightArr" :key="index">
             <p
               :class="{
                 subject: index !== 0,
@@ -42,7 +42,6 @@
               {{ subj }}
             </p>
           </div>
-          
         </div>
       </div>
     </div>
@@ -159,7 +158,6 @@ export default {
 }
 
 .subject {
-  /* transition: background-color 0.3s ease; */
   border-radius: 0.52rem;
   padding: 0.5rem;
 }
@@ -199,7 +197,6 @@ export default {
 
 .menu-icon {
   width: 3rem;
-  /* pointer-events: auto; */
   z-index: 10;
 }
 
@@ -215,8 +212,8 @@ export default {
   right: 1rem;
   top: 1rem;
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close-btn {
@@ -225,6 +222,4 @@ export default {
   right: 1.5rem;
   top: -2.5rem;
 }
-
-
 </style>

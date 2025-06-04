@@ -463,7 +463,6 @@ export default {
   },
   methods: {
     nextPart() {
-      // this.numPart++;
       if (this.numPart === 0 || this.numPart === 1) {
         this.$emit("next-instruction");
       }
@@ -477,12 +476,8 @@ export default {
   width: 30rem;
 }
 
-/* .change-height-cabel {
-  transform: scaleY(var(--scaleYUpDown));
-} */
-
 .move-winch {
-  transform: translateY(calc(var(--translateYUpDown) * 1rem)) ;
+  transform: translateY(calc(var(--translateYUpDown) * 1rem));
 }
 
 .move-crane {
@@ -490,6 +485,7 @@ export default {
     translateY(calc(var(--verticalRem) * 1rem))
     translateX(calc(var(--horizontal-move) * 1rem));
 }
+
 .move-right-left {
   transform: scale(var(--moveScale), 1)
     translateY(calc(var(--verticalRem) * 1rem))
@@ -611,10 +607,9 @@ export default {
   fill: #171717;
 }
 
-
 @media screen and (max-width: 700px) {
   .svg-container {
     width: 25rem;
-}
+  }
 }
 </style>

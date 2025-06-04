@@ -1,17 +1,20 @@
 <template>
-    <div class="potential-additions">
-      <div
-        v-for="(info, index) in arrInfo"
-        :key="index"
-        class="bubble"
-         :style="{ backgroundColor: arrColors[index] }"
-      >
-        <p class="the-info">{{ info }}</p>
-      <img class="fix-pos" src="/media/potentialAdditions/whiteBgForBubble.svg" alt="whiteBgForBubble"/>
-      <img class="icon" :src="getIconUrl(index)" alt="icon"/>
-
-      </div>
+  <div class="potential-additions">
+    <div
+      v-for="(info, index) in arrInfo"
+      :key="index"
+      class="bubble"
+      :style="{ backgroundColor: arrColors[index] }"
+    >
+      <p class="the-info">{{ info }}</p>
+      <img
+        class="fix-pos"
+        src="/media/potentialAdditions/whiteBgForBubble.svg"
+        alt="whiteBgForBubble"
+      />
+      <img class="icon" :src="getIconUrl(index)" alt="icon" />
     </div>
+  </div>
 </template>
 
 <script>
@@ -19,28 +22,29 @@ export default {
   name: "potential-additions",
   data() {
     return {
-        arrInfo: ['מערכת תאורה','צופר אזהרה','גששים וחיישנים למניעת תקלות והגברת בטיחות','מכשיר למדידת משקל מטען'],
-        arrColors:  ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
+      arrInfo: [
+        "מערכת תאורה",
+        "צופר אזהרה",
+        "גששים וחיישנים למניעת תקלות והגברת בטיחות",
+        "מכשיר למדידת משקל מטען",
+      ],
+      arrColors: ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
     };
   },
   methods: {
     getIconUrl(num) {
       // Determine the base URL (for local and production)
-      const basePath = process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
-      return `${basePath}media/potentialAdditions/icons/icon${num}.png`;  // Static path to the images in the public folder
-    }
+      const basePath =
+        process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
+      return `${basePath}media/potentialAdditions/icons/icon${num}.png`; // Static path to the images in the public folder
+    },
   },
-  computed: {
-   
-  }
+  computed: {},
 };
 </script>
 
 <style scoped>
-
 .the-info {
-  /* width: 17rem;
-  margin: 0.7rem; */
   display: flex;
   margin-right: 1rem;
   width: 14rem;
@@ -53,28 +57,24 @@ export default {
 }
 
 .bubble {
-    background-color: white;
-    border-radius: 1rem;
-    /* padding: 1rem; */
-    width: 25rem;
-    position: relative;
-    display: flex;
-    margin-bottom: 0.5rem;
-    height: 3.7rem;
-    align-items: center;
+  background-color: white;
+  border-radius: 1rem;
+  width: 25rem;
+  position: relative;
+  display: flex;
+  margin-bottom: 0.5rem;
+  height: 3.7rem;
+  align-items: center;
 }
 
 .potential-additions {
-  /* display: flex; */
   height: 18rem;
   margin-top: 1rem;
-  /* flex-direction: column;
-  justify-content: space-evenly; */
 }
 
 .fix-pos {
   position: absolute;
-  top:0rem;
+  top: 0rem;
   left: 0rem;
   height: 105%;
 }
@@ -86,4 +86,3 @@ export default {
   width: 4rem;
 }
 </style>
-

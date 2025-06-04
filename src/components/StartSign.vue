@@ -64,23 +64,15 @@
         v-model="idNumber"
         lang="he"
         type="text"
-         maxlength="7"
+        maxlength="7"
       />
-    </div>
-
-    <div v-if="sectionNum === 1 && firstChosen && showWarning">
-      <div class="shadow"></div>
-      <div class="warning-container">
-        <p>שימו לב!</p>
-        <p>אם לא תתחיל מתחילת הלומדה אז המבחן הסופי לא יאופשר</p>
-      </div>
     </div>
 
     <p
       class="next-btn moving-btn"
       @click="nextPart"
       :class="{ disable: !isFormValid() }"
-      >
+    >
       הבא
     </p>
     <p
@@ -96,13 +88,7 @@
 <script>
 export default {
   name: "start-sign",
-  props: [
-    "sectionNum",
-    "firstChosen",
-    "thePart",
-    "showWarning",
-    "isAContinuance",
-  ],
+  props: ["sectionNum", "firstChosen", "thePart", "isAContinuance"],
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "מבחן"],
@@ -120,24 +106,12 @@ export default {
       idNumber: "",
     };
   },
-  mounted() {
-    // Set a timeout to hide the warning after 3 seconds
-    let timer = setTimeout(() => {
-      this.$emit("change-show-warning", false);
-      clearTimeout(timer);
-    }, 2500);
-  },
   methods: {
     nextPart() {
       if (this.sectionNum === 2 && this.thePart === 1) {
         this.$emit("send-exam-variables", this.fullName, this.idNumber);
-        // if (this.isFormValid()) {
-        //   this.$emit("to-next-board");
-        // }
       }
-      //  else {
-        this.$emit("to-next-board");
-      // }
+      this.$emit("to-next-board");
     },
 
     prevPart() {
@@ -155,21 +129,20 @@ export default {
       // כאן תוכל לשמור או לשלוח את הנתונים
       alert(`שם מלא: ${this.fullName}\nמספר אישי: ${this.idNumber}`);
     },
-    isFormValid() { 
-      if(this.sectionNum === 2 && this.thePart === 1) {
- // שם מלא - לפחות 2 מילים (מופרדות ברווח)
- const words = this.fullName.trim().split(/\s+/);
-      const fullNameValid =
-        words.length >= 2 && words.every((word) => word.length > 0);
+    isFormValid() {
+      if (this.sectionNum === 2 && this.thePart === 1) {
+        // שם מלא - לפחות 2 מילים (מופרדות ברווח)
+        const words = this.fullName.trim().split(/\s+/);
+        const fullNameValid =
+          words.length >= 2 && words.every((word) => word.length > 0);
 
-      // מספר אישי - 7 ספרות בלבד
-      const idNumberValid = /^\d{7}$/.test(this.idNumber);
+        // מספר אישי - 7 ספרות בלבד
+        const idNumberValid = /^\d{7}$/.test(this.idNumber);
 
-      return fullNameValid && idNumberValid;
+        return fullNameValid && idNumberValid;
       } else {
         return true;
       }
-     
     },
   },
 };
@@ -184,7 +157,6 @@ export default {
   color: white;
   align-items: flex-end;
 }
-
 
 .text-next-to-input {
   display: inline;
@@ -272,32 +244,6 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.shadow {
-  top: 0rem;
-  left: 0rem;
-  position: absolute;
-  background-color: black;
-  opacity: 0.5;
-  width: 100vw;
-  height: 100vh;
-}
-
-.warning-container {
-  background-color: white;
-  color: red;
-  width: 30rem;
-  height: 10rem;
-  z-index: 5;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .header {
   font-weight: bold;
   font-size: 2.5rem;
@@ -317,12 +263,12 @@ export default {
   font-size: 1rem;
   background-color: #8cd0ec;
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0;
   /* Centering the text */
   display: flex;
   justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  align-items: center;
+  text-align: center;
   transition: background-color 0.3s ease;
 }
 
@@ -346,7 +292,7 @@ export default {
 }
 
 .disable:hover {
-  background:  rgb(182, 182, 182);
+  background: rgb(182, 182, 182);
   cursor: auto;
 }
 
@@ -355,9 +301,11 @@ export default {
     width: 74vw;
     height: 64%;
   }
+
   .start-sign-img {
     margin-bottom: -1rem;
   }
+
   .text-next-to-input {
     display: block;
   }

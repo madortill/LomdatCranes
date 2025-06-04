@@ -18,8 +18,7 @@
         <p class="theCraneKind">{{ craneKind }}</p>
         <p>וכיצד לתפעל אותו</p>
         <p>
-         <b> דגש:</b> בסוף הלומדה ישנו מבחן שכדי שיהיה מאופשר ודרכו לקבל ציון עליך לעבור את הלומדה
-          מתחילתה
+         <b> שימו לב:</b> במהלך הלומדה ישנם מספר כפתורים שבלחיצה על כולם יהיה אפשר להמשיך בלמידה
         </p>
         <p class="goodWord">בהצלחה!</p>
         <img
@@ -70,32 +69,13 @@ export default {
 <style scoped>
 #start-hanging-board {
   z-index: 10000;
-  /* width: 60vw; */
   width: 100vw;
   height: 50rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-right: 5rem; */
-  /* margin-top: 5rem; */
   pointer-events: none;
 }
-
-/* 
-@keyframes tossAnimation {
-  0% {
-    transform: rotate(-1deg);
-    margin-left: -2rem;
-  }
-  50% {
-    transform: rotate(1deg);
-    margin-left: 2rem;
-  }
-  100% {
-    transform: rotate(-1deg);
-    margin-left: -2rem;
-  }
-} */
 
 @keyframes tossAnimation {
   0% {
@@ -143,7 +123,6 @@ export default {
 .blue-board {
   color: white;
   background-color: #023047;
-  /* padding: 1rem; */
   border-radius: 1.5rem;
   width: 30rem;
   position: relative;
@@ -188,7 +167,6 @@ export default {
   color: #023047;
   background-color: #ffb703;
   padding: 1rem;
-  /* font-size: 1rem; */
   border-radius: 0.7rem;
   z-index: 2;
 }
@@ -248,7 +226,6 @@ export default {
   margin: 0rem;
   padding: 0rem;
   cursor: pointer;
-  /* z-index: 1; */
   pointer-events: all;
 }
 
@@ -257,7 +234,6 @@ export default {
   bottom: 0rem;
 left:0rem;
 height: 3rem;
-/* z-index: 1; */
 animation: jump 1s ease-in-out infinite ;
 }
 

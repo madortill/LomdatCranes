@@ -1,6 +1,12 @@
 <template>
   <div :class="'part-' + part" id="pop-out-winch">
-    <p @click="closeWindow" class="close-info"  v-if="!((indexTypes === 2 || indexTypes === 3) && !showCloseBtn)">X</p>
+    <p
+      @click="closeWindow"
+      class="close-info"
+      v-if="!((indexTypes === 2 || indexTypes === 3) && !showCloseBtn)"
+    >
+      X
+    </p>
 
     <p class="header">{{ title }}</p>
     <p>{{ explainArr[part][indexTypes] }}</p>
@@ -52,10 +58,6 @@ export default {
       showCloseBtn: false,
       part: 0,
       indexInContainerPartWinch: 0,
-      // colorCardsArr: [
-      //   ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
-      //   ["#F88C01", "#FFAF02", "#FFD169", "#8CD0EC", "#1E85AE"],
-      // ],
     };
   },
   methods: {
@@ -64,9 +66,7 @@ export default {
       this.showCloseBtn = false;
       //check if finish learn btn
       if (this.indexTypes === 0 || this.indexTypes === 1) {
-        // this.finishLearning();
         this.$emit("finish-learning", this.indexTypes);
-
       }
     },
     nextPart() {
@@ -96,12 +96,9 @@ export default {
 
 <style scoped>
 #pop-out-winch {
-  /* background-color: #023047; */
   background-color: white;
-  /* padding: 1rem; */
   border-radius: 1rem;
   position: absolute;
-  /* color: white; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -120,20 +117,18 @@ export default {
   height: 28rem;
   width: 33rem;
 }
+
 .header {
   font-size: 2rem;
   font-weight: bold;
-  /* padding: 2rem; */
 }
 
 .close-info {
-  /* margin-left: 22rem; */
   cursor: pointer;
   font-size: 1.8rem;
   position: absolute;
   right: 1rem;
   top: -1rem;
-  /* z-index: 30; */
 }
 
 .moving-btn {
@@ -146,12 +141,12 @@ export default {
   background-color: #8cd0ec;
   border: none;
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0;
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   transition: background-color 0.3s ease;
   color: black;
   cursor: pointer;
@@ -176,27 +171,26 @@ export default {
   font-weight: bold;
 }
 
-
 @media screen and (max-width: 700px) {
   .part-0 {
-  width: 28rem;
-}
+    width: 28rem;
+  }
 
-.part-1 {
-  height: 27.5rem;
-  width: 30rem;
-}
+  .part-1 {
+    height: 27.5rem;
+    width: 30rem;
+  }
 
-.part-of-winch {
-  width: 5.6rem;
-}
+  .part-of-winch {
+    width: 5.6rem;
+  }
 
-.header {
+  .header {
     margin-bottom: 0.5rem;
-}
+  }
 
-.height-after-click{
+  .height-after-click {
     height: 13rem;
-}
+  }
 }
 </style>

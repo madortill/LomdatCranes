@@ -14,7 +14,7 @@
           <p class="the-step">{{ info }}</p>
         </div>
       </div>
-      <div class="black-shadow"  v-if="showNotice"></div>
+      <div class="black-shadow" v-if="showNotice"></div>
       <div class="notice" v-if="showNotice">
         <p class="close-info" @click="closeNotice">X</p>
         <p class="header-notice">שימו לב!</p>
@@ -31,7 +31,7 @@
 <script>
 export default {
   name: "summary-operation",
-  props: ["indexArr", 'showNotice'],
+  props: ["indexArr", "showNotice"],
   data() {
     return {
       infoArr: [
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     closeNotice() {
-      this.$emit('hide-show-notice', false);
+      this.$emit("hide-show-notice", false);
     },
   },
 };
@@ -81,7 +81,6 @@ export default {
   position: absolute;
   right: 1rem;
   top: -1rem;
-  /* z-index: 30; */
 }
 
 .black-shadow {
@@ -103,16 +102,13 @@ export default {
   align-items: center;
   justify-content: center;
   position: relative;
-
 }
 
 .the-step {
   background-color: white;
   border-radius: 1rem;
-  /* padding: 1rem; */
   width: 25rem;
   height: 3rem;
-  /* position: relative; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -131,7 +127,6 @@ export default {
 }
 
 .bubble-container {
-  /* display: flex; */
   height: 24rem;
   flex-direction: column;
   justify-content: space-evenly;

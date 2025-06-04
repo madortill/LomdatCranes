@@ -1,6 +1,5 @@
 <template>
   <div id="american-questions" @click="checkAnswer">
-    <!-- <div v-if="numQues <= totalQues"> -->
       <h1 class="title-questionMultiple">
         {{ this.questions[this.numQues].title }}
       </h1>
@@ -11,8 +10,6 @@
         בחר/י בשלוש התשובות הנכונות.
       </h2>
       <div class="div-mulQ">
-        <!-- <button v-for="i in 3" :key="i" :id="i" :ref="button${i}" class="pulse-button-hover"> {{ questions['ans' + i] }}</button> -->
-
         <div class="row">
           <button id="1" ref="1" class="pulse-button-hover">
             {{ this.questions[this.numQues].ans1 }}
@@ -36,13 +33,7 @@
           </button>
         </div>
       </div>
-    <!-- </div> -->
-    <!-- <div v-if="numQues === 4"> -->
       <h1 class="finish" v-if="showFinish">כל הכבוד !</h1>
-    <!-- </div> -->
-    <!-- <button class="moving-btn next-btn" v-if="showNextBtn" @click="nextPart">
-        הבא
-      </button> -->
 
       <button class="moving-btn back-btn" @click="backToInfo">חזור</button>
   </div>
@@ -276,7 +267,6 @@ export default {
 
 .div-mulQ {
   width: 40rem;
-  /* height: 20rem; */
   background: #fff;
   border-radius: 3rem;
   box-shadow: 0 15px 20px -20px rgba(0, 0, 0, 0.4);
@@ -296,12 +286,12 @@ export default {
   background-color: #8cd0ec;
   border: none;
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0; 
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
   transition: background-color 0.3s ease;
   color: black;
   cursor: pointer;

@@ -11,11 +11,9 @@
       :sectionNum="sectionToStudy"
       :firstChosen="firstChosen"
       :thePart="thePart"
-      :showWarning="showWarning"
       :isAContinuance="isAContinuance"
       @to-next-board="nextInStartSign"
       @to-prev-board="backToStartSign"
-      @change-show-warning="changeShowWarning"
       @back-to-general-material="backToGeneralMaterialFromOperation"
       @to-show-cloud-bg="toShowCloudBg"
       @send-exam-variables="updateExamVariables"
@@ -80,7 +78,6 @@ export default {
       partToShow: 0,
       thePart: 0,
       colorIconPhone: "none",
-      showWarning: true,
       Infopart: 1,
       infoHangingPart: 0,
       subNavPart: 1,
@@ -97,7 +94,6 @@ export default {
       prevToCarousel: false,
       craneCardClicked: false,
       titleTypesCranesIndex: "סוגי העגורנים הקיימים",
-      // indexForGeneralMaterial: 0,
       showNavbar: true,
 
       //about start sign
@@ -140,7 +136,6 @@ export default {
         this.thePart = 1;
 
         this.updateColorIconPhone("none");
-        this.showWarning = false;
       } else {
         this.thePart--;
       }
@@ -186,13 +181,7 @@ export default {
         this.$emit("finished-operation");
       }
     },
-    changeShowWarning(toShow) {
-      if (toShow) {
-        this.showWarning = true;
-      } else {
-        this.showWarning = false;
-      }
-    },
+
     backToGeneralMaterialFromOperation() {
       this.$emit("prev-studied-section");
       this.partToShow = 1;
@@ -202,6 +191,7 @@ export default {
       this.showTheSection = true;
       this.isAContinuance = false;
     },
+    
     updateIndexOrderInGenearlMaterial(isUp) {
       if (isUp) {
         this.indexOrderInGenearlMaterial++;

@@ -51,7 +51,6 @@ export default {
 <style scoped>
 #types-of-cranes {
   width: 100vw;
-  /* height: 77vh; */
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -62,8 +61,8 @@ export default {
 .header {
   font-size: 2.5rem;
   font-weight: bold;
-  /* padding: 2rem; */
 }
+
 @media screen and (max-width: 700px) {
   #types-of-cranes {
     margin-top: 5rem;

@@ -651,8 +651,6 @@ export default {
   },
   methods: {
     nextPart() {
-      // this.numPart++;
-
       if (
         this.numPart === 1 ||
         (this.isAble && this.numPart === 0) ||
@@ -853,7 +851,6 @@ export default {
 .highlight {
   animation: glow 2s infinite alternate;
   stroke: rgb(238, 240, 141);
-  /* stroke: rgb(255, 255, 211); */
   stroke-width: 2;
   cursor: pointer;
   animation: glow 0.5s infinite alternate;
@@ -907,32 +904,14 @@ export default {
 .in-zoom {
   z-index: 2;
   position: absolute;
-  /* animation: grow 0.2s linear forwards; */
   right: 38%;
   top: 8rem;
   transform: scale(2.5);
 }
 
-/* .first-pos {
-
-} */
-
 .second-pos {
   right: 10%;
 }
-
-/* @keyframes grow {
-  0% {
-    transform: scale(1);
-    right: auto;
-    top: auto;
-  }
-  100% {
-    right: 38%;
-    top: 7rem;
-    transform: scale(2.5);
-  }
-} */
 
 @media screen and (max-width: 700px) {
   .in-zoom {
@@ -944,15 +923,6 @@ export default {
   .second-zoom-pos {
     right: -5rem;
     top: 18rem;
-    }
-
-  /* .second-zoom-pos {
-    right: -2rem;
-    top: 5rem;
-    transition: all 2s;
-    transform: rotate(90deg);
-    width: 21rem;
-    height: 40rem;
-  } */
+  }
 }
 </style>

@@ -35,7 +35,6 @@ export default {
     grid-template-rows: 20% 20% 20% 20% 20%;
     align-items: center;
     overflow: hidden;
-    /* background-color: #e0f2f4; */
   }
   
   /* Define the animation to move clouds from right to left */
@@ -56,7 +55,6 @@ export default {
     }
   }
   
-  /* Cloud 1 */
   .cloud1 {
     width: 10rem;
     grid-column-start: 4;
@@ -64,7 +62,6 @@ export default {
     animation: moveClouds 20s linear infinite; /* Move cloud1 */
   }
   
-  /* Cloud 2 */
   .cloud2 {
     width: 10rem;
     grid-column-start: 2;
@@ -72,7 +69,6 @@ export default {
     animation: moveClouds 25s linear infinite; /* Move cloud2 */
   }
   
-  /* Cloud 3 */
   .cloud3 {
     width: 6rem;
     grid-column-start: 5;
@@ -80,7 +76,6 @@ export default {
     animation: moveClouds 30s linear infinite; /* Move cloud3 */
   }
   
-  /* Cloud 4 */
   .cloud4 {
     width: 6rem;
     grid-column-start: 3;
@@ -88,17 +83,12 @@ export default {
     animation: moveClouds 33s linear infinite; /* Move cloud4 */
   }
   
-  /* Cloud 5 */
   .cloud5 {
     width: 10rem;
     grid-column-start: 1;
     grid-row-start: 5;
     animation: moveClouds 40s linear infinite; /* Move cloud5 */
   }
-  @media screen and (max-width: 600px) {
-    #clouds-bg {
-    /* height: 91vh; */
-  }
-}
+
   </style>
   

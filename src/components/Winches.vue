@@ -15,7 +15,6 @@
         src="/media/winchPage/winch.png"
         alt="btn"
       />
-      <!-- <img class="legs" src="/media/winchPage/legs.png" alt="legs" /> -->
     </div>
     <!-- second part -->
     <div v-if="partInWinches === 1">
@@ -68,7 +67,6 @@ export default {
   methods: {
     showBoard() {
       this.$emit("show-tiny-board");
-      // this.isClickedWinchImg = true;
     },
     showPopOut(title) {
       this.ifShowPopOut = true;
@@ -108,7 +106,6 @@ export default {
 <style scoped>
 #winches {
   width: 100vw;
-  /* height: 77vh; */
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -143,10 +140,8 @@ export default {
 .definition-btn {
   width: 35rem;
   margin-bottom: -2rem;
-  /* animation: growAndShrink 2s infinite ease-in-out; */
   transition: transform 0.3s ease;
   cursor: pointer;
-  /* z-index: 1; */
 }
 
 .with-animation {
@@ -178,7 +173,6 @@ export default {
   .definition-btn {
     width: 27rem;
     height: 40rem;
-    /* margin-bottom: -1rem; */
   }
 
   .definition-container {

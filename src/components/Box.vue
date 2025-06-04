@@ -51,6 +51,5 @@ export default {
 
 .the-box {
   width: 13rem;
-  /* height: 100%; */
 }
 </style>

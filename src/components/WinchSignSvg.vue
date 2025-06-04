@@ -335,7 +335,14 @@
       <g id="blueRectangles">
         <rect
           @click="showPopOut('chain')"
-          :class="['cls-8', { learned: (side === 'right' && learnedBtnsArr[1]) || (side === 'left' && learnedBtnsArr[2]) }]"
+          :class="[
+            'cls-8',
+            {
+              learned:
+                (side === 'right' && learnedBtnsArr[1]) ||
+                (side === 'left' && learnedBtnsArr[2]),
+            },
+          ]"
           x="151.03"
           y="97.6"
           width="209.76"
@@ -345,7 +352,14 @@
         />
         <rect
           @click="showPopOut('wire')"
-          :class="['cls-8', { learned: (side === 'right' && learnedBtnsArr[0]) || (side === 'left' && learnedBtnsArr[3]) }]"
+          :class="[
+            'cls-8',
+            {
+              learned:
+                (side === 'right' && learnedBtnsArr[0]) ||
+                (side === 'left' && learnedBtnsArr[3]),
+            },
+          ]"
           x="151.03"
           y="249.22"
           width="209.76"
@@ -377,10 +391,9 @@
 <script>
 export default {
   name: "winch-sign-svg",
-  props: ["side", "clickedOnBtnSign", 'learnedBtnsArr'],
+  props: ["side", "clickedOnBtnSign", "learnedBtnsArr"],
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     showPopOut(winchTo) {
@@ -476,7 +489,7 @@ export default {
 }
 
 .cls-8.learned {
-  fill: #D9D9D9;
+  fill: #d9d9d9;
 }
 
 .cls-9 {

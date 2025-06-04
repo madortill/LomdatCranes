@@ -135,7 +135,6 @@ export default {
   flex-direction: column;
   position: relative;
   z-index: -1;
-  /* overflow: hidden; */
 }
 
 .again {
@@ -177,7 +176,6 @@ export default {
   width: 280rem; /* Adjust width for zoom effect */
   margin-top: -176rem;
   margin-left: 190rem;
-  /* position: relative; */
 }
 
 .to-orange-zoom {
@@ -221,11 +219,7 @@ export default {
 .info-container {
   position: absolute;
   background-color: var(--bg-color);
-  /* width: 41rem; */
   left: 50%;
-  /* transform: translateX(-43.7%); */
-  /* height: 23.2rem; */
-  /* top: 14.3rem; */
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -236,7 +230,6 @@ export default {
   width: 41rem;
   transform: translateX(-43.7%);
   height: 23.2rem;
-  /* top: 14.3rem; */
   top: 13.2rem;
 }
 
@@ -278,12 +271,12 @@ export default {
   font-size: 1rem;
   background-color: var(--moving-btn-color);
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0; 
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
@@ -297,20 +290,23 @@ export default {
   margin: 0rem;
   width: 95%;
 }
+
 @media screen and (max-width: 600px) {
   #crane-components {
     height: 91vh;
   }
+
   .with-zoom {
     width: 260rem; /* Adjust width for zoom effect */
     margin-top: -156rem;
     margin-left: 179rem;
-    /* position: relative; */
   }
+
   .to-orange-zoom {
     margin-top: -130rem;
     margin-left: 165rem;
   }
+
   .to-blue-zoom {
     margin-top: -140rem;
     margin-left: 106.5rem;
@@ -351,7 +347,6 @@ export default {
       width: 260rem;
       margin-top: 0rem;
       margin-left: 0rem;
-      /* position: relative; */
     }
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */

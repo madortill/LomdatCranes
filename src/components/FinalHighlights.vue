@@ -90,7 +90,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .sub-title {
@@ -123,6 +122,7 @@ export default {
   width: 100vw;
   justify-content: space-evenly;
 }
+
 .card-computer {
   background-color: var(--card-color);
   width: 11rem;

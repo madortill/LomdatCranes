@@ -138,7 +138,6 @@ li::before {
 .bubble {
   background-color: white;
   border-radius: 1rem;
-  /* padding: 1rem; */
   width: 25rem;
   position: relative;
   display: flex;
@@ -149,7 +148,6 @@ li::before {
 }
 
 .bubble-container {
-  /* display: flex; */
   height: 24rem;
   flex-direction: column;
   justify-content: space-evenly;
@@ -203,7 +201,6 @@ li::before {
   width: 5rem;
   height: 5rem;
   border-radius: 100%;
-  /* z-index: 100; */
   cursor: pointer;
 }
 

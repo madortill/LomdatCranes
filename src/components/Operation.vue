@@ -12,7 +12,6 @@
       class="graphics-container"
       :class="partInRemote === 3 ? 'fix-flex-dir' : ''"
     >
-      <!-- <div> -->
       <electric-panel
         @next-instruction="nextPart"
         :numPart="partInElectricPanel"
@@ -21,7 +20,6 @@
           numInstruction < 5 ? '' : 'hide',
         ]"
       />
-      <!-- </div> -->
 
       <div class="remote-container">
         <remote
@@ -166,7 +164,6 @@ export default {
         case 2: {
           this.partInRemote++;
           this.numInstruction++;
-          // if (this.numInstruction === 1 || this.numInstruction === 4) {
           if (this.numInstruction === 4) {
             this.$emit("change-sub-nav-num", true);
           }
@@ -188,12 +185,12 @@ export default {
           if (this.partInSecondPart === 0) {
             this.showNextBtn = false;
             this.showNoticeInSummery = true;
-          } 
+          }
           //if not on the last slide-finidhed
-          else if(this.partInSecondPart !==2) {
+          else if (this.partInSecondPart !== 2) {
             this.partInSecondPart++;
           } else if (this.partInSecondPart === 2) {
-            this.$emit('finished-operation');
+            this.$emit("finished-operation");
           }
 
           break;
@@ -228,11 +225,6 @@ export default {
           break;
         }
         case 4: {
-          // if (this.partInSecondPart === -1) {
-          //   this.$emit("change-sub-nav-num", false);
-          //   this.partInRemote--;
-          //   this.numInstruction--;
-          // } else {
           if (this.partInSecondPart === 0) {
             if (this.showNoticeInSummery) {
               this.showNoticeInSummery = false;
@@ -251,9 +243,6 @@ export default {
           } else {
             this.partInSecondPart--;
           }
-
-          // }
-
           break;
         }
       }
@@ -274,14 +263,6 @@ export default {
     updateColorHomeIcon(color) {
       this.$emit("update-color-icon-home", color);
     },
-
-    // showNextBtn() {
-
-    // },
-
-    // toShowCloudBg(show) {
-    //   this.$emit("to-show-cloud-bg", show);
-    // },
   },
 };
 </script>
@@ -326,17 +307,9 @@ export default {
   display: flex;
   height: 100%;
   align-items: center;
-  /* position: relative; */
   width: 20rem;
   justify-content: center;
 }
-
-/* .remote {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: none; 
-} */
 
 .moving-btn {
   z-index: 5;
@@ -347,12 +320,12 @@ export default {
   font-size: 1rem;
   background-color: #8cd0ec;
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0;
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
@@ -403,9 +376,7 @@ export default {
   }
 
   .graphics-container {
-    /* align-items: flex-end; */
     flex-direction: column-reverse;
-    /* margin-bottom: 6.5rem; */
   }
 
   .crane-in-operation-container {

@@ -1,8 +1,6 @@
 <template>
   <div id="exam-questions">
     <p class="header">מבחן</p>
-    <!-- <div class="middle-container"> -->
-
     <div class="container-quiz">
       <p class="tag-ques">שאלה מספר {{ this.numQues + 1 }}</p>
 
@@ -35,7 +33,6 @@
         </div>
       </div>
     </div>
-    <!-- </div> -->
     <div class="arrows-container">
       <img
         @click="prevQuestion"
@@ -215,7 +212,6 @@ export default {
       }
     },
     showQuestion(event) {
-      // this.numQues = event.currentTarget.id - 1;
       this.$emit("change-current-num-ques", event.currentTarget.id - 1);
     },
 
@@ -364,13 +360,11 @@ export default {
 
 .container-answer {
   display: flex;
-  /* margin-bottom: 0.1rem; */
 }
 
 .header {
   font-size: 2.5rem;
   font-weight: bolder;
-  /* margin-top: 3rem; */
   position: absolute;
   right: 10rem;
 }
@@ -409,13 +403,14 @@ export default {
   .container-answer {
     align-items: center;
   }
+
   #exam-questions {
     width: 100vw;
     height: 91vh;
   }
 
   .question-container {
-    height: 33rem;
+    height: 29rem;
   }
 
   .tracking-ans-container {
@@ -431,7 +426,6 @@ export default {
   .moving-arrow {
     width: 4rem;
     position: static;
-    /* bottom: 17rem; */
     top: auto;
   }
 
@@ -442,8 +436,6 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    /* position: absolute; */
-    /* bottom: 7rem; */
   }
 
   .done-btn {
@@ -452,13 +444,6 @@ export default {
     left: 1rem;
     top: 4rem;
   }
-  /* 
-    .bubble-ans {
-      margin-right: 1rem;
-      margin-left: 1rem;
-      margin-top: 0.1rem;
-      margin-bottom: 0rem;
-    } */
 
   .header {
     right: 1rem;

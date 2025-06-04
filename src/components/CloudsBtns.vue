@@ -77,7 +77,6 @@ export default {
     },
     //checks if done learning all the clouds btns
     checkIfDoneLearning() {
-      // console.log("in");
       for (let i = 0; i < this.learnedArr.length; i++) {
         if (!this.learnedArr[i]) {
           return false;
@@ -97,8 +96,8 @@ export default {
   align-items: center;
   margin-top: 6rem;
 }
+
 .clouds-btns-container {
-  /* position: absolute; */
   width: 100%;
   height: 71%;
   display: grid;
@@ -106,7 +105,6 @@ export default {
   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   align-items: center;
   overflow: hidden;
-  /* background-color: #e0f2f4; */
 }
 
 .header {
@@ -117,6 +115,7 @@ export default {
 .fix-pos {
   margin-top: -2rem;
 }
+
 .img-cloud {
   position: absolute;
   width: 100%;
@@ -142,6 +141,7 @@ export default {
 .flying {
   animation: flyingUpDown 2.5s ease-in-out infinite;
 }
+
 .title {
   z-index: 2;
   position: relative;
@@ -170,35 +170,29 @@ export default {
   align-items: center;
 }
 
-/* Cloud 1 */
 .cloud1 {
   width: 21rem;
   grid-column-start: 3;
   grid-row-start: 2;
 }
 
-/* Cloud 2 */
 .cloud2 {
   width: 19rem;
   grid-column-start: 2;
   grid-row-start: 5;
 }
-
-/* Cloud 3 */
 .cloud3 {
   width: 16rem;
   grid-column-start: 7;
   grid-row-start: 3;
 }
 
-/* Cloud 4 */
 .cloud4 {
   width: 18rem;
   grid-column-start: 8;
   grid-row-start: 6;
 }
 
-/* Cloud 5 */
 .cloud5 {
   width: 24rem;
   grid-column-start: 3;
@@ -206,8 +200,7 @@ export default {
 }
 
 .to-gray {
-  /* filter: grayscale(100%); */
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 @media screen and (max-width: 600px) {
@@ -216,45 +209,34 @@ export default {
     bottom: 4rem;
   }
 
-  /* Cloud 1 */
   .cloud1 {
     width: 17rem;
     grid-column-start: 1;
     grid-row-start: 3;
-    /* animation: moveClouds 20s linear infinite; Move cloud1 */
   }
 
-  /* Cloud 2 */
   .cloud2 {
     width: 17rem;
     grid-column-start: 6;
     grid-row-start: 6;
-
-    /* animation: moveClouds 25s linear infinite; Move cloud2 */
   }
 
-  /* Cloud 3 */
   .cloud3 {
     width: 14rem;
     grid-column-start: 6;
     grid-row-start: 4;
-    /* animation: moveClouds 30s linear infinite; Move cloud3 */
   }
 
-  /* Cloud 4 */
   .cloud4 {
     width: 16rem;
     grid-column-start: 1;
     grid-row-start: 7;
-    /* animation: moveClouds 33s linear infinite; Move cloud4 */
   }
 
-  /* Cloud 5 */
   .cloud5 {
     width: 22rem;
     grid-column-start: 3;
     grid-row-start: 9;
-    /* animation: moveClouds 40s linear infinite; Move cloud5 */
   }
 }
 </style>

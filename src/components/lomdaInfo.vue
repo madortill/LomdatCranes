@@ -74,7 +74,6 @@ export default {
   margin-left: 22rem;
   cursor: pointer;
   font-size: 1.8rem;
-  /* z-index: 30; */
 }
 
 @keyframes windowShow {

@@ -103,7 +103,6 @@ export default {
   background-color: white;
   height: 10rem;
   width: 17rem;
-  /* color: black; */
 }
 
 .fix-scale {
@@ -112,10 +111,8 @@ export default {
 
 .pop-out {
   background-color: #023047;
-  /* padding: 1rem; */
   border-radius: 1rem;
   position: absolute;
-  /* color: white; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -35%);
@@ -131,7 +128,6 @@ export default {
 .header {
   font-size: 2rem;
   font-weight: bold;
-  /* margin: 0rem; */
   margin-top: 1rem;
 }
 
@@ -144,12 +140,12 @@ export default {
   font-size: 1rem;
   background-color: var(--moving-btn-color);
   border-radius: 1.5rem;
-  padding: 0; /* Remove padding to ensure centering works properly */
+  padding: 0; 
   /* Centering the text */
   display: flex;
-  justify-content: center; /* Horizontally centers the text */
-  align-items: center; /* Vertically centers the text */
-  text-align: center; /* Ensures the text is centered if multiline */
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
@@ -167,14 +163,10 @@ export default {
     right: 2rem;
 }
 
-
 .cloud {
   position: absolute;
   top: 9rem;
   right: 11rem;
-  /* width: 22rem; */
-
-  /* position: relative; */
   height: 10rem;
   display: flex;
   justify-content: center;
@@ -184,7 +176,6 @@ export default {
 .cloud-text {
   position: relative;
   z-index: 3;
-  /* top: 7rem; */
   width: 11rem;
   margin-top: 3rem;
   pointer-events: none;
@@ -193,13 +184,9 @@ export default {
 }
 
 .cloud-img {
-  /* position: relative; */
   z-index: 2;
-  /* width: 100%; */
-
   position: absolute;
   width: 100%;
-  /* height: 100%; */
   right: 0rem;
   top: 50%;
   transform: translateY(-50%);
@@ -221,22 +208,18 @@ export default {
   width: 21rem;
 }
 
-/* Cloud 2 */
 .cloud2 {
   width: 19rem;
 }
 
-/* Cloud 3 */
 .cloud3 {
   width: 16rem;
 }
 
-/* Cloud 4 */
 .cloud4 {
   width: 18rem;
 }
 
-/* Cloud 5 */
 .cloud5 {
   width: 24rem;
 }
@@ -244,13 +227,12 @@ export default {
 
 @media screen and (max-width: 1400px) {
   .cloud {
-
     top: 15rem;
   }
 }
+
 @media screen and (max-width: 700px) {
   .pop-out {
-    /* transform: translate(-50%, -40%); */
     height: 33rem;
     width: 90%;
   }
@@ -258,6 +240,7 @@ export default {
   .header {
     margin-top: 3rem;
   }
+  
   .cloud {
     top: 12rem;
     right: auto;

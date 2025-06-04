@@ -99,7 +99,6 @@ export default {
       return true;
     },
   },
-  computed: {},
 };
 </script>
 
@@ -113,9 +112,7 @@ export default {
 }
 
 .part-of-winch {
-  /* margin: auto; */
   cursor: pointer;
-  /* border: none; */
   width: 6.4rem;
   color: #ffffff;
   border-radius: 1rem;
@@ -123,7 +120,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   transition: height 0.3s ease;
-  /* overflow: hidden; */
 }
 
 .height-before-click {
@@ -139,7 +135,6 @@ export default {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 0.8rem;
-  /* margin-bottom: 1rem; */
 }
 
 .info {
@@ -155,6 +150,7 @@ export default {
   #container-part-winch {
     margin-top: -0.6rem;
   }
+
   .part-of-winch {
     padding-right: 0.1rem;
     padding-left: 0.1rem;

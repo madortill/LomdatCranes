@@ -2398,7 +2398,6 @@ export default {
   },
   methods: {
     nextPart() {
-      // this.numPart++;
       if (this.numPart === 0 || this.numPart === 1) {
         this.$emit("next-instruction");
       }
@@ -2410,9 +2409,8 @@ export default {
 <style scoped>
 .highlight {
   animation: glow 2s infinite alternate;
-  /* border: 2px solid red; */
   stroke: rgb(238, 240, 141);
-  /* stroke: rgb(255, 255, 211); */  stroke-width: 2;
+  stroke-width: 2;
   animation: glow 0.5s infinite alternate;
 }
 
@@ -2428,12 +2426,6 @@ export default {
 .is-a-btn {
   cursor: pointer;
 }
-
-/* .highlight rect {
-  stroke: #ff0000; 
-  stroke-width: 2; 
-  animation: glow 2s infinite alternate;
-} */
 
 .to-black {
   fill: #000;
