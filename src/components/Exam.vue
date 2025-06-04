@@ -4,6 +4,8 @@
       v-show="!showResults"
       @show-results="showTheResults"
       :checkAns="checkAns"
+      :numQues="numCurrentQues"
+      @change-current-num-ques="changeCurrentNumQues"
     ></exam-questions>
     <exam-results
       :fullName="fullName"
@@ -12,6 +14,7 @@
       :numQuestions="numQuestions"
       v-show="showResults"
       @back-to-ques="BackToQues"
+      :counterDoOvers="counterDoOvers"
     ></exam-results>
   </div>
 </template>
@@ -30,9 +33,21 @@ export default {
       score: 0,
       counterCorrect: 0,
       numQuestions: 0,
+      numCurrentQues: 0,
+      counterDoOvers: 0,
     };
   },
   methods: {
+    changeCurrentNumQues(theChange) {
+      if (typeof theChange !== "boolean") {
+        this.numCurrentQues = theChange;
+      } else if(theChange) {
+        this.numCurrentQues++;
+      } else {
+        this.numCurrentQues--;
+      }
+    },
+
     showTheResults(s, c, n) {
       this.checkAns = true;
       this.showResults = true;
@@ -41,7 +56,19 @@ export default {
       this.numQuestions = n;
     },
     BackToQues() {
+      this.numCurrentQues = 0;
       this.showResults = false;
+      
+      if (this.score < 70) {
+        //אם עשה כבר 2 ניסיונות חוזרים עליו ללמוד מחדש את הלומדה
+        if(this.counterDoOvers === 2) {
+          window.location.reload();
+        } else {
+          this.checkAns = false;
+        this.counterDoOvers++;
+        }
+        
+      } 
     },
   },
 };

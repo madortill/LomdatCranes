@@ -2,10 +2,10 @@
   <div id="exam-results">
     <img src="/media/exam/resultNote.png" alt="note" class="note" />
     <div class="text-container">
-      <p class="header">התוצאות של {{this.fullName}}</p>
-      <p>ציון: {{this.score }}</p>
-      <p>ענית נכון על {{ this.numQuestions + ' / ' + this.counterCorrect }}</p>
-      <p class="back-btn" @click="backToQues">מעבר על המבחן</p>
+      <p class="header"> {{ theHeader }}</p>
+      <p>ציון: {{ this.score }}</p>
+      <p>ענית נכון על {{ this.numQuestions + " / " + this.counterCorrect }}</p>
+      <p  class="back-btn" @click="backToQues">{{ backToQuesBtnText }}</p>
     </div>
   </div>
 </template>
@@ -13,15 +13,35 @@
 <script>
 export default {
   name: "exam-results",
-  props: ['fullName', 'score', 'counterCorrect', 'numQuestions'],
+  props: ["fullName", "score", "counterCorrect", "numQuestions", 'counterDoOvers'],
   data() {
     return {};
   },
   methods: {
     backToQues() {
- this.$emit('back-to-ques');
+      this.$emit("back-to-ques");
     },
   },
+  computed: {
+    theHeader() {
+      if(this.score < 70) {
+        return 'אופס נכשלת ' + this.fullName + '...';
+      } else {
+        return 'כל הכבוד ' + this.fullName + '!';        
+      }
+    }, 
+    backToQuesBtnText() {
+      if(this.score < 70) {
+        if(this.counterDoOvers === 2) {
+          return 'למידה מחדש';
+        } else {
+          return 'נסיון חוזר';
+        }
+      } else {
+        return 'מעבר על המבחן';        
+      }
+    }
+  }
 };
 </script>
 
@@ -40,15 +60,18 @@ export default {
 }
 
 .header {
-font-weight: bold;
-font-size: 2rem;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .text-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-8deg);
+  transform: translate(-50%, -60%) rotate(-8deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .back-btn {
@@ -68,7 +91,6 @@ font-size: 2rem;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
-
 
 .back-btn:hover {
   background-color: #023047;
