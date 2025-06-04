@@ -163,7 +163,22 @@
     methods: {
       toSubmit() {
         if(this.canBeSub) {
-          this.$emit('show-results');
+          let score = 0;
+          let NumQuestions = this.questions.length;
+          //חישוב כמה כל תשובה נכונה שווב בניקוד 
+          let correctPoints = 100 / Number(NumQuestions) ;
+          //סופר כמה תשובות נכונות מתוך כל השאלות
+          let counterCorrect = 0;
+          let ques = null;
+          for( let i = 0; i < NumQuestions; i++) {
+            ques = this.questions[i];
+            if (ques.correctAnswer === ques.indexChosenAnswer) {
+              score += correctPoints;
+              counterCorrect++;
+            }
+          }
+
+          this.$emit('show-results', score, counterCorrect, NumQuestions);
           
         }
       },
@@ -276,7 +291,7 @@
   }
   
   .unmarked-bubble {
-    background-color: #82afc2;
+    background-color: #7ba4b6;
   }
 
   .marked-bubble {

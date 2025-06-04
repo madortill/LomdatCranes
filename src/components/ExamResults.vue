@@ -3,7 +3,8 @@
     <img src="/media/exam/resultNote.png" alt="note" class="note" />
     <div class="text-container">
       <p class="header">התוצאות של {{this.fullName}}</p>
-      <p>ציון:</p>
+      <p>ציון: {{this.score }}</p>
+      <p>ענית נכון על {{ this.numQuestions + ' / ' + this.counterCorrect }}</p>
       <p class="back-btn" @click="backToQues">מעבר על המבחן</p>
     </div>
   </div>
@@ -12,7 +13,7 @@
 <script>
 export default {
   name: "exam-results",
-  props: ['fullName'],
+  props: ['fullName', 'score', 'counterCorrect', 'numQuestions'],
   data() {
     return {};
   },
