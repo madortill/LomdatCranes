@@ -3,6 +3,7 @@
     <exam-questions
       v-show="!showResults"
       @show-results="showTheResults"
+      :checkAns="checkAns"
     ></exam-questions>
     <exam-results
       :fullName="fullName"
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       showResults: false,
+      checkAns: false,
       score: 0,
       counterCorrect: 0,
       numQuestions: 0,
@@ -32,6 +34,7 @@ export default {
   },
   methods: {
     showTheResults(s, c, n) {
+      this.checkAns = true;
       this.showResults = true;
       this.score = Math.round(s);
       this.counterCorrect = c;

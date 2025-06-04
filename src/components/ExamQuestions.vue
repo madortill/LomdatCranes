@@ -11,12 +11,14 @@
           <div
             class="container-answer"
             v-for="(answer, index) in this.questions[this.numQues].answers"
+            :class="[this.questions[this.numQues].correctAnswer === index && checkAns ? 'correct-answer' : '', this.questions[this.numQues].indexChosenAnswer !== this.questions[this.numQues].correctAnswer && this.questions[this.numQues].indexChosenAnswer === index && checkAns ? 'false-answer': '']"
             :key="index"
           >
             <img
               :id="index"
               @click="theChosenAnswer(index)"
               class="question-squre"
+              :class="checkAns ? 'disable' :'able'"
               :src="getSrcAnswerSqure(index)"
             />
             <p class="ans-text">{{ answer }}</p>
@@ -59,7 +61,7 @@
   <script>
   export default {
     name: "exam-questions",
-    props: [],
+    props: ['checkAns'],
     data() {
       return {
         questions: [
@@ -239,7 +241,19 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .correct-answer {
+    background-color: rgb(128, 202, 128);
+    border-radius: 1rem;
+    padding: 0.1rem;
+  }
   
+  .false-answer {
+    background-color: rgb(241, 114, 114);
+    border-radius: 1rem;
+    padding: 0.1rem;
+  }
+
   .done-active-btn {
     cursor: pointer;
   }
@@ -348,9 +362,17 @@
   .question-squre {
     width: 2rem;
     margin-left: 1rem;
+  }
+
+  .able {
+    pointer-events: all;
     cursor: pointer;
   }
   
+  .disable {
+    pointer-events: none;
+    cursor: none;
+  }
   
 
   @media screen and (max-width: 600px) {
@@ -363,7 +385,7 @@
     }
   
     .question-container {
-      height: 29rem;
+      height: 33rem;
     }
   
     .tracking-ans-container {
