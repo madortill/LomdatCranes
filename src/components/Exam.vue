@@ -1,7 +1,7 @@
 <template>
   <div id="exam">
 <exam-questions v-show="!showResults" @show-results="showTheResults"></exam-questions>
-<exam-results v-show="showResults"></exam-results>
+<exam-results :fullName="fullName" v-show="showResults" @back-to-ques="BackToQues"></exam-results>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import ExamResults from './ExamResults.vue';
 export default {
   components: { ExamQuestions, ExamResults },
   name: "exam",
-  props: [],
+  props: ['idNumber', 'fullName'],
   data() {
     return {
   showResults: false,
@@ -20,6 +20,10 @@ export default {
   methods: {
     showTheResults() {
       this.showResults = true;
+    },
+    BackToQues() {
+      this.showResults = false;
+
     }
   },
 };

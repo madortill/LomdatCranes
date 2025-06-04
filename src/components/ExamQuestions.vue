@@ -47,6 +47,8 @@
           :key="i"
           :id="i"
           @click="showQuestion"
+          :class="[numQues + 1 === i ? 'present-bubble' : '' , questions[i-1].indexChosenAnswer === -1 ? 'unmarked-bubble': 'marked-bubble']"
+
         >
           {{ i }}
         </p>
@@ -162,6 +164,7 @@
       toSubmit() {
         if(this.canBeSub) {
           this.$emit('show-results');
+          
         }
       },
       showQuestion(event) {
@@ -247,10 +250,7 @@
     position: absolute;
     bottom: 2rem;
   }
-  /* .middle-container{
-      display: flex;
-  } */
-  
+
   .moving-arrow {
     width: 4rem;
     position: absolute;
@@ -275,10 +275,20 @@
     left: 2rem;
   }
   
-  .bubble-ans {
+  .unmarked-bubble {
+    background-color: #82afc2;
+  }
+
+  .marked-bubble {
     background-color: #8cd0ec;
+  }
+
+  .present-bubble {
+    background-color: #ffffff;
+  }
+
+  .bubble-ans {
     color: #023047;
-    /* color:white; */
     border-radius: 100%;
     width: 3rem;
     height: 3rem;

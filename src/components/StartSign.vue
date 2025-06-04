@@ -40,10 +40,7 @@
     </div>
 
     <!-- לגבי המבחן -->
-    <div
-      class="text-container"
-      v-if="sectionNum === 2 && thePart === 1"
-    >
+    <div class="text-container" v-if="sectionNum === 2 && thePart === 1">
       <p>
         אתם תעברו עכשיו מבחן על החומר שלמדתם בלומדה, המבחן עם ציון אז וודאו שאתם
         מרגישים מוכנים
@@ -51,24 +48,23 @@
       <p>המבחן מכיל 7 שאלות אמריקאיות</p>
       <p>שימו לב שלאחר לחיצה על הבא אין דרך לחזור</p>
 
-      <p class="text-next-to-input">הכניסו את שמכם המלא: </p>
+      <p class="text-next-to-input">הכניסו את שמכם המלא:</p>
       <input
         class="input-tag"
-        android:windowSoftInputMode="stateVisible"
         placeholder="הקלידו כאן שם מלא"
-        name="name"
+        v-model="fullName"
         lang="he"
         type="text"
       />
-      <br/>
-      <p class="text-next-to-input">הכניסו מספר אישי: </p>
+      <br />
+      <p class="text-next-to-input">הכניסו מספר אישי:</p>
       <input
         class="input-tag"
-        android:windowSoftInputMode="stateVisible"
         placeholder="הקלידו כאן מספר אישי"
-        name="name"
+        v-model="idNumber"
         lang="he"
         type="text"
+         maxlength="7"
       />
     </div>
 
@@ -80,7 +76,13 @@
       </div>
     </div>
 
-    <p class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p
+      class="next-btn moving-btn"
+      @click="nextPart"
+      :class="{ disable: !isFormValid() }"
+      >
+      הבא
+    </p>
     <p
       v-if="thePart !== 0 || isAContinuance"
       class="back-btn moving-btn"
@@ -113,6 +115,9 @@ export default {
         "הלומד יפרט את מערכות העגורן.",
         "הלומד יזהה את חלקיו השונים של העגורן.",
       ],
+      //קשור למבחן
+      fullName: "",
+      idNumber: "",
     };
   },
   mounted() {
@@ -124,20 +129,47 @@ export default {
   },
   methods: {
     nextPart() {
-      this.$emit("to-next-board");
+      if (this.sectionNum === 2 && this.thePart === 1) {
+        this.$emit("send-exam-variables", this.fullName, this.idNumber);
+        // if (this.isFormValid()) {
+        //   this.$emit("to-next-board");
+        // }
+      }
+      //  else {
+        this.$emit("to-next-board");
+      // }
     },
 
     prevPart() {
       if (this.isAContinuance && this.thePart === 0) {
         this.$emit("back-to-general-material");
-
-        // this.toShowCloudBg(false);
       } else {
         this.$emit("to-prev-board");
       }
     },
     toShowCloudBg(show) {
       this.$emit("to-show-cloud-bg", show);
+    },
+
+    submitForm() {
+      // כאן תוכל לשמור או לשלוח את הנתונים
+      alert(`שם מלא: ${this.fullName}\nמספר אישי: ${this.idNumber}`);
+    },
+    isFormValid() { 
+      if(this.sectionNum === 2 && this.thePart === 1) {
+ // שם מלא - לפחות 2 מילים (מופרדות ברווח)
+ const words = this.fullName.trim().split(/\s+/);
+      const fullNameValid =
+        words.length >= 2 && words.every((word) => word.length > 0);
+
+      // מספר אישי - 7 ספרות בלבד
+      const idNumberValid = /^\d{7}$/.test(this.idNumber);
+
+      return fullNameValid && idNumberValid;
+      } else {
+        return true;
+      }
+     
     },
   },
 };
@@ -153,6 +185,7 @@ export default {
   align-items: flex-end;
 }
 
+
 .text-next-to-input {
   display: inline;
 }
@@ -160,14 +193,14 @@ export default {
 .input-tag {
   border: none;
   border-radius: 1rem;
-    width: 20rem;
-    height: 3rem;
-    margin-bottom: 1rem;
-    background-color: #ffffff;
-    font-weight: 500;
-    font-size: 1em;
-    text-align: center;
-    color: black;
+  width: 20rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  font-weight: 500;
+  font-size: 1em;
+  text-align: center;
+  color: black;
 }
 
 .talk-text {
@@ -306,6 +339,17 @@ export default {
   right: 1rem;
 }
 
+.disable {
+  background: rgb(182, 182, 182);
+  cursor: auto;
+  pointer-events: none;
+}
+
+.disable:hover {
+  background:  rgb(182, 182, 182);
+  cursor: auto;
+}
+
 @media screen and (max-width: 600px) {
   .fixPosition {
     width: 74vw;
@@ -315,7 +359,7 @@ export default {
     margin-bottom: -1rem;
   }
   .text-next-to-input {
-  display: block;
-}
+    display: block;
+  }
 }
 </style>

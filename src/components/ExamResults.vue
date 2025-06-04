@@ -2,9 +2,9 @@
   <div id="exam-results">
     <img src="/media/exam/resultNote.png" alt="note" class="note" />
     <div class="text-container">
-      <p class="header">תוצאות</p>
+      <p class="header">התוצאות של {{this.fullName}}</p>
       <p>ציון:</p>
-      <p class="back-btn">מעבר על המבחן</p>
+      <p class="back-btn" @click="backToQues">מעבר על המבחן</p>
     </div>
   </div>
 </template>
@@ -12,11 +12,15 @@
 <script>
 export default {
   name: "exam-results",
-  props: [],
+  props: ['fullName'],
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    backToQues() {
+ this.$emit('back-to-ques');
+    },
+  },
 };
 </script>
 
@@ -49,7 +53,7 @@ font-size: 2rem;
 .back-btn {
   z-index: 1;
 
-  width: 5rem;
+  width: 10rem;
   height: 3rem;
   font-size: 1rem;
   background-color: #8cd0ec;

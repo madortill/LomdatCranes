@@ -18,6 +18,7 @@
       @change-show-warning="changeShowWarning"
       @back-to-general-material="backToGeneralMaterialFromOperation"
       @to-show-cloud-bg="toShowCloudBg"
+      @send-exam-variables="updateExamVariables"
       v-if="partToShow === 0"
     ></start-sign>
 
@@ -56,6 +57,8 @@
     ></operation>
 
     <exam
+    :fullName="fullName"
+    :idNumber="idNum"
       v-if="sectionToStudy === 2 && showTheSection && partToShow !== 2"
     ></exam>
   </div>
@@ -99,15 +102,19 @@ export default {
 
       //about start sign
       isAContinuance: false,
+
+      //about exam
+      fullName: "",
+      idNum: "",
     };
   },
   methods: {
+    updateExamVariables(n, i) {
+      this.fullName = n;
+      this.idNum = i;
+    },
     //מראה חלק הבא בקומפוננטת StartSign או שמעביר לחלק של הלמידה שהמשתמש בחר
     nextInStartSign() {
-      // if (
-      //   (this.sectionToStudy === 0 || this.sectionToStudy === 1) &&
-      //   this.thePart === 0
-      // )
       if (this.thePart === 0) {
         this.thePart++;
       } else {
