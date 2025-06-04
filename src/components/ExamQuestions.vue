@@ -39,7 +39,7 @@
         />
       </div>
   
-      <img :src="getSrcDoneBtn()" class="done-btn" :class="canBeSub ? 'done-active-btn' : ''" />
+      <img :src="getSrcDoneBtn()" class="done-btn" :class="canBeSub ? 'done-active-btn' : ''" @click="toSubmit"/>
       <div class="tracking-ans-container">
         <p
           class="bubble-ans"
@@ -159,6 +159,11 @@
       };
     },
     methods: {
+      toSubmit() {
+        if(this.canBeSub) {
+          this.$emit('show-results');
+        }
+      },
       showQuestion(event) {
         this.numQues = event.currentTarget.id - 1;
       },

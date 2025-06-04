@@ -1,22 +1,26 @@
 <template>
   <div id="exam">
-<exam-questions></exam-questions>
+<exam-questions v-show="!showResults" @show-results="showTheResults"></exam-questions>
+<exam-results v-show="showResults"></exam-results>
   </div>
 </template>
 
 <script>
 import ExamQuestions from './ExamQuestions.vue';
+import ExamResults from './ExamResults.vue';
 export default {
-  components: { ExamQuestions },
+  components: { ExamQuestions, ExamResults },
   name: "exam",
   props: [],
   data() {
     return {
-  
+  showResults: false,
     };
   },
   methods: {
-
+    showTheResults() {
+      this.showResults = true;
+    }
   },
 };
 </script>
