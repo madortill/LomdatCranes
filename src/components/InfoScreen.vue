@@ -57,7 +57,6 @@
 
     <exam
       v-if="sectionToStudy === 2 && showTheSection && partToShow !== 2"
-      @back-to-start-sign="backToStartSign"
     ></exam>
   </div>
 </template>

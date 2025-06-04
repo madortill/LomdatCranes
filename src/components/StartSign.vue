@@ -49,11 +49,23 @@
         מרגישים מוכנים
       </p>
       <p>המבחן מכיל 7 שאלות אמריקאיות</p>
-      <p>הכניסו את שמכם המלא לחלונית למטה ולחצו על הבא כדי להתחיל במבחן</p>
+      <p>שימו לב שלאחר לחיצה על הבא אין דרך לחזור</p>
+
+      <p class="text-next-to-input">הכניסו את שמכם המלא: </p>
       <input
-        class="examNameInput"
+        class="input-tag"
         android:windowSoftInputMode="stateVisible"
         placeholder="הקלידו כאן שם מלא"
+        name="name"
+        lang="he"
+        type="text"
+      />
+      <br/>
+      <p class="text-next-to-input">הכניסו מספר אישי: </p>
+      <input
+        class="input-tag"
+        android:windowSoftInputMode="stateVisible"
+        placeholder="הקלידו כאן מספר אישי"
         name="name"
         lang="he"
         type="text"
@@ -139,6 +151,23 @@ export default {
   justify-content: center;
   color: white;
   align-items: flex-end;
+}
+
+.text-next-to-input {
+  display: inline;
+}
+
+.input-tag {
+  border: none;
+  border-radius: 1rem;
+    width: 20rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    font-weight: 500;
+    font-size: 1em;
+    text-align: center;
+    color: black;
 }
 
 .talk-text {
@@ -285,5 +314,8 @@ export default {
   .start-sign-img {
     margin-bottom: -1rem;
   }
+  .text-next-to-input {
+  display: block;
+}
 }
 </style>
