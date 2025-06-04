@@ -1,18 +1,18 @@
 <template>
   <div id="start-sign">
     <img class="start-sign-img" src="/media/StartSign.png" alt="startSign" />
-    <div class="text-container" v-if="firstChosen && thePart === 0">
+    <div class="text-container" v-if="thePart === 0">
       <p>בחרת ב -</p>
       <p class="partOfLomda">{{ arrPartTitle[sectionNum] }}</p>
       <p>אם תרצה לשנות את בחירתך אפשר ללחוץ על כפתור הבית</p>
       <p class="goodWord">בהצלחה!</p>
     </div>
-    <div class="text-container" v-if="!firstChosen && thePart === 0">
+    <!-- <div class="text-container" v-if="!firstChosen && thePart === 0">
       <p>כל הכבוד סיימת את החלק ה{{ arrFinishedPart[sectionNum - 1] }}</p>
       <p>עכשיו נעבור לחלק ה{{ arrFinishedPart[sectionNum] }} של הלומדה</p>
       <p class="partOfLomda">{{ arrPartTitle[sectionNum] }}</p>
       <p class="goodWord">בהצלחה!</p>
-    </div>
+    </div> -->
     <div
       class="text-container fixPosition"
       v-if="sectionNum === 0 && thePart === 1"
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       arrPartTitle: ["תחילת הלומדה", "תפעול", "מבחן"],
-      arrFinishedPart: ["ראשון", "שני", "שלישי"],
+      // arrFinishedPart: ["ראשון", "שני", "שלישי"],
       array1: [
         "מטרת על",
         "הלומד יסביר את אופן התפעול של עגורן עילי.",

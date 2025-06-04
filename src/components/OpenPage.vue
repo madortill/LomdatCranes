@@ -45,17 +45,18 @@
         ></Box>
         <Box
           @click="toStudy(1)"
-          class="part-two btn"
+          class="part-two"
+          :class="homeBoxNum > 0 ? 'btn' : ''"
           newTitle="תפעול"
-          isDisable="false"
+          :isDisable="homeBoxNum < 1"
           partBox="1"
         ></Box>
         <Box
           @click="toStudy(2)"
           class="part-three"
-          :class="ableExam ? 'btn' : ''"
+          :class="homeBoxNum === 2 ? 'btn' : ''"
           newTitle="מבחן"
-          :isDisable="!ableExam"
+          :isDisable="homeBoxNum !== 2"
           partBox="1"
         ></Box>
       </div>
@@ -66,13 +67,13 @@
 
 <script>
 import Box from "../../src/components/Box.vue";
-import LomdaInfo from './lomdaInfo.vue';
+import LomdaInfo from "./lomdaInfo.vue";
 import StartHangingBoard from "./StartHangingBoard.vue";
 
 export default {
   name: "open-page",
   components: { Box, StartHangingBoard, LomdaInfo },
-  props: ["showSelection", "indexYellowSign", "ableExam"],
+  props: ["showSelection", "indexYellowSign", 'homeBoxNum'],
   data() {
     return {
       isOpenInfo: false,
@@ -81,7 +82,6 @@ export default {
       boardNum: 1,
       isUp: false,
       isDown: false,
-      fChosen: true,
     };
   },
   methods: {
@@ -110,11 +110,8 @@ export default {
       }, 1500);
     },
     toStudy(part) {
-      if((part === 2 && this.ableExam) || part !== 2)
-      this.$emit("to-study", this.fChosen, part);
-      if (this.fChosen) {
-        this.fChosen = true;
-      }
+      if (part <= this.homeBoxNum)
+        this.$emit("to-study", part);
     },
   },
 };

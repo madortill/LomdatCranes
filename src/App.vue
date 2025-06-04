@@ -15,11 +15,10 @@
       v-if="partNum === 0"
       :indexYellowSign="indexYellowSign"
       @next-index-yellow-sign="nextIndexYellowSign"
-      :ableExam="ableExam"
+      :homeBoxNum="homeBoxNum"
     ></open-page>
 
     <info-screen
-      :firstChosen="firstChosen"
       :chosenCourse="chosenCourse"
       v-if="partNum === 1"
       :sectionToStudy="sectionToStudy"
@@ -47,19 +46,16 @@ export default {
     return {
       partNum: 0,
       sectionToStudy: -1,
-      firstChosen: null,
       showSelection: false,
       chosenCourse: "",
       indexYellowSign: 0,
       showCloudsBg: true,
-      finishedLearnedBoxes: [false, false],
-      ableExam: true,
+      homeBoxNum: 0,
     };
   },
   methods: {
-    showChosenSection(fChosen, studyPart) {
+    showChosenSection(studyPart) {
       this.sectionToStudy = studyPart;
-      this.firstChosen = fChosen;
       this.partNum++;
     },
     toHomePage() {
@@ -81,28 +77,20 @@ export default {
         this.showCloudsBg = false;
       }
     },
+
     finishedGeneralMaterial() {
-      this.sectionToStudy++;
-      this.firstChosen = false;
-      this.finishedLearnedBoxes[0] = true;
-        this.toShowTheExam();
-      
+      // this.sectionToStudy++;
+      this.toHomePage();
+        this.homeBoxNum = 1;
     },
 
     finishedOperation() {
-      this.finishedLearnedBoxes[1] = true;
-      this.toShowTheExam();
-    },
-
-    toShowTheExam() {
-      if (this.finishedLearnedBoxes[0] && this.finishedLearnedBoxes[1]) {
-        this.ableExam = true;
-      }
+      this.toHomePage();
+      this.homeBoxNum = 2;
     },
 
     prevStudiedSection() {
       this.sectionToStudy--;
-      this.firstChosen = true;
     },
   },
 };
@@ -163,7 +151,7 @@ body {
     width: 2.4rem;
     top: 0.5rem;
   }
-  
+
   body {
     height: 91vh;
     overflow: hidden;

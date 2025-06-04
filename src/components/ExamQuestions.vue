@@ -410,7 +410,7 @@ export default {
   }
 
   .question-container {
-    height: 29rem;
+    height: 30rem;
   }
 
   .tracking-ans-container {
