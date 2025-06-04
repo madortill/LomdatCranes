@@ -177,8 +177,6 @@ export default {
         },
       ],
       canBeSub: false,
-
-      // numQues: 0,
     };
   },
   watch: {
