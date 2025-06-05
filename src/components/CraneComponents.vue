@@ -345,8 +345,8 @@ export default {
   @media screen and (max-width: 600px) {
     .with-zoom {
       width: 260rem;
-      margin-top: 0rem;
-      margin-left: 0rem;
+      margin-top: -90rem;
+      margin-left: 161rem;
     }
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */
