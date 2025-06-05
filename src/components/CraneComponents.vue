@@ -345,7 +345,7 @@ export default {
   @media screen and (max-width: 600px) {
     .with-zoom {
       width: 260rem;
-      /* margin-top: -90rem; */
+      margin-top: -150rem;
       /* margin-left: 161rem; */
     }
     #crane-components {
