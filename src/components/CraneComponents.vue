@@ -346,7 +346,7 @@ export default {
     .with-zoom {
       width: 260rem;
       margin-top: -150rem;
-      /* margin-left: 161rem; */
+      margin-right: 60rem;
     }
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */
