@@ -54,6 +54,9 @@ export default {
   methods: {
     nextInfo(up) {
       if( up && this.counterCardPhone < 3) {
+        if(this.counterCardPhone === 2) {
+          this.$emit('show-next-btn');
+        }
         this.counterCardPhone++;
       } else if(!up && this.counterCardPhone > 0) {
         this.counterCardPhone--;

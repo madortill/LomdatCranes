@@ -313,8 +313,8 @@ export default {
   }
 
   .info-in-yellow {
-    width: 36.1rem;
-    height: 21.6rem;
+    width: 30rem;
+    height: 21.5rem;
     top: 20.3rem;
     transform: translateX(-49.5%);
   }
@@ -333,7 +333,7 @@ export default {
   }
 
   .again {
-    top: 22rem;
+    top: 15rem;
     left: 20%;
     transform: rotate(-20deg), translateX(-50%);
   }

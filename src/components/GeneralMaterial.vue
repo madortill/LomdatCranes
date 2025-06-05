@@ -46,10 +46,10 @@
 
     <crane-components v-if="indexOrder === 4" @show-next-btn="showNextBtnFromComponent" :finishLearning="finishLearningComponents" @update-finish-learning="updateFinishLearningComponents"></crane-components>
     <clouds-btns v-if="indexOrder === 7"  @show-next-btn="showNextBtnFromComponent"></clouds-btns>
-    <final-highlights  v-if="indexOrder === 8"></final-highlights>
+    <final-highlights  v-if="indexOrder === 8" @show-next-btn="showNextFromFinalHighlights"></final-highlights>
 
 
-    <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p v-if="showNextBtn" :class="navbarSubjNum === 9 && !this.showNextInFinalHighlights ? 'hide' : ''" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
 </template>
@@ -103,9 +103,16 @@ export default {
       learnedInWinchSign: [false, false, false, false],
       //about craneComponents
       finishLearningComponents: false,
+      
+      //about finalHighlights 
+      showNextInFinalHighlights: false,
     };
   },
   methods: {
+    showNextFromFinalHighlights() {
+      this.showNextInFinalHighlights = true;
+    },
+
     nextPart() {
       switch (this.navbarSubjNum) {
         case 1: {
@@ -498,5 +505,11 @@ export default {
 
 .back-btn {
   right: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .hide {
+    display: none;
+  }
 }
 </style>

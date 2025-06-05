@@ -113,9 +113,15 @@ export default {
       this.btnInRemote = motion;
       switch (motion) {
         case "right":
+        if (window.innerWidth <= 600) {
+          if(this.horizontalRemRightLeft < 246) {
+            this.horizontalRemRightLeft = this.horizontalRemRightLeft + 6;
+          }
+        } else {
           if (this.horizontalRemRightLeft < 138) {
             this.horizontalRemRightLeft = this.horizontalRemRightLeft + 6;
           }
+        }
           break;
         case "left":
           if (this.horizontalRemRightLeft > -12) {
@@ -137,15 +143,31 @@ export default {
           }
           break;
         case "up":
-          if (this.translateYUpDown > -60 && this.scaleYUpDown > 0.6) {
+          //checks acorrding to screen resolution
+          if (this.scaleYUpDown > 0.61) {
             this.scaleYUpDown = this.scaleYUpDown - 0.1;
-            this.translateYUpDown = this.translateYUpDown - 15;
+            if (window.innerWidth <= 600) {
+              if (this.translateYUpDown > -120) {
+                this.translateYUpDown = this.translateYUpDown - 30;
+              }
+            } else {
+              if (this.translateYUpDown > -60) {
+                this.translateYUpDown = this.translateYUpDown - 15;
+              }
+            }
           }
+
           break;
         case "down":
-          if (this.translateYUpDown < 30 && this.scaleYUpDown < 1.2) {
+          if (this.scaleYUpDown < 1.2) {
             this.scaleYUpDown = this.scaleYUpDown + 0.1;
-            this.translateYUpDown = this.translateYUpDown + 15;
+            if (window.innerWidth <= 600) {
+              this.translateYUpDown = this.translateYUpDown + 30;
+            } else {
+              if (this.translateYUpDown < 30) {
+                this.translateYUpDown = this.translateYUpDown + 15;
+              }
+            }
           }
 
           break;
@@ -225,7 +247,12 @@ export default {
           break;
         }
         case 4: {
-          if (this.partInSecondPart === 0) {
+          //אם חזור מתפעול העגורן
+          if (this.partInSecondPart === -1) {
+            this.$emit("change-sub-nav-num", false);
+            this.numInstruction--;
+            this.partInRemote--;
+          } else if (this.partInSecondPart === 0) {
             if (this.showNoticeInSummery) {
               this.showNoticeInSummery = false;
             } else {
