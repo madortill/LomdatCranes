@@ -382,7 +382,7 @@ export default {
       width: 251rem;
       margin-top: -158rem;
       margin-left: 175rem;
-      margin-bottom: -98rem;
+      margin-bottom: -88rem;
     }
 
     .to-orange-zoom {
