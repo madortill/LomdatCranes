@@ -4,19 +4,22 @@
       מרכיבים בעגורן
     </p>
     <object
-    class="img-crane"
-
+      class="img-crane"
       :class="[
         showZoom ? 'with-zoom' : 'without-zoom',
         numPart === 1 ? 'to-orange-zoom' : '',
         numPart === 2 ? 'to-blue-zoom' : '',
       ]"
-      
       type="image/svg+xml"
       :data="craneUrl"
     ></object>
 
-    <img src="/media/magnifying-glass.svg" alt="magnifying-glass" :class="showZoom ? 'magnifying-glass-animaton' : ''" class="magnifying-glass"/>
+    <img
+      src="/media/magnifying-glass.svg"
+      alt="magnifying-glass"
+      :class="showZoom ? 'magnifying-glass-animaton' : ''"
+      class="magnifying-glass"
+    />
     <div
       class="info-container"
       v-if="numPart < 3"
@@ -351,39 +354,46 @@ export default {
   .magnifying-glass-animaton {
     display: block;
     position: absolute;
-    animation: moveOnScreen 0.2s linear forwards;
+    top: 50%;
+    left: 50%;
+    animation: moveOnScreen 0.2s linear forwards, spin 1s linear infinite;
   }
-
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
   @keyframes moveOnScreen {
-  0% {
-    right: 0rem;
-    left: auto;
+    0% {
+      right: 0rem;
+      left: auto;
+    }
+    100% {
+      left: 0rem;
+      right: auto;
+    }
   }
-  100% {
-    left: 0rem;
-  right: auto;
-  }
-}
 
   @media screen and (max-width: 600px) {
     .with-zoom {
       width: 251rem;
-      margin-top: -158rem;
+      margin-top: -178rem;
       margin-left: 175rem;
       margin-bottom: -68rem;
-
     }
 
     .to-orange-zoom {
-  margin-top: -148rem;
-  margin-left: 165.7rem;
-  transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
-    margin-left 1s ease-in;
-    margin-bottom: -102rem;
-    width: 263rem;
-}
+      margin-top: -148rem;
+      margin-left: 165.7rem;
+      transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
+        margin-left 1s ease-in;
+      margin-bottom: -102rem;
+      width: 263rem;
+    }
 
-   
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */
     }
