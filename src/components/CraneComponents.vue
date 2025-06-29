@@ -369,11 +369,11 @@ export default {
   }
   
   @keyframes displayOnScreen {
-    0% {
-      display: block;
+    from {
+      visibility: visible;
     }
-    100% {
-      display: none;
+    to {
+      visibility: hidden;
     }
   }
 
