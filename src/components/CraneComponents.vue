@@ -4,12 +4,14 @@
       מרכיבים בעגורן
     </p>
     <object
+    class="img-crane"
+    
       :class="[
         showZoom ? 'with-zoom' : 'without-zoom',
         numPart === 1 ? 'to-orange-zoom' : '',
         numPart === 2 ? 'to-blue-zoom' : '',
       ]"
-      class="img-crane"
+      
       type="image/svg+xml"
       :data="craneUrl"
     ></object>
@@ -347,12 +349,11 @@ export default {
       width: 251rem;
       margin-top: -158rem;
       margin-left: 175rem;
-    }
-
-    .img-crane {
       margin-bottom: -68rem;
+
     }
 
+   
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */
     }
