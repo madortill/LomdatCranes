@@ -387,10 +387,10 @@ export default {
 
     .to-orange-zoom {
       margin-top: -148rem;
-      margin-left: 165.7rem;
+      margin-left: 175.7rem;
       transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,  margin-bottom 1s ease-in
         margin-left 1s ease-in;
-      margin-bottom: -92rem;
+      margin-bottom: -122rem;
       width: 263rem;
     }
 
