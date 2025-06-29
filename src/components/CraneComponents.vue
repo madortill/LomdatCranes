@@ -396,7 +396,8 @@ export default {
 
     .to-blue-zoom {
       margin-top: -156rem;
-      margin-left: 104.9rem;
+      margin-left: 105.9rem;
+      margin-bottom: -78rem;
       /* transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
         margin-left 1s ease-in; */
     }
