@@ -16,6 +16,7 @@
       :data="craneUrl"
     ></object>
 
+    <img src="/media/magnifying-glass.svg" alt="magnifying-glass" :class="showZoom ? 'magnifying-glass-animaton' : ''" class="magnifying-glass"/>
     <div
       class="info-container"
       v-if="numPart < 3"
@@ -194,6 +195,9 @@ export default {
     margin-left 1s ease-in;
 }
 
+.magnifying-glass {
+  display: none;
+}
 .header {
   font-size: 2.5rem;
   font-weight: bold;
@@ -343,6 +347,23 @@ export default {
 
 @supports (-webkit-touch-callout: none) {
   /* זיהוי של מכשירי iOS */
+
+  .magnifying-glass-animaton {
+    display: block;
+    position: absolute;
+    animation: moveOnScreen 0.2s linear forwards;
+  }
+
+  @keyframes moveOnScreen {
+  0% {
+    right: 0rem;
+    left: auto;
+  }
+  100% {
+    left: 0rem;
+  right: auto;
+  }
+}
 
   @media screen and (max-width: 600px) {
     .with-zoom {
