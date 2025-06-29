@@ -271,12 +271,12 @@ export default {
   font-size: 1rem;
   background-color: var(--moving-btn-color);
   border-radius: 1.5rem;
-  padding: 0; 
+  padding: 0;
   /* Centering the text */
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  text-align: center; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
@@ -344,10 +344,15 @@ export default {
 
   @media screen and (max-width: 600px) {
     .with-zoom {
-      width: 260rem;
-      margin-top: -150rem;
-      margin-right: 60rem;
+      width: 251rem;
+      margin-top: -158rem;
+      margin-left: 175rem;
     }
+
+    .img-crane {
+      margin-bottom: -68rem;
+    }
+
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */
     }
