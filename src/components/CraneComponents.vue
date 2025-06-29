@@ -356,9 +356,9 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    animation: spin 0.8s linear infinite,  displayOnScreen 1.5s  forwards;
+    animation: spin 0.8s linear infinite, displayOnScreen 1.5s forwards;
   }
-  
+
   @keyframes spin {
     0% {
       transform: translate(-50%, -50%) rotate(0deg);
@@ -367,7 +367,7 @@ export default {
       transform: translate(-50%, -50%) rotate(360deg);
     }
   }
-  
+
   @keyframes displayOnScreen {
     from {
       visibility: visible;
@@ -377,7 +377,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 600px) {
+  /* @media screen and (max-width: 600px) { */
     .with-zoom {
       width: 251rem;
       margin-top: -158rem;
@@ -388,15 +388,22 @@ export default {
     .to-orange-zoom {
       margin-top: -148rem;
       margin-left: 168.7rem;
-      transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,  margin-bottom 1s ease-in
-        margin-left 1s ease-in;
+      transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
+        margin-bottom 1s ease-in margin-left 1s ease-in;
       margin-bottom: -118rem;
       width: 263rem;
+    }
+
+    .to-blue-zoom {
+      margin-top: -156rem;
+      margin-left: 154.9rem;
+      transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
+        margin-left 1s ease-in;
     }
 
     #crane-components {
       overflow: visible; /* מאפשר להרחיב את התמונה מחוץ למסך */
     }
-  }
+  /* } */
 }
 </style>
