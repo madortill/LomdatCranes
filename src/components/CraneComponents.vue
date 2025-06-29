@@ -388,8 +388,6 @@ export default {
     .to-orange-zoom {
       margin-top: -148rem;
       margin-left: 168.7rem;
-      /* transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
-        margin-bottom 1s ease-in margin-left 1s ease-in; */
       margin-bottom: -118rem;
       width: 263rem;
     }
@@ -398,8 +396,6 @@ export default {
       margin-top: -156rem;
       margin-left: 104rem;
       margin-bottom: -100rem;
-      /* transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
-        margin-left 1s ease-in; */
     }
 
     #crane-components {
