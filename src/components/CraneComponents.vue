@@ -356,7 +356,7 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    animation: spin 1s linear infinite,  displayOnScreen 2s  forwards;
+    animation: spin 0.7s linear infinite,  displayOnScreen 1s  forwards;
   }
   
   @keyframes spin {
@@ -380,9 +380,9 @@ export default {
   @media screen and (max-width: 600px) {
     .with-zoom {
       width: 251rem;
-      margin-top: -138rem;
+      margin-top: -158rem;
       margin-left: 175rem;
-      margin-bottom: -68rem;
+      margin-bottom: -78rem;
     }
 
     .to-orange-zoom {
