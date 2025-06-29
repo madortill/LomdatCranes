@@ -388,17 +388,17 @@ export default {
     .to-orange-zoom {
       margin-top: -148rem;
       margin-left: 168.7rem;
-      transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
-        margin-bottom 1s ease-in margin-left 1s ease-in;
+      /* transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
+        margin-bottom 1s ease-in margin-left 1s ease-in; */
       margin-bottom: -118rem;
       width: 263rem;
     }
 
     .to-blue-zoom {
       margin-top: -156rem;
-      margin-left: 94.9rem;
-      transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
-        margin-left 1s ease-in;
+      margin-left: 104.9rem;
+      /* transition: transform 1s ease-in, width 1s ease-in, margin-top 1s ease-in,
+        margin-left 1s ease-in; */
     }
 
     #crane-components {
