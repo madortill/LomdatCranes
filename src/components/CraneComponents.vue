@@ -356,8 +356,9 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    animation: moveOnScreen 0.2s linear forwards, spin 1s linear infinite;
+    animation: spin 1s linear infinite,  moveOnScreen 2s  forwards;
   }
+  
   @keyframes spin {
     0% {
       transform: translate(-50%, -50%) rotate(0deg);
@@ -366,14 +367,13 @@ export default {
       transform: translate(-50%, -50%) rotate(360deg);
     }
   }
-  @keyframes moveOnScreen {
+  
+  @keyframes displayOnScreen {
     0% {
-      right: 0rem;
-      left: auto;
+      display: block;
     }
     100% {
-      left: 0rem;
-      right: auto;
+      display: none;
     }
   }
 
