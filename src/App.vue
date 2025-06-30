@@ -50,7 +50,7 @@ export default {
       chosenCourse: "",
       indexYellowSign: 0,
       showCloudsBg: true,
-      homeBoxNum: 1,
+      homeBoxNum: 0,
     };
   },
   methods: {
@@ -86,7 +86,7 @@ export default {
 
     finishedOperation() {
       this.toHomePage();
-      // this.homeBoxNum = 2;
+      this.homeBoxNum = 2;
     },
 
     prevStudiedSection() {

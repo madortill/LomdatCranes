@@ -41,7 +41,7 @@
           class="part-one btn"
           newTitle="תחילת הלמידה"
           partBox="1"
-          :isDisable="true"
+          :isDisable="false"
         ></Box>
         <Box
           @click="toStudy(1)"
@@ -56,7 +56,7 @@
           class="part-three"
           :class="homeBoxNum === 2 ? 'btn' : ''"
           newTitle="מבחן"
-          :isDisable="true"
+          :isDisable="homeBoxNum !== 2"
           partBox="1"
         ></Box>
       </div>
@@ -110,7 +110,7 @@ export default {
       }, 1500);
     },
     toStudy(part) {
-      if (part === 1)
+      if (part <= this.homeBoxNum)
         this.$emit("to-study", part);
     },
   },
