@@ -5,17 +5,17 @@
       <p class="tag-ques">שאלה מספר {{ this.numQues + 1 }}</p>
 
       <div class="question-container">
-        <p class="question-title">{{ this.questions[this.numQues].title }}</p>
+        <p class="question-title">{{ this.shuffledQuestions[this.numQues].title }}</p>
         <div
           class="container-answer"
-          v-for="(answer, index) in this.questions[this.numQues].answers"
+          v-for="(answer, index) in this.shuffledQuestions[this.numQues].answers"
           :class="[
-            this.questions[this.numQues].correctAnswer === index && checkAns
+            this.shuffledQuestions[this.numQues].correctAnswer === index && checkAns
               ? 'correct-answer'
               : '',
-            this.questions[this.numQues].indexChosenAnswer !==
-              this.questions[this.numQues].correctAnswer &&
-            this.questions[this.numQues].indexChosenAnswer === index &&
+            this.shuffledQuestions[this.numQues].indexChosenAnswer !==
+              this.shuffledQuestions[this.numQues].correctAnswer &&
+            this.shuffledQuestions[this.numQues].indexChosenAnswer === index &&
             checkAns
               ? 'false-answer'
               : '',
@@ -57,13 +57,13 @@
     <div class="tracking-ans-container">
       <p
         class="bubble-ans"
-        v-for="i in questions.length"
+        v-for="i in shuffledQuestions.length"
         :key="i"
         :id="i"
         @click="showQuestion"
         :class="[
           this.numQues + 1 === i ? 'present-bubble' : '',
-          questions[i - 1].indexChosenAnswer === -1
+          shuffledQuestions[i - 1].indexChosenAnswer === -1
             ? 'unmarked-bubble'
             : 'marked-bubble',
         ]"
@@ -174,7 +174,11 @@ export default {
         },
       ],
       canBeSub: false,
+      shuffledQuestions: [],
     };
+  },
+  created() {
+    this.shuffleQuestions();
   },
   watch: {
     checkAns(newVal) {
@@ -184,9 +188,17 @@ export default {
     },
   },
   methods: {
+    shuffleQuestions() {
+      const shuffled = this.questions.slice(); // שומר על המקור
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      this.shuffledQuestions = shuffled;
+    },
     //מופעל כשהמשתמש נכשל במבחן וזהו בעצם איפוס התשובות
     resetChosenAnswers() {
-      this.questions.forEach((question) => {
+      this.shuffledQuestions.forEach((question) => {
         question.indexChosenAnswer = -1;
       });
       this.canBeSub = false;
@@ -194,14 +206,14 @@ export default {
     toSubmit() {
       if (this.canBeSub) {
         let score = 0;
-        let NumQuestions = this.questions.length;
+        let NumQuestions = this.shuffledQuestions.length;
         //חישוב כמה כל תשובה נכונה שווב בניקוד
         let correctPoints = 100 / Number(NumQuestions);
         //סופר כמה תשובות נכונות מתוך כל השאלות
         let counterCorrect = 0;
         let ques = null;
         for (let i = 0; i < NumQuestions; i++) {
-          ques = this.questions[i];
+          ques = this.shuffledQuestions[i];
           if (ques.correctAnswer === ques.indexChosenAnswer) {
             score += correctPoints;
             counterCorrect++;
@@ -216,8 +228,8 @@ export default {
     },
 
     checkIfCanBeSub() {
-      for (let i = 0; i < this.questions.length; i++) {
-        if (this.questions[i].indexChosenAnswer === -1) {
+      for (let i = 0; i < this.shuffledQuestions.length; i++) {
+        if (this.shuffledQuestions[i].indexChosenAnswer === -1) {
           return false;
         }
       }
@@ -235,7 +247,7 @@ export default {
       }
     },
     theChosenAnswer(index) {
-      this.questions[this.numQues].indexChosenAnswer = index;
+      this.shuffledQuestions[this.numQues].indexChosenAnswer = index;
       if (this.checkIfCanBeSub()) {
         this.canBeSub = true;
       }
@@ -244,7 +256,7 @@ export default {
       // Determine the base URL (for local and production)
       const basePath =
         process.env.NODE_ENV === "production" ? "/LomdatCranes/" : "/";
-      return num === this.questions[this.numQues].indexChosenAnswer
+      return num === this.shuffledQuestions[this.numQues].indexChosenAnswer
         ? `${basePath}media/exam/answer-squre-marked.svg`
         : `${basePath}media/exam/answer-squre-unmarked.svg`;
     },
