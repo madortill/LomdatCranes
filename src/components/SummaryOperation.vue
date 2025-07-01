@@ -1,5 +1,11 @@
 <template>
   <div id="summary-operation">
+    <div v-if="indexArr === 1" class="notice-close-crane">
+      <p class="right-part-notice">לשים לב</p>
+      <p class="left-part-notice">
+        כמפעיל חלה עליך החובה החוקית לוודא כי העגורן נעול בסיום השימוש!
+      </p>
+    </div>
     <div class="info-container">
       <div v-if="indexArr !== 2">
         <p class="header">{{ infoArr[indexArr] }}</p>
@@ -74,6 +80,32 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+.notice-close-crane {
+  background-color: #8cd0ec;
+  color: #023047;
+  border-radius: 1rem;
+  width: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-part-notice {
+  background-color: white;
+  height: 120%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  /* width: 9rem; */
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: -0.6rem;
+}
+
+.left-part-notice {
+font-size: 1rem;}
 
 .close-info {
   cursor: pointer;
