@@ -39,7 +39,7 @@ export default {
       arrArrows: [">", "<"],
       info: [
         "הגיל המינימלי לביצוע קורס מפעיל מנוף הוא 18.",
-        ' לאחר ביצוע ההכשרה אתם נדרשים לבצע חניכה ביחידה לפי הוראת קנטא"ר 0023 (לאחר שליחת תיק החניכה למרכז המבחנים תתקבל תעודת מפעיל מנוף). במסגרת החניכה עליכם לבצע 10 הפעלות לפחות עם חונך ולשלוח את המסמכים חתומים למרכז המבחנים תוך חודש ימים. שימו לב, במהלך החניכה אחוז המשקל בו אתם רשאים לעבוד הוא עד 40% מעומס העבודה הבטוח של המנוף.',
+        ' לאחר ביצוע ההכשרה אתם נדרשים לבצע חניכה ביחידה לפי הוראת קנטא"ר 0023 (לאחר שליחת תיק החניכה למרכז המבחנים תתקבל תעודת מפעיל מנוף). במסגרת החניכה עליכם לבצע 10 הפעלות לפחות עם חונך ולשלוח את המסמכים חתומים למרכז המבחנים תוך חודש ימים. שימו לב, במהלך החניכה אחוז המשקל בו אתם רשאים לעבוד הוא עד 40% מעומס העבודה הבטוח של המנוף',
         "אסור לעבוד ללא תועלת מפעיל מנוף בתוקף.",
         "את התעודה יש לחדש כל שנתיים על ידי ביצוע מבחן במרכז מבחנים, כל שנה נדרש ריענון מקצועי על ידי נגד בעל רישיון עם שנה ותק לפחות.",
         
@@ -81,6 +81,27 @@ export default {
 
 .with-scroll {
   overflow: auto;
+  overflow-y: scroll;       /* Always show vertical scrollbar */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  direction: ltr; /* Ensures scrollbar stays on the right */
+}
+
+/* Show and style scrollbar - Chrome, Safari, Edge */
+.with-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.with-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.with-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.with-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .hide {
@@ -140,6 +161,7 @@ export default {
   border-radius: 1rem;
   display: flex;
   align-items: flex-start;
+  font-size: 1.1rem;
 }
 
 .last-note-computer {
