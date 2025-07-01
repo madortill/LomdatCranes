@@ -19,15 +19,32 @@
       </div>
     </div>
     <div class="for-phone">
-      <p class="arrow" :class="counterCardPhone === 0 ? 'hide': ''"  @click="nextInfo(false)">{{arrArrows[1]}}</p>
-      <div class="card-phone"  :class="counterCardPhone === 1 ? 'with-scroll' : ''" :style="{ '--card-color': colorArr[counterCardPhone] }">
+      <p
+        class="arrow"
+        :class="counterCardPhone === 0 ? 'hide' : ''"
+        @click="nextInfo(false)"
+      >
+        {{ arrArrows[1] }}
+      </p>
+      <div
+        class="card-phone"
+        :class="counterCardPhone === 1 ? 'with-scroll' : ''"
+        :style="{ '--card-color': colorArr[counterCardPhone] }"
+      >
         <p>{{ info[counterCardPhone] }}</p>
       </div>
-      <p class="arrow" @click="nextInfo(true)" :class="counterCardPhone === 3 ? 'hide': ''">{{arrArrows[0]}}</p>
-      
+      <p
+        class="arrow"
+        @click="nextInfo(true)"
+        :class="counterCardPhone === 3 ? 'hide' : ''"
+      >
+        {{ arrArrows[0] }}
+      </p>
     </div>
-
-    <p class="last-note-computer">{{ info[info.length - 1] }}</p>
+    <div class="checkbox-container">
+      <input class="the-checkbox" type="checkbox"  v-model="isChecked" />
+      <p class="last-note-computer">{{ info[info.length - 1] }}</p>
+    </div>
   </div>
 </template>
 
@@ -38,32 +55,33 @@ export default {
     return {
       arrArrows: [">", "<"],
       info: [
-        "הגיל המינימלי לביצוע קורס מפעיל מנוף הוא 18.",
+        "הגיל המינימלי לביצוע קורס מפעיל מנוף הוא 18",
         ' לאחר ביצוע ההכשרה אתם נדרשים לבצע חניכה ביחידה לפי הוראת קנטא"ר 0023 (לאחר שליחת תיק החניכה למרכז המבחנים תתקבל תעודת מפעיל מנוף). במסגרת החניכה עליכם לבצע 10 הפעלות לפחות עם חונך ולשלוח את המסמכים חתומים למרכז המבחנים תוך חודש ימים. שימו לב, במהלך החניכה אחוז המשקל בו אתם רשאים לעבוד הוא עד 40% מעומס העבודה הבטוח של המנוף',
-        "אסור לעבוד ללא תועלת מפעיל מנוף בתוקף.",
-        "את התעודה יש לחדש כל שנתיים על ידי ביצוע מבחן במרכז מבחנים, כל שנה נדרש ריענון מקצועי על ידי נגד בעל רישיון עם שנה ותק לפחות.",
-        
+        "אסור לעבוד ללא תועדת מפעיל מנוף בתוקף",
+        "את התעודה יש לחדש כל שנתיים על ידי ביצוע מבחן במרכז מבחנים, כל שנה נדרש ריענון מקצועי על ידי נגד בעל רישיון עם שנה ותק לפחות",
+
         // "במסגרת החניכה עליכם לבצע 10 הפעלות לפחות עם חונך ולשלוח את המסמכים חתומים למרכז המבחנים תוך חודש ימים.",
         // "שימו לב, במהלך החניכה אחוז המשקל בו אתם רשאים לעבוד הוא עד 40% מעומס העבודה הבטוח של המנוף.",
-        "חייל שלא ישלח תיק חניכה- תוך 30 יום, הקורס יתבטל ויאלץ החניך לבצע קורס חוזר.",
+        "חייל שלא ישלח תיק חניכה- תוך 30 יום, הקורס יתבטל ויאלץ החניך לבצע קורס חוזר",
       ],
       colorArr: ["#F88C01", "#FFAF02", "#8CD0EC", "#1E85AE"],
       counterCardPhone: 0,
       sumNumCards: [0, 1, 2, 3],
+      isChecked: false,
     };
   },
 
   methods: {
     nextInfo(up) {
-      if( up && this.counterCardPhone < 3) {
-        if(this.counterCardPhone === 2) {
-          this.$emit('show-next-btn');
+      if (up && this.counterCardPhone < 3) {
+        if (this.counterCardPhone === 2) {
+          this.$emit("show-next-btn");
         }
         this.counterCardPhone++;
-      } else if(!up && this.counterCardPhone > 0) {
+      } else if (!up && this.counterCardPhone > 0) {
         this.counterCardPhone--;
       }
-    }
+    },
   },
 };
 </script>
@@ -79,9 +97,13 @@ export default {
   justify-content: center;
 }
 
+/* .toggle {
+  background-color: aqua;
+} */
+
 .with-scroll {
   overflow: auto;
-  overflow-y: scroll;       /* Always show vertical scrollbar */
+  overflow-y: scroll; /* Always show vertical scrollbar */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
   direction: ltr; /* Ensures scrollbar stays on the right */
 }
@@ -144,7 +166,6 @@ export default {
   padding: 1rem;
   border-radius: 1rem;
   transition: all 0.2s;
-
 }
 
 .for-computer {
@@ -167,7 +188,16 @@ export default {
 .last-note-computer {
   font-weight: bold;
   font-size: 1.5rem;
+}
 
+.the-checkbox {
+  width: 1rem;
+  margin-left: 1rem;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -181,6 +211,11 @@ export default {
 
   .last-note-computer {
     font-weight: none;
+    width: 75%;
+  }
+
+  .the-checkbox {
+    width: 2rem
   }
 
   .for-phone {
