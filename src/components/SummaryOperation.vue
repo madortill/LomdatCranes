@@ -1,12 +1,12 @@
 <template>
   <div id="summary-operation">
-    <div v-if="indexArr === 1" class="notice-close-crane">
-      <p class="right-part-notice">לשים לב</p>
-      <p class="left-part-notice">
-        כמפעיל חלה עליך החובה החוקית לוודא כי העגורן נעול בסיום השימוש!
-      </p>
-    </div>
-    <div class="info-container">
+    <div class="info-container" :class="indexArr === 1 ? 'change-width' : ''">
+      <div v-if="indexArr === 1" class="notice-close-crane">
+        <p class="right-part-notice">לשים לב</p>
+        <p class="left-part-notice">
+          כמפעיל חלה עליך החובה החוקית לוודא כי העגורן נעול בסיום השימוש!
+        </p>
+      </div>
       <div v-if="indexArr !== 2">
         <p class="header">{{ infoArr[indexArr] }}</p>
         <div
@@ -84,28 +84,28 @@ export default {
 .notice-close-crane {
   background-color: #8cd0ec;
   color: #023047;
-  border-radius: 1rem;
-  width: 20rem;
+  width: 8rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
 }
 
 .right-part-notice {
-  background-color: white;
-  height: 120%;
+  background-color: #ffb703;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  /* width: 9rem; */
-  padding-right: 1rem;
-  padding-left: 1rem;
-  margin-right: -0.6rem;
+  width: 6rem;
+  font-weight: bold;
 }
 
 .left-part-notice {
-font-size: 1rem;}
+  padding: 0.5rem;
+}
 
 .close-info {
   cursor: pointer;
@@ -125,6 +125,7 @@ font-size: 1rem;}
 }
 
 .info-container {
+  transition: height 0.3s ease, width 0.3s ease;
   background-color: #023047;
   border-radius: 1rem;
   width: 34rem;
@@ -134,6 +135,12 @@ font-size: 1rem;}
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.change-width {
+  width: 40rem;
+  flex-direction: row;
+  align-items: center;
 }
 
 .the-step {
@@ -203,6 +210,26 @@ font-size: 1rem;}
   .info-container {
     width: 30rem;
     height: 36rem;
+   
+  }
+
+  .change-width {
+    height: 38rem;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .notice-close-crane {
+    height: 6rem;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .right-part-notice {
+   padding: 0.2rem;
+   width: 7rem;
+   margin-right: 1rem;
   }
 }
 </style>
