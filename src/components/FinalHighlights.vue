@@ -42,7 +42,12 @@
       </p>
     </div>
     <div class="checkbox-container">
-      <input class="the-checkbox" type="checkbox"  v-model="isChecked" />
+      <input
+        :checked="isChecked"
+        @change="handleCheck"
+        class="the-checkbox"
+        type="checkbox"
+      />
       <p class="last-note-computer">{{ info[info.length - 1] }}</p>
     </div>
   </div>
@@ -68,16 +73,44 @@ export default {
       counterCardPhone: 0,
       sumNumCards: [0, 1, 2, 3],
       isChecked: false,
+      hasCheckedOnce: false,
+      finishedLearning: false,
     };
   },
 
   methods: {
+    isCheckedMark() {
+      this.isChecked = true;
+      if (window.innerWidth > 600 || (window.innerWidth <= 600 && this.finishedLearning)) {
+        this.$emit("show-next-btn");
+      } 
+    },
+
+    handleCheck(event) {
+    // If already checked once, prevent any more changes
+    if (this.hasCheckedOnce) {
+      event.preventDefault(); // prevent unchecking
+      event.target.checked = true; // force it to stay checked
+      return;
+    }
+    // First time checking
+    this.isChecked = true;
+    this.hasCheckedOnce = true;
+    if(window.innerWidth > 600 || (window.innerWidth <= 600 && this.finishedLearning)) {
+      this.$emit("show-next-btn");
+    }
+  },
+
     nextInfo(up) {
       if (up && this.counterCardPhone < 3) {
-        if (this.counterCardPhone === 2) {
+        if (this.counterCardPhone === 2 && this.isChecked) {
           this.$emit("show-next-btn");
         }
         this.counterCardPhone++;
+        //checks if finished reading all final highlights
+        if(this.counterCardPhone === 3) {
+          this.finishedLearning = true;
+        }
       } else if (!up && this.counterCardPhone > 0) {
         this.counterCardPhone--;
       }
@@ -215,7 +248,7 @@ export default {
   }
 
   .the-checkbox {
-    width: 2rem
+    width: 2rem;
   }
 
   .for-phone {

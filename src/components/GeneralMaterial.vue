@@ -46,10 +46,10 @@
 
     <crane-components v-if="indexOrder === 4" @show-next-btn="showNextBtnFromComponent" :finishLearning="finishLearningComponents" @update-finish-learning="updateFinishLearningComponents"></crane-components>
     <clouds-btns v-if="indexOrder === 7"  @show-next-btn="showNextBtnFromComponent"></clouds-btns>
-    <final-highlights  v-if="indexOrder === 8" @show-next-btn="showNextFromFinalHighlights"></final-highlights>
+    <final-highlights v-if="indexOrder === 8" @show-next-btn="showNextBtnFromComponent"></final-highlights>
 
 
-    <p v-if="showNextBtn" :class="navbarSubjNum === 9 && !this.showNextInFinalHighlights ? 'hide' : ''" class="next-btn moving-btn" @click="nextPart">הבא</p>
+    <p v-if="showNextBtn" class="next-btn moving-btn" @click="nextPart">הבא</p>
     <p v-if="showBackBtn" class="back-btn moving-btn" @click="prevPart">חזור</p>
   </div>
 </template>
@@ -106,12 +106,13 @@ export default {
       
       //about finalHighlights 
       showNextInFinalHighlights: false,
+      isCheckedBtn: false,
     };
   },
   methods: {
-    showNextFromFinalHighlights() {
-      this.showNextInFinalHighlights = true;
-    },
+    // showNextFromFinalHighlights() {
+    //   this.showNextInFinalHighlights = true;
+    // },
 
     nextPart() {
       switch (this.navbarSubjNum) {
@@ -238,7 +239,7 @@ export default {
           this.toShowCloudBg(true);
           this.$emit('update-index-order', true);
           this.$emit("change-sub-nav-num", true);
-          this.showNextBtn = true;
+          this.showNextBtn = false;
           this.hideNavbar(true);
 
           break;
