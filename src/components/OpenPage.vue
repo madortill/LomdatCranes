@@ -265,7 +265,7 @@ export default {
     position: static;
     height: 22rem;
     width: auto;
-    margin-bottom: -10rem;
+    margin-bottom: -8rem;
     pointer-events: none;
 }
 

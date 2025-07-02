@@ -52,7 +52,7 @@ export default {
       chosenCourse: "",
       indexYellowSign: 0,
       showCloudsBg: true,
-      homeBoxNum: 0,
+      homeBoxNum: 2,
       finishedLomda: false,
     };
   },
