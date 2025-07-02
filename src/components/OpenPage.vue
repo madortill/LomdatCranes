@@ -14,7 +14,9 @@
         :craneKind="chosenCrane"
         :isUp="isUp"
         :isDown="isDown"
+        :finishedLomda="finishedLomda"
       />
+      <img v-if="finishedLomda" class="human-bahad-symbol" src="/media/finishPage/humanBahadSymbol.png"/>
 
       <div class="box-container" v-if="boardNum === 1 && !showSelection">
         <Box
@@ -54,9 +56,9 @@
         <Box
           @click="toStudy(2)"
           class="part-three"
-          :class="homeBoxNum === 2 ? 'btn' : ''"
+          :class="homeBoxNum === 2  && !finishedLomda ? 'btn' : ''"
           newTitle="מבחן"
-          :isDisable="homeBoxNum !== 2"
+          :isDisable="homeBoxNum !== 2 || finishedLomda"
           partBox="1"
         ></Box>
       </div>
@@ -73,7 +75,7 @@ import StartHangingBoard from "./StartHangingBoard.vue";
 export default {
   name: "open-page",
   components: { Box, StartHangingBoard, LomdaInfo },
-  props: ["showSelection", "indexYellowSign", 'homeBoxNum'],
+  props: ["showSelection", "indexYellowSign", 'homeBoxNum', 'finishedLomda'],
   data() {
     return {
       isOpenInfo: false,
@@ -110,7 +112,7 @@ export default {
       }, 1500);
     },
     toStudy(part) {
-      if (part <= this.homeBoxNum)
+      if (part <= this.homeBoxNum && !this.finishedLomda || this.finishedLomda && part !== 2 && part <= this.homeBoxNum )
         this.$emit("to-study", part);
     },
   },
@@ -250,7 +252,23 @@ export default {
   height: 9rem;
 }
 
+.human-bahad-symbol {
+  position: absolute;
+  width: 20rem;
+  left: 9rem;
+  bottom: 6rem;
+  z-index: 5;
+}
+
 @media screen and (max-width: 700px) {
+  .human-bahad-symbol{
+    position: static;
+    height: 22rem;
+    width: auto;
+    margin-bottom: -10rem;
+    pointer-events: none;
+}
+
   .ground {
     height: 15rem;
   }

@@ -6,6 +6,7 @@
       :style="{ '--home-icon-color': colorIconPhone }"
       src="../assets/media/homeIcon.png"
       alt="homeIcon"
+       v-if="!(sectionToStudy === 2 && showTheSection && partToShow !== 2)"
     />
     <start-sign
       :sectionNum="sectionToStudy"
@@ -58,6 +59,7 @@
     :fullName="fullName"
     :idNumber="idNum"
       v-if="sectionToStudy === 2 && showTheSection && partToShow !== 2"
+      @finished-lomda="finishedLomda"
     ></exam>
   </div>
 </template>
@@ -140,6 +142,12 @@ export default {
         this.thePart--;
       }
     },
+
+    finishedLomda() {
+      this.$emit('show-finish-lomda');
+      this.toHomePage();
+    },
+
     toHomePage() {
       this.$emit("toHomePage");
       this.colorIconPhone = "none";

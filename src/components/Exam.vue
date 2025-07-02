@@ -15,7 +15,15 @@
       v-show="showResults"
       @back-to-ques="BackToQues"
       :counterDoOvers="counterDoOvers"
+      @show-finish-lomda-btn="showFinishLomdaBtn"
     ></exam-results>
+    <p
+      class="finished-exam-btn"
+      @click="toFinishLomdaPage"
+      v-if="showFinishBtn"
+    >
+      סיימתי
+    </p>
   </div>
 </template>
 
@@ -35,13 +43,18 @@ export default {
       numQuestions: 0,
       numCurrentQues: 0,
       counterDoOvers: 0,
+      showFinishBtn: false,
     };
   },
   methods: {
+    toFinishLomdaPage() {
+      this.$emit("finished-lomda");
+    },
+
     changeCurrentNumQues(theChange) {
       if (typeof theChange !== "boolean") {
         this.numCurrentQues = theChange;
-      } else if(theChange) {
+      } else if (theChange) {
         this.numCurrentQues++;
       } else {
         this.numCurrentQues--;
@@ -58,17 +71,19 @@ export default {
     BackToQues() {
       this.numCurrentQues = 0;
       this.showResults = false;
-      
+
       if (this.score < 70) {
         //אם עשה כבר 2 ניסיונות חוזרים עליו ללמוד מחדש את הלומדה
-        if(this.counterDoOvers === 2) {
+        if (this.counterDoOvers === 2) {
           window.location.reload();
         } else {
           this.checkAns = false;
-        this.counterDoOvers++;
+          this.counterDoOvers++;
         }
-        
-      } 
+      }
+    },
+    showFinishLomdaBtn() {
+      this.showFinishBtn = true;
     },
   },
 };
@@ -80,6 +95,41 @@ export default {
   height: 100vh;
   z-index: 1;
 }
+
+.finished-exam-btn {
+  position: fixed;
+  background-color: #8cd0ec;
+  top: 0rem;
+  left: 8rem;
+width: 5rem;
+height: 5rem;
+display: flex;
+align-items: center;
+justify-content: center;
+  border-radius: 100%;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  animation: blink-bg 2s infinite ease-in-out;
+}
+
+.finished-exam-btn:hover {
+  background-color: #023047;
+  color: white;
+}
+
+@keyframes blink-bg {
+  0% {
+    background-color: #8cd0ec;
+  }
+  50% {
+    background-color: #FEB758;
+  }
+  100% {
+    background-color: #8cd0ec;
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   #exam {

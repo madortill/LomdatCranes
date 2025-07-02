@@ -9,7 +9,7 @@
       alt="wire"
       :class="partNum !== 3 && !showSelection ? 'wire' : 'smallWire'"
     />
-    <div class="blue-board">
+    <div class="blue-board" :class="finishedLomda ? 'finish-blue-sign': ''">
       <p class="lomdatName" v-if="partNum === 1 && !showSelection">
         לומדת עגורנים
       </p>
@@ -29,8 +29,11 @@
         />
         <img src="/media/checkMark.png" alt="icon" class="check-mark-icon"/>
       </div>
+      <p class="finish-lomda-sign" v-if="finishedLomda">
+        סיימת את הלומדה!!
+      </p>
     </div>
-    <div :class="partNum === 1 ? 'add-margin' : ''" v-if="partNum === 1 || partNum === 3 || showSelection">
+    <div :class="partNum === 1 ? 'add-margin' : ''" v-if="(partNum === 1 || partNum === 3 || showSelection) && !finishedLomda">
       <img
         v-if="partNum === 1 && !showSelection"
         src="/media/twoWires.png"
@@ -52,6 +55,7 @@ export default {
     "isDown",
     "indexYellowSign",
     "showSelection",
+    "finishedLomda"
   ],
   data() {
     return {
@@ -132,6 +136,16 @@ export default {
   font-size: 4rem;
   font-weight: 900;
   color: #e0f2f4;
+}
+
+.finish-lomda-sign {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #e0f2f4;
+}
+
+.finish-blue-sign {
+  width: 22rem;
 }
 
 .theCraneKind {

@@ -16,6 +16,7 @@
       :indexYellowSign="indexYellowSign"
       @next-index-yellow-sign="nextIndexYellowSign"
       :homeBoxNum="homeBoxNum"
+      :finishedLomda="finishedLomda"
     ></open-page>
 
     <info-screen
@@ -27,6 +28,7 @@
       @next-section-to-study="finishedGeneralMaterial"
       @prev-studied-section="prevStudiedSection"
       @finished-operation="finishedOperation"
+      @show-finish-lomda="showFinishLomda"
     ></info-screen>
   </div>
 </template>
@@ -51,6 +53,7 @@ export default {
       indexYellowSign: 0,
       showCloudsBg: true,
       homeBoxNum: 0,
+      finishedLomda: false,
     };
   },
   methods: {
@@ -81,7 +84,7 @@ export default {
     finishedGeneralMaterial() {
       // this.sectionToStudy++;
       this.toHomePage();
-        this.homeBoxNum = 1;
+      this.homeBoxNum = 1;
     },
 
     finishedOperation() {
@@ -91,6 +94,9 @@ export default {
 
     prevStudiedSection() {
       this.sectionToStudy--;
+    },
+    showFinishLomda() {
+      this.finishedLomda = true;
     },
   },
 };

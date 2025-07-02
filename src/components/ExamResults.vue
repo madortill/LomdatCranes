@@ -27,6 +27,7 @@ export default {
       if(this.score < 70) {
         return 'אופס נכשלת ' + this.fullName + '...';
       } else {
+        this.$emit('show-finish-lomda-btn');
         return 'כל הכבוד ' + this.fullName + '!';        
       }
     }, 

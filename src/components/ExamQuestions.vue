@@ -219,7 +219,6 @@ export default {
             counterCorrect++;
           }
         }
-
         this.$emit("show-results", score, counterCorrect, NumQuestions);
       }
     },
