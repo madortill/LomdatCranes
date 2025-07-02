@@ -263,9 +263,9 @@ export default {
 @media screen and (max-width: 700px) {
   .human-bahad-symbol{
     position: static;
-    height: 22rem;
+    height: 24rem;
     width: auto;
-    margin-bottom: -8rem;
+    margin-bottom: -7rem;
     pointer-events: none;
 }
 
