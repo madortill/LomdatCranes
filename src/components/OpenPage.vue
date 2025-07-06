@@ -16,8 +16,13 @@
         :isDown="isDown"
         :finishedLomda="finishedLomda"
       />
-      <img v-if="finishedLomda" class="human-bahad-symbol" src="/media/finishPage/humanBahadSymbol.png"/>
 
+      <!-- נראה לעין רק אם סיימו את הלומדה -->
+   
+        <img  v-if="finishedLomda" class="human-bahad-symbol" src="/media/finishPage/humanBahadSymbol.png"/>
+        <img v-if="finishedLomda" class="confety" src="\media\finishPage\confety.gif" alt="confety GIF" />
+  
+      
       <div class="box-container" v-if="boardNum === 1 && !showSelection">
         <Box
           @click.once="toNextScreen"
@@ -260,7 +265,15 @@ export default {
   z-index: 5;
 }
 
-@media screen and (max-width: 700px) {
+.confety {
+  position: absolute;
+  /* width: 100vw; */
+  height: 100vh;
+  z-index: 6;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 1010px) {
   .human-bahad-symbol{
     position: static;
     height: 24rem;
@@ -268,6 +281,10 @@ export default {
     margin-bottom: -7rem;
     pointer-events: none;
 }
+}
+
+@media screen and (max-width: 700px) {
+
 
   .ground {
     height: 15rem;
