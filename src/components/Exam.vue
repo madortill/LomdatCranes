@@ -136,5 +136,22 @@ export default {
     width: 100vw;
     height: 91vh;
   }
+  .finished-exam-btn {
+  position: fixed;
+  background-color: #8cd0ec;
+  top: -1rem;
+  left: 4rem;
+  width: 9rem;
+  height: 9rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  animation: blink-bg 2s infinite ease-in-out;
+}
 }
 </style>
