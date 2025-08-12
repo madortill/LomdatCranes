@@ -101,16 +101,17 @@ export default {
   background-color: #8cd0ec;
   top: 0rem;
   left: 8rem;
-width: 5rem;
-height: 5rem;
-display: flex;
-align-items: center;
-justify-content: center;
+  width: 9rem;
+  height: 9rem;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 100%;
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-  animation: blink-bg 2s infinite ease-in-out;
+  animation: blink-bg-ccbf7bdc 2s infinite ease-in-out;
 }
 
 .finished-exam-btn:hover {
@@ -123,13 +124,12 @@ justify-content: center;
     background-color: #8cd0ec;
   }
   50% {
-    background-color: #FEB758;
+    background-color: #feb758;
   }
   100% {
     background-color: #8cd0ec;
   }
 }
-
 
 @media screen and (max-width: 600px) {
   #exam {
