@@ -111,7 +111,7 @@ export default {
   font-weight: bold;
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-  animation: blink-bg-ccbf7bdc 2s infinite ease-in-out;
+  animation: blink-bg 2s infinite ease-in-out;
 }
 
 .finished-exam-btn:hover {
